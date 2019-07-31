@@ -11,6 +11,9 @@
     <string name="imageButton_bad">Чувствую себя плохо.</string>
     <string name="text_how_do_you_feel">Как вы себя сегодня чувствуете?</string>
     <string name="button_toolbar_settings">Настройки</string>
+
+    // Strings for toasts
+    <string name="toast_save_data">Ваши данные сохранены!</string>
     
 
 </resources>
