@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="colorBackgroundButton">#FFEEFF</color>
-    <color name="colorTextButton">#000000</color>
+    <color name="colorBackgroundButton">#50a100</color>
+    <color name="colorToolBarButton">#50a100</color>
+    <color name="colorImageButton">#fad400</color>
+    <color name="colorTextButton">#ffffff</color>
+    <color name="colorTextView">@android:color/black</color>
 </resources>
