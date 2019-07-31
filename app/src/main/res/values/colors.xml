@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#50a100</color>
+    <color name="colorPrimary">#39ca74</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#ffff</color>
 
-    <color name="colorBackgroundButton">#50a100</color>
-    <color name="colorToolBarButton">#50a100</color>
-    <color name="colorImageButton">#fad400</color>
+    <color name="colorBackgroundButton">#43a047</color>
+    <color name="colorToolBarButton">#43a047</color>
+    <color name="colorImageButton">#fdd835</color>
     <color name="colorTextButton">#ffffff</color>
     <color name="colorTextView">@android:color/black</color>
 </resources>
