@@ -4,9 +4,22 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#ffff</color>
 
-    <color name="colorBackgroundButton">#43a047</color>
-    <color name="colorToolBarButton">#43a047</color>
+
+
+    // color for dialogs
+    <color name="colorDialogTextHeadline">#fff</color>
+    <color name="colorDialogTextView">#000</color>
+    <color name="colorDialogTextButton">#000</color>
+    <color name="colorDialogMainArea">#fff</color>
+
+    //color for main components
+    <color name="colorTextView">#000</color>
+    <color name="colorMainApp">#43a047</color>
     <color name="colorImageButton">#fdd835</color>
     <color name="colorTextButton">#ffffff</color>
-    <color name="colorTextView">@android:color/black</color>
+
+    //color for text and buttons
+    <color name="colorTextLight">#fff</color>
+    <color name="colorTextDark">#000</color>
+
 </resources>

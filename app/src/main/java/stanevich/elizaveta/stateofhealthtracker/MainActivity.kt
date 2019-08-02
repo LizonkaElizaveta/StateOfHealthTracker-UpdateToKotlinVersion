@@ -3,6 +3,7 @@ package stanevich.elizaveta.stateofhealthtracker
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Message
+import android.os.Parcelable
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -13,13 +14,13 @@ import stanevich.elizaveta.stateofhealthtracker.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+     private var dialog: ThanksConfirmationDialog = ThanksConfirmationDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-//        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         binding.apply {
@@ -27,7 +28,8 @@ class MainActivity : AppCompatActivity() {
             imageButtonSatisfactorily.setOnClickListener { toast() }
             imageButtonBad.setOnClickListener { toast() }
             buttonDyskinesia.setOnClickListener { toast() }
-            buttonMedication.setOnClickListener { toast() }
+            buttonMedication.setOnClickListener { dialog.showDialog(this@MainActivity,getString(R.string.dialogHeadline_thanks),
+                getString(R.string.dialogText_thanks)) }
         }
 
     }
@@ -43,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
-
 
     private fun toast(length: Int = Toast.LENGTH_SHORT) {
         Toast.makeText(this, R.string.toast_save_data, length).show()

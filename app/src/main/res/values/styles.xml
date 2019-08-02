@@ -12,6 +12,7 @@
         <item name="android:background">@drawable/shape_rectangle</item>
         <item name="android:textColor">@color/colorTextButton</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:textAllCaps">false</item>
         <item name="android:typeface">serif</item>
     </style>
 
@@ -23,8 +24,6 @@
     </style>
 
     <style name="MyTextViewStyle">
-        <item name="android:textColor">@color/colorTextView</item>
-        <item name="android:text">@string/text_how_do_you_feel</item>
         <item name="android:textSize">20sp</item>
         <item name="android:typeface">serif</item>
         <item name="android:gravity">center_horizontal</item>
@@ -34,7 +33,15 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
          <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="android:background">@color/colorToolBarButton</item>
+        <item name="android:background">@color/colorMainApp</item>
+    </style>
+
+    <style name="MyDialogStyle" parent="android:Theme.Holo.Light.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:textColor">@color/colorDialogTextView</item>
     </style>
 
 </resources>

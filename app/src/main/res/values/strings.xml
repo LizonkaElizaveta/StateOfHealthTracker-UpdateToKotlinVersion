@@ -5,7 +5,7 @@
     
     // Strings for MainActivity
     <string name="button_dyskinesia">Дискинезия</string>
-    <string name="button_medication">Прием лекарств</string>
+    <string name="button_medication">Приём лекарств</string>
     <string name="imageButton_excellent">Чувствую себя отлично!</string>
     <string name="imageButton_satisfactorily">Чувствую себя удовлетворительно.</string>
     <string name="imageButton_bad">Чувствую себя плохо.</string>
@@ -14,6 +14,16 @@
 
     // Strings for toasts
     <string name="toast_save_data">Ваши данные сохранены!</string>
+
+    // Strings for dialog button
+    <string name="dialogButton_next">Далее</string>
+
+    // Strings for dialog text
+    <string name="dialogText_thanks">Спасибо за ответ!</string>
+    <string name="dialogText_confirmation">Вы действительно хотите удалить уведомление?</string>
+
+    // Strings for dialog headline
+    <string name="dialogHeadline_thanks">Благодарность</string>
     
 
 </resources>

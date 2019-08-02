@@ -16,9 +16,11 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
+                android:text="@string/text_how_do_you_feel"
                 android:contentDescription="@string/text_how_do_you_feel"
                 android:id="@+id/textView_howDoYouFeel"
                 style="@style/MyTextViewStyle"
+                android:textColor="@color/colorTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/imageButton_excellent"
