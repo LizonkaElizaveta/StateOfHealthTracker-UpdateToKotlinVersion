@@ -2,19 +2,16 @@ package stanevich.elizaveta.stateofhealthtracker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Message
-import android.os.Parcelable
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
 import androidx.databinding.DataBindingUtil
 import stanevich.elizaveta.stateofhealthtracker.databinding.ActivityMainBinding
+import stanevich.elizaveta.stateofhealthtracker.dialogs.ThanksConfirmationDialog
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-     private var dialog: ThanksConfirmationDialog = ThanksConfirmationDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -24,12 +21,11 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         binding.apply {
-            imageButtonExcellent.setOnClickListener { toast() }
-            imageButtonSatisfactorily.setOnClickListener { toast() }
-            imageButtonBad.setOnClickListener { toast() }
-            buttonDyskinesia.setOnClickListener { toast() }
-            buttonMedication.setOnClickListener { dialog.showDialog(this@MainActivity,getString(R.string.dialogHeadline_thanks),
-                getString(R.string.dialogText_thanks)) }
+            imageButtonExcellent.setOnClickListener { showDialogThanks() }
+            imageButtonSatisfactorily.setOnClickListener { showDialogThanks() }
+            imageButtonBad.setOnClickListener { showDialogThanks() }
+            buttonDyskinesia.setOnClickListener { showDialogThanks() }
+            buttonMedication.setOnClickListener { }
         }
 
     }
@@ -48,5 +44,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun toast(length: Int = Toast.LENGTH_SHORT) {
         Toast.makeText(this, R.string.toast_save_data, length).show()
+    }
+
+
+    private fun showDialogThanks() {
+        val dialog: ThanksConfirmationDialog =
+            ThanksConfirmationDialog()
+        return dialog.showDialog(
+            this@MainActivity, getString(R.string.dialogHeadline_thanks),
+            getString(R.string.dialogText_thanks)
+        )
     }
 }
