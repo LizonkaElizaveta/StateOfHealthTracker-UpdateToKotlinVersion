@@ -16,6 +16,8 @@
     <string name="toast_save_data">Ваши данные сохранены!</string>
 
     // Strings for dialog button
+    <string name="dialogButton_ok">Принять</string>
+    <string name="dialogButton_cancel">Отменить</string>
     <string name="dialogButton_next">Далее</string>
 
     // Strings for dialog text
@@ -24,6 +26,11 @@
 
     // Strings for dialog headline
     <string name="dialogHeadline_thanks">Благодарность</string>
+
+    // Strings for dialog editText
+    <string name="dialogEditText_time">Время</string>
+    <string name="dialogEditText_date">Дата</string>
+
     
 
 </resources>
