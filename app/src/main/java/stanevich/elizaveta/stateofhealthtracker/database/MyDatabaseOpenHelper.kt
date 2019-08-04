@@ -52,10 +52,14 @@ class MyDatabaseOpenHelper private constructor(ctx: Context) : ManagedSQLiteOpen
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db?.dropTable(MainActivityTable.TABLE_NAME,true)
-        db?.dropTable(NotificationActivityTable.TABLE_NAME,true)
-        db?.dropTable(AuthActivityTable.TABLE_NAME,true)
+        db?.dropTable(MainActivityTable.TABLE_NAME, true)
+        db?.dropTable(NotificationActivityTable.TABLE_NAME, true)
+        db?.dropTable(AuthActivityTable.TABLE_NAME, true)
         onCreate(db)
     }
 
 }
+
+// Access property for Context
+val Context.database: MyDatabaseOpenHelper
+    get() = MyDatabaseOpenHelper.getInstance(this)

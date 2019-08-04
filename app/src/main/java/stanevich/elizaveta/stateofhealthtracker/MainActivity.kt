@@ -1,5 +1,6 @@
 package stanevich.elizaveta.stateofhealthtracker
 
+import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -12,6 +13,7 @@ import stanevich.elizaveta.stateofhealthtracker.dialogs.ThanksConfirmationDialog
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val dialog: ThanksConfirmationDialog =  ThanksConfirmationDialog(this@MainActivity)
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -48,10 +50,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun showDialogThanks() {
-        val dialog: ThanksConfirmationDialog =
-            ThanksConfirmationDialog()
         return dialog.showDialog(
-            this@MainActivity, getString(R.string.dialogHeadline_thanks),
+             getString(R.string.dialogHeadline_thanks),
             getString(R.string.dialogText_thanks)
         )
     }
