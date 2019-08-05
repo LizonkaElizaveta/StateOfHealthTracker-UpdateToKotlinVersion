@@ -13,6 +13,7 @@
                   android:background="@drawable/shape_curve">
 
         <TextView
+                android:text="@string/dialogHeadline_choseDateAndTime"
                 android:gravity="center_horizontal|center_vertical"
                 android:id="@+id/dialogHeadline_medication"
                 android:layout_width="match_parent"
@@ -29,27 +30,53 @@
             android:orientation="vertical"
             android:layout_height="wrap_content">
 
-        <EditText
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="32dp"
+        <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dialogEditText_date"
-                android:layout_marginStart="56dp"
-                android:layout_marginEnd="56dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/MyTextViewStyle"
-                android:textColor="@color/colorDialogTextView"/>
-
-        <EditText
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginRight="16dp">
+
+            <EditText
+                    style="@style/MyEditTextStyle"
+                    android:hint="@string/dialogEditText_date"
+                    android:inputType="none"
+                    android:focusableInTouchMode="false"
+                    android:cursorVisible="false"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="32dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorDialogTextView"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dialogEditText_time"
-                android:layout_marginStart="56dp"
-                android:layout_marginEnd="56dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/MyTextViewStyle"
-                android:textColor="@color/colorDialogTextView"/>
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp">
+
+            <EditText
+                    style="@style/MyEditTextStyle"
+                    android:hint="@string/dialogEditText_time"
+                    android:inputType="none"
+                    android:focusableInTouchMode="false"
+                    android:cursorVisible="false"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="32dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorDialogTextView"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -64,6 +91,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="16dp"
                     android:text="@string/dialogButton_cancel"
                     android:background="?android:attr/selectableItemBackground"/>
 
@@ -75,6 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:layout_marginBottom="16dp"
                     android:layout_marginEnd="32dp"
                     android:text="@string/dialogButton_ok"
                     android:background="?android:attr/selectableItemBackground"/>

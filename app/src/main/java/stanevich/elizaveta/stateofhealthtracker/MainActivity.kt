@@ -8,16 +8,20 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import stanevich.elizaveta.stateofhealthtracker.databinding.ActivityMainBinding
+import stanevich.elizaveta.stateofhealthtracker.dialogs.MedicationDialog
 import stanevich.elizaveta.stateofhealthtracker.dialogs.ThanksConfirmationDialog
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val dialog: ThanksConfirmationDialog =  ThanksConfirmationDialog(this@MainActivity)
+    private lateinit var  dialogTh: ThanksConfirmationDialog
+    private lateinit var dialogM: MedicationDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        dialogTh = ThanksConfirmationDialog(this@MainActivity)
+        dialogM = MedicationDialog(this@MainActivity)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -27,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             imageButtonSatisfactorily.setOnClickListener { showDialogThanks() }
             imageButtonBad.setOnClickListener { showDialogThanks() }
             buttonDyskinesia.setOnClickListener { showDialogThanks() }
-            buttonMedication.setOnClickListener { }
+            buttonMedication.setOnClickListener { dialogM.showDialog()}
         }
 
     }
@@ -50,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun showDialogThanks() {
-        return dialog.showDialog(
+        return dialogTh.showDialog(
              getString(R.string.dialogHeadline_thanks),
             getString(R.string.dialogText_thanks)
         )
