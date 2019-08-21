@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="stanevich.elizaveta.stateofhealthtracker.screens.fragments.StatesFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/statesConstraint"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-
-        <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                style="@style/Toolbar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
                 android:text="@string/text_how_do_you_feel"
@@ -23,7 +17,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/imageButton_excellent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf ="parent"/>
 
         <ImageButton
                 android:contentDescription="@string/imageButton_excellent"

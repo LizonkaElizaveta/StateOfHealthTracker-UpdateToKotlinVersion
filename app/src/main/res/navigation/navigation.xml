@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation" app:startDestination="@id/statesFragment">
+            android:id="@+id/navigation" app:startDestination="@id/statesFragment">
 
     <fragment android:id="@+id/statesFragment"
               android:name="stanevich.elizaveta.stateofhealthtracker.screens.fragments.StatesFragment"
-              android:label="StatesFragment">
-        <action android:id="@+id/action_statesFragment_to_settingsFragment" app:destination="@id/settingsFragment"/>
-    </fragment>
+              android:label="StatesFragment"/>
     <fragment android:id="@+id/settingsFragment"
               android:name="stanevich.elizaveta.stateofhealthtracker.screens.fragments.SettingsFragment"
               android:label="SettingsFragment">
