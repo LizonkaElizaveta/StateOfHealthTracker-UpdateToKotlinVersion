@@ -10,5 +10,22 @@
     </fragment>
     <fragment android:id="@+id/settingsFragment"
               android:name="stanevich.elizaveta.stateofhealthtracker.screens.fragments.SettingsFragment"
-              android:label="SettingsFragment"/>
+              android:label="SettingsFragment">
+        <action android:id="@+id/action_settingsFragment_to_notificationsFragment"
+                app:destination="@id/notificationsFragment" app:popUpTo="@+id/settingsFragment"/>
+        <action android:id="@+id/action_settingsFragment_to_usersDataFragment" app:destination="@id/usersDataFragment"
+                app:popUpTo="@+id/settingsFragment"/>
+    </fragment>
+    <fragment android:id="@+id/notificationsFragment"
+              android:name="stanevich.elizaveta.stateofhealthtracker.screens.fragments.NotificationsFragment"
+              android:label="NotificationsFragment">
+        <action android:id="@+id/action_notificationsFragment_to_settingsFragment"
+                app:destination="@id/settingsFragment" app:popUpTo="@+id/statesFragment"/>
+    </fragment>
+    <fragment android:id="@+id/usersDataFragment"
+              android:name="stanevich.elizaveta.stateofhealthtracker.screens.fragments.UsersDataFragment"
+              android:label="UsersDataFragment">
+        <action android:id="@+id/action_usersDataFragment_to_settingsFragment" app:destination="@id/settingsFragment"
+                app:popUpTo="@+id/statesFragment"/>
+    </fragment>
 </navigation>
