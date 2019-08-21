@@ -8,39 +8,29 @@ import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.custom_dialog_medication.view.*
 import stanevich.elizaveta.stateofhealthtracker.R
+import stanevich.elizaveta.stateofhealthtracker.databinding.CustomDialogMedicationBinding
 
 class MedicationDialog(activity: Activity) {
+    private var binding: CustomDialogMedicationBinding = DataBindingUtil.setContentView(activity, R.layout.custom_dialog_medication)
     private var dialog: Dialog = Dialog(activity, R.style.MyDialogStyle)
-    private var head: TextView
-    private var tilDate: TextInputLayout
-    private var tilTime: TextInputLayout
     private var etDate: EditText
     private var etTime: EditText
-    private var btnOk : Button
-    private var btnCancel: Button
-    private var container: View
 
     init {
+//        configureDialog(dialog)
+        binding.apply {
+            etDate = dialogEditTextDate.editText!!
+            etTime = dialogEditTextTime.editText!!
+            dialogButtonOk.setOnClickListener {  dialog.dismiss()  }
+            dialogButtonCancel.setOnClickListener { dialog.dismiss()  }
+        }
         configureDialog(dialog)
-        container = View.inflate(activity,R.layout.custom_dialog_medication,null)
-        head = dialog.findViewById(R.id.dialogHeadline_medication)
-
-        tilDate = dialog.findViewById(R.id.dialogEditText_date)
-        etDate = tilDate.editText!!
-
         etDate.setText("12 June 2019")
-
-        tilTime = dialog.findViewById(R.id.dialogEditText_time)
-        etTime = tilTime.editText!!
-
         etTime.setText("15:15")
-
-        btnOk = dialog.findViewById(R.id.dialogButton_ok)
-        btnOk.setOnClickListener {  }
-        btnCancel = dialog.findViewById(R.id.dialogButton_cancel)
-        btnCancel.setOnClickListener { dialog.dismiss() }
     }
 
     fun showDialog() {

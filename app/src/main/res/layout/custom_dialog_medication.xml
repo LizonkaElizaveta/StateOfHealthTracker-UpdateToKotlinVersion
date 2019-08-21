@@ -1,116 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-
->
-
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="60dp"
-                  android:orientation="vertical"
-                  android:elevation="4dp"
-                  android:background="@drawable/shape_curve">
-
-        <TextView
-                android:text="@string/dialogHeadline_choseDateAndTime"
-                android:gravity="center_horizontal|center_vertical"
-                android:id="@+id/dialogHeadline_medication"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/shape_curve"
-                style="@style/MyTextViewStyle"
-                android:textColor="@color/colorDialogTextHeadline"/>
-
-    </LinearLayout>
-
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
-            android:background="@color/colorDialogMainArea"
-            android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/dialogEditText_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp">
+    >
 
-            <EditText
-                    style="@style/MyEditTextStyle"
-                    android:hint="@string/dialogEditText_date"
-                    android:inputType="none"
-                    android:focusableInTouchMode="false"
-                    android:cursorVisible="false"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginBottom="32dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginEnd="40dp"
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="60dp"
+                      android:orientation="vertical"
+                      android:elevation="4dp"
+                      android:background="@drawable/shape_curve">
+
+            <TextView
+                    android:text="@string/dialogHeadline_choseDateAndTime"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:id="@+id/dialogHeadline_medication"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorDialogTextView"/>
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_curve"
+                    style="@style/MyTextViewStyle"
+                    android:textColor="@color/colorDialogTextHeadline"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/dialogEditText_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp">
-
-            <EditText
-                    style="@style/MyEditTextStyle"
-                    android:hint="@string/dialogEditText_time"
-                    android:inputType="none"
-                    android:focusableInTouchMode="false"
-                    android:cursorVisible="false"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="32dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginEnd="40dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorDialogTextView"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
         <LinearLayout
+                android:background="@color/colorDialogMainArea"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="end">
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
 
-            <Button android:contentDescription="@string/dialogButton_cancel"
-                    android:id="@+id/dialogButton_cancel"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorDialogTextButton"
-                    android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dialogEditText_date"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/dialogButton_cancel"
-                    android:background="?android:attr/selectableItemBackground"/>
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp">
 
+                <EditText
+                        style="@style/MyEditTextStyle"
+                        android:hint="@string/dialogEditText_date"
+                        android:inputType="none"
+                        android:focusableInTouchMode="false"
+                        android:cursorVisible="false"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="32dp"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginEnd="40dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorDialogTextView"/>
 
-            <Button android:contentDescription="@string/dialogButton_ok"
-                    android:id="@+id/dialogButton_ok"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorDialogTextButton"
-                    android:layout_width="wrap_content"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dialogEditText_time"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginEnd="32dp"
-                    android:text="@string/dialogButton_ok"
-                    android:background="?android:attr/selectableItemBackground"/>
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp">
+
+                <EditText
+                        style="@style/MyEditTextStyle"
+                        android:hint="@string/dialogEditText_time"
+                        android:inputType="none"
+                        android:focusableInTouchMode="false"
+                        android:cursorVisible="false"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="32dp"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginEnd="40dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorDialogTextView"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end">
+
+                <Button android:contentDescription="@string/dialogButton_cancel"
+                        android:id="@+id/dialogButton_cancel"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorDialogTextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@string/dialogButton_cancel"
+                        android:background="?android:attr/selectableItemBackground"/>
+
+
+                <Button android:contentDescription="@string/dialogButton_ok"
+                        android:id="@+id/dialogButton_ok"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorDialogTextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:text="@string/dialogButton_ok"
+                        android:background="?android:attr/selectableItemBackground"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>
+</layout>

@@ -1,9 +1,9 @@
-package stanevich.elizaveta.stateofhealthtracker.database
+package stanevich.elizaveta.stateofhealthtracker.databases
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import org.jetbrains.anko.db.*
-import stanevich.elizaveta.stateofhealthtracker.database.DbSchema.*
+import stanevich.elizaveta.stateofhealthtracker.databases.DbSchema.*
 
 
 class MyDatabaseOpenHelper private constructor(ctx: Context) : ManagedSQLiteOpenHelper(ctx, DB_NAME, null, DB_VERSION) {

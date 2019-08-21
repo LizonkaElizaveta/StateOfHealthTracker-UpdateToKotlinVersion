@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var dialogM: MedicationDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         dialogTh = ThanksConfirmationDialog(this@MainActivity)
         dialogM = MedicationDialog(this@MainActivity)

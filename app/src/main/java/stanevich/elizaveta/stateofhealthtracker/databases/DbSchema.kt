@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.database
+package stanevich.elizaveta.stateofhealthtracker.databases
 
 class DbSchema {
 
