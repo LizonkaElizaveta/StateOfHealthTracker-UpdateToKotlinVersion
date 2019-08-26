@@ -7,7 +7,7 @@ import androidx.room.Update
 import stanevich.elizaveta.stateofhealthtracker.databases.room.StatesDatabase
 
 @Dao
-interface StatesDatabaseDAO {
+interface StatesDatabaseDao {
 
     @Insert
     fun insert(state: StatesDatabase)

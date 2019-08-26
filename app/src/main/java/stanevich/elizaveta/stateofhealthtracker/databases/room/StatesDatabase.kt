@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import stanevich.elizaveta.stateofhealthtracker.databases.DAO.StatesDatabaseDAO
+import stanevich.elizaveta.stateofhealthtracker.databases.DAO.StatesDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
 
 @Database(entities = [States::class], version = 1, exportSchema = false)
 abstract class StatesDatabase : RoomDatabase() {
 
-    abstract val statesDatabaseDao: StatesDatabaseDAO
+    abstract val statesDatabaseDao: StatesDatabaseDao
 
     companion object {
 
