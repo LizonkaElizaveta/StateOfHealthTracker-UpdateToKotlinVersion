@@ -1,4 +1,8 @@
 package stanevich.elizaveta.stateofhealthtracker.databases.DAO
 
-class DAO {
+import androidx.room.Dao
+
+@Dao
+interface StatesDatabaseDAO {
+
 }
