@@ -19,5 +19,5 @@ interface NotificationsDatabaseDao {
     fun clear()
 
     @Query("SELECT * from notifications_table ORDER BY notificatiionsId DESC LIMIT 1")
-    fun getLastState(): NotificationsDatabase?
+    fun getLastNotification(): NotificationsDatabase?
 }
