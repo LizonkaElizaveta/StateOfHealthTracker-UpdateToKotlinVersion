@@ -23,5 +23,5 @@ interface StatesDatabaseDAO {
 
     @Query("SELECT * from states_table ORDER BY statesId DESC LIMIT 1")
     fun getLastState(): StatesDatabase?
-    
+
 }
