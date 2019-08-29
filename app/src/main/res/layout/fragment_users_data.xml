@@ -2,7 +2,7 @@
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context="stanevich.elizaveta.stateofhealthtracker.screens.fragments.UsersDataFragment">
+        tools:context="stanevich.elizaveta.stateofhealthtracker.screens.usersdata.UsersDataFragment">
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"

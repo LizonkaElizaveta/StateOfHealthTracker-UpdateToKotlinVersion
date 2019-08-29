@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.screens.viewmodel
+package stanevich.elizaveta.stateofhealthtracker.screens.states
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.screens.fragments
+package stanevich.elizaveta.stateofhealthtracker.screens.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
