@@ -26,6 +26,8 @@ class StatesFragment : Fragment() {
 
         val statesViewModel = ViewModelProviders.of(this, viewModelFactory).get(StatesViewModel::class.java)
 
+        binding.statesViewModel = statesViewModel
+
         binding.lifecycleOwner = this
 
         return binding.root

@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import stanevich.elizaveta.stateofhealthtracker.databases.DAO.StatesDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
 
+
 @Database(entities = [States::class], version = 1, exportSchema = false)
 abstract class StatesDatabase : RoomDatabase() {
 
@@ -20,7 +21,6 @@ abstract class StatesDatabase : RoomDatabase() {
         private var INSTANCE: StatesDatabase? = null
 
         fun getInstance(contex: Context): StatesDatabase {
-
             synchronized(this) {
                 var instance = INSTANCE
                 if (instance == null) {
