@@ -39,7 +39,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/imageButton_satisfactorily"
                 android:layout_marginStart="8dp"
-                android:onClick="@{() -> statesViewModel.onStartTracking(`+`)}"/>
+                android:onClick="@{() -> statesViewModel.onStartTracking(`+`,`X`,`D`)}"/>
 
         <ImageButton
                 android:contentDescription="@string/imageButton_satisfactorily"
@@ -52,7 +52,9 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/imageButton_bad"
-                android:layout_marginStart="8dp"/>
+                android:layout_marginStart="8dp"
+                android:onClick="@{() ->  statesViewModel.onStartTracking(`+`,`X`,`D`)}"
+                />
 
         <ImageButton
                 android:contentDescription="@string/imageButton_bad"
@@ -65,7 +67,8 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-                android:layout_marginStart="8dp"/>
+                android:layout_marginStart="8dp"
+                android:onClick="@{() ->  statesViewModel.onStartTracking(`+`,`X`,`D`)}"/>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -94,7 +97,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="8dp"
                     app:layout_constraintEnd_toStartOf="@+id/button_medication"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginEnd="8dp"
+                    android:onClick="@{() ->  statesViewModel.onStartTracking(`+`,`X`,`D`)}"/>
 
             <Button
                     android:contentDescription="@string/button_medication"
@@ -109,7 +113,8 @@
                     android:layout_marginBottom="8dp"
                     app:layout_constraintStart_toEndOf="@+id/button_dyskinesia"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:id="@+id/button_medication"/>
+                    android:id="@+id/button_medication"
+                    android:onClick="@{() -> statesViewModel.onStartTracking(`+`,`X`,`D`)}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

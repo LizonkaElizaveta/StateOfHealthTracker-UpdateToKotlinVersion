@@ -5,8 +5,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications
-import stanevich.elizaveta.stateofhealthtracker.databases.room.NotificationsDatabase
-import stanevich.elizaveta.stateofhealthtracker.databases.room.StatesDatabase
 
 @Dao
 interface NotificationsDatabaseDao {

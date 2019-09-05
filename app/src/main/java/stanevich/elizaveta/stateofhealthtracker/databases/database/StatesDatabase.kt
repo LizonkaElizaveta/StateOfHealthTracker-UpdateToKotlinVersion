@@ -1,14 +1,17 @@
-package stanevich.elizaveta.stateofhealthtracker.databases.room
+package stanevich.elizaveta.stateofhealthtracker.databases.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import stanevich.elizaveta.stateofhealthtracker.databases.DAO.StatesDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
+import stanevich.elizaveta.stateofhealthtracker.untils.DateConverters
 
 
-@Database(entities = [States::class], version = 1, exportSchema = false)
+@Database(entities = [States::class], version = 4, exportSchema = false)
+@TypeConverters(DateConverters::class)
 abstract class StatesDatabase : RoomDatabase() {
 
     abstract val statesDatabaseDao: StatesDatabaseDao

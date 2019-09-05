@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.databases.room
+package stanevich.elizaveta.stateofhealthtracker.databases.database
 
 import android.content.Context
 import androidx.room.Database

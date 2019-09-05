@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.UsersData
-import stanevich.elizaveta.stateofhealthtracker.databases.room.UsersDataDatabase
 
 @Dao
 interface UsersDataDao {

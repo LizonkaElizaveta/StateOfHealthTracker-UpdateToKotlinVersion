@@ -1,15 +1,16 @@
 package stanevich.elizaveta.stateofhealthtracker.screens.states
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.databases.DAO.StatesDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
+import java.text.SimpleDateFormat
+import java.util.*
 
 class StatesViewModel(
-    val database: StatesDatabaseDao,
+    private val database: StatesDatabaseDao,
     application: Application
 ) : AndroidViewModel(application) {
     private var viewModelJob = Job()
@@ -23,19 +24,17 @@ class StatesViewModel(
 
     private var todayState = MutableLiveData<States?>()
 
-    private val states = database.getAllStates()
-
     init {
-        initializeToday()
+        initializeState()
     }
 
-    private fun initializeToday() {
+    private fun initializeState() {
         uiScope.launch {
-            todayState.value = getTodayFromDatabase()
+            todayState.value = getStatesFromDatabase()
         }
     }
 
-    private suspend fun getTodayFromDatabase(): States? {
+    private suspend fun getStatesFromDatabase(): States? {
         return withContext(Dispatchers.IO) {
             var state = database.getLastState()
             state
@@ -43,46 +42,65 @@ class StatesViewModel(
 
     }
 
-    fun onStartTracking(state: String) {
+    fun onStartTracking(mood: String, pill: String, diskinezia: String) {
         uiScope.launch {
-            val newState = States(statesMood = state)
+            val newState = States(
+                statesMood = mood,
+                statesPill = pill,
+                statesDiskinezia = diskinezia
+            )
             insert(newState)
-            todayState.value = getTodayFromDatabase()
+            todayState.value = getStatesFromDatabase()
         }
     }
 
-    private suspend fun insert(state: States) {
+    private suspend fun insert(
+        newState: States
+    ) {
         withContext(Dispatchers.IO) {
-            database.insert(state)
+            database.insert(newState)
         }
     }
 
-    fun onStopTracking() {
-        uiScope.launch {
-            val oldState = todayState.value ?: return@launch
-
-            oldState.statesTime = System.currentTimeMillis()
-
-            update(oldState)
+    private fun getCalendar(): String {
+        var calendar = Calendar.getInstance()
+        calendar.apply {
+            set(Calendar.YEAR, calendar.get(Calendar.YEAR))
+            set(Calendar.MONTH, calendar.get(Calendar.MONTH))
+            set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH))
         }
+        var dateFormat = SimpleDateFormat("dd.MM.yyyy")
+
+
+        return dateFormat.format(calendar.timeInMillis)
     }
 
-    private suspend fun update(state: States) {
-        withContext(Dispatchers.IO){
-            database.update(state)
-        }
-    }
-
-    fun onClear(){
-        uiScope.launch {
-            clear()
-            todayState.value = null
-        }
-    }
-
-    private suspend fun clear() {
-        withContext(Dispatchers.IO){
-            database.clear()
-        }
-    }
+//    fun onStopTracking() {
+//        uiScope.launch {
+//            val oldState = todayState.value ?: return@launch
+//
+//            oldState.statesTime = System.currentTimeMillis()
+//
+//            update(oldState)
+//        }
+//    }
+//
+//    private suspend fun update(state: States) {
+//        withContext(Dispatchers.IO) {
+//            database.update(state)
+//        }
+//    }
+//
+//    fun onClear() {
+//        uiScope.launch {
+//            clear()
+//            todayState.value = null
+//        }
+//    }
+//
+//    private suspend fun clear() {
+//        withContext(Dispatchers.IO) {
+//            database.clear()
+//        }
+//    }
 }

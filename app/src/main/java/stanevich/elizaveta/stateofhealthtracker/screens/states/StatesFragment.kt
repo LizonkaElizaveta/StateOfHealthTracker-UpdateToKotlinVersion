@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.databases.room.StatesDatabase
+import stanevich.elizaveta.stateofhealthtracker.databases.database.StatesDatabase
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentStatesBinding
 
 class StatesFragment : Fragment() {
