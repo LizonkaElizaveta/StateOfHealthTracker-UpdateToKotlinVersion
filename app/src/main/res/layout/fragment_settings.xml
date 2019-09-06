@@ -59,7 +59,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/button_notifications">
         </Button>
-        
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

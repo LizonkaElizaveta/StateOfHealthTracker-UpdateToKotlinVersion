@@ -10,13 +10,28 @@ import androidx.navigation.Navigation
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentSettingsBinding
 
-class SettingsFragment: Fragment() {
+class SettingsFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val binding: FragmentSettingsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
-        binding.set.setOnClickListener { view : View ->
-        Navigation.findNavController(view).navigate(R.id.action_settingsFragment_to_notificationsFragment)}
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding: FragmentSettingsBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
+        binding.apply {
+            buttonNotifications.setOnClickListener { view: View ->
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_settingsFragment_to_notificationsFragment)
+            }
+            buttonPersonalDate.setOnClickListener { view: View ->
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_settingsFragment_to_usersDataFragment)
+            }
+//            buttonSendData.setOnClickListener{view:View ->
+//                Navigation.findNavController(view).navigate()
+//            }
+
+        }
         return binding.root
     }
 }
