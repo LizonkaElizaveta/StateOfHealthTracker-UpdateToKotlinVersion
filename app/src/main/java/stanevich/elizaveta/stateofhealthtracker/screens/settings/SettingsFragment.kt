@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentSettingsBinding
@@ -18,6 +19,18 @@ class SettingsFragment : Fragment() {
     ): View? {
         val binding: FragmentSettingsBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
+
+        val application = requireNotNull(this.activity).application
+
+        val viewModelFactory = SettingsViewModelFactory(application)
+
+        val settingsViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(SettingsViewModel::class.java)
+
+        binding.settingsViewModel = settingsViewModel
+
+        binding.lifecycleOwner = this
+
         binding.apply {
             buttonNotifications.setOnClickListener { view: View ->
                 Navigation.findNavController(view)
