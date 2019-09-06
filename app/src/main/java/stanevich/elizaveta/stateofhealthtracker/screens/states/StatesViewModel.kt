@@ -42,12 +42,30 @@ class StatesViewModel(
 
     }
 
-    fun onStartTracking(mood: String, pill: String, diskinezia: String) {
+    fun onStartTrackingMood(mood: String) {
         uiScope.launch {
             val newState = States(
-                statesMood = mood,
-                statesPill = pill,
+                statesMood = mood
+            )
+            insert(newState)
+            todayState.value = getStatesFromDatabase()
+        }
+    }
+
+    fun onStartTrackingDiskinezia(diskinezia: String) {
+        uiScope.launch {
+            val newState = States(
                 statesDiskinezia = diskinezia
+            )
+            insert(newState)
+            todayState.value = getStatesFromDatabase()
+        }
+    }
+
+    fun onStartTrackingPill(pill: String) {
+        uiScope.launch {
+            val newState = States(
+                statesPill = pill
             )
             insert(newState)
             todayState.value = getStatesFromDatabase()
