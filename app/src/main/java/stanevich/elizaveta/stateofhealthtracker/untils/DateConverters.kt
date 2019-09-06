@@ -7,7 +7,6 @@ import java.util.*
 
 
 class DateConverters {
-
     @TypeConverter
     fun fromDate(date: Date): String? {
         var formatter = SimpleDateFormat("dd.MM.yyyy",Locale.getDefault())

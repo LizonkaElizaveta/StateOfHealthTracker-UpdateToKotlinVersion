@@ -32,6 +32,10 @@
     <string name="dialogEditText_time">Время</string>
     <string name="dialogEditText_date">Дата</string>
 
-    
+    // Strings for SettingsActivity
+    <string name="button_personal_date">Личные данные</string>
+    <string name="button_notification">Уведомления</string>
+    <string name="button_send_data">Отправка данных</string>
+
 
 </resources>
