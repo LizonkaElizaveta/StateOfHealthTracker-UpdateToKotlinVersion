@@ -1,17 +1,11 @@
 package stanevich.elizaveta.stateofhealthtracker.screens.states
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.databases.DAO.StatesDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
-import stanevich.elizaveta.stateofhealthtracker.utils.formatStates
-import java.time.temporal.ChronoField
-import java.time.temporal.ChronoUnit
-import java.util.*
 
 
 class StatesViewModel(
@@ -81,22 +75,11 @@ class StatesViewModel(
 
     private suspend fun insert(newState: States) {
         withContext(Dispatchers.IO) {
-
-            var updatedDate = newState.statesDate.toInstant()
-            updatedDate = updatedDate.truncatedTo(ChronoUnit.MINUTES)
-
-            val unroundedMinutes = updatedDate.getLong(ChronoField.INSTANT_SECONDS)
-            val mod = unroundedMinutes % (5 * 60)
-            updatedDate =
-                updatedDate.plus(if (mod < (3 * 60)) -mod else (5 * 60) - mod, ChronoUnit.SECONDS)
-
-            newState.statesDate = Date.from(updatedDate)
-
             database.insert(newState)
         }
     }
 
-    private suspend fun update(newState: States){
+    private suspend fun update(newState: States) {
         withContext(Dispatchers.IO) {
             database.update(newState)
         }

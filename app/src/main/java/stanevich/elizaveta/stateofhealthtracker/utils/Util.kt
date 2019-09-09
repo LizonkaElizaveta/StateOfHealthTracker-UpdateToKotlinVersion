@@ -41,15 +41,3 @@ fun formatStates(states: List<States>): Spanned {
         HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
 }
-
-fun showDataInLog(states: List<States>){
-    states.forEach{
-        Log.d("mLog", it.statesId.toString())
-        Log.d("mLog", it.statesDate.toString())
-//        Log.d("mLog", it.statesTime.toString())
-        Log.d("mLog", it.statesMood)
-        Log.d("mLog", it.statesPill)
-        Log.d("mLog", it.statesDiskinezia)
-    }
-
-}
