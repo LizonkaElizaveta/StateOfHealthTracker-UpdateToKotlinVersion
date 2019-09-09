@@ -6,14 +6,13 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
+import java.util.*
 
 @Dao
 interface StatesDatabaseDao {
 
     @Insert
-    fun insert(
-        state: States
-    )
+    fun insert(state: States)
 
     @Update
     fun update(state: States)
@@ -30,4 +29,9 @@ interface StatesDatabaseDao {
     @Query("SELECT * FROM states_table ORDER BY statesId DESC")
     fun getAllStates(): LiveData<List<States>>
 
+    @Query("UPDATE states_table SET pill =:pill WHERE date =:date")
+    fun updatePill(pill: String, date: Date)
+
+    @Query("UPDATE states_table SET diskinezia =:diskinezia WHERE date =:date")
+    fun updateDiskinezia(diskinezia: String, date: Date)
 }

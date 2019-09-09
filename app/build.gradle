@@ -54,4 +54,6 @@ dependencies {
     kapt "androidx.room:room-compiler:$version_room"
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
 
+    implementation "android.arch.persistence.room:rxjava2:1.1.1"
+
 }
