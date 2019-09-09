@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.databases.DAO.StatesDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
+import java.util.*
 
 
 class StatesViewModel(
@@ -35,56 +36,53 @@ class StatesViewModel(
 
     private suspend fun getStatesFromDatabase(): States? {
         return withContext(Dispatchers.IO) {
-            val state = database.getLastState()
-            state
+            database.getLastState()
         }
 
     }
 
     fun onStartTrackingMood(mood: String) {
         uiScope.launch {
-            val newState = States(
-                statesMood = mood
-            )
-            insert(newState)
+            val newState = getStates()
+            newState.statesMood = mood
+            upsert(newState)
             stateOfHealth.value = getStatesFromDatabase()
-
-
         }
+    }
+
+    private suspend fun getStates(): States {
+        var states = withContext(Dispatchers.IO) {
+            database.findByDate(Date())
+        }
+        if (states == null) {
+            states = States()
+        }
+        return states
     }
 
     fun onStartTrackingDiskinezia(diskinezia: String) {
         uiScope.launch {
-            val newState = States(
-                statesDiskinezia = diskinezia
-            )
-            insert(newState)
+            val newState = getStates()
+            newState.statesDiskinezia = diskinezia
+            upsert(newState)
             stateOfHealth.value = getStatesFromDatabase()
         }
     }
 
     fun onStartTrackingPill(pill: String) {
         uiScope.launch {
-            val newState = States(
-                statesPill = pill
-            )
-            insert(newState)
+            val newState = getStates()
+            newState.statesPill = pill
+            upsert(newState)
             stateOfHealth.value = getStatesFromDatabase()
         }
     }
 
-    private suspend fun insert(newState: States) {
+    private suspend fun upsert(newState: States) {
         withContext(Dispatchers.IO) {
-            database.insert(newState)
+            database.upsert(newState)
         }
     }
-
-    private suspend fun update(newState: States) {
-        withContext(Dispatchers.IO) {
-            database.update(newState)
-        }
-    }
-
 
 //    private fun showData() {
 //
@@ -106,7 +104,7 @@ class StatesViewModel(
 
 //        Log.d("mLog", database.getLastState().toString())
 
-
+//
 //    private fun getCalendar(): String {
 //        var calendar = Calendar.getInstance()
 //        calendar.apply {
@@ -114,7 +112,7 @@ class StatesViewModel(
 //            set(Calendar.MONTH, calendar.get(Calendar.MONTH))
 //            set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH))
 //        }
-//        var dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+//
 //
 //
 //

@@ -1,10 +1,7 @@
 package stanevich.elizaveta.stateofhealthtracker.utils
 
-import android.os.Build
 import androidx.room.TypeConverter
 import java.text.SimpleDateFormat
-import java.time.temporal.ChronoField
-import java.time.temporal.ChronoUnit
 import java.util.*
 
 
@@ -13,32 +10,26 @@ class DateConverters {
     @TypeConverter
     fun fromDate(date: Date): String? {
 
-        var formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            var updatedDate = date.toInstant().truncatedTo(ChronoUnit.MINUTES)
+        val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+        val c = Calendar.getInstance()
+        c.time = date
+        val minute = 1000 * 60
+        c.timeInMillis = (c.timeInMillis / minute) * minute
 
-            val unroundedMinutes = updatedDate.getLong(ChronoField.INSTANT_SECONDS)
+        var updatedDate = c.timeInMillis
 
-            val mod = unroundedMinutes % (5 * 60)
-            updatedDate =
-                updatedDate.plus(if (mod < (3 * 60)) -mod else (5 * 60) - mod, ChronoUnit.SECONDS)
-            newDate = Date.from(updatedDate)
-        } else {
+        val unroundedMinutes = c.get(Calendar.MINUTE)
 
-            TODO("VERSION.SDK_INT < O")
-        }
+        val mod = (unroundedMinutes % 5).toLong()
+        updatedDate = updatedDate.plus((if (mod < 3) -mod else 5 - mod) * minute)
+        newDate = Date(updatedDate)
 
         return formatter.format(newDate)
     }
 
     @TypeConverter
     fun stringToDate(str: String): Date? {
-        var formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+        val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
         return formatter.parse(str)
     }
-
-    private fun dateRounding() {
-
-    }
-
 }
