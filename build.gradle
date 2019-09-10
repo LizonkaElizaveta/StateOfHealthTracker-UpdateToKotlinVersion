@@ -5,7 +5,7 @@ buildscript {
     ext.anko_version = '0.10.1'
     ext {
         version_coroutine = "1.1.0"
-        version_lifecycle_extensions = "2.0.0"
+        version_lifecycle_extensions = "2.1.0"
         version_room = "2.1.0"
     }
     repositories {

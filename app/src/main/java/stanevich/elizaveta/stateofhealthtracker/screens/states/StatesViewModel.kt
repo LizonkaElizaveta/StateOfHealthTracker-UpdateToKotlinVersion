@@ -1,18 +1,21 @@
 package stanevich.elizaveta.stateofhealthtracker.screens.states
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.databases.DAO.StatesDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
 import java.util.*
 
-
 class StatesViewModel(
     private val database: StatesDatabaseDao,
     application: Application
 ) : AndroidViewModel(application) {
+
     private var viewModelJob = Job()
 
     override fun onCleared() {
@@ -23,6 +26,16 @@ class StatesViewModel(
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private var stateOfHealth = MutableLiveData<States?>()
+    val updatedStateOfHealth = MutableLiveData<States?>()
+
+    private var _showDialogThanksEvent = MutableLiveData<Boolean>(false)
+
+    val showDialogThanksEvent: LiveData<Boolean>
+        get() = _showDialogThanksEvent
+
+    fun showDialog() {
+        _showDialogThanksEvent.value = !_showDialogThanksEvent.value!!
+    }
 
     init {
         initializeState()
@@ -31,6 +44,12 @@ class StatesViewModel(
     private fun initializeState() {
         uiScope.launch {
             stateOfHealth.value = getStatesFromDatabase()
+            updatedStateOfHealth.observeForever {
+                Log.d("mLog", "Updated ${updatedStateOfHealth.value}")
+                uiScope.launch {
+                    updateStates(updatedStateOfHealth.value!!)
+                }
+            }
         }
     }
 
@@ -38,15 +57,13 @@ class StatesViewModel(
         return withContext(Dispatchers.IO) {
             database.getLastState()
         }
-
     }
 
     fun onStartTrackingMood(mood: String) {
         uiScope.launch {
-            val newState = getStates()
-            newState.statesMood = mood
-            upsert(newState)
-            stateOfHealth.value = getStatesFromDatabase()
+            updatedStateOfHealth.value = getStates()
+            updatedStateOfHealth.value!!.statesMood = mood
+            showDialog()
         }
     }
 
@@ -76,6 +93,13 @@ class StatesViewModel(
             upsert(newState)
             stateOfHealth.value = getStatesFromDatabase()
         }
+    }
+
+    private suspend fun updateStates(
+        newState: States
+    ) {
+        upsert(newState)
+        stateOfHealth.value = getStatesFromDatabase()
     }
 
     private suspend fun upsert(newState: States) {

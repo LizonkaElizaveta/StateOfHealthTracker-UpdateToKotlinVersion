@@ -97,8 +97,10 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="8dp"
                     app:layout_constraintEnd_toStartOf="@+id/button_medication"
-                    android:layout_marginEnd="8dp"
-                    android:onClick="@{() ->  statesViewModel.onStartTrackingDiskinezia(`D`)}"/>
+                    android:layout_marginEnd="8dp">
+
+            </Button>
+<!--                    android:onClick="@{() ->  statesViewModel.onStartTrackingDiskinezia(`D`)}"/>-->
 
             <Button
                     android:contentDescription="@string/button_medication"

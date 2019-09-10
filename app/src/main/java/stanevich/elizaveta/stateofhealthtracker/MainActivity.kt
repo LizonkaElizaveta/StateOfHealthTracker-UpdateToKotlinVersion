@@ -3,12 +3,14 @@ package stanevich.elizaveta.stateofhealthtracker
 import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import stanevich.elizaveta.stateofhealthtracker.databinding.ActivityMainBinding
+import stanevich.elizaveta.stateofhealthtracker.dialogs.thanksconfirm.ThanksConfirmationDialogListener
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ThanksConfirmationDialogListener {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -24,5 +26,13 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.myNavHostFragment)
         return navController.navigateUp()
+    }
+
+    override fun onDialogPositiveClick() {
+        Log.d("mLog","HHHHHHHHH")
+    }
+
+    override fun onDialogNegativeClick() {
+        Log.d("mLog","HHHHHHHHH")
     }
 }
