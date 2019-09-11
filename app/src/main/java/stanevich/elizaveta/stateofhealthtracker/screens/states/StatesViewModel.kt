@@ -3,7 +3,6 @@ package stanevich.elizaveta.stateofhealthtracker.screens.states
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
@@ -26,15 +25,24 @@ class StatesViewModel(
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private var stateOfHealth = MutableLiveData<States?>()
+
     val updatedStateOfHealth = MutableLiveData<States?>()
 
-    private var _showDialogThanksEvent = MutableLiveData<Boolean>(false)
+    private var _showThEvent = MutableLiveData<Boolean>(false)
+    private var _showMedEvent = MutableLiveData<Boolean>(false)
 
-    val showDialogThanksEvent: LiveData<Boolean>
-        get() = _showDialogThanksEvent
+    val triggerThanksEvent: LiveData<Boolean>
+        get() = _showThEvent
 
-    fun showDialog() {
-        _showDialogThanksEvent.value = !_showDialogThanksEvent.value!!
+    val triggerMedicationEvent: LiveData<Boolean>
+    get() = _showMedEvent
+
+    private fun showDialogThanks() {
+        _showThEvent.value = !_showThEvent.value!!
+    }
+
+    private fun showDialogMed(){
+        _showMedEvent.value = !_showMedEvent.value!!
     }
 
     init {
@@ -63,7 +71,7 @@ class StatesViewModel(
         uiScope.launch {
             updatedStateOfHealth.value = getStates()
             updatedStateOfHealth.value!!.statesMood = mood
-            showDialog()
+            showDialogThanks()
         }
     }
 
@@ -79,10 +87,9 @@ class StatesViewModel(
 
     fun onStartTrackingDiskinezia(diskinezia: String) {
         uiScope.launch {
-            val newState = getStates()
-            newState.statesDiskinezia = diskinezia
-            upsert(newState)
-            stateOfHealth.value = getStatesFromDatabase()
+            updatedStateOfHealth.value = getStates()
+            updatedStateOfHealth.value!!.statesDiskinezia = diskinezia
+            showDialogMed()
         }
     }
 

@@ -25,7 +25,7 @@
     <string name="dialogText_confirmation">Вы действительно хотите удалить уведомление?</string>
 
     // Strings for dialog headline
-    <string name="dialogHeadline_choseDateAndTime">Укажите \n дату и время</string>
+    <string name="dialogHeadline_choseDateAndTime">Укажите дату и время</string>
     <string name="dialogHeadline_thanks">Благодарность</string>
 
     // Strings for dialog editText

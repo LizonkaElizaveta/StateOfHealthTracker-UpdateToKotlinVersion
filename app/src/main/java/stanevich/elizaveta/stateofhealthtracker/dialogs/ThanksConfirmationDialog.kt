@@ -1,42 +1,29 @@
-package stanevich.elizaveta.stateofhealthtracker.dialogs.thanksconfirm
+package stanevich.elizaveta.stateofhealthtracker.dialogs
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.MutableLiveData
+import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
-import java.util.*
 
-class ThanksConfirmationDialog(private val stateOfHealth: MutableLiveData<States?>) :
+class ThanksConfirmationDialog(
+    private val stateOfHealth: MutableLiveData<States?>,
+    private val message: String
+) :
     DialogFragment() {
 
 
-    private lateinit var mListener: ThanksConfirmationDialogListener
-
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        try {
-            mListener = context as ThanksConfirmationDialogListener
-        } catch (e: ClassCastException) {
-            throw ClassCastException(activity.toString() + " must implement ThanksConfirmationDialogListener")
-        }
-    }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(context!!)
-            .setMessage("Please, confirm the action")
-            .setPositiveButton("Confirm") { _, _ ->
-                val soh = stateOfHealth.value!!
-                soh.statesDate = Date()
-                Log.d("mLog", soh.toString())
-                stateOfHealth.postValue(soh)
-            }
-            .setNegativeButton("Cancel") { _, _ ->
-                Log.d("mLog", "cancel")
+            .setMessage(message)
+            .setPositiveButton(R.string.dialogButton_next) { _, _ ->
+                //                val soh = stateOfHealth.value!!
+//                soh.statesDate = Date()
+//                Log.d("mLog", soh.toString())
+                dialog.dismiss()
+//                stateOfHealth.postValue(soh)
             }
             .create()
     }

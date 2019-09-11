@@ -1,7 +1,6 @@
 package stanevich.elizaveta.stateofhealthtracker.screens.states
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -12,8 +11,8 @@ import androidx.navigation.ui.NavigationUI
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databases.database.StatesDatabase
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentStatesBinding
-import stanevich.elizaveta.stateofhealthtracker.dialogs.thanksconfirm.ThanksConfirmationDialog
-import stanevich.elizaveta.stateofhealthtracker.dialogs.thanksconfirm.ThanksConfirmationDialogListener
+import stanevich.elizaveta.stateofhealthtracker.dialogs.MedicationDialog
+import stanevich.elizaveta.stateofhealthtracker.dialogs.ThanksConfirmationDialog
 
 class StatesFragment : Fragment(){
 
@@ -30,7 +29,7 @@ class StatesFragment : Fragment(){
 
         val dataSource = StatesDatabase.getInstance(application).statesDatabaseDao
 
-        val viewModelFactory = StatesViewModelFactory(dataSource, application, this)
+        val viewModelFactory = StatesViewModelFactory(dataSource, application)
 
         val statesViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(StatesViewModel::class.java)
@@ -39,15 +38,29 @@ class StatesFragment : Fragment(){
 
         binding.lifecycleOwner = this
 
-        var unlocked = false
-        statesViewModel.showDialogThanksEvent.observe(this, Observer<Boolean> {
-            if(unlocked){
-                ThanksConfirmationDialog(statesViewModel.updatedStateOfHealth).show(fragmentManager, "help!!!")
-            } else{
-                unlocked = true
-            }
+        var unlockedT = false
+        var unlockedM = false
 
+        statesViewModel.triggerThanksEvent.observe(this, Observer<Boolean> {
+            if(unlockedT){
+                ThanksConfirmationDialog(
+                    statesViewModel.updatedStateOfHealth,resources.getString(R.string.dialogText_thanks)
+                ).show(fragmentManager, "ThanksDialog")
+            } else{
+                unlockedT = true
+            }
     })
+
+        statesViewModel.triggerMedicationEvent.observe(this, Observer<Boolean> {
+            if(unlockedM){
+                MedicationDialog(statesViewModel.updatedStateOfHealth).show(fragmentManager, "MedicationDialog")
+
+            } else{
+                unlockedM = true
+            }
+        })
+
+
 
         return binding.root
     }
