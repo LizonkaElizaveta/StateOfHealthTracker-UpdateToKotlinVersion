@@ -45,3 +45,8 @@ fun getDate(date: Long): String {
     return dateFormat.format(date)
 }
 
+fun getTime(time: Long): String {
+    val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+    return timeFormat.format(time)
+}
+

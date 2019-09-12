@@ -3,6 +3,8 @@ package stanevich.elizaveta.stateofhealthtracker.dialogs
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.app.TimePickerDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.EditText
@@ -13,6 +15,7 @@ import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
 import stanevich.elizaveta.stateofhealthtracker.databinding.CustomDialogMedicationBinding
 import stanevich.elizaveta.stateofhealthtracker.utils.getDate
+import stanevich.elizaveta.stateofhealthtracker.utils.getTime
 import java.util.*
 
 class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : DialogFragment() {
@@ -43,9 +46,23 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
                         etDate.setText(getDate(calendar.timeInMillis))
                     })
                 dpd.show(fragmentManager,"DatePickerDialog")
+
             }
             etTime = dialogEditTextTime.editText!!
+            etTime.setOnClickListener {
+                val tpd =
+                    TimePickerFragment(TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                        calendar = Calendar.getInstance()
+                        calendar.apply {
+                            set(Calendar.HOUR_OF_DAY, hourOfDay)
+                            set(Calendar.MINUTE, minute)
+                        }
+                        etTime.setText(getTime(calendar.timeInMillis))
+                    })
+                tpd.show(fragmentManager,"TimePickerDialog")
 
+
+            }
         }
         val builder = AlertDialog.Builder(context)
 
