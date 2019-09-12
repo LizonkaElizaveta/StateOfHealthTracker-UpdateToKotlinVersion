@@ -1,15 +1,13 @@
 package stanevich.elizaveta.stateofhealthtracker.utils
 
 import android.annotation.SuppressLint
-import android.content.res.Resources
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
-import android.util.Log
 import androidx.core.text.HtmlCompat
-import androidx.lifecycle.LiveData
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
 import java.text.SimpleDateFormat
+import java.util.*
 
 @SuppressLint("SimpleDateFormat")
 fun convertLongToDateString(systemTime: Long): String {
@@ -41,3 +39,9 @@ fun formatStates(states: List<States>): Spanned {
         HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
 }
+
+fun getDate(date: Long): String {
+    val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+    return dateFormat.format(date)
+}
+
