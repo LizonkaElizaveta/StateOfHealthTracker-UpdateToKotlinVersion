@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.EditText
@@ -37,12 +36,7 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
             etDate.setOnClickListener {
                 val dpd =
                     DatePickerFragment(DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-                        calendar = Calendar.getInstance()
-                        calendar.apply {
-                            set(Calendar.YEAR, year)
-                            set(Calendar.MONTH, monthOfYear)
-                            set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                        }
+                        val calendar = DatePickerFragment.getCalendarDate(year, monthOfYear, dayOfMonth)
                         etDate.setText(getDate(calendar.timeInMillis))
                     })
                 dpd.show(fragmentManager,"DatePickerDialog")
@@ -52,11 +46,7 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
             etTime.setOnClickListener {
                 val tpd =
                     TimePickerFragment(TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-                        calendar = Calendar.getInstance()
-                        calendar.apply {
-                            set(Calendar.HOUR_OF_DAY, hourOfDay)
-                            set(Calendar.MINUTE, minute)
-                        }
+                        val calendar = TimePickerFragment.getCalendarTime(hourOfDay, minute)
                         etTime.setText(getTime(calendar.timeInMillis))
                     })
                 tpd.show(fragmentManager,"TimePickerDialog")
@@ -79,6 +69,10 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
 
         return builder.create()
     }
+
+
+
+
 }
 
 

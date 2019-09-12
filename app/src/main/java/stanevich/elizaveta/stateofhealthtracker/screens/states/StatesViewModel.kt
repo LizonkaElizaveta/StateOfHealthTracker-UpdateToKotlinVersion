@@ -136,7 +136,7 @@ class StatesViewModel(
 //        Log.d("mLog", database.getLastState().toString())
 
 //
-//    private fun getCalendar(): String {
+//    private fun getCalendarDate(): String {
 //        var calendar = Calendar.getInstance()
 //        calendar.apply {
 //            set(Calendar.YEAR, calendar.get(Calendar.YEAR))
