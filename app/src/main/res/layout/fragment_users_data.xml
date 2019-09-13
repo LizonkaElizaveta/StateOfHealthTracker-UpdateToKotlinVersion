@@ -1,20 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         tools:context="stanevich.elizaveta.stateofhealthtracker.screens.usersdata.UsersDataFragment">
-    <LinearLayout
-            android:orientation="vertical"
+
+
+    <data>
+
+        <variable
+                name="usersViewModel"
+                type="stanevich.elizaveta.stateofhealthtracker.screens.usersdata.UsersDataViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <TextView
-                android:id="@+id/users"
+        <ImageView
+                android:id="@+id/imageUsers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:textSize="24sp"/>
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/image_button_excellent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etPersonName"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_width="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageUsers">
+
+            <EditText
+                    style="@style/MyEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/textPersonName"
+                    android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etPersonSurname"
+                android:layout_width="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etPersonName">
+
+            <EditText
+                    style="@style/MyEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/textPersonSurname"
+                    android:inputType="textPersonName"
+                   />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etPersonPhone"
+                android:layout_width="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etPersonSurname">
+
+            <EditText
+                    style="@style/MyEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/textPersonPhone"
+                    android:inputType="phone"
+                    />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etPersonDocMail"
+                android:layout_width="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etPersonPhone">
+
+            <EditText
+                    style="@style/MyEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/textPersonDocMail"
+                    android:inputType="textEmailAddress"
+                   />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+                android:id="@+id/btnSaveData"
+                style="@style/MyButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/buttonSaveData"
+                android:text="@string/buttonSaveData"
+                app:layout_constraintEnd_toEndOf="@id/etPersonDocMail"
+                app:layout_constraintStart_toStartOf="@id/etPersonDocMail"
+                app:layout_constraintTop_toBottomOf="@id/etPersonDocMail">
+
+        </Button>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

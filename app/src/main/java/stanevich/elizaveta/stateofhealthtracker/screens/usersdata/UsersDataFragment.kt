@@ -34,11 +34,6 @@ class UsersDataFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-
-        binding.users.setOnClickListener { view: View ->
-            Navigation.findNavController(view)
-                .navigate(R.id.action_settingsFragment_to_usersDataFragment)
-        }
         return binding.root
     }
 }

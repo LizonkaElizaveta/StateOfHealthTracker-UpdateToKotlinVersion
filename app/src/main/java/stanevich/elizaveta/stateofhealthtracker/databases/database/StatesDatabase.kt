@@ -10,7 +10,7 @@ import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
 import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 
 
-@Database(entities = [States::class], version = 1, exportSchema = false)
+@Database(entities = [States::class], version = 2, exportSchema = false)
 @TypeConverters(DateConverters::class)
 abstract class StatesDatabase : RoomDatabase() {
 

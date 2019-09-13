@@ -38,4 +38,11 @@
     <string name="button_send_data">Отправка данных</string>
 
 
+    <string name="textPersonName">Имя…</string>
+    <string name="textPersonSurname">Фамилия…</string>
+    <string name="textPersonPhone">Моб.телефон…</string>
+    <string name="textPersonDocMail">Эл.почта врача…</string>
+    <string name="buttonSaveData">Сохранить данные</string>
+
+
 </resources>
