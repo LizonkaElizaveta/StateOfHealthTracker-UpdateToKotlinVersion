@@ -4,7 +4,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:context="stanevich.elizaveta.stateofhealthtracker.screens.usersdata.UsersDataFragment">
 
-
     <data>
 
         <variable
@@ -12,137 +11,145 @@
                 type="stanevich.elizaveta.stateofhealthtracker.screens.usersdata.UsersDataViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <ImageView
-                android:id="@+id/imageUsers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:src="@drawable/image_button_excellent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etPersonName"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_width="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageUsers">
-
-            <EditText
-                    style="@style/MyEditTextStyle"
-                    android:layout_width="match_parent"
+            <ImageView
+                    android:id="@+id/imageUsers"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/textPersonName"
-                    android:inputType="textPersonName" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/image_button_excellent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etPersonSurname"
-                android:layout_width="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPersonName">
-
-            <EditText
-                    style="@style/MyEditTextStyle"
-                    android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etPersonName"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/textPersonSurname"
-                    android:inputType="textPersonName"
-                   />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageUsers">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/textPersonName"
+                        android:text="@{usersViewModel.etName}"
+                        android:inputType="textPersonName" />
 
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etPersonPhone"
-                android:layout_width="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPersonSurname">
-
-            <EditText
-                    style="@style/MyEditTextStyle"
-                    android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etPersonSurname"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/textPersonPhone"
-                    android:inputType="phone"
-                    />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etPersonName">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/textPersonSurname"
+                        android:text="@{usersViewModel.etSurname}"
+                        android:inputType="textPersonName" />
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etPersonDocMail"
-                android:layout_width="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPersonPhone">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                    style="@style/MyEditTextStyle"
-                    android:layout_width="match_parent"
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etPersonPhone"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/textPersonDocMail"
-                    android:inputType="textEmailAddress"
-                   />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etPersonSurname">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:text="@{usersViewModel.etPhone}"
+                        android:hint="@string/textPersonPhone"
+                        android:inputType="phone" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etPersonDocMail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etPersonPhone">
+
+                <EditText
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:text="@{usersViewModel.etMail}"
+                        android:hint="@string/textPersonDocMail"
+                        android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-        <Button
-                android:id="@+id/btnSaveData"
-                style="@style/MyButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="65dp"
-                android:layout_marginTop="24dp"
-                android:contentDescription="@string/buttonSaveData"
-                android:text="@string/buttonSaveData"
-                app:layout_constraintEnd_toEndOf="@id/etPersonDocMail"
-                app:layout_constraintStart_toStartOf="@id/etPersonDocMail"
-                app:layout_constraintTop_toBottomOf="@id/etPersonDocMail">
+            <Button
+                    android:id="@+id/btnSaveData"
+                    style="@style/MyButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="24dp"
+                    android:contentDescription="@string/buttonSaveData"
+                    android:text="@string/buttonSaveData"
+                    android:layout_marginBottom="24dp"
+                    app:layout_constraintEnd_toEndOf="@id/etPersonDocMail"
+                    app:layout_constraintStart_toStartOf="@id/etPersonDocMail"
+                    app:layout_constraintTop_toBottomOf="@id/etPersonDocMail"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
-        </Button>
+            </Button>
 
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

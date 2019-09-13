@@ -20,6 +20,6 @@ data class UsersData (
     var usersEmail: String = "",
 
     @ColumnInfo(name = "phone")
-    var usersPhone: String = ""
+    var usersPhone: Int = 0
 
 )

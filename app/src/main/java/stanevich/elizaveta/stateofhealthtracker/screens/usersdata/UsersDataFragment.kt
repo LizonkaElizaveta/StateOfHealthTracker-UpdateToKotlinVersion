@@ -34,6 +34,7 @@ class UsersDataFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
+        usersViewModel
         return binding.root
     }
 }

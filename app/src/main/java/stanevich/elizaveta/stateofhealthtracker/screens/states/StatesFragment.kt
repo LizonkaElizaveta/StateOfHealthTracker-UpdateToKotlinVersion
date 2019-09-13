@@ -16,7 +16,6 @@ import stanevich.elizaveta.stateofhealthtracker.dialogs.ThanksDialog
 
 class StatesFragment : Fragment() {
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
