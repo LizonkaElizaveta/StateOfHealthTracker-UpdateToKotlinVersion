@@ -30,7 +30,7 @@ abstract class StatesDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         contex.applicationContext,
                         StatesDatabase::class.java,
-                        "states_database"
+                        "states_database_history"
                     ).fallbackToDestructiveMigration()
                         .build()
 
