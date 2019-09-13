@@ -12,7 +12,7 @@ class TimePickerFragment(private val listener: TimePickerDialog.OnTimeSetListene
     DialogFragment() {
 
     companion object {
-         fun getCalendarTime(hourOfDay: Int, minute: Int): Calendar {
+        fun getCalendarTime(hourOfDay: Int, minute: Int): Calendar {
             val calendar = Calendar.getInstance()
             calendar.apply {
                 set(Calendar.HOUR_OF_DAY, hourOfDay)
@@ -29,9 +29,17 @@ class TimePickerFragment(private val listener: TimePickerDialog.OnTimeSetListene
 
         val timePickerDialog =
             TimePickerDialog(activity!!, R.style.CustomDatePickerDialog, listener, hh, mm, true)
-        timePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, resources.getString(R.string.dialogButton_ok),timePickerDialog)
-        timePickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, resources.getString(R.string.dialogButton_cancel),timePickerDialog)
 
+        timePickerDialog.setButton(
+            DialogInterface.BUTTON_POSITIVE,
+            resources.getString(R.string.dialogButton_ok),
+            timePickerDialog
+        )
+        timePickerDialog.setButton(
+            DialogInterface.BUTTON_NEGATIVE,
+            resources.getString(R.string.dialogButton_cancel),
+            timePickerDialog
+        )
 
         return timePickerDialog
     }

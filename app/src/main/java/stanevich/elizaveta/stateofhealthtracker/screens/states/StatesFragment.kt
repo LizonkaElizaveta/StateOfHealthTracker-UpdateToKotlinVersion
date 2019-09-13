@@ -12,9 +12,9 @@ import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databases.database.StatesDatabase
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentStatesBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.MedicationDialog
-import stanevich.elizaveta.stateofhealthtracker.dialogs.ThanksConfirmationDialog
+import stanevich.elizaveta.stateofhealthtracker.dialogs.ThanksDialog
 
-class StatesFragment : Fragment(){
+class StatesFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -42,20 +42,21 @@ class StatesFragment : Fragment(){
         var unlockedM = false
 
         statesViewModel.triggerThanksEvent.observe(this, Observer<Boolean> {
-            if(unlockedT){
-                ThanksConfirmationDialog(
-                    statesViewModel.updatedStateOfHealth,resources.getString(R.string.dialogText_thanks)
-                ).show(fragmentManager, "ThanksDialog")
-            } else{
+            if (unlockedT) {
+                ThanksDialog().show(fragmentManager, "ThanksDialog")
+            } else {
                 unlockedT = true
             }
-    })
+        })
 
         statesViewModel.triggerMedicationEvent.observe(this, Observer<Boolean> {
-            if(unlockedM){
-                MedicationDialog(statesViewModel.updatedStateOfHealth).show(fragmentManager, "MedicationDialog")
+            if (unlockedM) {
+                MedicationDialog(statesViewModel.updatedStateOfHealth).show(
+                    fragmentManager,
+                    "MedicationDialog"
+                )
 
-            } else{
+            } else {
                 unlockedM = true
             }
         })

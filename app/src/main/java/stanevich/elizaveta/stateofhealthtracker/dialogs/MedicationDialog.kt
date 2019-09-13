@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.EditText
 import androidx.databinding.DataBindingUtil
@@ -14,13 +15,12 @@ import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
 import stanevich.elizaveta.stateofhealthtracker.databinding.CustomDialogMedicationBinding
 import stanevich.elizaveta.stateofhealthtracker.utils.getDate
+import stanevich.elizaveta.stateofhealthtracker.utils.getDateTimeValue
 import stanevich.elizaveta.stateofhealthtracker.utils.getTime
-import java.util.*
 
 class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : DialogFragment() {
     lateinit var etDate: EditText
     lateinit var etTime: EditText
-    lateinit var calendar: Calendar
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val binding: CustomDialogMedicationBinding =
@@ -36,10 +36,11 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
             etDate.setOnClickListener {
                 val dpd =
                     DatePickerFragment(DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-                        val calendar = DatePickerFragment.getCalendarDate(year, monthOfYear, dayOfMonth)
+                        val calendar =
+                            DatePickerFragment.getCalendarDate(year, monthOfYear, dayOfMonth)
                         etDate.setText(getDate(calendar.timeInMillis))
                     })
-                dpd.show(fragmentManager,"DatePickerDialog")
+                dpd.show(fragmentManager, "DatePickerDialog")
 
             }
             etTime = dialogEditTextTime.editText!!
@@ -49,8 +50,7 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
                         val calendar = TimePickerFragment.getCalendarTime(hourOfDay, minute)
                         etTime.setText(getTime(calendar.timeInMillis))
                     })
-                tpd.show(fragmentManager,"TimePickerDialog")
-
+                tpd.show(fragmentManager, "TimePickerDialog")
 
             }
         }
@@ -59,6 +59,10 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
         builder.setView(binding.root)
             .setTitle(R.string.dialogHeadline_choseDateAndTime)
             .setPositiveButton(R.string.dialogButton_next) { _, _ ->
+                val states = stateOfHealth.value!!
+                states.statesDate = getDateTimeValue(etDate.text.toString(), etTime.text.toString())
+                Log.d("mLog", states.toString())
+                stateOfHealth.postValue(states)
                 dialog.dismiss()
             }
             .setNegativeButton(R.string.dialogButton_cancel) { _, _ ->
@@ -70,52 +74,5 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
         return builder.create()
     }
 
-
-
-
 }
-
-
-//                        return AlertDialog.Builder(context!!)
-//                            .setView(R.layout.custom_dialog_medication)
-////            .setMessage(R.string.dialogHeadline_choseDateAndTime)
-//                            .setTitle(R.string.dialogHeadline_choseDateAndTime)
-//                            .setPositiveButton(R.string.dialogButton_next) { _, _ ->
-//                                val datePicker =
-//                                    DatePickerFragment(DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-//
-//                                    })
-//                                //                val soh = stateOfHealth.value!!
-////                soh.statesDate = Date()
-////                Log.d("mLog", soh.toString())
-//                                builder.dismiss()
-////                stateOfHealth.postValue(soh)
-//                            }
-//                            .setNegativeButton(R.string.dialogButton_cancel) { _, _ ->
-//                                builder.dismiss()
-//                            }
-//                            .create()
-//                    }
-////
-//
-
-//        configureDialog(dialog)
-//        etDate.setText("12 June 2019")
-//        etTime.setText("15:15")
-//    }
-//
-//    fun showDialog() {
-//        dialog.show()
-//    }
-//
-//    private fun configureDialog(dialog: Dialog) {
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        dialog.window?.setLayout(
-//            ViewGroup.LayoutParams.MATCH_PARENT,
-//            ViewGroup.LayoutParams.MATCH_PARENT
-//        )
-//        dialog.setCancelable(false)
-//        dialog.setContentView(R.layout.custom_dialog_medication)
-//    }
-
 

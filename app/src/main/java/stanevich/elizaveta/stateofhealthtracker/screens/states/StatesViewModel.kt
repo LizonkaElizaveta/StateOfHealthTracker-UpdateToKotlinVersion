@@ -35,13 +35,13 @@ class StatesViewModel(
         get() = _showThEvent
 
     val triggerMedicationEvent: LiveData<Boolean>
-    get() = _showMedEvent
+        get() = _showMedEvent
 
     private fun showDialogThanks() {
         _showThEvent.value = !_showThEvent.value!!
     }
 
-    private fun showDialogMed(){
+    private fun showDialogMed() {
         _showMedEvent.value = !_showMedEvent.value!!
     }
 
@@ -95,10 +95,9 @@ class StatesViewModel(
 
     fun onStartTrackingPill(pill: String) {
         uiScope.launch {
-            val newState = getStates()
-            newState.statesPill = pill
-            upsert(newState)
-            stateOfHealth.value = getStatesFromDatabase()
+            updatedStateOfHealth.value = getStates()
+            updatedStateOfHealth.value!!.statesDiskinezia = pill
+            showDialogMed()
         }
     }
 
@@ -115,40 +114,7 @@ class StatesViewModel(
         }
     }
 
-//    private fun showData() {
-//
-//        database.getListState().observeOn(AndroidS)
-//        val list = database.getLastState()
-//
-//            Log.d(
-//                "mLog",
-//                "ID = ${list!!.statesId}, " +
-//                        "date = ${list.statesDate}, " +
-//                        "mood = ${list.statesMood}, " +
-//                        "pill = ${list.statesPill}, " +
-//                        "diskinezia = ${list.statesDiskinezia}"
-//            )
-//        }
-
 }
-
-
-//        Log.d("mLog", database.getLastState().toString())
-
-//
-//    private fun getCalendarDate(): String {
-//        var calendar = Calendar.getInstance()
-//        calendar.apply {
-//            set(Calendar.YEAR, calendar.get(Calendar.YEAR))
-//            set(Calendar.MONTH, calendar.get(Calendar.MONTH))
-//            set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH))
-//        }
-//
-//
-//
-//
-//        return dateFormat.format(calendar.timeInMillis)
-//    }
 
 //    fun onStopTracking() {
 //        uiScope.launch {
