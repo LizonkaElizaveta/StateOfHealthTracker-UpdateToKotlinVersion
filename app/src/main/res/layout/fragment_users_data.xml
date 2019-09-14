@@ -52,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:hint="@string/textPersonName"
-                        android:text="@{usersViewModel.etName}"
+                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserNameTextChanged(text)}"
                         android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -76,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:hint="@string/textPersonSurname"
-                        android:text="@{usersViewModel.etSurname}"
+                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserSurnameTextChanged(text)}"
                         android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -100,7 +100,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:text="@{usersViewModel.etPhone}"
+                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserPhoneTextChanged(text)}"
                         android:hint="@string/textPersonPhone"
                         android:inputType="phone" />
 
@@ -124,8 +124,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:text="@{usersViewModel.etMail}"
                         android:hint="@string/textPersonDocMail"
+                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserDocEmailTextChanged(text)}"
                         android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>

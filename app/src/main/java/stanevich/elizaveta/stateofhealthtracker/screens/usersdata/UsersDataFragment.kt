@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databases.database.UsersDataDatabase
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentUsersDataBinding
@@ -34,7 +33,6 @@ class UsersDataFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        usersViewModel
         return binding.root
     }
 }

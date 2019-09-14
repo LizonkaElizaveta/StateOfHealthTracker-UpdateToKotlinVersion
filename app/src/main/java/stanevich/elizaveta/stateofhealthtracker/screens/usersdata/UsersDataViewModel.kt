@@ -2,13 +2,12 @@ package stanevich.elizaveta.stateofhealthtracker.screens.usersdata
 
 import android.app.Application
 import android.util.Log
-import androidx.databinding.BaseObservable
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.databases.DAO.UsersDataDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.UsersData
+
 
 class UsersDataViewModel(
     private val database: UsersDataDao,
@@ -26,9 +25,12 @@ class UsersDataViewModel(
     private var usersData = MutableLiveData<UsersData?>()
 
 
-
-    private var _etName = MutableLiveData<String?>()
-
+//
+//    private var _etUser = MutableLiveData<Boolean>(false)
+//
+//    val triggerEvent : LiveData<Boolean>
+//    get() = _etUser
+//
 
 
     init {
@@ -77,9 +79,26 @@ class UsersDataViewModel(
         }
     }
 
-    private fun saveData(){
-        usersData.value = database.findByUser()
-        usersData.value!!.usersFirstName = etName.toString()
+    fun onUserNameTextChanged(name: CharSequence) {
+        Log.d("mLog", name.toString())
+//        usersData.value = database.findByUser()
+//        usersData.value!!.usersFirstName = name.toString()
+//        Log.d("mLog", usersData.value.toString())
+    }
+
+    fun onUserSurnameTextChanged(surname: CharSequence): String {
+        Log.d("mLog", surname.toString())
+        return surname.toString()
+    }
+
+    fun onUserPhoneTextChanged(phone: CharSequence): Int? {
+        Log.d("mLog", phone.toString())
+        return Integer.parseInt(phone as String)
+    }
+
+    fun onUserDocEmailTextChanged(email: CharSequence): String {
+        Log.d("mLog", email.toString())
+        return email.toString()
     }
 
 }
