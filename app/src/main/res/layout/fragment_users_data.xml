@@ -52,8 +52,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:hint="@string/textPersonName"
-                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserNameTextChanged(text)}"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserNameTextChanged(text)}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,8 +76,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:hint="@string/textPersonSurname"
-                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserSurnameTextChanged(text)}"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserSurnameTextChanged(text)}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,9 +100,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserPhoneTextChanged(text)}"
                         android:hint="@string/textPersonPhone"
-                        android:inputType="phone" />
+                        android:inputType="phone"
+                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserPhoneTextChanged(text)}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,8 +125,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:hint="@string/textPersonDocMail"
-                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserDocEmailTextChanged(text)}"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textEmailAddress"
+                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserDocEmailTextChanged(text)}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -137,13 +137,14 @@
                     android:layout_width="0dp"
                     android:layout_height="65dp"
                     android:layout_marginTop="24dp"
-                    android:contentDescription="@string/buttonSaveData"
-                    android:text="@string/buttonSaveData"
                     android:layout_marginBottom="24dp"
+                    android:contentDescription="@string/buttonSaveData"
+                    android:onClick="@{() -> usersViewModel.saveUserData()}"
+                    android:text="@string/buttonSaveData"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/etPersonDocMail"
                     app:layout_constraintStart_toStartOf="@id/etPersonDocMail"
-                    app:layout_constraintTop_toBottomOf="@id/etPersonDocMail"
-                    app:layout_constraintBottom_toBottomOf="parent">
+                    app:layout_constraintTop_toBottomOf="@id/etPersonDocMail">
 
             </Button>
 

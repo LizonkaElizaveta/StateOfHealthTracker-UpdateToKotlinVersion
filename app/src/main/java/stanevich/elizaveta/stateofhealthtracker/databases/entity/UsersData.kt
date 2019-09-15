@@ -14,12 +14,12 @@ data class UsersData (
     var usersFirstName: String = "",
 
     @ColumnInfo(name = "lastName")
-    var userLastName: String = "",
+    var userSurname: String = "",
 
     @ColumnInfo(name = "email")
     var usersEmail: String = "",
 
     @ColumnInfo(name = "phone")
-    var usersPhone: Int = 0
+    var usersPhone: String = ""
 
 )

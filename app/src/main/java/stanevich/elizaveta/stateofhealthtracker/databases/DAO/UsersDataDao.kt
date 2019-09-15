@@ -1,6 +1,5 @@
 package stanevich.elizaveta.stateofhealthtracker.databases.DAO
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.UsersData
 
@@ -23,9 +22,9 @@ interface UsersDataDao {
     fun update(user: UsersData)
 
     @Transaction
-    fun upsert(state: UsersData){
-        insert(state)
-        update(state)
+    fun upsert(user: UsersData) {
+        insert(user)
+        update(user)
     }
 
     @Query("SELECT * from users_table WHERE usersId = 1")

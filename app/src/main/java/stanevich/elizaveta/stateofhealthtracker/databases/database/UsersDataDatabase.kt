@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import stanevich.elizaveta.stateofhealthtracker.databases.DAO.UsersDataDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.UsersData
 
-@Database(entities = [UsersData::class], version = 1, exportSchema = false)
+@Database(entities = [UsersData::class], version = 2, exportSchema = false)
 abstract class UsersDataDatabase : RoomDatabase() {
 
     abstract val statesDatabaseDao: UsersDataDao

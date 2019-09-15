@@ -25,14 +25,6 @@ class UsersDataViewModel(
     private var usersData = MutableLiveData<UsersData?>()
 
 
-//
-//    private var _etUser = MutableLiveData<Boolean>(false)
-//
-//    val triggerEvent : LiveData<Boolean>
-//    get() = _etUser
-//
-
-
     init {
         initializeUser()
     }
@@ -46,25 +38,11 @@ class UsersDataViewModel(
 
     private suspend fun getUserFromDatabase(): UsersData? {
         return withContext(Dispatchers.IO) {
-            var user = database.getLastUser()
-            user
+            var user = database.findByUser()
+            user ?: UsersData()
         }
 
     }
-
-    fun onStartTracking(firstName: String, lastName: String, phone: Int, mail: String) {
-        uiScope.launch {
-            val newUser = UsersData(
-                usersFirstName = firstName,
-                userLastName = lastName,
-                usersPhone = phone,
-                usersEmail = mail
-            )
-            insert(newUser)
-            usersData.value = getUserFromDatabase()
-        }
-    }
-
     private suspend fun insert(user: UsersData) {
         withContext(Dispatchers.IO) {
             database.insert(user)
@@ -81,24 +59,31 @@ class UsersDataViewModel(
 
     fun onUserNameTextChanged(name: CharSequence) {
         Log.d("mLog", name.toString())
-//        usersData.value = database.findByUser()
-//        usersData.value!!.usersFirstName = name.toString()
-//        Log.d("mLog", usersData.value.toString())
+        usersData.value!!.usersFirstName = name.toString()
     }
 
-    fun onUserSurnameTextChanged(surname: CharSequence): String {
+    fun onUserSurnameTextChanged(surname: CharSequence) {
         Log.d("mLog", surname.toString())
-        return surname.toString()
+        usersData.value!!.userSurname = surname.toString()
     }
 
-    fun onUserPhoneTextChanged(phone: CharSequence): Int? {
+    fun onUserPhoneTextChanged(phone: CharSequence) {
         Log.d("mLog", phone.toString())
-        return Integer.parseInt(phone as String)
+        usersData.value!!.usersPhone = phone.toString()
     }
 
-    fun onUserDocEmailTextChanged(email: CharSequence): String {
+    fun onUserDocEmailTextChanged(email: CharSequence) {
         Log.d("mLog", email.toString())
-        return email.toString()
+        usersData.value!!.usersEmail = email.toString()
+    }
+
+    fun saveUserData() {
+        uiScope.launch {
+            withContext(Dispatchers.IO) {
+                database.upsert(usersData.value!!)
+                Log.d("mLog", usersData.value.toString())
+            }
+        }
     }
 
 }
