@@ -43,37 +43,20 @@ class UsersDataViewModel(
         }
 
     }
-    private suspend fun insert(user: UsersData) {
-        withContext(Dispatchers.IO) {
-            database.insert(user)
-
-        }
-
-    }
-
-    private suspend fun update(state: UsersData) {
-        withContext(Dispatchers.IO) {
-            database.update(state)
-        }
-    }
 
     fun onUserNameTextChanged(name: CharSequence) {
-        Log.d("mLog", name.toString())
         usersData.value!!.usersFirstName = name.toString()
     }
 
     fun onUserSurnameTextChanged(surname: CharSequence) {
-        Log.d("mLog", surname.toString())
         usersData.value!!.userSurname = surname.toString()
     }
 
     fun onUserPhoneTextChanged(phone: CharSequence) {
-        Log.d("mLog", phone.toString())
         usersData.value!!.usersPhone = phone.toString()
     }
 
     fun onUserDocEmailTextChanged(email: CharSequence) {
-        Log.d("mLog", email.toString())
         usersData.value!!.usersEmail = email.toString()
     }
 
