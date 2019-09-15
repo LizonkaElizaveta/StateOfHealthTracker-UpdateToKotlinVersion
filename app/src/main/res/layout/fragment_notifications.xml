@@ -3,6 +3,14 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         tools:context="stanevich.elizaveta.stateofhealthtracker.screens.notifications.NotificationsFragment">
+
+    <data>
+
+        <variable
+                name="notificationsViewModel"
+                type="stanevich.elizaveta.stateofhealthtracker.screens.notifications.NotificationsViewModel" />
+    </data>
+
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
