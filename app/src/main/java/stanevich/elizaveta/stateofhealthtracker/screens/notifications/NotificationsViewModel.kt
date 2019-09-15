@@ -2,10 +2,10 @@ package stanevich.elizaveta.stateofhealthtracker.screens.notifications
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.databases.DAO.NotificationsDatabaseDao
+import stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications
 
 class NotificationsViewModel(
     private val database: NotificationsDatabaseDao,
@@ -21,6 +21,42 @@ class NotificationsViewModel(
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
+    private var tonightNotification = MutableLiveData<Notifications?>()
+
+
+    val notifications = database.getAllNotifications()
+
+
+    init {
+        initializeNot()
+    }
+
+    private fun initializeNot() {
+        uiScope.launch {
+            tonightNotification.value = getNotFromDatabase()
+        }
+    }
+
+    private suspend fun getNotFromDatabase(): Notifications? {
+        return withContext(Dispatchers.IO) {
+            var notification = database.getLastNotification()
+            notification
+        }
+    }
+
+    fun onStartTracking() {
+        uiScope.launch {
+            val newNotifications = Notifications()
+            insert(newNotifications)
+            tonightNotification.value = getNotFromDatabase()
+        }
+    }
+
+    private suspend fun insert(notifications: Notifications) {
+        withContext(Dispatchers.IO) {
+            database.insert(notifications)
+        }
+    }
 
 }
 

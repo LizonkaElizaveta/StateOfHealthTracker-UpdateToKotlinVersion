@@ -44,5 +44,7 @@
     <string name="textPersonDocMail">Эл.почта врача…</string>
     <string name="buttonSaveData">Сохранить данные</string>
 
+    <string name="text_medication">Прием лекарств</string>
+
 
 </resources>

@@ -1,6 +1,7 @@
 package stanevich.elizaveta.stateofhealthtracker.databases.DAO
 
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -20,4 +21,7 @@ interface NotificationsDatabaseDao {
 
     @Query("SELECT * from notifications_table ORDER BY notificatiionsId DESC LIMIT 1")
     fun getLastNotification(): Notifications?
+
+    @Query("SELECT * FROM notifications_table ORDER BY notificatiionsId DESC")
+    fun getAllNotifications(): LiveData<List<Notifications>>
 }
