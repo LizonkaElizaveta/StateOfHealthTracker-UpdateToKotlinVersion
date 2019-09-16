@@ -42,7 +42,7 @@ class NotificationsFragment : Fragment() {
 
         notificationsViewModel.notifications.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
 
