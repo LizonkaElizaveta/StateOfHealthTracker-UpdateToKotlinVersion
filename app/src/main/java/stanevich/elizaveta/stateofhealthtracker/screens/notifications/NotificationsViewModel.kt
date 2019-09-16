@@ -2,6 +2,7 @@ package stanevich.elizaveta.stateofhealthtracker.screens.notifications
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.databases.DAO.NotificationsDatabaseDao
@@ -26,6 +27,15 @@ class NotificationsViewModel(
 
     val notifications = database.getAllNotifications()
 
+    private var _showNotEvent = MutableLiveData<Boolean>(false)
+    val triggerNotEvent: LiveData<Boolean>
+        get() = _showNotEvent
+
+    private fun showDialogNot() {
+        _showNotEvent.value = !_showNotEvent.value!!
+    }
+
+
 
     init {
         initializeNot()
@@ -49,6 +59,7 @@ class NotificationsViewModel(
             val newNotifications = Notifications()
             insert(newNotifications)
             tonightNotification.value = getNotFromDatabase()
+            showDialogNot()
         }
     }
 

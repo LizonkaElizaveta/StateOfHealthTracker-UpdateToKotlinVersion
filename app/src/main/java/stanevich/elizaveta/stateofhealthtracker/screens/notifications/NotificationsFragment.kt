@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databases.database.NotificationsDatabase
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotificationsBinding
+import stanevich.elizaveta.stateofhealthtracker.dialogs.CategoryDialog
 
 class NotificationsFragment : Fragment() {
 
@@ -42,7 +43,7 @@ class NotificationsFragment : Fragment() {
 
         notificationsViewModel.notifications.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.submitList(it)
+                CategoryDialog().show(fragmentManager, "CategoryDialog")
             }
         })
 
