@@ -1,6 +1,7 @@
 package stanevich.elizaveta.stateofhealthtracker.screens.notifications
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,7 +23,7 @@ class NotificationsViewModel(
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private var tonightNotification = MutableLiveData<Notifications?>()
+    var tonightNotification = MutableLiveData<Notifications?>()
 
 
     val notifications = database.getAllNotifications()
@@ -66,6 +67,8 @@ class NotificationsViewModel(
     private suspend fun insert(notifications: Notifications) {
         withContext(Dispatchers.IO) {
             database.insert(notifications)
+
+            Log.d("mLog", tonightNotification.value.toString())
         }
     }
 

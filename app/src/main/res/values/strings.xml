@@ -47,7 +47,7 @@
     <string name="text_medication">Прием лекарств</string>
 
     <string name="radioButton_medication">Прием лекарств</string>
-    <string name="radioButton_doctors_appointment">Привем у врача</string>
+    <string name="radioButton_doctors_appointment">Прием у врача</string>
 
 
 </resources>

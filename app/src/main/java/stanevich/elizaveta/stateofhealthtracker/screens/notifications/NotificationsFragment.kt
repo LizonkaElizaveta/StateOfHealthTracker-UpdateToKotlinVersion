@@ -43,7 +43,10 @@ class NotificationsFragment : Fragment() {
 
         notificationsViewModel.notifications.observe(viewLifecycleOwner, Observer {
             it?.let {
-                CategoryDialog().show(fragmentManager, "CategoryDialog")
+                CategoryDialog(notificationsViewModel.tonightNotification).show(
+                    fragmentManager,
+                    "CategoryDialog"
+                )
             }
         })
 
