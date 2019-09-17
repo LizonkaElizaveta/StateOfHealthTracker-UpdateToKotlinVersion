@@ -1,14 +1,12 @@
 package stanevich.elizaveta.stateofhealthtracker.screens.notifications
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications
+import stanevich.elizaveta.stateofhealthtracker.databinding.ListItemNotificationsBinding
 
 class NotificationsAdapter : ListAdapter<Notifications,
         NotificationsAdapter.ViewHolder>(NotificationsDiffCallback()) {
@@ -23,21 +21,19 @@ class NotificationsAdapter : ListAdapter<Notifications,
     }
 
 
-    class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val notificationDate: TextView = itemView.findViewById(R.id.tvNotificationDate)
-        private val category: TextView = itemView.findViewById(R.id.tvCategory)
+    class ViewHolder private constructor(val binding: ListItemNotificationsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Notifications) {
-            notificationDate.text = item.notificationsTime
-            category.text = item.notificationsText
+            binding.notification = item
+            binding.executePendingBindings()
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater
-                    .inflate(R.layout.list_item_notifications, parent, false)
-                return ViewHolder(view)
+                val binding = ListItemNotificationsBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
             }
 
         }
