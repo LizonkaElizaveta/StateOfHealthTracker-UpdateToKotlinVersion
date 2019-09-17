@@ -27,6 +27,8 @@
     <string name="dialogHeadline_choseDateAndTime">Укажите дату и время</string>
     <string name="dialogHeadline_thanks">Благодарность</string>
     <string name="dialogHeadline_category">Категория</string>
+    <string name="dialogHeadline_choseTime">Укажите время</string>
+    <string name="dialogHeadline_choseDate">Укажите дату</string>
 
     // Strings for dialog editText
     <string name="dialogEditText_time">Время</string>

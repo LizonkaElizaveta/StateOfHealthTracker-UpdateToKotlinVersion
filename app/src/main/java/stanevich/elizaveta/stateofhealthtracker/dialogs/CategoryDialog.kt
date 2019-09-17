@@ -2,7 +2,9 @@ package stanevich.elizaveta.stateofhealthtracker.dialogs
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.RadioButton
 import androidx.databinding.DataBindingUtil
@@ -11,12 +13,20 @@ import androidx.lifecycle.MutableLiveData
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications
 import stanevich.elizaveta.stateofhealthtracker.databinding.CustomDialogCategoryBinding
+import stanevich.elizaveta.stateofhealthtracker.screens.notifications.NotificationsViewModel
+import stanevich.elizaveta.stateofhealthtracker.screens.notifications.OnStartTracking
+import stanevich.elizaveta.stateofhealthtracker.utils.getTime
+import java.util.*
 
-class CategoryDialog(private val tonightNotification: MutableLiveData<Notifications?>) :
-    DialogFragment() {
+class CategoryDialog(
+    private val tonightNotification: MutableLiveData<Notifications?>,
+    private val notificationsViewModel: NotificationsViewModel
+) : DialogFragment(), OnStartTracking {
+
 
     lateinit var radioButton: RadioButton
     private var selectedId: Int = 0
+
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val binding: CustomDialogCategoryBinding =
@@ -33,17 +43,20 @@ class CategoryDialog(private val tonightNotification: MutableLiveData<Notificati
         builder.setView(binding.root)
             .setTitle(R.string.dialogHeadline_category)
             .setPositiveButton(R.string.dialogButton_next) { _, _ ->
+
                 val checked = checkedRadioButtonListener(binding)
+
                 val notification = tonightNotification.value!!
                 notification.notificationsText = checked.text.toString()
-                tonightNotification.postValue(notification)
-
-//                val states = stateOfHealth.value!!(
-//                states.statesDate = getDateTimeValue(etDate.text.toString(), etTime.text.toString())
-//                Log.d("mLog", states.toString())
-//                stateOfHealth.postValue(states)
                 dialog.dismiss()
+
+                val timePickerFragment =
+                    TimePickerFragment(TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                        val calendar = TimePickerFragment.getCalendarTime(hourOfDay, minute)
+                        postValue(calendar, notification)
+                    }).show(fragmentManager, "TimePickerDialog")
             }
+
             .setNegativeButton(R.string.dialogButton_cancel) { _, _ ->
                 dialog.dismiss()
             }
@@ -51,6 +64,21 @@ class CategoryDialog(private val tonightNotification: MutableLiveData<Notificati
 
 
         return builder.create()
+    }
+
+    private fun postValue(
+        calendar: Calendar,
+        notification: Notifications
+    ) {
+        val time = getTime(calendar.timeInMillis)
+        notification.notificationsTime = time
+        tonightNotification.postValue(notification)
+        Log.d("mLog", "From Dialog " + tonightNotification.value.toString())
+        startTracking()
+    }
+
+    override fun startTracking() {
+        notificationsViewModel.onStartTracking()
     }
 
     private fun checkedRadioButtonListener(binding: CustomDialogCategoryBinding): RadioButton {

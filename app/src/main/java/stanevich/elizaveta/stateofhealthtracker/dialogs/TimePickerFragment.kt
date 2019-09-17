@@ -40,6 +40,7 @@ class TimePickerFragment(private val listener: TimePickerDialog.OnTimeSetListene
             resources.getString(R.string.dialogButton_cancel),
             timePickerDialog
         )
+        timePickerDialog.setTitle(R.string.dialogHeadline_choseTime)
 
         return timePickerDialog
     }

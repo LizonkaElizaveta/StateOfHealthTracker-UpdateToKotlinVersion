@@ -41,12 +41,24 @@ class NotificationsFragment : Fragment() {
         val adapter = NotificationsAdapter()
         binding.notificationsList.adapter = adapter
 
-        notificationsViewModel.notifications.observe(viewLifecycleOwner, Observer {
+        notificationsViewModel.triggerNotEvent.observe(viewLifecycleOwner, Observer {
             it?.let {
-                CategoryDialog(notificationsViewModel.tonightNotification).show(
+                CategoryDialog(
+                    notificationsViewModel.tonightNotification,
+                    notificationsViewModel
+                ).show(
                     fragmentManager,
                     "CategoryDialog"
                 )
+
+
+            }
+        })
+
+
+        notificationsViewModel.notifications.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
             }
         })
 

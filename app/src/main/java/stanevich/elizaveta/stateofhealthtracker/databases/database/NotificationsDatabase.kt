@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import stanevich.elizaveta.stateofhealthtracker.databases.DAO.NotificationsDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications
 
-@Database(entities = [Notifications::class] , version = 1, exportSchema = false)
+@Database(entities = [Notifications::class], version = 2, exportSchema = false)
 abstract class NotificationsDatabase:RoomDatabase(){
 
     abstract val notificationsDatabaseDao: NotificationsDatabaseDao

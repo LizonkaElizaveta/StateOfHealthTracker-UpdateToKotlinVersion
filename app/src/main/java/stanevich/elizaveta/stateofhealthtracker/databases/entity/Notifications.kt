@@ -10,7 +10,7 @@ data class Notifications(
     var notificatiionsId: Long = 0L,
 
     @ColumnInfo(name = "time")
-    var notificationsTime: Long = System.currentTimeMillis(),
+    var notificationsTime: String = "",
 
     @ColumnInfo(name = "text")
     var notificationsText: String = ""

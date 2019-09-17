@@ -19,8 +19,8 @@ import stanevich.elizaveta.stateofhealthtracker.utils.getDateTimeValue
 import stanevich.elizaveta.stateofhealthtracker.utils.getTime
 
 class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : DialogFragment() {
-    lateinit var etDate: EditText
-    lateinit var etTime: EditText
+    private lateinit var etDate: EditText
+    private lateinit var etTime: EditText
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val binding: CustomDialogMedicationBinding =

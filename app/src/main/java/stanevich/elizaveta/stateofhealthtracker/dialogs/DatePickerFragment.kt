@@ -45,6 +45,7 @@ class DatePickerFragment(private val listener: DatePickerDialog.OnDateSetListene
             resources.getString(R.string.dialogButton_cancel),
             datePickerDialog
         )
+        datePickerDialog.setTitle(R.string.dialogHeadline_choseDate)
 
         return datePickerDialog
     }

@@ -28,7 +28,7 @@ class NotificationsAdapter : ListAdapter<Notifications,
         private val category: TextView = itemView.findViewById(R.id.tvCategory)
 
         fun bind(item: Notifications) {
-            notificationDate.text = item.notificationsTime.toString()
+            notificationDate.text = item.notificationsTime
             category.text = item.notificationsText
         }
 

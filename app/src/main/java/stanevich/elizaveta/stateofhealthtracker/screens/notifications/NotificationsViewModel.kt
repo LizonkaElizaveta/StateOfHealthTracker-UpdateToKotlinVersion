@@ -29,13 +29,13 @@ class NotificationsViewModel(
     val notifications = database.getAllNotifications()
 
     private var _showNotEvent = MutableLiveData<Boolean>(false)
+
     val triggerNotEvent: LiveData<Boolean>
         get() = _showNotEvent
 
     private fun showDialogNot() {
         _showNotEvent.value = !_showNotEvent.value!!
     }
-
 
 
     init {
@@ -45,13 +45,14 @@ class NotificationsViewModel(
     private fun initializeNot() {
         uiScope.launch {
             tonightNotification.value = getNotFromDatabase()
+
         }
     }
 
     private suspend fun getNotFromDatabase(): Notifications? {
         return withContext(Dispatchers.IO) {
             var notification = database.getLastNotification()
-            notification
+            notification ?: Notifications()
         }
     }
 
@@ -64,13 +65,35 @@ class NotificationsViewModel(
         }
     }
 
-    private suspend fun insert(notifications: Notifications) {
+    private suspend fun insert(notification: Notifications) {
         withContext(Dispatchers.IO) {
-            database.insert(notifications)
+            database.insert(notification)
 
-            Log.d("mLog", tonightNotification.value.toString())
+            Log.d("mLog", "From ViewModel " + tonightNotification.value.toString())
         }
     }
 
+    private suspend fun updateStates(
+        notification: Notifications
+    ) {
+        upsert(notification)
+        tonightNotification.value = getNotFromDatabase()
+    }
+
+    private suspend fun upsert(notification: Notifications) {
+        withContext(Dispatchers.IO) {
+            database.upsert(notification)
+        }
+    }
+
+//    private suspend fun getNotifications(): Notifications {
+//        var notification = withContext(Dispatchers.IO) {
+//            database.findByDate(Date())
+//        }
+//        if (notification == null) {
+//            notification = States()
+//        }
+//        return notification
+//    }
 }
 
