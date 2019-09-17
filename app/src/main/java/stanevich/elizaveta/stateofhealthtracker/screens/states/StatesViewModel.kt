@@ -26,24 +26,31 @@ class StatesViewModel(
 
     private var stateOfHealth = MutableLiveData<States?>()
 
+
+    private var _showMedDialogEvent = MutableLiveData<Boolean>()
+
+    /**
+     * If this is true, immediately `show()` a dialog and call `doneShowingMedDialog()`.
+     */
+    val showMedDialogEvent: LiveData<Boolean>
+        get() = _showMedDialogEvent
+
+
+    fun doneShowingMedDialog() {
+        _showMedDialogEvent.value = false
+    }
+
+
+    private var _showThanksDialogEvent = MutableLiveData<Boolean>()
+
+    val showThanksDialogEvent: LiveData<Boolean>
+        get() = _showThanksDialogEvent
+
+    fun doneShowingThanksDialog() {
+        _showThanksDialogEvent.value = false
+    }
+
     val updatedStateOfHealth = MutableLiveData<States?>()
-
-    private var _showThEvent = MutableLiveData<Boolean>(false)
-    private var _showMedEvent = MutableLiveData<Boolean>(false)
-
-    val triggerThanksEvent: LiveData<Boolean>
-        get() = _showThEvent
-
-    val triggerMedicationEvent: LiveData<Boolean>
-        get() = _showMedEvent
-
-    private fun showDialogThanks() {
-        _showThEvent.value = !_showThEvent.value!!
-    }
-
-    private fun showDialogMed() {
-        _showMedEvent.value = !_showMedEvent.value!!
-    }
 
     init {
         initializeState()
@@ -71,7 +78,7 @@ class StatesViewModel(
         uiScope.launch {
             updatedStateOfHealth.value = getStates()
             updatedStateOfHealth.value!!.statesMood = mood
-            showDialogThanks()
+            _showThanksDialogEvent.value = true
         }
     }
 
@@ -89,7 +96,7 @@ class StatesViewModel(
         uiScope.launch {
             updatedStateOfHealth.value = getStates()
             updatedStateOfHealth.value!!.statesDiskinezia = diskinezia
-            showDialogMed()
+            _showMedDialogEvent.value = true
         }
     }
 
@@ -97,7 +104,7 @@ class StatesViewModel(
         uiScope.launch {
             updatedStateOfHealth.value = getStates()
             updatedStateOfHealth.value!!.statesDiskinezia = pill
-            showDialogMed()
+            _showMedDialogEvent.value = true
         }
     }
 
@@ -115,32 +122,3 @@ class StatesViewModel(
     }
 
 }
-
-//    fun onStopTracking() {
-//        uiScope.launch {
-//            val oldState = stateOfHealth.value ?: return@launch
-//
-//            oldState.statesTime = System.currentTimeMillis()
-//
-//            update(oldState)
-//        }
-//    }
-//
-//    private suspend fun update(state: States) {
-//        withContext(Dispatchers.IO) {
-//            database.update(state)
-//        }
-//    }
-//
-//    fun onClear() {
-//        uiScope.launch {
-//            clear()
-//            stateOfHealth.value = null
-//        }
-//    }
-//
-//    private suspend fun clear() {
-//        withContext(Dispatchers.IO) {
-//            database.clear()
-//        }
-//    }

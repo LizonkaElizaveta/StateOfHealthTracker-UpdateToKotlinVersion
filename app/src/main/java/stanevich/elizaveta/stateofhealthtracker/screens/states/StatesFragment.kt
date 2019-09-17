@@ -37,30 +37,24 @@ class StatesFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        var unlockedT = false
-        var unlockedM = false
-
-        statesViewModel.triggerThanksEvent.observe(this, Observer<Boolean> {
-            if (unlockedT) {
+        statesViewModel.showThanksDialogEvent.observe(this, Observer<Boolean> {
+            if (it == true) {
                 ThanksDialog().show(fragmentManager, "ThanksDialog")
-            } else {
-                unlockedT = true
+                statesViewModel.doneShowingThanksDialog()
             }
+
         })
 
-        statesViewModel.triggerMedicationEvent.observe(this, Observer<Boolean> {
-            if (unlockedM) {
+        statesViewModel.showMedDialogEvent.observe(this, Observer<Boolean> {
+            if (it == true) {
                 MedicationDialog(statesViewModel.updatedStateOfHealth).show(
                     fragmentManager,
                     "MedicationDialog"
                 )
 
-            } else {
-                unlockedM = true
+                statesViewModel.doneShowingMedDialog()
             }
         })
-
-
 
         return binding.root
     }
