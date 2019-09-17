@@ -28,13 +28,14 @@ class NotificationsViewModel(
 
     val notifications = database.getAllNotifications()
 
-    private var _showNotEvent = MutableLiveData<Boolean>(false)
 
-    val triggerNotEvent: LiveData<Boolean>
-        get() = _showNotEvent
+    private var _showNotDialogEvent = MutableLiveData<Boolean>(false)
 
-    private fun showDialogNot() {
-        _showNotEvent.value = !_showNotEvent.value!!
+    val showNotDialogEvent: LiveData<Boolean>
+        get() = _showNotDialogEvent
+
+    fun doneShowingNotDialog() {
+        _showNotDialogEvent.value = false
     }
 
 
@@ -52,7 +53,7 @@ class NotificationsViewModel(
     private suspend fun getNotFromDatabase(): Notifications? {
         return withContext(Dispatchers.IO) {
             var notification = database.getLastNotification()
-            notification ?: Notifications()
+            notification
         }
     }
 
@@ -61,7 +62,7 @@ class NotificationsViewModel(
             val newNotifications = Notifications()
             insert(newNotifications)
             tonightNotification.value = getNotFromDatabase()
-            showDialogNot()
+
         }
     }
 
@@ -84,6 +85,10 @@ class NotificationsViewModel(
         withContext(Dispatchers.IO) {
             database.upsert(notification)
         }
+    }
+
+    fun showDialog() {
+        _showNotDialogEvent.value = true
     }
 
 //    private suspend fun getNotifications(): Notifications {

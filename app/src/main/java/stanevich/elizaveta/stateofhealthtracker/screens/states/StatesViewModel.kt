@@ -17,14 +17,10 @@ class StatesViewModel(
 
     private var viewModelJob = Job()
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
-
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private var stateOfHealth = MutableLiveData<States?>()
+    val updatedStateOfHealth = MutableLiveData<States?>()
 
 
     private var _showMedDialogEvent = MutableLiveData<Boolean>()
@@ -43,14 +39,18 @@ class StatesViewModel(
 
     private var _showThanksDialogEvent = MutableLiveData<Boolean>()
 
+    /**
+     * If this is true, immediately `show()` a dialog and call `doneShowingThanksDialog()`.
+     */
+
     val showThanksDialogEvent: LiveData<Boolean>
         get() = _showThanksDialogEvent
+
 
     fun doneShowingThanksDialog() {
         _showThanksDialogEvent.value = false
     }
 
-    val updatedStateOfHealth = MutableLiveData<States?>()
 
     init {
         initializeState()
@@ -119,6 +119,11 @@ class StatesViewModel(
         withContext(Dispatchers.IO) {
             database.upsert(newState)
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 
 }

@@ -15,7 +15,11 @@ import stanevich.elizaveta.stateofhealthtracker.dialogs.CategoryDialog
 
 class NotificationsFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val binding: FragmentNotificationsBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_notifications,
@@ -41,16 +45,14 @@ class NotificationsFragment : Fragment() {
         val adapter = NotificationsAdapter()
         binding.notificationsList.adapter = adapter
 
-        notificationsViewModel.triggerNotEvent.observe(viewLifecycleOwner, Observer {
-            it?.let {
+        notificationsViewModel.showNotDialogEvent.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
                 CategoryDialog(
                     notificationsViewModel.tonightNotification,
                     notificationsViewModel
-                ).show(
-                    fragmentManager,
-                    "CategoryDialog"
-                )
+                ).show(fragmentManager, "CategoryDialog")
 
+                notificationsViewModel.doneShowingNotDialog()
 
             }
         })

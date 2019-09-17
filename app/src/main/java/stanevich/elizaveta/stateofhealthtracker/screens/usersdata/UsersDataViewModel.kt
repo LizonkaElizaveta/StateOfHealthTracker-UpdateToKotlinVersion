@@ -13,12 +13,8 @@ class UsersDataViewModel(
     private val database: UsersDataDao,
     application: Application
 ) : AndroidViewModel(application) {
-    private var viewModelJob = Job()
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
+    private var viewModelJob = Job()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
@@ -67,6 +63,11 @@ class UsersDataViewModel(
                 Log.d("mLog", usersData.value.toString())
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 
 }
