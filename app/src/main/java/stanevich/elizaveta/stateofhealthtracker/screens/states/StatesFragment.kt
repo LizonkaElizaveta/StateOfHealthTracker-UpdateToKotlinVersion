@@ -39,7 +39,7 @@ class StatesFragment : Fragment() {
 
         statesViewModel.showThanksDialogEvent.observe(this, Observer<Boolean> {
             if (it == true) {
-                ThanksDialog().show(fragmentManager, "ThanksDialog")
+                fragmentManager?.let { it1 -> ThanksDialog().show(it1, "ThanksDialog") }
                 statesViewModel.doneShowingThanksDialog()
             }
 
@@ -47,10 +47,12 @@ class StatesFragment : Fragment() {
 
         statesViewModel.showMedDialogEvent.observe(this, Observer<Boolean> {
             if (it == true) {
-                MedicationDialog(statesViewModel.updatedStateOfHealth).show(
-                    fragmentManager,
-                    "MedicationDialog"
-                )
+                fragmentManager?.let { it1 ->
+                    MedicationDialog(statesViewModel.updatedStateOfHealth).show(
+                        it1,
+                        "MedicationDialog"
+                    )
+                }
 
                 statesViewModel.doneShowingMedDialog()
             }
@@ -59,14 +61,14 @@ class StatesFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.menu, menu)
+        inflater.inflate(R.menu.menu, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(
-            item!!,
+            item,
             view!!.findNavController()
         )
                 || super.onOptionsItemSelected(item)

@@ -3,9 +3,7 @@ package stanevich.elizaveta.stateofhealthtracker.utils
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
-import android.widget.TextView
 import androidx.core.text.HtmlCompat
-import androidx.recyclerview.widget.RecyclerView
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,5 +47,3 @@ fun getDateTimeValue(date: String , time: String): Date {
     val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
     return formatter.parse("$date $time")
 }
-
-class TextItemViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)

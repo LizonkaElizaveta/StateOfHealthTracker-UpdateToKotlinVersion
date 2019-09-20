@@ -12,7 +12,7 @@ class ThanksDialog : DialogFragment() {
         return AlertDialog.Builder(context!!)
             .setMessage(R.string.dialogText_thanks)
             .setPositiveButton(R.string.dialogButton_next) { _, _ ->
-                dialog.dismiss()
+                dialog!!.dismiss()
             }
             .setCancelable(false)
             .create()

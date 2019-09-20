@@ -13,18 +13,16 @@ import androidx.lifecycle.MutableLiveData
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications
 import stanevich.elizaveta.stateofhealthtracker.databinding.CustomDialogCategoryBinding
-import stanevich.elizaveta.stateofhealthtracker.screens.notifications.NotificationsViewModel
-import stanevich.elizaveta.stateofhealthtracker.screens.notifications.OnStartTracking
 import stanevich.elizaveta.stateofhealthtracker.utils.getTime
 import java.util.*
 
 class CategoryDialog(
     private val tonightNotification: MutableLiveData<Notifications?>,
-    private val notificationsViewModel: NotificationsViewModel
-) : DialogFragment(), OnStartTracking {
+    private val onStartTracking: () -> Unit
+) : DialogFragment() {
 
 
-    lateinit var radioButton: RadioButton
+    private lateinit var radioButton: RadioButton
     private var selectedId: Int = 0
 
 
@@ -48,17 +46,18 @@ class CategoryDialog(
 
                 val notification = tonightNotification.value!!
                 notification.notificationsText = checked.text.toString()
-                dialog.dismiss()
+                dialog!!.dismiss()
 
-                val timePickerFragment =
+                fragmentManager?.let {
                     TimePickerFragment(TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
                         val calendar = TimePickerFragment.getCalendarTime(hourOfDay, minute)
                         postValue(calendar, notification)
-                    }).show(fragmentManager, "TimePickerDialog")
+                    }).show(it, "TimePickerDialog")
+                }
             }
 
             .setNegativeButton(R.string.dialogButton_cancel) { _, _ ->
-                dialog.dismiss()
+                dialog!!.dismiss()
             }
             .setCancelable(false)
 
@@ -72,13 +71,10 @@ class CategoryDialog(
     ) {
         val time = getTime(calendar.timeInMillis)
         notification.notificationsTime = time
-        tonightNotification.postValue(notification)
+        // tonightNotification.postValue(notification)
         Log.d("mLog", "From Dialog " + tonightNotification.value.toString())
-        startTracking()
-    }
-
-    override fun startTracking() {
-        notificationsViewModel.onStartTracking()
+        Log.d("mLog", "From Dialog " + tonightNotification.value.toString())
+        onStartTracking.invoke()
     }
 
     private fun checkedRadioButtonListener(binding: CustomDialogCategoryBinding): RadioButton {

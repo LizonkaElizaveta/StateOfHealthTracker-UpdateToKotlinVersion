@@ -12,7 +12,7 @@ import stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications
 class NotificationsViewModel(
     private val database: NotificationsDatabaseDao,
     application: Application
-) : AndroidViewModel(application) {
+) : AndroidViewModel(application), OnStartTracking {
 
     private var viewModelJob = Job()
 
@@ -24,6 +24,7 @@ class NotificationsViewModel(
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     var tonightNotification = MutableLiveData<Notifications?>()
+    var updatedNotification = MutableLiveData<Notifications?>()
 
 
     val notifications = database.getAllNotifications()
@@ -40,29 +41,27 @@ class NotificationsViewModel(
 
 
     init {
-        initializeNot()
+        initializeNotification()
     }
 
-    private fun initializeNot() {
+    private fun initializeNotification() {
         uiScope.launch {
-            tonightNotification.value = getNotFromDatabase()
+            tonightNotification.value = Notifications()
 
         }
     }
 
     private suspend fun getNotFromDatabase(): Notifications? {
         return withContext(Dispatchers.IO) {
-            var notification = database.getLastNotification()
-            notification
+            database.getLastNotification()
         }
     }
 
-    fun onStartTracking() {
+    override fun startTracking() {
         uiScope.launch {
-            val newNotifications = Notifications()
-            insert(newNotifications)
-            tonightNotification.value = getNotFromDatabase()
-
+            // val newNotifications = Notifications()
+            insert(tonightNotification.value!!)
+            tonightNotification.value = Notifications()
         }
     }
 
@@ -70,35 +69,12 @@ class NotificationsViewModel(
         withContext(Dispatchers.IO) {
             database.insert(notification)
 
-            Log.d("mLog", "From ViewModel " + tonightNotification.value.toString())
-        }
-    }
-
-    private suspend fun updateStates(
-        notification: Notifications
-    ) {
-        upsert(notification)
-        tonightNotification.value = getNotFromDatabase()
-    }
-
-    private suspend fun upsert(notification: Notifications) {
-        withContext(Dispatchers.IO) {
-            database.upsert(notification)
+            Log.d("mLog", "From ViewModel " + notification.toString())
         }
     }
 
     fun showDialog() {
         _showNotDialogEvent.value = true
     }
-
-//    private suspend fun getNotifications(): Notifications {
-//        var notification = withContext(Dispatchers.IO) {
-//            database.findByDate(Date())
-//        }
-//        if (notification == null) {
-//            notification = States()
-//        }
-//        return notification
-//    }
 }
 

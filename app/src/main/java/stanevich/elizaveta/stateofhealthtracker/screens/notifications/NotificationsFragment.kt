@@ -47,10 +47,11 @@ class NotificationsFragment : Fragment() {
 
         notificationsViewModel.showNotDialogEvent.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-                CategoryDialog(
-                    notificationsViewModel.tonightNotification,
-                    notificationsViewModel
-                ).show(fragmentManager, "CategoryDialog")
+                fragmentManager?.let { it1 ->
+                    CategoryDialog(
+                        notificationsViewModel.tonightNotification
+                    ) { notificationsViewModel.startTracking() }.show(it1, "CategoryDialog")
+                }
 
                 notificationsViewModel.doneShowingNotDialog()
 

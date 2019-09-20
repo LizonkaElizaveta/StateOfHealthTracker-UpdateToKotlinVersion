@@ -40,7 +40,7 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
                             DatePickerFragment.getCalendarDate(year, monthOfYear, dayOfMonth)
                         etDate.setText(getDate(calendar.timeInMillis))
                     })
-                dpd.show(fragmentManager, "DatePickerDialog")
+                fragmentManager?.let { it1 -> dpd.show(it1, "DatePickerDialog") }
 
             }
             etTime = dialogEditTextTime.editText!!
@@ -50,7 +50,7 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
                         val calendar = TimePickerFragment.getCalendarTime(hourOfDay, minute)
                         etTime.setText(getTime(calendar.timeInMillis))
                     })
-                tpd.show(fragmentManager, "TimePickerDialog")
+                fragmentManager?.let { it1 -> tpd.show(it1, "TimePickerDialog") }
 
             }
         }
@@ -63,10 +63,10 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
                 states.statesDate = getDateTimeValue(etDate.text.toString(), etTime.text.toString())
                 Log.d("mLog", states.toString())
                 stateOfHealth.postValue(states)
-                dialog.dismiss()
+                dialog!!.dismiss()
             }
             .setNegativeButton(R.string.dialogButton_cancel) { _, _ ->
-                dialog.dismiss()
+                dialog!!.dismiss()
             }
             .setCancelable(false)
 
