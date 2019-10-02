@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.screens.notifications
+package stanevich.elizaveta.stateofhealthtracker
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter

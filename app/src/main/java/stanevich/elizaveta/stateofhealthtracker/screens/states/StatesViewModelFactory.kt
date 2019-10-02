@@ -1,7 +1,6 @@
 package stanevich.elizaveta.stateofhealthtracker.screens.states
 
 import android.app.Application
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import stanevich.elizaveta.stateofhealthtracker.databases.DAO.StatesDatabaseDao

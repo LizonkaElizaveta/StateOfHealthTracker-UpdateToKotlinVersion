@@ -1,13 +1,13 @@
 package stanevich.elizaveta.stateofhealthtracker.screens.states
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databases.database.StatesDatabase
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentStatesBinding
@@ -22,7 +22,7 @@ class StatesFragment : Fragment() {
     ): View? {
         val binding: FragmentStatesBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_states, container, false)
-        setHasOptionsMenu(true)
+//        setHasOptionsMenu(true)
 
         val application = requireNotNull(this.activity).application
 
@@ -60,19 +60,5 @@ class StatesFragment : Fragment() {
 
         return binding.root
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(
-            item,
-            view!!.findNavController()
-        )
-                || super.onOptionsItemSelected(item)
-    }
-
 
 }

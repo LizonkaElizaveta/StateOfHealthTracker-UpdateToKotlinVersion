@@ -1,23 +1,26 @@
 <resources>
     <string name="app_name">StateOfHealthTracker</string>
 
-
-    // Strings for MainActivity
-    <string name="button_dyskinesia">Дискинезия</string>
-    <string name="button_medication">Приём лекарств</string>
+    // Button
+    <string name="btn_dyskinesia">Дискинезия</string>
+    <string name="btn_medication">Приём лекарств</string>
     <string name="imageButton_excellent">Чувствую себя отлично!</string>
     <string name="imageButton_satisfactorily">Чувствую себя удовлетворительно.</string>
     <string name="imageButton_bad">Чувствую себя плохо.</string>
-    <string name="text_how_do_you_feel">Как вы себя сегодня чувствуете?</string>
-    <string name="button_toolbar_settings">Настройки</string>
+    <string name="btn_ok">Принять</string>
+    <string name="btn_cancel">Отменить</string>
+    <string name="btn_next">Далее</string>
+
+
+    // Text
+    <string name="text_how_do_you_feel">Как вы себя чувствуете?</string>
+
 
     // Strings for toasts
     <string name="toast_save_data">Ваши данные сохранены!</string>
 
     // Strings for dialog button
-    <string name="dialogButton_ok">Принять</string>
-    <string name="dialogButton_cancel">Отменить</string>
-    <string name="dialogButton_next">Далее</string>
+
 
     // Strings for dialog text
     <string name="dialogText_thanks">Спасибо за ответ!</string>
@@ -51,5 +54,12 @@
     <string name="radioButton_medication">Прием лекарств</string>
     <string name="radioButton_doctors_appointment">Прием у врача</string>
 
+
+    <string name="menu_home">Home</string>
+    <string name="menu_test">Тесты</string>
+    <string name="menu_notifications">Оповещения</string>
+    <string name="menu_profile">Профиль</string>
+    <string name="menu_data_collection">Сбор данных</string>
+    <string name="menu_settings">Настройки</string>
 
 </resources>

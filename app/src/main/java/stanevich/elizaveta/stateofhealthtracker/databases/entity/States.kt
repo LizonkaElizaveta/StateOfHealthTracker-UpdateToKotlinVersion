@@ -1,6 +1,8 @@
 package stanevich.elizaveta.stateofhealthtracker.databases.entity
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity(tableName = "states_table")

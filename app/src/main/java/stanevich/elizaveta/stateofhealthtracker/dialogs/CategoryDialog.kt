@@ -40,7 +40,7 @@ class CategoryDialog(
 
         builder.setView(binding.root)
             .setTitle(R.string.dialogHeadline_category)
-            .setPositiveButton(R.string.dialogButton_next) { _, _ ->
+            .setPositiveButton(R.string.btn_next) { _, _ ->
 
                 val checked = checkedRadioButtonListener(binding)
 
@@ -56,7 +56,7 @@ class CategoryDialog(
                 }
             }
 
-            .setNegativeButton(R.string.dialogButton_cancel) { _, _ ->
+            .setNegativeButton(R.string.btn_cancel) { _, _ ->
                 dialog!!.dismiss()
             }
             .setCancelable(false)

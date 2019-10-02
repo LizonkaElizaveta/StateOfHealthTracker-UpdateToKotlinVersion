@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentSettingsBinding
 
@@ -31,20 +30,20 @@ class SettingsFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        binding.apply {
-            buttonNotifications.setOnClickListener { view: View ->
-                Navigation.findNavController(view)
-                    .navigate(R.id.action_settingsFragment_to_notificationsFragment)
-            }
-            buttonPersonalDate.setOnClickListener { view: View ->
-                Navigation.findNavController(view)
-                    .navigate(R.id.action_settingsFragment_to_usersDataFragment)
-            }
-//            buttonSendData.setOnClickListener{view:View ->
+//        binding.apply {
+//            buttonNotifications.setOnClickListener { view: View ->
+//                Navigation.findNavController(view)
+//                    .navigate(R.id.action_settingsFragment_to_notificationsFragment)
+//            }
+//            buttonPersonalDate.setOnClickListener { view: View ->
+//                Navigation.findNavController(view)
+//                    .navigate(R.id.action_settingsFragment_to_usersDataFragment)
+//            }
+////            buttonSendData.setOnClickListener{view:View ->
 //                Navigation.findNavController(view).navigate()
 //            }
 
-        }
+//        }
         return binding.root
     }
 }

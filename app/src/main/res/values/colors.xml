@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#39ca74</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#ffff</color>
-
-
-
-    // color for dialogs
-    <color name="colorDialogTextHeadline">#fff</color>
-    <color name="colorDialogTextView">#000</color>
-    <color name="colorDialogTextButton">#000</color>
-    <color name="colorDialogMainArea">#fff</color>
-
-    //color for main components
-    <color name="colorTextView">#000</color>
-    <color name="colorMainApp">#43a047</color>
-    <color name="colorImageButton">#fdd835</color>
-    <color name="colorTextButton">#ffffff</color>
-
-    //color for text and buttons
-    <color name="colorTextLight">#fff</color>
-    <color name="colorTextDark">#000</color>
+    <color name="colorPrimary">#9B51E0</color>
+    <color name="colorPrimaryDark">#4A148C</color>
+    <color name="colorAccent">#000</color>
 
 </resources>

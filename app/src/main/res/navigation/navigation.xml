@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/navigation" app:startDestination="@id/statesFragment">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/navigation"
+        app:startDestination="@id/nav_home">
+    <fragment
+            android:id="@+id/nav_home"
+            android:name="stanevich.elizaveta.stateofhealthtracker.screens.states.StatesFragment"
+            android:label="@string/menu_home"
+            tools:layout="@layout/fragment_states" />
 
-    <fragment android:id="@+id/statesFragment"
-              android:name="stanevich.elizaveta.stateofhealthtracker.screens.states.StatesFragment"
-              android:label="StatesFragment"/>
-    <fragment android:id="@+id/settingsFragment"
-              android:name="stanevich.elizaveta.stateofhealthtracker.screens.settings.SettingsFragment"
-              android:label="SettingsFragment">
-        <action android:id="@+id/action_settingsFragment_to_notificationsFragment"
-                app:destination="@id/notificationsFragment" app:popUpTo="@+id/settingsFragment"/>
-        <action android:id="@+id/action_settingsFragment_to_usersDataFragment" app:destination="@id/usersDataFragment"
-                app:popUpTo="@+id/settingsFragment"/>
-    </fragment>
-    <fragment android:id="@+id/notificationsFragment"
-              android:name="stanevich.elizaveta.stateofhealthtracker.screens.notifications.NotificationsFragment"
-              android:label="NotificationsFragment">
-        <action android:id="@+id/action_notificationsFragment_to_settingsFragment"
-                app:destination="@id/settingsFragment" app:popUpTo="@+id/statesFragment"/>
-    </fragment>
-    <fragment android:id="@+id/usersDataFragment"
-              android:name="stanevich.elizaveta.stateofhealthtracker.screens.usersdata.UsersDataFragment"
-              android:label="UsersDataFragment">
-        <action android:id="@+id/action_usersDataFragment_to_settingsFragment" app:destination="@id/settingsFragment"
-                app:popUpTo="@+id/statesFragment"/>
-    </fragment>
+    <fragment
+            android:id="@+id/nav_notifications"
+            android:name="stanevich.elizaveta.stateofhealthtracker.screens.notifications.NotificationsFragment"
+            android:label="@string/menu_notifications"
+            tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+            android:id="@+id/nav_settings"
+            android:name="stanevich.elizaveta.stateofhealthtracker.screens.settings.SettingsFragment"
+            android:label="@string/menu_settings"
+            tools:layout="@layout/fragment_settings" />
+
+    <fragment
+            android:id="@+id/nav_profile"
+            android:name="stanevich.elizaveta.stateofhealthtracker.screens.usersdata.UsersDataFragment"
+            android:label="@string/menu_profile"
+            tools:layout="@layout/fragment_users_data" />
 </navigation>

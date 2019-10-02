@@ -11,7 +11,7 @@ class ThanksDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(context!!)
             .setMessage(R.string.dialogText_thanks)
-            .setPositiveButton(R.string.dialogButton_next) { _, _ ->
+            .setPositiveButton(R.string.btn_ok) { _, _ ->
                 dialog!!.dismiss()
             }
             .setCancelable(false)

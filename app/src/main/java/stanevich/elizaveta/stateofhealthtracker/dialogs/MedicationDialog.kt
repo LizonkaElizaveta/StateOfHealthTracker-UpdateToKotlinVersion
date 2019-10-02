@@ -58,14 +58,14 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
 
         builder.setView(binding.root)
             .setTitle(R.string.dialogHeadline_choseDateAndTime)
-            .setPositiveButton(R.string.dialogButton_next) { _, _ ->
+            .setPositiveButton(R.string.btn_next) { _, _ ->
                 val states = stateOfHealth.value!!
                 states.statesDate = getDateTimeValue(etDate.text.toString(), etTime.text.toString())
                 Log.d("mLog", states.toString())
                 stateOfHealth.postValue(states)
                 dialog!!.dismiss()
             }
-            .setNegativeButton(R.string.dialogButton_cancel) { _, _ ->
+            .setNegativeButton(R.string.btn_cancel) { _, _ ->
                 dialog!!.dismiss()
             }
             .setCancelable(false)

@@ -28,6 +28,14 @@ android {
         dataBinding {
             enabled = true
         }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -56,5 +64,8 @@ dependencies {
 
     implementation "android.arch.persistence.room:rxjava2:1.1.1"
     implementation 'com.getbase:floatingactionbutton:1.10.1'
+
+
+
 
 }

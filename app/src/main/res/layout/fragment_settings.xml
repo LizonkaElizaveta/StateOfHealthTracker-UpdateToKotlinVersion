@@ -11,18 +11,19 @@
                 type="stanevich.elizaveta.stateofhealthtracker.screens.settings.SettingsViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         <Button
                 android:id="@+id/button_personal_date"
-                style="@style/MyButtonStyle"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:drawableStart="@drawable/image_personal_date"
+
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
                 android:text="@string/button_personal_date"
@@ -33,13 +34,12 @@
 
         <Button
                 android:id="@+id/button_notifications"
-                style="@style/MyButtonStyle"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:drawableStart="@drawable/image_notification"
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
                 android:text="@string/button_notification"
@@ -50,13 +50,13 @@
 
         <Button
                 android:id="@+id/button_send_data"
-                style="@style/MyButtonStyle"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:drawableStart="@drawable/image_send_data"
+
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
                 android:text="@string/button_send_data"
