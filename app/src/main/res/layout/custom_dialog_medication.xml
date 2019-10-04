@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical">
 
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/dialogEditText_date"
-                    android:layout_width="115dp"
+                    android:layout_width="105dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="24dp">
+                    android:layout_marginTop="56dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="56dp"
+                    app:hintTextAppearance="@style/TextLabelStyle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/dialogEditText_time"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
                         style="@style/MyEditTextStyle"
@@ -26,7 +31,7 @@
                         android:layout_height="wrap_content"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"
-                        android:hint="@string/dialogEditText_date"
+                        android:hint="@string/hint_date"
                         android:inputType="none" />
 
 
@@ -34,24 +39,28 @@
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/dialogEditText_time"
-                    android:layout_width="115dp"
+                    android:layout_width="105dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="24dp">
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="56dp"
+                    android:layout_marginBottom="56dp"
+                    app:hintTextAppearance="@style/TextLabelStyle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/dialogEditText_date"
+                    app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
-                        style="@style/MyEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"
-                        android:hint="@string/dialogEditText_time"
-                        android:inputType="none" />
+                        android:hint="@string/hint_time"
+                        android:inputType="none"
+                        android:textSize="18sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </ScrollView>

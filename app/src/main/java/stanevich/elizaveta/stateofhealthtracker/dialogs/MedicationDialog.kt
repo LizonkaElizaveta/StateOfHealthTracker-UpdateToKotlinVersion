@@ -17,6 +17,7 @@ import stanevich.elizaveta.stateofhealthtracker.databinding.CustomDialogMedicati
 import stanevich.elizaveta.stateofhealthtracker.utils.getDate
 import stanevich.elizaveta.stateofhealthtracker.utils.getDateTimeValue
 import stanevich.elizaveta.stateofhealthtracker.utils.getTime
+import java.util.*
 
 class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : DialogFragment() {
     private lateinit var etDate: EditText
@@ -33,6 +34,7 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
 
         binding.apply {
             etDate = dialogEditTextDate.editText!!
+            etDate.setText(getDate(Calendar.getInstance().timeInMillis))
             etDate.setOnClickListener {
                 val dpd =
                     DatePickerFragment(DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
@@ -44,6 +46,7 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
 
             }
             etTime = dialogEditTextTime.editText!!
+            etTime.setText(getTime(Calendar.getInstance().timeInMillis))
             etTime.setOnClickListener {
                 val tpd =
                     TimePickerFragment(TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
@@ -58,7 +61,7 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
 
         builder.setView(binding.root)
             .setTitle(R.string.dialogHeadline_choseDateAndTime)
-            .setPositiveButton(R.string.btn_next) { _, _ ->
+            .setPositiveButton(R.string.btn_ok) { _, _ ->
                 val states = stateOfHealth.value!!
                 states.statesDate = getDateTimeValue(etDate.text.toString(), etTime.text.toString())
                 Log.d("mLog", states.toString())

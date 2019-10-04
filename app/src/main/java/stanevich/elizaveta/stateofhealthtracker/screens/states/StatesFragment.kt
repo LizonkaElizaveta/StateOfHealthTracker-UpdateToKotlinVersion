@@ -22,7 +22,6 @@ class StatesFragment : Fragment() {
     ): View? {
         val binding: FragmentStatesBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_states, container, false)
-//        setHasOptionsMenu(true)
 
         val application = requireNotNull(this.activity).application
 

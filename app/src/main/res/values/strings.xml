@@ -14,6 +14,8 @@
 
     // Text
     <string name="text_how_do_you_feel">Как вы себя чувствуете?</string>
+    <string name="hint_time">Время</string>
+    <string name="hint_date">Дата</string>
 
 
     // Strings for toasts
@@ -33,9 +35,6 @@
     <string name="dialogHeadline_choseTime">Укажите время</string>
     <string name="dialogHeadline_choseDate">Укажите дату</string>
 
-    // Strings for dialog editText
-    <string name="dialogEditText_time">Время</string>
-    <string name="dialogEditText_date">Дата</string>
 
     // Strings for SettingsActivity
     <string name="button_personal_date">Личные данные</string>
