@@ -1,6 +1,5 @@
-package stanevich.elizaveta.stateofhealthtracker.databases.DAO
+package stanevich.elizaveta.stateofhealthtracker.databases.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
 import java.util.*
@@ -21,7 +20,7 @@ interface StatesDatabaseDao {
     fun getLastState(): States?
 
     @Transaction
-    fun upsert(state: States){
+    fun upsert(state: States) {
         insert(state)
         update(state)
     }

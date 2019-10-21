@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
-import stanevich.elizaveta.stateofhealthtracker.databases.DAO.NotificationsDatabaseDao
+import stanevich.elizaveta.stateofhealthtracker.databases.dao.NotificationsDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications
 
 class NotificationsViewModel(

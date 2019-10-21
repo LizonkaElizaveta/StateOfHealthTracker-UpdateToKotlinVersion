@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import stanevich.elizaveta.stateofhealthtracker.databases.DAO.StatesDatabaseDao
+import stanevich.elizaveta.stateofhealthtracker.databases.dao.StatesDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
 import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 

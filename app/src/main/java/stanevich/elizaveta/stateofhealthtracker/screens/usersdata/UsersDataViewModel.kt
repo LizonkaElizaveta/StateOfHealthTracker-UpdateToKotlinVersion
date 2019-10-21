@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
-import stanevich.elizaveta.stateofhealthtracker.databases.DAO.UsersDataDao
+import stanevich.elizaveta.stateofhealthtracker.databases.dao.UsersDataDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.UsersData
 
 

@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.databases.DAO
+package stanevich.elizaveta.stateofhealthtracker.databases.dao
 
 import androidx.room.*
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.UsersData

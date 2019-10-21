@@ -1,5 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.databases.DAO
-
+package stanevich.elizaveta.stateofhealthtracker.databases.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

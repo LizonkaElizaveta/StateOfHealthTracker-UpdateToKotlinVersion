@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import stanevich.elizaveta.stateofhealthtracker.databases.DAO.UsersDataDao
+import stanevich.elizaveta.stateofhealthtracker.databases.dao.UsersDataDao
 import stanevich.elizaveta.stateofhealthtracker.databases.entity.UsersData
 
 @Database(entities = [UsersData::class], version = 2, exportSchema = false)

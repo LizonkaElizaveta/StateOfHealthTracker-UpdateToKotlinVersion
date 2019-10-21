@@ -3,7 +3,7 @@ package stanevich.elizaveta.stateofhealthtracker.screens.usersdata
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import stanevich.elizaveta.stateofhealthtracker.databases.DAO.UsersDataDao
+import stanevich.elizaveta.stateofhealthtracker.databases.dao.UsersDataDao
 
 class UsersDataViewModelFactory (
     private val dataSource: UsersDataDao,
