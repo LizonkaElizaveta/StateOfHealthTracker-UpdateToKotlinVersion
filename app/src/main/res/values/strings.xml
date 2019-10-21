@@ -36,7 +36,7 @@
     <string name="dialogHeadline_choseDate">Укажите дату</string>
 
 
-    // Strings for SettingsActivity
+    <!--    // Strings for SettingsActivity-->
     <string name="button_personal_date">Личные данные</string>
     <string name="button_notification">Уведомления</string>
     <string name="button_send_data">Отправка данных</string>
@@ -60,5 +60,9 @@
     <string name="menu_profile">Профиль</string>
     <string name="menu_data_collection">Сбор данных</string>
     <string name="menu_settings">Настройки</string>
+
+    <string name="text_test_draw_figure">Обведите фигуру</string>
+    <string name="text_test_burst_ball">Лопните воздушный шар</string>
+    <string name="text_test_mole">Игра в крота</string>
 
 </resources>
