@@ -14,4 +14,7 @@ data class Test(
 
     @ColumnInfo(name = "test_text")
     val testText: String = ""
+
+
 )
+

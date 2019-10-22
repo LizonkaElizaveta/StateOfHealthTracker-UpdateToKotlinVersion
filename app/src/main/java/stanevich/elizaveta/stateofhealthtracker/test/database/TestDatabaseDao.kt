@@ -2,16 +2,15 @@ package stanevich.elizaveta.stateofhealthtracker.test.database
 
 import androidx.room.Dao
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
 interface TestDatabaseDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(test: Test)
+    @Query("SELECT * FROM test_table")
+    fun getAll(): List<Test>
 
-    @Query("DELETE FROM test_table")
-    suspend fun deleteAll()
+    @Insert
+    fun insertAll(vararg test: Test)
 
 }
