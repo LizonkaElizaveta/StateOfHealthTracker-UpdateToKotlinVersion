@@ -29,7 +29,7 @@
             tools:layout="@layout/fragment_users_data" />
     <fragment
             android:id="@+id/nav_test"
-            android:name="stanevich.elizaveta.stateofhealthtracker.screens.test.TestFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.test.TestFragment"
             android:label="@string/menu_test"
             tools:layout="@layout/fragment_test" />
 </navigation>

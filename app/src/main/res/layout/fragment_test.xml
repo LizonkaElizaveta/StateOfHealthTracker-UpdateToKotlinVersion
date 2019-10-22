@@ -2,151 +2,28 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+                name="testViewModel"
+                type="stanevich.elizaveta.stateofhealthtracker.test.TestViewModel" />
+    </data>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="?attr/actionBarSize">
 
-
-        <androidx.cardview.widget.CardView
-                android:id="@+id/card_draw_figure"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/card_layout_height"
-                android:layout_marginStart="@dimen/card_margin_start"
-                android:layout_marginEnd="@dimen/card_margin_end"
-                app:cardElevation="0dp"
-                app:cardMaxElevation="0dp"
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/test_list"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/background_figure"
-                    android:scaleType="fitXY" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="2dp">
-
-                <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/button_height"
-                        android:background="@drawable/round_button"
-                        android:drawableEnd="@drawable/ic_download"
-                        android:gravity="start|center_vertical|center_horizontal"
-                        android:paddingStart="24dp"
-                        android:paddingEnd="16dp"
-                        android:text="@string/text_test_draw_figure"
-                        android:textAllCaps="false"
-                        android:textColor="#fff"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
-                android:id="@+id/card_burst_ball"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/card_layout_height"
-                android:layout_marginStart="@dimen/card_margin_start"
-                android:layout_marginTop="@dimen/card_margin_top"
-                android:layout_marginEnd="@dimen/card_margin_end"
-                app:cardElevation="0dp"
-                app:cardMaxElevation="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_draw_figure">
-
-            <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/background_ball"
-                    android:scaleType="fitXY" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="2dp">
-
-                <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/button_height"
-                        android:background="@drawable/round_button"
-                        android:drawableEnd="@drawable/ic_download"
-                        android:gravity="start|center_vertical|center_horizontal"
-                        android:paddingStart="24dp"
-                        android:paddingEnd="16dp"
-                        android:text="@string/text_test_burst_ball"
-                        android:textAllCaps="false"
-                        android:textColor="#fff"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
-                android:id="@+id/card_mole"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/card_layout_height"
-                android:layout_marginStart="@dimen/card_margin_start"
-                android:layout_marginTop="@dimen/card_margin_top"
-                android:layout_marginEnd="@dimen/card_margin_end"
-                app:cardElevation="0dp"
-                app:cardMaxElevation="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_burst_ball">
-
-            <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/background_tapping_test"
-                    android:scaleType="fitXY" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="2dp">
-
-                <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/button_height"
-                        android:background="@drawable/round_button"
-                        android:drawableEnd="@drawable/ic_download"
-                        android:gravity="start|center_vertical|center_horizontal"
-                        android:paddingStart="24dp"
-                        android:paddingEnd="16dp"
-                        android:text="@string/text_test_mole"
-                        android:textAllCaps="false"
-                        android:textColor="#fff"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
+                app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
