@@ -11,6 +11,6 @@ interface TestDatabaseDao {
     fun getAll(): List<Test>
 
     @Insert
-    fun insertAll(vararg test: Test)
+    fun insertAll(test: List<Test>)
 
 }

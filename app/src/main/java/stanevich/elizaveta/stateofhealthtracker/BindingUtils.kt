@@ -34,10 +34,10 @@ fun ImageView.bindTestImage(item: Test) {
     item.let {
         setImageResource(
             when (item.id) {
-                1 -> R.drawable.background_figure
-                2 -> R.drawable.background_ball
-                3 -> R.drawable.background_mole
-                else -> R.drawable.background_mole
+                1 -> R.drawable.background_test_figure
+                2 -> R.drawable.background_test_burst_ball
+                3 -> R.drawable.background_test_mole
+                else -> R.drawable.background_test_target
             }
         )
     }
@@ -51,7 +51,7 @@ fun Button.bindTestText(item: Test) {
                 1 -> R.string.text_test_draw_figure
                 2 -> R.string.text_test_burst_ball
                 3 -> R.string.text_test_mole
-                else -> R.string.text_test_mole
+                else -> R.string.text_test_target
             }
         )
     }

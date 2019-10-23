@@ -64,5 +64,6 @@
     <string name="text_test_draw_figure">Обведите фигуру</string>
     <string name="text_test_burst_ball">Лопните воздушный шар</string>
     <string name="text_test_mole">Игра в крота</string>
+    <string name="text_test_target">Тест на постукивание</string>
 
 </resources>

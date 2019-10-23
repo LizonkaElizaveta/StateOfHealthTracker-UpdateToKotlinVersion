@@ -8,7 +8,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import java.util.concurrent.Executors
 
 
-@Database(entities = [Test::class], version = 3)
+@Database(entities = [Test::class], version = 1)
 abstract class TestDatabase : RoomDatabase() {
 
     abstract fun testDatabaseDao(): TestDatabaseDao
@@ -31,7 +31,7 @@ abstract class TestDatabase : RoomDatabase() {
                             super.onOpen(db)
                             Executors.newSingleThreadScheduledExecutor().execute {
                                 getInstance(context).testDatabaseDao()
-                                    .insertAll(*populateData())
+                                    .insertAll(populateData())
 
                             }
                         }
@@ -46,12 +46,8 @@ abstract class TestDatabase : RoomDatabase() {
     }
 }
 
-fun populateData(): Array<Test> {
-    return arrayOf(
-        Test(1, "R.drawable.background_figure", "R.string.text_test_draw_figure"),
-        Test(2, "R.drawable.background_ball", "R.string.text_test_burst_ball"),
-        Test(3, "R.drawable.background_mole", "R.string.text_test_mole")
-    )
+fun populateData(): List<Test> {
+    return (1..4).map { Test(it) }
 }
 
 
