@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import stanevich.elizaveta.stateofhealthtracker.MainActivity
 import stanevich.elizaveta.stateofhealthtracker.R
+import stanevich.elizaveta.stateofhealthtracker.tutorial.TutorialActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -26,6 +26,6 @@ class SplashActivity : AppCompatActivity() {
 
     private fun goToTutorialActivity() {
         finish()
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, TutorialActivity::class.java))
     }
 }
