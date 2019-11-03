@@ -8,15 +8,15 @@
             android:checkableBehavior="single">
         <item
                 android:id="@+id/nav_home"
-                android:icon="@drawable/menu_home"
+                android:icon="@drawable/ic_menu_home"
                 android:title="@string/menu_home" />
         <item
                 android:id="@+id/nav_test"
-                android:icon="@drawable/menu_test"
+                android:icon="@drawable/ic_menu_test"
                 android:title="@string/menu_test" />
         <item
                 android:id="@+id/nav_notifications"
-                android:icon="@drawable/menu_notifications"
+                android:icon="@drawable/ic_menu_notifications"
                 android:title="@string/menu_notifications" />
     </group>
 
@@ -26,11 +26,11 @@
             android:checkableBehavior="single">
         <item
                 android:id="@+id/nav_profile"
-                android:icon="@drawable/menu_profile"
+                android:icon="@drawable/ic_menu_profile"
                 android:title="@string/menu_profile" />
         <item
                 android:id="@+id/nav_data_collection"
-                android:icon="@drawable/menu_data_collection"
+                android:icon="@drawable/ic_menu_data_collection"
                 android:title="@string/menu_data_collection" />
     </group>
 
@@ -40,7 +40,7 @@
 
         <item
                 android:id="@+id/nav_settings"
-                android:icon="@drawable/menu_settings"
+                android:icon="@drawable/ic_menu_settings"
                 android:title="@string/menu_settings" />
     </group>
 

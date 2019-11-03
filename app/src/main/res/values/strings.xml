@@ -78,6 +78,9 @@
     <string name="tutorial_description_home">Отмечайте свое самочувствие в течении дня всего в 1 клик!</string>
     <string name="tutorial_title_navigation">Удобная навигация!</string>
     <string name="tutorial_description_navigation">Перемещение между экранами теперь доступно простым нажатием на значок гамбургера.</string>
+    <string name="text_save">Сохранить</string>
+    <string name="text_reminder">Напомнить…</string>
+    <string name="text_day">Каждый день</string>
 
 
 </resources>

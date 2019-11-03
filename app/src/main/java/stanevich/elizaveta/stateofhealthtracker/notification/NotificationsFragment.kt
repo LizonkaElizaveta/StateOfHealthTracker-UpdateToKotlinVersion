@@ -8,9 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotificationsBinding
-import stanevich.elizaveta.stateofhealthtracker.dialogs.CategoryDialog
 import stanevich.elizaveta.stateofhealthtracker.notification.adapter.NotificationsAdapter
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabase
 
@@ -51,18 +51,23 @@ class NotificationsFragment : Fragment() {
             NotificationsAdapter()
         binding.notificationsList.adapter = adapter
 
-        notificationsViewModel.showNotDialogEvent.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                fragmentManager?.let { it1 ->
-                    CategoryDialog(
-                        notificationsViewModel.tonightNotification
-                    ) { notificationsViewModel.startTracking() }.show(it1, "CategoryDialog")
-                }
 
-                notificationsViewModel.doneShowingNotDialog()
-
-            }
-        })
+        binding.fab.setOnClickListener { view: View ->
+            Navigation.findNavController(view)
+                .navigate(R.id.action_nav_notifications_to_notificationSettingsFragment)
+        }
+//        notificationsViewModel.showNotDialogEvent.observe(viewLifecycleOwner, Observer {
+//            if (it == true) {
+//                fragmentManager?.let { it1 ->
+//                    CategoryDialog(
+//                        notificationsViewModel.tonightNotification
+//                    ) { notificationsViewModel.startTracking() }.show(it1, "CategoryDialog")
+//                }
+//
+//                notificationsViewModel.doneShowingNotDialog()
+//
+//            }
+//        })
 
 
         notificationsViewModel.notifications.observe(viewLifecycleOwner, Observer {

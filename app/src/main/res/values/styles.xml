@@ -80,4 +80,9 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="LineStyle">
+        <item name="android:background">@color/colorLine</item>
+        <item name="android:layout_height">@dimen/line_layout_height</item>
+    </style>
+
 </resources>

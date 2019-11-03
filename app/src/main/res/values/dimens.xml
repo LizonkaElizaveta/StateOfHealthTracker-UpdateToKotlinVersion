@@ -11,7 +11,7 @@
     <dimen name="fab_margin">16dp</dimen>
 
 
-    // TestFragment
+    <!--     TestFragment-->
     <dimen name="card_layout_height">200dp</dimen>
     <dimen name="card_margin_start">16dp</dimen>
     <dimen name="card_margin_end">16dp</dimen>
@@ -22,5 +22,13 @@
 
     <!--    SplashActivity-->
     <dimen name="splash_icon_size">60dp</dimen>
+
+    <!--    NavigationSettingsFragment-->
+    <dimen name="btn_save_layout_height">40dp</dimen>
+    <dimen name="btn_save_marginEnd">16dp</dimen>
+
+
+    <!--    Line-->
+    <dimen name="line_layout_height">0.8dp</dimen>
 
 </resources>
