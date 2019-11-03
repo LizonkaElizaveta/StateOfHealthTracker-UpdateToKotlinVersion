@@ -9,19 +9,19 @@ import kotlinx.coroutines.launch
 
 class SplashViewModel : ViewModel() {
 
-    private val _splashState = MutableLiveData<SplashState>()
+    private val _splashState = MutableLiveData<TutorialState>()
 
-    val splashState: LiveData<SplashState>
+    val tutorialState: LiveData<TutorialState>
         get() = _splashState
 
     init {
         GlobalScope.launch {
             delay(500)
-            _splashState.postValue(SplashState.TutorialActivity())
+            _splashState.postValue(TutorialState.TutorialActivity())
         }
     }
 }
 
-sealed class SplashState {
-    class TutorialActivity : SplashState()
+sealed class TutorialState {
+    class TutorialActivity : TutorialState()
 }

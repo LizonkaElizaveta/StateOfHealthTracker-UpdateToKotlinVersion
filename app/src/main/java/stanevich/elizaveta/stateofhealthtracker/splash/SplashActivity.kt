@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import stanevich.elizaveta.stateofhealthtracker.MainActivity
 import stanevich.elizaveta.stateofhealthtracker.R
 
 class SplashActivity : AppCompatActivity() {
@@ -14,9 +15,9 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         val splashViewModel = ViewModelProviders.of(this).get(SplashViewModel::class.java)
-        splashViewModel.splashState.observe(this, Observer {
+        splashViewModel.tutorialState.observe(this, Observer {
             when (it) {
-                is SplashState.TutorialActivity -> {
+                is TutorialState.TutorialActivity -> {
                     goToTutorialActivity()
                 }
             }
@@ -25,6 +26,6 @@ class SplashActivity : AppCompatActivity() {
 
     private fun goToTutorialActivity() {
         finish()
-        startActivity(Intent(this, SplashState.TutorialActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }

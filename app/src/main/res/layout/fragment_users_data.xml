@@ -8,7 +8,7 @@
 
         <variable
                 name="usersViewModel"
-                type="stanevich.elizaveta.stateofhealthtracker.screens.usersdata.UsersDataViewModel" />
+                type="stanevich.elizaveta.stateofhealthtracker.profile.usersdata.UsersDataViewModel" />
     </data>
 
     <ScrollView

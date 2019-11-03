@@ -5,11 +5,11 @@
         tools:context="stanevich.elizaveta.stateofhealthtracker.screens.settings.SettingsFragment">
 
 
-    <data>
-        <variable
-                name="settingsViewModel"
-                type="stanevich.elizaveta.stateofhealthtracker.screens.settings.SettingsViewModel" />
-    </data>
+    <!--    <data>-->
+    <!--        <variable-->
+    <!--                name="settingsViewModel"-->
+    <!--                type="stanevich.elizaveta.stateofhealthtracker" />-->
+    <!--    </data>-->
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_marginTop="?attr/actionBarSize"
             android:layout_width="match_parent"

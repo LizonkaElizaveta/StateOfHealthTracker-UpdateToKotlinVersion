@@ -7,7 +7,7 @@
 
         <variable
                 name="notificationsViewModel"
-                type="stanevich.elizaveta.stateofhealthtracker.screens.notifications.NotificationsViewModel" />
+                type="stanevich.elizaveta.stateofhealthtracker.notification.NotificationsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

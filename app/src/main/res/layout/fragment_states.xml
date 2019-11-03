@@ -8,7 +8,7 @@
 
         <variable
                 name="statesViewModel"
-                type="stanevich.elizaveta.stateofhealthtracker.screens.states.StatesViewModel" />
+                type="stanevich.elizaveta.stateofhealthtracker.home.StatesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
