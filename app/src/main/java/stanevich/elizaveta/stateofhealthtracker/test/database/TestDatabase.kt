@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
-import java.util.concurrent.Executors
 
 
 @Database(entities = [Test::class], version = 1)
@@ -26,16 +24,17 @@ abstract class TestDatabase : RoomDatabase() {
                         context.applicationContext,
                         TestDatabase::class.java,
                         "try_database_history"
-                    ).addCallback(object : RoomDatabase.Callback() {
-                        override fun onOpen(db: SupportSQLiteDatabase) {
-                            super.onOpen(db)
-                            Executors.newSingleThreadScheduledExecutor().execute {
-                                getInstance(context).testDatabaseDao()
-                                    .insertAll(populateData())
-
-                            }
-                        }
-                    })
+                    )
+//                        .addCallback(object : RoomDatabase.Callback() {
+//                        override fun onOpen(db: SupportSQLiteDatabase) {
+//                            super.onOpen(db)
+//                            Executors.newSingleThreadScheduledExecutor().execute {
+//                                getInstance(context).testDatabaseDao()
+//                                    .insertAll(populateData())
+//
+//                            }
+//                        }
+//                    })
                         .build()
 
                     INSTANCE = instance
@@ -47,32 +46,11 @@ abstract class TestDatabase : RoomDatabase() {
 }
 
 fun populateData(): List<Test> {
-    return (1..4).map { Test(it) }
+    return listOf(
+        Test(1, "background_test_figure", "text_test_draw_figure"),
+        Test(2, "background_test_burst_ball", "text_test_burst_ball"),
+        Test(3, "background_test_mole", "text_test_mole"),
+        Test(4, "background_test_target", "text_test_target")
+    )
 }
-
-
-//    private class TestDatabaseCallback(
-//        private val scope: CoroutineScope
-//    ) : RoomDatabase.Callback() {
-//
-//        override fun onOpen(db: SupportSQLiteDatabase) {
-//            super.onOpen(db)
-//            INSTANCE?.let { database ->
-//                scope.launch {
-//                    var testDao = database.testDatabaseDao()
-//
-//                    // Delete all content here.
-//                    testDao.deleteAll()
-//
-//                    // Add sample test.
-//                    var test =
-//                        Test(1, "R.drawable.background_figure", "R.string.text_test_draw_figure")
-//                    test = Test(2, "R.drawable.background_ball", "R.string.text_test_burst_ball")
-//                    test = Test(3, "R.drawable.backgroun_mole", "R.string.text_test_mole")
-//                    testDao.insert(test)
-//                }
-//            }
-//        }
-//    }
-//}
 

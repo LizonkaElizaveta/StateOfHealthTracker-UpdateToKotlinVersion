@@ -28,8 +28,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    app:testImage="@{test}"
-                    tools:background="@drawable/background_figure" />
+                    app:imgLink="@{test.image}"
+                    tools:background="@drawable/background_test_figure" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:testText="@{test}"
+                        app:textLink="@{test.text}"
                         tools:text="@string/text_test_draw_figure" />
 
 

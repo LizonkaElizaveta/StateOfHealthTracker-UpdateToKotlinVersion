@@ -5,11 +5,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import stanevich.elizaveta.stateofhealthtracker.test.database.Test
 import stanevich.elizaveta.stateofhealthtracker.test.database.TestDatabaseDao
+import stanevich.elizaveta.stateofhealthtracker.test.database.populateData
 
 class TestViewModel(private val databaseDao: TestDatabaseDao, application: Application) :
     AndroidViewModel(application) {
@@ -20,15 +19,13 @@ class TestViewModel(private val databaseDao: TestDatabaseDao, application: Appli
         get() = _data
 
     init {
+        val tests = populateData()
         viewModelScope.launch {
-            initialize()
+            initialize(tests)
         }
     }
 
-    suspend fun initialize() {
-        val tests = withContext(Dispatchers.IO) {
-            return@withContext databaseDao.getAll()
-        }
+    private fun initialize(tests: List<Test>) {
         this._data.value = tests
     }
 
