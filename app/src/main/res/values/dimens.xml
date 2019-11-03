@@ -18,4 +18,9 @@
     <dimen name="card_margin_top">16dp</dimen>
     <dimen name="card_radius">12dp</dimen>
     <dimen name="button_height">60dp</dimen>
+
+
+    <!--    SplashActivity-->
+    <dimen name="splash_icon_size">60dp</dimen>
+
 </resources>
