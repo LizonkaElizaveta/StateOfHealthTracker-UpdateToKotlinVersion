@@ -1,11 +1,9 @@
-package stanevich.elizaveta.stateofhealthtracker.databases.database
+package stanevich.elizaveta.stateofhealthtracker.notification.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import stanevich.elizaveta.stateofhealthtracker.databases.dao.NotificationsDatabaseDao
-import stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications
 
 @Database(entities = [Notifications::class], version = 2, exportSchema = false)
 abstract class NotificationsDatabase:RoomDatabase(){
@@ -22,7 +20,8 @@ abstract class NotificationsDatabase:RoomDatabase(){
         fun getInstance(contex: Context): NotificationsDatabase {
 
             synchronized(this) {
-                var instance = INSTANCE
+                var instance =
+                    INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         contex.applicationContext,

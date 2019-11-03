@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications
+import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 import stanevich.elizaveta.stateofhealthtracker.test.adapter.TestAdapter
 import stanevich.elizaveta.stateofhealthtracker.test.database.Test
 

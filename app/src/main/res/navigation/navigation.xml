@@ -6,13 +6,13 @@
         app:startDestination="@id/nav_home">
     <fragment
             android:id="@+id/nav_home"
-            android:name="stanevich.elizaveta.stateofhealthtracker.screens.states.StatesFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.home.StatesFragment"
             android:label="\ "
             tools:layout="@layout/fragment_states" />
 
     <fragment
             android:id="@+id/nav_notifications"
-            android:name="stanevich.elizaveta.stateofhealthtracker.screens.notifications.NotificationsFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.notification.NotificationsFragment"
             android:label="@string/menu_notifications"
             tools:layout="@layout/fragment_notifications" />
 
@@ -24,7 +24,7 @@
 
     <fragment
             android:id="@+id/nav_profile"
-            android:name="stanevich.elizaveta.stateofhealthtracker.screens.usersdata.UsersDataFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.profile.usersdata.UsersDataFragment"
             android:label="@string/menu_profile"
             tools:layout="@layout/fragment_users_data" />
     <fragment

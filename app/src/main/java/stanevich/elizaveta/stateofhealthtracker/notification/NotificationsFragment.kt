@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.screens.notifications
+package stanevich.elizaveta.stateofhealthtracker.notification
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.databases.database.NotificationsDatabase
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotificationsBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.CategoryDialog
+import stanevich.elizaveta.stateofhealthtracker.notification.adapter.NotificationsAdapter
+import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabase
 
 class NotificationsFragment : Fragment() {
 
@@ -33,7 +34,11 @@ class NotificationsFragment : Fragment() {
         val dataSource = NotificationsDatabase.getInstance(application).notificationsDatabaseDao
 
 
-        val viewModelFactory = NotificationsViewModelFactory(dataSource, application)
+        val viewModelFactory =
+            NotificationsViewModelFactory(
+                dataSource,
+                application
+            )
 
         val notificationsViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(NotificationsViewModel::class.java)
@@ -42,7 +47,8 @@ class NotificationsFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        val adapter = NotificationsAdapter()
+        val adapter =
+            NotificationsAdapter()
         binding.notificationsList.adapter = adapter
 
         notificationsViewModel.showNotDialogEvent.observe(viewLifecycleOwner, Observer {

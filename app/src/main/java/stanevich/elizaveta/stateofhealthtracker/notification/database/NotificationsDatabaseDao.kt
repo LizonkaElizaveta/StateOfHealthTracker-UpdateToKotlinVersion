@@ -1,8 +1,7 @@
-package stanevich.elizaveta.stateofhealthtracker.databases.dao
+package stanevich.elizaveta.stateofhealthtracker.notification.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications
 
 @Dao
 interface NotificationsDatabaseDao {

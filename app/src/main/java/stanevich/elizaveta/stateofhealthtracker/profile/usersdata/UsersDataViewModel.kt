@@ -1,12 +1,12 @@
-package stanevich.elizaveta.stateofhealthtracker.screens.usersdata
+package stanevich.elizaveta.stateofhealthtracker.profile.usersdata
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
-import stanevich.elizaveta.stateofhealthtracker.databases.dao.UsersDataDao
-import stanevich.elizaveta.stateofhealthtracker.databases.entity.UsersData
+import stanevich.elizaveta.stateofhealthtracker.profile.UsersData
+import stanevich.elizaveta.stateofhealthtracker.profile.UsersDataDao
 
 
 class UsersDataViewModel(

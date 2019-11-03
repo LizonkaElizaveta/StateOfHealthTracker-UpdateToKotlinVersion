@@ -1,9 +1,9 @@
-package stanevich.elizaveta.stateofhealthtracker.screens.notifications
+package stanevich.elizaveta.stateofhealthtracker.notification
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import stanevich.elizaveta.stateofhealthtracker.databases.dao.NotificationsDatabaseDao
+import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao
 
 class NotificationsViewModelFactory(
     private val dataSource: NotificationsDatabaseDao,

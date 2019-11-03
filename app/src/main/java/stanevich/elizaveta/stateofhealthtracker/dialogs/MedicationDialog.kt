@@ -12,8 +12,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.MutableLiveData
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
 import stanevich.elizaveta.stateofhealthtracker.databinding.CustomDialogMedicationBinding
+import stanevich.elizaveta.stateofhealthtracker.home.database.States
 import stanevich.elizaveta.stateofhealthtracker.utils.getDate
 import stanevich.elizaveta.stateofhealthtracker.utils.getDateTimeValue
 import stanevich.elizaveta.stateofhealthtracker.utils.getTime

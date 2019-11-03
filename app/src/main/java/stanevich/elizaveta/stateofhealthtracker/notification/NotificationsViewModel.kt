@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.screens.notifications
+package stanevich.elizaveta.stateofhealthtracker.notification
 
 import android.app.Application
 import android.util.Log
@@ -6,13 +6,15 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
-import stanevich.elizaveta.stateofhealthtracker.databases.dao.NotificationsDatabaseDao
-import stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications
+import stanevich.elizaveta.stateofhealthtracker.notification.adapter.OnStartTracking
+import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
+import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao
 
 class NotificationsViewModel(
     private val database: NotificationsDatabaseDao,
     application: Application
-) : AndroidViewModel(application), OnStartTracking {
+) : AndroidViewModel(application),
+    OnStartTracking {
 
     private var viewModelJob = Job()
 
@@ -46,7 +48,8 @@ class NotificationsViewModel(
 
     private fun initializeNotification() {
         uiScope.launch {
-            tonightNotification.value = Notifications()
+            tonightNotification.value =
+                Notifications()
 
         }
     }
@@ -61,7 +64,8 @@ class NotificationsViewModel(
         uiScope.launch {
             // val newNotifications = Notifications()
             insert(tonightNotification.value!!)
-            tonightNotification.value = Notifications()
+            tonightNotification.value =
+                Notifications()
         }
     }
 

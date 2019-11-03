@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.databases.entity
+package stanevich.elizaveta.stateofhealthtracker.notification.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

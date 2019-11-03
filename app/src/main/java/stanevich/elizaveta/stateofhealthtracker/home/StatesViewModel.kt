@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.screens.states
+package stanevich.elizaveta.stateofhealthtracker.home
 
 import android.app.Application
 import android.util.Log
@@ -6,8 +6,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
-import stanevich.elizaveta.stateofhealthtracker.databases.dao.StatesDatabaseDao
-import stanevich.elizaveta.stateofhealthtracker.databases.entity.States
+import stanevich.elizaveta.stateofhealthtracker.home.database.States
+import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabaseDao
 import java.util.*
 
 class StatesViewModel(

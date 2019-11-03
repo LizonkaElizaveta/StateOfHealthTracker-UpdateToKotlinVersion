@@ -1,33 +1,35 @@
-package stanevich.elizaveta.stateofhealthtracker.databases.database
+package stanevich.elizaveta.stateofhealthtracker.home.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import stanevich.elizaveta.stateofhealthtracker.databases.dao.UsersDataDao
-import stanevich.elizaveta.stateofhealthtracker.databases.entity.UsersData
+import androidx.room.TypeConverters
+import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 
-@Database(entities = [UsersData::class], version = 2, exportSchema = false)
-abstract class UsersDataDatabase : RoomDatabase() {
 
-    abstract val statesDatabaseDao: UsersDataDao
+@Database(entities = [States::class], version = 2, exportSchema = false)
+@TypeConverters(DateConverters::class)
+abstract class StatesDatabase : RoomDatabase() {
+
+    abstract val statesDatabaseDao: StatesDatabaseDao
 
     companion object {
 
         /* The value of a volatile variable will never be cached, and all writes and
          *  reads will be done to and from the main memory. */
         @Volatile
-        private var INSTANCE: UsersDataDatabase? = null
+        private var INSTANCE: StatesDatabase? = null
 
-        fun getInstance(contex: Context): UsersDataDatabase {
-
+        fun getInstance(contex: Context): StatesDatabase {
             synchronized(this) {
-                var instance = INSTANCE
+                var instance =
+                    INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         contex.applicationContext,
-                        UsersDataDatabase::class.java,
-                        "users_database_history"
+                        StatesDatabase::class.java,
+                        "states_database_history"
                     ).fallbackToDestructiveMigration()
                         .build()
 
@@ -39,4 +41,5 @@ abstract class UsersDataDatabase : RoomDatabase() {
         }
 
     }
+
 }

@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.screens.states
+package stanevich.elizaveta.stateofhealthtracker.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.databases.database.StatesDatabase
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentStatesBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.MedicationDialog
 import stanevich.elizaveta.stateofhealthtracker.dialogs.ThanksDialog
+import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabase
 
 class StatesFragment : Fragment() {
 
@@ -27,7 +27,10 @@ class StatesFragment : Fragment() {
 
         val dataSource = StatesDatabase.getInstance(application).statesDatabaseDao
 
-        val viewModelFactory = StatesViewModelFactory(dataSource, application)
+        val viewModelFactory = StatesViewModelFactory(
+            dataSource,
+            application
+        )
 
         val statesViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(StatesViewModel::class.java)

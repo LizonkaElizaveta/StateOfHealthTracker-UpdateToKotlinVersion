@@ -8,7 +8,7 @@
 
         <variable
                 name="notification"
-                type="stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications" />
+                type="stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications" />
 
     </data>
 

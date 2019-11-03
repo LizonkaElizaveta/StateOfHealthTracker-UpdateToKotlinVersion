@@ -1,12 +1,12 @@
-package stanevich.elizaveta.stateofhealthtracker.screens.notifications
+package stanevich.elizaveta.stateofhealthtracker.notification.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import stanevich.elizaveta.stateofhealthtracker.databases.entity.Notifications
 import stanevich.elizaveta.stateofhealthtracker.databinding.ListItemNotificationsBinding
+import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 
 class NotificationsAdapter : ListAdapter<Notifications,
         NotificationsAdapter.ViewHolder>(NotificationsDiffCallback()) {

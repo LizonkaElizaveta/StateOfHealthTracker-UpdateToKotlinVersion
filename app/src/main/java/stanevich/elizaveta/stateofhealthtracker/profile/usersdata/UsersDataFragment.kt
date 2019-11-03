@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.screens.usersdata
+package stanevich.elizaveta.stateofhealthtracker.profile.usersdata
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.databases.database.UsersDataDatabase
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentUsersDataBinding
+import stanevich.elizaveta.stateofhealthtracker.profile.UsersDataDatabase
 
 class UsersDataFragment : Fragment() {
 
