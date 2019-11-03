@@ -7,7 +7,7 @@
             android:layout_height="match_parent">
 
         <ImageView
-                android:id="@+id/tutorial_anim_welcome"
+                android:id="@+id/tutorial_anim_navigation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/image_button_bad"
@@ -18,31 +18,31 @@
                 app:layout_constraintVertical_bias="0.3" />
 
         <TextView
-                android:id="@+id/tutorial_title_welcome"
+                android:id="@+id/tutorial_title_navigation"
                 style="@style/MyTextViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="@string/tutorial_title_welcome"
+                android:text="@string/tutorial_title_navigation"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tutorial_anim_welcome"
+                app:layout_constraintTop_toBottomOf="@id/tutorial_anim_navigation"
                 app:layout_constraintVertical_bias="0.2" />
 
         <TextView
-                android:id="@+id/tutorial_description_welcome"
+                android:id="@+id/tutorial_description_navigation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|center_horizontal"
                 android:paddingStart="24dp"
                 android:paddingEnd="24dp"
-                android:text="@string/tutorial_description_welcome"
+                android:text="@string/tutorial_description_navigation"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tutorial_title_welcome"
+                app:layout_constraintTop_toBottomOf="@id/tutorial_title_navigation"
                 app:layout_constraintVertical_bias="0.1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

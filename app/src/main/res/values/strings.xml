@@ -65,5 +65,19 @@
     <string name="text_test_burst_ball">Лопните воздушный шар</string>
     <string name="text_test_mole">Игра в крота</string>
     <string name="text_test_target">Тест на постукивание</string>
+    <string name="tutorial_title_welcome">Добро пожаловать в \n State Of Health Tracker!</string>
+    <string name="tutorial_description_welcome">Это трекер здоровья, который помогает нам отслеживать ваше самочувствие и вовремя реагировать на изменения</string>
+    <string name="tutorial_title_test">Тесты</string>
+    <string name="tutorial_description_test">Для улучшения точности \n трекинга - играйте в игры. Для этого необходимо лишь
+    скачать \n интересные для вас тесты</string>
+    <string name="tutorial_title_profile">Заполняйте информацию о себе</string>
+    <string name="tutorial_description_profile">Информация является конфиденциальной \n и будет доступна только для вашего \n лечащего врача.</string>
+    <string name="tutorial_title_notification">Все успеть!</string>
+    <string name="tutorial_description_notification">Заполните свой график один раз и больше не беспокойтесь о том, что что-то забыли.</string>
+    <string name="tutorial_title_home">Вести дневники теперь просто!</string>
+    <string name="tutorial_description_home">Отмечайте свое самочувствие в течении дня всего в 1 клик!</string>
+    <string name="tutorial_title_navigation">Удобная навигация!</string>
+    <string name="tutorial_description_navigation">Перемещение между экранами теперь доступно простым нажатием на значок гамбургера.</string>
+
 
 </resources>
