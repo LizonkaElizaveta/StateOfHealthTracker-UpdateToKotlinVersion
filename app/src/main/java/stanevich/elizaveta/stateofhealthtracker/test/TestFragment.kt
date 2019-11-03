@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProviders
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestBinding
 import stanevich.elizaveta.stateofhealthtracker.test.adapter.TestAdapter
-import stanevich.elizaveta.stateofhealthtracker.test.database.TestDatabase
 
 class TestFragment : Fragment() {
 
@@ -26,9 +25,8 @@ class TestFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
-        val dataSource = TestDatabase.getInstance(application).testDatabaseDao()
 
-        val viewModelFactory = TestViewModelFactory(dataSource, application)
+        val viewModelFactory = TestViewModelFactory(application)
 
         val testViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(TestViewModel::class.java)

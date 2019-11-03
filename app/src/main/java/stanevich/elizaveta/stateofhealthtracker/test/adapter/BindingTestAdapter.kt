@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.test.database.Test
+import stanevich.elizaveta.stateofhealthtracker.test.model.Test
 
 
 @BindingAdapter("imgLink")

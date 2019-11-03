@@ -6,11 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import stanevich.elizaveta.stateofhealthtracker.test.database.Test
-import stanevich.elizaveta.stateofhealthtracker.test.database.TestDatabaseDao
-import stanevich.elizaveta.stateofhealthtracker.test.database.populateData
+import stanevich.elizaveta.stateofhealthtracker.test.model.Test
+import stanevich.elizaveta.stateofhealthtracker.test.model.populateData
 
-class TestViewModel(private val databaseDao: TestDatabaseDao, application: Application) :
+class TestViewModel(application: Application) :
     AndroidViewModel(application) {
 
     private val _data = MutableLiveData<List<Test>>()

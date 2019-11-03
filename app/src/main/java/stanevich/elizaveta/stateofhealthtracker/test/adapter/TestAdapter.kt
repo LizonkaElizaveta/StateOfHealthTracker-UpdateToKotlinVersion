@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import stanevich.elizaveta.stateofhealthtracker.databinding.ListItemTestBinding
-import stanevich.elizaveta.stateofhealthtracker.test.database.Test
+import stanevich.elizaveta.stateofhealthtracker.test.model.Test
 
 class TestAdapter(private val onClickListener: OnClickListener) :
     androidx.recyclerview.widget.ListAdapter<Test, TestAdapter.TestViewHolder>(DiffCallback) {
