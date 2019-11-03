@@ -1,0 +1,3 @@
+package stanevich.elizaveta.stateofhealthtracker.splash
+
+class SplashActivity
