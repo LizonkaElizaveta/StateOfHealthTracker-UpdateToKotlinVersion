@@ -40,6 +40,7 @@ class DatePickerFragment(private val listener: DatePickerDialog.OnDateSetListene
             resources.getString(R.string.btn_ok),
             datePickerDialog
         )
+
         datePickerDialog.setButton(
             DialogInterface.BUTTON_NEGATIVE,
             resources.getString(R.string.btn_cancel),
