@@ -6,33 +6,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-        <Button
-                android:id="@+id/btn_save"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/btn_save_layout_height"
-                android:layout_gravity="center_vertical|end"
-                android:layout_marginTop="@dimen/margin"
-                android:layout_marginEnd="@dimen/btn_save_marginEnd"
-                android:background="@color/colorPrimary"
-                android:elevation="4dp"
-                android:padding="5dp"
-                android:text="@string/text_save"
-                android:textColor="@color/colorTextButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
                 android:id="@+id/tv_reminder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="?attr/actionBarSize"
                 android:text="@string/text_reminder"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.3"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_save" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         <View
                 android:id="@+id/line1"
@@ -45,13 +29,14 @@
                 android:id="@+id/img_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:src="@drawable/ic_time"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/line1" />
 
         <TextView
+
                 android:id="@+id/text_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,6 +47,58 @@
                 app:layout_constraintStart_toEndOf="@id/img_time"
                 app:layout_constraintTop_toTopOf="@id/img_time" />
 
+        <TextView
+                android:id="@+id/text_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:text="@string/text_time"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/img_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/img_time" />
+
+        <View
+                android:id="@+id/line2"
+                style="@style/LineStyle"
+                android:layout_width="match_parent"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/text_day" />
+
+        <ImageView
+                android:id="@+id/img_repeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:src="@drawable/ic_repeat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line2" />
+
+        <TextView
+                android:id="@+id/text_repeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/text_repeat"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/img_repeat"
+                app:layout_constraintStart_toEndOf="@id/img_repeat"
+                app:layout_constraintTop_toTopOf="@id/img_repeat" />
+
+        <Button
+                android:id="@+id/btn_save"
+                android:layout_width="160dp"
+                android:layout_height="@dimen/btn_save_layout_height"
+                android:background="@color/colorPrimary"
+                android:elevation="4dp"
+                android:text="@string/text_save"
+                android:textColor="@color/colorTextButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.9" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
