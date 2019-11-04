@@ -24,7 +24,7 @@
     <dimen name="splash_icon_size">60dp</dimen>
 
     <!--    NavigationSettingsFragment-->
-    <dimen name="btn_save_layout_height">50dp</dimen>
+    <dimen name="btn_save_layout_height">60dp</dimen>
     <dimen name="btn_save_marginEnd">16dp</dimen>
 
 

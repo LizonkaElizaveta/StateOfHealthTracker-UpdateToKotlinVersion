@@ -30,10 +30,14 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
+                android:layout_margin="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:src="@drawable/image_button_excellent"
+                android:backgroundTint="#ffffff"
+                android:src="@drawable/ic_plus"
+                app:borderWidth="0dp"
+                app:elevation="6dp"
+                app:fabSize="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
         <!--                android:onClick="@{() -> notificationsViewModel.showDialog()}"-->

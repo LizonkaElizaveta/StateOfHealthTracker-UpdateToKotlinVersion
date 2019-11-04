@@ -30,7 +30,9 @@
 
         <ImageButton
                 android:id="@+id/imageButton_excellent"
-                style="@style/MyImageButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
                 android:contentDescription="@string/imageButton_excellent"
                 android:onClick="@{() -> statesViewModel.onStartTrackingMood(`+`)}"
                 android:src="@drawable/image_button_excellent"
@@ -41,7 +43,9 @@
 
         <ImageButton
                 android:id="@+id/imageButton_satisfactorily"
-                style="@style/MyImageButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
                 android:contentDescription="@string/imageButton_satisfactorily"
                 android:onClick="@{() ->  statesViewModel.onStartTrackingMood(`~`)}"
                 android:src="@drawable/image_button_satisfactorily"
@@ -53,7 +57,9 @@
 
         <ImageButton
                 android:id="@+id/imageButton_bad"
-                style="@style/MyImageButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
                 android:contentDescription="@string/imageButton_bad"
                 android:onClick="@{() ->  statesViewModel.onStartTrackingMood(`-`)}"
                 android:src="@drawable/image_button_bad"
@@ -78,7 +84,7 @@
             <Button
                     android:id="@+id/button_dyskinesia"
                     style="@style/MyButtonStyle"
-                    android:background="@color/colorPrimary"
+                    android:background="@drawable/button_round"
                     android:contentDescription="@string/btn_dyskinesia"
                     android:onClick="@{() ->  statesViewModel.onStartTrackingDiskinezia(`D`)}"
                     android:text="@string/btn_dyskinesia"
@@ -90,7 +96,7 @@
             <Button
                     android:id="@+id/button_medication"
                     style="@style/MyButtonStyle"
-                    android:background="@color/colorPrimary"
+                    android:background="@drawable/button_round"
                     android:contentDescription="@string/btn_medication"
                     android:onClick="@{() -> statesViewModel.onStartTrackingPill(`X`)}"
                     android:text="@string/btn_medication"

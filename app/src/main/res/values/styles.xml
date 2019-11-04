@@ -3,6 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:background">@color/BackgroundColorWhite</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -27,17 +28,17 @@
 
     <style name="MyButtonStyle" parent="Widget.AppCompat.Button">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">65dp</item>
+        <item name="android:layout_height">60dp</item>
         <item name="android:layout_margin">@dimen/margin</item>
         <item name="android:textColor">#fff</item>
     </style>
 
 
     <style name="MyImageButtonStyle">
-        <item name="android:background">@drawable/shadow_circle</item>
+        <!--        <item name="android:background">@drawable/shadow_circle</item>-->
         <item name="android:colorBackground">#FFFFFF</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:elevation">8dp</item>
+        <!--        <item name="android:elevation">8dp</item>-->
         <item name="android:layout_margin">@dimen/margin</item>
         <item name="android:layout_height">wrap_content</item>
     </style>

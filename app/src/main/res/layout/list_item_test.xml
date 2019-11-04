@@ -39,7 +39,7 @@
                         android:id="@+id/btn_download"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/button_height"
-                        android:background="@drawable/round_button"
+                        android:background="@drawable/button_half_round"
                         android:drawableEnd="@drawable/ic_download"
                         android:gravity="start|center_vertical|center_horizontal"
                         android:paddingStart="24dp"
