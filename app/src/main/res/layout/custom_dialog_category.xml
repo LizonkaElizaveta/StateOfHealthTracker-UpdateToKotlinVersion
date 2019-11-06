@@ -8,24 +8,62 @@
 
         <RadioGroup
                 android:id="@+id/radioCategory"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="40dp"
+                android:orientation="vertical"
+                android:overScrollMode="never">
+
+            <RadioButton
+                    android:id="@+id/rbDoctor"
+                    style="@style/MyRadioButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@android:color/transparent"
+                    android:checked="true"
+                    android:layoutDirection="rtl"
+                    android:overScrollMode="never"
+                    android:text="@string/radioButton_doctors_appointment"
+                    android:textSize="18sp" />
 
             <RadioButton
                     android:id="@+id/rbMedication"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
+                    style="@style/MyRadioButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/margin"
+                    android:background="@android:color/transparent"
+                    android:layoutDirection="rtl"
+                    android:overScrollMode="never"
                     android:text="@string/radioButton_medication"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
             <RadioButton
                     android:id="@+id/rbAppointment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/radioButton_doctors_appointment"
-                    android:textSize="16sp" />
+                    style="@style/MyRadioButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/margin"
+                    android:background="@android:color/transparent"
+                    android:layoutDirection="rtl"
+                    android:overScrollMode="never"
+                    android:text="@string/radioButton_state_tracker"
+                    android:textSize="18sp" />
+
+            <RadioButton
+                    android:id="@+id/rbOther"
+                    style="@style/MyRadioButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/margin"
+                    android:background="@android:color/transparent"
+                    android:layoutDirection="rtl"
+                    android:overScrollMode="never"
+                    android:text="@string/radioButton_other"
+                    android:textSize="18sp" />
 
         </RadioGroup>
 

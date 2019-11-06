@@ -51,7 +51,7 @@
     <string name="text_medication">Прием лекарств</string>
 
     <string name="radioButton_medication">Прием лекарств</string>
-    <string name="radioButton_doctors_appointment">Прием у врача</string>
+    <string name="radioButton_doctors_appointment">Поход к врачу</string>
 
 
     <string name="menu_home">Home</string>
@@ -79,10 +79,12 @@
     <string name="tutorial_title_navigation">Удобная навигация!</string>
     <string name="tutorial_description_navigation">Перемещение между экранами теперь доступно простым нажатием на значок гамбургера.</string>
     <string name="text_save">Сохранить</string>
-    <string name="text_reminder">Оповещение…</string>
+    <string name="text_reminder">Категория…</string>
     <string name="text_day">Каждый день</string>
     <string name="text_time">13:30</string>
     <string name="text_repeat">Повтор</string>
+    <string name="radioButton_state_tracker">Оценка самочувствия</string>
+    <string name="radioButton_other">Другое</string>
 
 
 </resources>

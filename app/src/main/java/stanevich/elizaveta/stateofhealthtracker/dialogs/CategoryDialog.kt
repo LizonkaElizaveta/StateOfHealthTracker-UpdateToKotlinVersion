@@ -39,8 +39,7 @@ class CategoryDialog(
         val builder = AlertDialog.Builder(context)
 
         builder.setView(binding.root)
-            .setTitle(R.string.dialogHeadline_category)
-            .setPositiveButton(R.string.btn_next) { _, _ ->
+            .setPositiveButton(R.string.btn_ok) { _, _ ->
 
                 val checked = checkedRadioButtonListener(binding)
 
@@ -82,10 +81,12 @@ class CategoryDialog(
 
         val checked = resources.getResourceEntryName(selectedId)
 
-        radioButton = if (checked == "rbMedication") {
-            binding.rbMedication
-        } else
-            binding.rbAppointment
+        radioButton = when (checked) {
+            "rbMedication" -> binding.rbMedication
+            "rbDoctor" -> binding.rbDoctor
+            "rbAppointment" -> binding.rbAppointment
+            else -> binding.rbOther
+        }
         return radioButton
     }
 }

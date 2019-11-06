@@ -9,6 +9,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:timePickerDialogTheme">@style/AlertDialogCustom</item>
         <item name="android:datePickerDialogTheme">@style/AlertDialogCustom</item>
+        <!--        <item name="radioButtonStyle">@style/CustomTheme</item>-->
         <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
     </style>
 
@@ -89,4 +90,19 @@
         <item name="android:layout_height">@dimen/line_layout_height</item>
     </style>
 
+    <style name="MyRadioButtonStyle" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/dialog_selector</item>
+    </style>
+
+    <style name="MySwitch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="android:colorControlActivated">@color/colorPrimary</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#f1f1f1</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#42221f1f</item>
+    </style>
 </resources>

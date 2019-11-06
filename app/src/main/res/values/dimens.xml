@@ -31,4 +31,8 @@
     <!--    Line-->
     <dimen name="line_layout_height">0.8dp</dimen>
 
+    <!--    Days of the week-->
+    <dimen name="icons_days_size">32dp</dimen>
+    <dimen name="icons_days_stroke">0.5</dimen>
+
 </resources>

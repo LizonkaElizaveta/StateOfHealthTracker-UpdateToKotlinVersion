@@ -40,8 +40,8 @@
                 app:fabSize="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
-        <!--                android:onClick="@{() -> notificationsViewModel.showDialog()}"-->
 
+        <!--        android:onClick="@{() -> notificationsViewModel.showDialog()}"-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
