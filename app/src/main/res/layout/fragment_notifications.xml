@@ -11,9 +11,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginTop="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
             tools:context=".notification.NotificationsFragment">
 
 
@@ -30,13 +30,13 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
-                android:layout_margin="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#ffffff"
+                android:layout_margin="@dimen/fab_margin"
+                android:backgroundTint="@color/BackgroundTintWhite"
                 android:src="@drawable/ic_plus"
-                app:borderWidth="0dp"
-                app:elevation="6dp"
+                app:borderWidth="@dimen/fab_border"
+                app:elevation="@dimen/fab_elevation"
                 app:fabSize="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

@@ -8,7 +8,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="btn_layout_height">60dp</dimen>
+    <dimen name="tv_size_24">24sp</dimen>
 
 
     <!--     TestFragment-->
@@ -18,14 +20,28 @@
     <dimen name="card_margin_top">16dp</dimen>
     <dimen name="card_radius">12dp</dimen>
     <dimen name="button_height">60dp</dimen>
+    <dimen name="text_test_name_size">18sp</dimen>
+    <dimen name="background_card_width">197.06dp</dimen>
+    <dimen name="background_card_height">116.23dp</dimen>
 
 
     <!--    SplashActivity-->
     <dimen name="splash_icon_size">60dp</dimen>
 
+    <!--    NavigationFragment-->
+    <dimen name="fab_margin">24dp</dimen>
+    <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="fab_border">0dp</dimen>
+    <dimen name="ic_fab_size">24dp</dimen>
+    <dimen name="text_recycler_category_size">18sp</dimen>
+
     <!--    NavigationSettingsFragment-->
+    <dimen name="text_category_size">22sp</dimen>
     <dimen name="btn_save_layout_height">60dp</dimen>
-    <dimen name="btn_save_marginEnd">16dp</dimen>
+    <dimen name="btn_save_layout_width">160dp</dimen>
+    <dimen name="icons_notification_settings_size">24dp</dimen>
+    <dimen name="text_days_size">18sp</dimen>
+    <dimen name="icons_days_marginEnd">4dp</dimen>
 
 
     <!--    Line-->
@@ -34,5 +50,6 @@
     <!--    Days of the week-->
     <dimen name="icons_days_size">32dp</dimen>
     <dimen name="icons_days_stroke">0.5</dimen>
+
 
 </resources>

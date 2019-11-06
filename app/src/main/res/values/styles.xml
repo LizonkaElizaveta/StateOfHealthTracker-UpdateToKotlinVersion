@@ -9,10 +9,10 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:timePickerDialogTheme">@style/AlertDialogCustom</item>
         <item name="android:datePickerDialogTheme">@style/AlertDialogCustom</item>
-        <!--        <item name="radioButtonStyle">@style/CustomTheme</item>-->
         <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
     </style>
 
+    <!--     Dialog style-->
     <style name="AlertDialogCustom" parent="android:Theme.Material.Light.Dialog.Alert">
         <item name="android:colorAccent">@color/colorPrimary</item>
         <item name="android:headerMonthTextAppearance">@style/MyDatePickerTextAppearance</item>
@@ -23,77 +23,64 @@
         <item name="android:textColor">#000</item>
     </style>
 
-
-    <style name="CustomActionBar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="windowActionBarOverlay">true</item>
-    </style>
-
-
+    <!--    Buttons style-->
     <style name="MyButtonStyle" parent="Widget.AppCompat.Button">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">60dp</item>
+        <item name="android:background">@drawable/button_round</item>
+        <item name="android:layout_height">@dimen/btn_layout_height</item>
         <item name="android:layout_margin">@dimen/margin</item>
-        <item name="android:textColor">#fff</item>
+        <item name="android:textColor">@color/colorTextButton</item>
     </style>
 
-
-    <style name="MyImageButtonStyle">
-        <!--        <item name="android:background">@drawable/shadow_circle</item>-->
-        <item name="android:colorBackground">#FFFFFF</item>
-        <item name="android:layout_width">wrap_content</item>
-        <!--        <item name="android:elevation">8dp</item>-->
-        <item name="android:layout_margin">@dimen/margin</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-
+    <!--    TextView style-->
     <style name="MyTextViewStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">@dimen/margin</item>
-        <item name="android:textColor">#000</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/MainTextColor</item>
+        <item name="android:textSize">@dimen/tv_size_24</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
 
 
-    <style name="CustomDatePickerDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <!--    TimePickerDialog style-->
+    <style name="CustomTimePickerDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:dialogTheme">@style/MyDialogTheme</item>
-        <item name="android:timePickerStyle">@style/MyDatePicker</item>
+        <item name="android:timePickerStyle">@style/MyTimePicker</item>
         <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="android:colorAccent">@color/colorPrimary</item>
     </style>
 
-
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="android:timePickerStyle">@style/MyDatePicker</item>
+        <item name="android:timePickerStyle">@style/MyTimePicker</item>
     </style>
 
-
-    <style name="MyDatePicker" parent="@android:style/Widget.Material.Light.TimePicker">
+    <style name="MyTimePicker" parent="@android:style/Widget.Material.Light.TimePicker">
         <item name="android:timePickerMode">spinner</item>
 
     </style>
 
-
+    <!--    Dialog EditText style-->
     <style name="MyEditTextStyle" parent="Widget.AppCompat.EditText">
         <item name="android:textSize">18sp</item>
     </style>
 
+    <!--    LabelStyle in EditText-->
     <style name="TextLabelStyle" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">16sp</item>
     </style>
 
+    <!--    Divided Line style-->
     <style name="LineStyle">
         <item name="android:background">@color/colorLine</item>
         <item name="android:layout_height">@dimen/line_layout_height</item>
     </style>
 
+    <!--    RadioButton Style-->
     <style name="MyRadioButtonStyle" parent="@android:style/Widget.CompoundButton.RadioButton">
         <item name="android:button">@drawable/dialog_selector</item>
     </style>
 
+    <!--    Switch Style-->
     <style name="MySwitch" parent="Theme.AppCompat.Light">
         <item name="colorControlActivated">@color/colorPrimary</item>
         <!-- active thumb & track color (30% transparency) -->
@@ -104,5 +91,11 @@
 
         <!-- inactive track color (30% transparency) -->
         <item name="android:colorForeground">#42221f1f</item>
+    </style>
+
+
+    <style name="NotificationsSettingsStyle">
+        <item name="android:textColor">@color/MainTextColor</item>
+        <item name="android:textSize">18sp</item>
     </style>
 </resources>

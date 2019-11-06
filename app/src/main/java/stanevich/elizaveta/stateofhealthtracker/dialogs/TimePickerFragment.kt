@@ -28,7 +28,7 @@ class TimePickerFragment(private val listener: TimePickerDialog.OnTimeSetListene
         val mm = calendar.get(Calendar.MINUTE)
 
         val timePickerDialog =
-            TimePickerDialog(activity!!, R.style.CustomDatePickerDialog, listener, hh, mm, true)
+            TimePickerDialog(activity!!, R.style.CustomTimePickerDialog, listener, hh, mm, true)
 
         timePickerDialog.setButton(
             DialogInterface.BUTTON_POSITIVE,

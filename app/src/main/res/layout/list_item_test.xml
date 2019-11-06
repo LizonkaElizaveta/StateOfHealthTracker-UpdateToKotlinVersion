@@ -10,54 +10,48 @@
                 type="stanevich.elizaveta.stateofhealthtracker.test.model.Test" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
 
         <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/card_layout_height"
-                android:layout_marginStart="@dimen/card_margin_start"
-                android:layout_marginTop="@dimen/card_margin_top"
-                android:layout_marginEnd="@dimen/card_margin_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:cardElevation="0dp"
                 app:cardMaxElevation="0dp">
 
             <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     app:imgLink="@{test.image}"
-                    tools:background="@drawable/background_test_figure" />
+                    tools:background="@drawable/background_balloon" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|bottom"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/colorTextButton"
+                    android:textSize="@dimen/text_test_name_size"
+                    app:textLink="@{test.text}"
+                    tools:text="@string/text_test_draw_figure" />
 
-                <Button
-                        android:id="@+id/btn_download"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/button_height"
-                        android:background="@drawable/button_half_round"
-                        android:drawableEnd="@drawable/ic_download"
-                        android:gravity="start|center_vertical|center_horizontal"
-                        android:paddingStart="24dp"
-                        android:paddingEnd="16dp"
-                        android:textAllCaps="false"
-                        android:textColor="#fff"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:textLink="@{test.text}"
-                        tools:text="@string/text_test_draw_figure" />
+            <ImageButton
+                    android:id="@+id/img_download"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_download" />
 
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
-
-    </RelativeLayout>
-
+    </LinearLayout>
 </layout>

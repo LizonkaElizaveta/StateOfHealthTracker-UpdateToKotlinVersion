@@ -51,13 +51,13 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
+                        style="@style/MyEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"
                         android:hint="@string/hint_time"
-                        android:inputType="none"
-                        android:textSize="18sp" />
+                        android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

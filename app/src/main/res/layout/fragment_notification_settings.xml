@@ -12,9 +12,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="?attr/actionBarSize"
                 android:text="@string/text_reminder"
-                android:textColor="#DE000000"
-                android:textSize="22sp"
-
+                android:textColor="@color/MainTextColor"
+                android:textSize="@dimen/text_category_size"
                 app:layout_constraintHorizontal_bias="0.3"
                 app:layout_constraintStart_toStartOf="@id/text_day"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,24 +37,22 @@
 
         <TextView
                 android:id="@+id/text_day"
+                style="@style/NotificationsSettingsStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/text_day"
-                android:textColor="#DE000000"
-                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/img_time"
                 app:layout_constraintStart_toEndOf="@id/img_time"
                 app:layout_constraintTop_toTopOf="@id/img_time" />
 
         <TextView
                 android:id="@+id/text_time"
+                style="@style/NotificationsSettingsStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
                 android:text="@string/text_time"
-                android:textColor="#DE000000"
-                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/img_time"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/img_time" />
@@ -71,34 +68,29 @@
                 android:id="@+id/img_repeat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:src="@drawable/ic_repeat"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/img_time"
                 app:layout_constraintTop_toBottomOf="@id/line2" />
 
         <TextView
                 android:id="@+id/text_repeat"
+                style="@style/NotificationsSettingsStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="@string/text_repeat"
-                android:textColor="#DE000000"
-                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/img_repeat"
-                app:layout_constraintStart_toEndOf="@id/img_repeat"
+                app:layout_constraintStart_toStartOf="@id/text_day"
                 app:layout_constraintTop_toTopOf="@id/img_repeat" />
 
         <TextView
                 android:id="@+id/text_toggle"
+                style="@style/NotificationsSettingsStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/text_day"
-                android:textColor="#DE000000"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@id/img_repeat"
+                app:layout_constraintStart_toStartOf="@id/text_day"
                 app:layout_constraintTop_toBottomOf="@id/text_repeat" />
 
         <Switch
@@ -106,10 +98,9 @@
                 style="@style/MySwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
                 android:checked="true"
                 app:layout_constraintBottom_toBottomOf="@id/text_toggle"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/text_time"
                 app:layout_constraintTop_toTopOf="@id/text_toggle" />
 
         <LinearLayout
@@ -125,61 +116,58 @@
                     android:id="@+id/ch_monday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
                     android:button="@drawable/ic_monday" />
 
             <CheckBox
                     android:id="@+id/ch_tuesday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
                     android:button="@drawable/ic_tuesday" />
 
             <CheckBox
                     android:id="@+id/ch_wednesday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
                     android:button="@drawable/ic_wednesday" />
 
             <CheckBox
                     android:id="@+id/ch_thursday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
                     android:button="@drawable/ic_thursday" />
 
             <CheckBox
                     android:id="@+id/ch_friday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
                     android:button="@drawable/ic_friday" />
 
             <CheckBox
                     android:id="@+id/ch_saturday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
                     android:button="@drawable/ic_saturday" />
 
             <CheckBox
                     android:id="@+id/ch_sunday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
                     android:button="@drawable/ic_sunday" />
 
         </LinearLayout>
 
         <Button
                 android:id="@+id/btn_save"
-                android:layout_width="160dp"
-                android:layout_height="@dimen/btn_save_layout_height"
-                android:background="@drawable/button_round"
-                android:elevation="6dp"
+                style="@style/MyButtonStyle"
+                android:layout_width="@dimen/btn_save_layout_width"
                 android:text="@string/text_save"
-                android:textColor="@color/colorTextButton"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
