@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.notification
+package stanevich.elizaveta.stateofhealthtracker.notification.notifications_settings_fragment
 
 import android.app.Application
 import android.util.Log
@@ -10,7 +10,7 @@ import stanevich.elizaveta.stateofhealthtracker.notification.adapter.OnStartTrac
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao
 
-class NotificationsViewModel(
+class NotificationsSettingsViewModel(
     private val database: NotificationsDatabaseDao,
     application: Application
 ) : AndroidViewModel(application),
@@ -81,4 +81,3 @@ class NotificationsViewModel(
         _showNotDialogEvent.value = true
     }
 }
-

@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.notification
+package stanevich.elizaveta.stateofhealthtracker.notification.notification_fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,27 +28,22 @@ class NotificationsFragment : Fragment() {
             false
         )
 
+        binding.lifecycleOwner = this
 
         val application = requireNotNull(this.activity).application
 
         val dataSource = NotificationsDatabase.getInstance(application).notificationsDatabaseDao
 
-
-        val viewModelFactory =
-            NotificationsViewModelFactory(
-                dataSource,
-                application
-            )
+        val viewModelFactory = NotificationsViewModelFactory(dataSource)
 
         val notificationsViewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(NotificationsViewModel::class.java)
+            ViewModelProviders.of(this, viewModelFactory)
+                .get(NotificationsViewModel::class.java)
+
 
         binding.notificationsViewModel = notificationsViewModel
 
-        binding.lifecycleOwner = this
-
-        val adapter =
-            NotificationsAdapter()
+        val adapter = NotificationsAdapter()
         binding.notificationsList.adapter = adapter
 
 
@@ -56,19 +51,6 @@ class NotificationsFragment : Fragment() {
             Navigation.findNavController(view)
                 .navigate(R.id.action_nav_notifications_to_notificationSettingsFragment)
         }
-//        notificationsViewModel.showNotDialogEvent.observe(viewLifecycleOwner, Observer {
-//            if (it == true) {
-//                fragmentManager?.let { it1 ->
-//                    CategoryDialog(
-//                        notificationsViewModel.tonightNotification
-//                    ) { notificationsViewModel.startTracking() }.show(it1, "CategoryDialog")
-//                }
-//
-//                notificationsViewModel.doneShowingNotDialog()
-//
-//            }
-//        })
-
 
         notificationsViewModel.notifications.observe(viewLifecycleOwner, Observer {
             it?.let {
