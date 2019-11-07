@@ -1,5 +1,7 @@
 package stanevich.elizaveta.stateofhealthtracker.notification.notifications_settings_fragment
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +13,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotificationSettingsBinding
+import stanevich.elizaveta.stateofhealthtracker.dialogs.DatePickerFragment
+import stanevich.elizaveta.stateofhealthtracker.dialogs.TimePickerFragment
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabase
 import stanevich.elizaveta.stateofhealthtracker.notification.dialogs.CategoryDialogD
+import stanevich.elizaveta.stateofhealthtracker.utils.getFullDate
+import stanevich.elizaveta.stateofhealthtracker.utils.getTime
 
 class NotificationSettingsFragment : Fragment() {
 
@@ -49,23 +55,48 @@ class NotificationSettingsFragment : Fragment() {
 
         binding.notificationsSettingsViewModel = notificationsSettingsViewModel
 
-        notificationsSettingsViewModel.showNotDialogEvent.observe(viewLifecycleOwner, Observer {
+        notificationsSettingsViewModel.showNotDialogCategory.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 fragmentManager?.let { it1 ->
                     CategoryDialogD(
                         notificationsSettingsViewModel.tonightNotification,
                         tvCategory
-                    ) { notificationsSettingsViewModel.startTracking() }.show(
+                    ).show(
                         it1,
                         "CategoryDialogD"
                     )
                 }
 
-                notificationsSettingsViewModel.doneShowingNotDialog()
+                notificationsSettingsViewModel.doneShowingNotDialogCategory()
             }
         })
 
+        notificationsSettingsViewModel.showNotDialogDate.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                fragmentManager?.let { it ->
+                    DatePickerFragment(DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                        val calendar =
+                            DatePickerFragment.getCalendarDate(year, monthOfYear, dayOfMonth)
+                        binding.textDay.text = getFullDate(calendar.timeInMillis)
+                    }).show(it, "DatePicker")
+                }
 
+                notificationsSettingsViewModel.doneShowingNotDialogDate()
+            }
+        })
+
+        notificationsSettingsViewModel.showNotDialogTime.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                fragmentManager?.let { it ->
+                    TimePickerFragment(TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                        val calendar = TimePickerFragment.getCalendarTime(hourOfDay, minute)
+                        binding.textTime.text = (getTime(calendar.timeInMillis))
+                    }).show(it, "TimePicker")
+                }
+
+                notificationsSettingsViewModel.doneShowingNotDialogTime()
+            }
+        })
 
         return binding.root
     }

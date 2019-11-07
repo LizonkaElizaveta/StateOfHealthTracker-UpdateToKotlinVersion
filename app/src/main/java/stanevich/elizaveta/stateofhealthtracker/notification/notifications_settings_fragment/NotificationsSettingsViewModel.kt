@@ -26,19 +26,34 @@ class NotificationsSettingsViewModel(
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     var tonightNotification = MutableLiveData<Notifications?>()
-    var updatedNotification = MutableLiveData<Notifications?>()
-
 
     val notifications = database.getAllNotifications()
 
 
-    private var _showNotDialogEvent = MutableLiveData<Boolean>(false)
+    private var _showNotDialogCategory = MutableLiveData<Boolean>(false)
+    private var _showNotDialogTime = MutableLiveData<Boolean>(false)
+    private var _showNotDialogDate = MutableLiveData<Boolean>(false)
 
-    val showNotDialogEvent: LiveData<Boolean>
-        get() = _showNotDialogEvent
+    val showNotDialogTime: LiveData<Boolean>
+        get() = _showNotDialogTime
 
-    fun doneShowingNotDialog() {
-        _showNotDialogEvent.value = false
+    val showNotDialogCategory: LiveData<Boolean>
+        get() = _showNotDialogCategory
+
+    val showNotDialogDate: LiveData<Boolean>
+        get() = _showNotDialogDate
+
+
+    fun doneShowingNotDialogCategory() {
+        _showNotDialogCategory.value = false
+    }
+
+    fun doneShowingNotDialogTime() {
+        _showNotDialogTime.value = false
+    }
+
+    fun doneShowingNotDialogDate() {
+        _showNotDialogDate.value = false
     }
 
 
@@ -73,11 +88,20 @@ class NotificationsSettingsViewModel(
         withContext(Dispatchers.IO) {
             database.insert(notification)
 
-            Log.d("mLog", "From ViewModel " + notification.toString())
+            Log.d("mLog", "From ViewModel $notification")
         }
     }
 
-    fun showDialog() {
-        _showNotDialogEvent.value = true
+    fun showDialogCategory() {
+        _showNotDialogCategory.value = true
     }
+
+    fun showDialogTime() {
+        _showNotDialogTime.value = true
+    }
+
+    fun showDialogDate() {
+        _showNotDialogDate.value = true
+    }
+
 }

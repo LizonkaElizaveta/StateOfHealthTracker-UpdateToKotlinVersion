@@ -15,8 +15,7 @@ import stanevich.elizaveta.stateofhealthtracker.notification.database.Notificati
 
 class CategoryDialogD(
     private val tonightNotification: MutableLiveData<Notifications?>,
-    private val categoryText: TextView,
-    private val onStartTracking: () -> Unit
+    private val categoryText: TextView
 ) : DialogFragment() {
 
 
