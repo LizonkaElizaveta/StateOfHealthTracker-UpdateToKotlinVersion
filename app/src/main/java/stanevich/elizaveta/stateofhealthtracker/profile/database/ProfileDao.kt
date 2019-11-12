@@ -1,32 +1,32 @@
-package stanevich.elizaveta.stateofhealthtracker.profile
+package stanevich.elizaveta.stateofhealthtracker.profile.database
 
 import androidx.room.*
 
 @Dao
-interface UsersDataDao {
+interface ProfileDao {
 
     @Query("SELECT * from users_table WHERE usersId =:key")
-    fun get(key:Long): UsersData?
+    fun get(key: Long): Profile?
 
     @Query("DELETE from users_table")
     fun clear()
 
     @Query("SELECT * from users_table ORDER BY usersId DESC LIMIT 1")
-    fun getLastUser(): UsersData?
+    fun getLastUser(): Profile?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(user: UsersData)
+    fun insert(user: Profile)
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
-    fun update(user: UsersData)
+    fun update(user: Profile)
 
     @Transaction
-    fun upsert(user: UsersData) {
+    fun upsert(user: Profile) {
         insert(user)
         update(user)
     }
 
     @Query("SELECT * from users_table WHERE usersId = 1")
-    fun findByUser(): UsersData?
+    fun findByUser(): Profile?
 
 }

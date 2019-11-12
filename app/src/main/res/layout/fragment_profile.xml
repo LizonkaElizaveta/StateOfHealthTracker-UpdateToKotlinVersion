@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".profile.usersdata.UsersDataFragment">
+        tools:context=".profile.fragments.ProfileFragment">
 
     <data>
 
         <variable
-                name="usersViewModel"
-                type="stanevich.elizaveta.stateofhealthtracker.profile.usersdata.UsersDataViewModel" />
+                name="profileViewModel"
+                type="stanevich.elizaveta.stateofhealthtracker.profile.fragments.ProfileViewModel" />
     </data>
 
     <ScrollView
@@ -54,7 +54,7 @@
                         android:ems="10"
                         android:hint="@string/textPersonName"
                         android:inputType="textPersonName"
-                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserNameTextChanged(text)}" />
+                        android:onTextChanged="@{(text, start, before, count) -> profileViewModel.onUserNameTextChanged(text)}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,7 +77,7 @@
                         android:ems="10"
                         android:hint="@string/textPersonSurname"
                         android:inputType="textPersonName"
-                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserSurnameTextChanged(text)}" />
+                        android:onTextChanged="@{(text, start, before, count) -> profileViewModel.onUserSurnameTextChanged(text)}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +101,7 @@
                         android:ems="10"
                         android:hint="@string/textPersonPhone"
                         android:inputType="phone"
-                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserPhoneTextChanged(text)}" />
+                        android:onTextChanged="@{(text, start, before, count) -> profileViewModel.onUserPhoneTextChanged(text)}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,7 +124,7 @@
                         android:ems="10"
                         android:hint="@string/textPersonDocMail"
                         android:inputType="textEmailAddress"
-                        android:onTextChanged="@{(text, start, before, count) -> usersViewModel.onUserDocEmailTextChanged(text)}" />
+                        android:onTextChanged="@{(text, start, before, count) -> profileViewModel.onUserDocEmailTextChanged(text)}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,7 +136,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="24dp"
                     android:contentDescription="@string/buttonSaveData"
-                    android:onClick="@{() -> usersViewModel.saveUserData()}"
+                    android:onClick="@{() -> profileViewModel.saveUserData()}"
                     android:text="@string/buttonSaveData"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/etPersonDocMail"

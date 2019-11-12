@@ -1,16 +1,16 @@
-package stanevich.elizaveta.stateofhealthtracker.profile.usersdata
+package stanevich.elizaveta.stateofhealthtracker.profile.fragments
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
-import stanevich.elizaveta.stateofhealthtracker.profile.UsersData
-import stanevich.elizaveta.stateofhealthtracker.profile.UsersDataDao
+import stanevich.elizaveta.stateofhealthtracker.profile.database.Profile
+import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDao
 
 
-class UsersDataViewModel(
-    private val database: UsersDataDao,
+class ProfileViewModel(
+    private val database: ProfileDao,
     application: Application
 ) : AndroidViewModel(application) {
 
@@ -18,7 +18,7 @@ class UsersDataViewModel(
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private var usersData = MutableLiveData<UsersData?>()
+    private var usersData = MutableLiveData<Profile?>()
 
 
     init {
@@ -32,10 +32,10 @@ class UsersDataViewModel(
         }
     }
 
-    private suspend fun getUserFromDatabase(): UsersData? {
+    private suspend fun getUserFromDatabase(): Profile? {
         return withContext(Dispatchers.IO) {
             var user = database.findByUser()
-            user ?: UsersData()
+            user ?: Profile()
         }
 
     }
