@@ -24,6 +24,13 @@
     <dimen name="background_card_width">197.06dp</dimen>
     <dimen name="background_card_height">116.23dp</dimen>
 
+    <!--    Profile Fragment-->
+    <dimen name="profile_card_layout_height">65dp</dimen>
+    <dimen name="profile_card_marginStart_marginEnd">24dp</dimen>
+    <dimen name="profile_card_marginTop">12dp</dimen>
+    <dimen name="profile_card_corner">10dp</dimen>
+    <dimen name="profile_border_layout_radius">9dp</dimen> // need to be smaller on 1 dp, than card_corner
+
 
     <!--    SplashActivity-->
     <dimen name="splash_icon_size">60dp</dimen>

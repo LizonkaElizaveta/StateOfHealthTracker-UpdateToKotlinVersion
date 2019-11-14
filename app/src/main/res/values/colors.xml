@@ -14,4 +14,6 @@
     <color name="MainTextColor">#DE000000</color>
     <color name="MainImageColor">#DE000000</color>
 
+    <color name="colorCardBorder">#CBD0D0D0</color>
+
 </resources>

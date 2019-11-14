@@ -8,18 +8,18 @@ import androidx.room.PrimaryKey
 data class Profile(
 
     @PrimaryKey(autoGenerate = true)
-    var usersId: Long = 0L,
+    var id: Long = 0L,
 
     @ColumnInfo(name = "firstName")
-    var usersFirstName: String = "",
+    var firstName: String = "",
 
     @ColumnInfo(name = "lastName")
-    var userSurname: String = "",
+    var lastName: String = "",
 
     @ColumnInfo(name = "email")
-    var usersEmail: String = "",
+    var email: String = "",
 
     @ColumnInfo(name = "phone")
-    var usersPhone: String = ""
+    var phone: String = ""
 
 )

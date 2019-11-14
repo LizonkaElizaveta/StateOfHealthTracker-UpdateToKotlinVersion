@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical">
+
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/card_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/profile_card_layout_height"
+                android:layout_marginStart="@dimen/profile_card_marginStart_marginEnd"
+                android:layout_marginTop="@dimen/profile_card_marginTop"
+                android:layout_marginEnd="@dimen/profile_card_marginStart_marginEnd"
+                android:background="@drawable/cardview_border"
+                app:cardCornerRadius="@dimen/profile_card_corner">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cardview_border">
+
+
+                <TextView
+                        android:id="@+id/text_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/profile_card_marginStart_marginEnd"
+                        android:text="@string/profile_text_fio"
+                        android:textAllCaps="true"
+                        app:layout_constraintBottom_toTopOf="@id/tv_description"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                        android:id="@+id/tv_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile_text_user_name"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/text_title"
+                        app:layout_constraintTop_toBottomOf="@id/text_title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</layout>

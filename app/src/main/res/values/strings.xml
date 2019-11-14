@@ -87,4 +87,15 @@
     <string name="radioButton_other">Другое</string>
 
 
+<!--    Profile Fragment-->
+    <string name="profile_text_fio">ФИО</string>
+    <string name="profile_text_user_name">Иванов Иван Иванович</string>
+    <string name="profile_text_birthday">дата рождения</string>
+    <string name="profile_text_data_birthday">11.11.2017</string>
+    <string name="profile_text_phone">Моб.телефон</string>
+    <string name="profile_text_number_phone">+7 (777) 777-77-77</string>
+    <string name="profile_text_mail">Эл.почта лечащего врача</string>
+    <string name="profile_text_number_mail">liza_soft_1313@mail.ru</string>
+
+
 </resources>
