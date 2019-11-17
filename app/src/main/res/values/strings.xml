@@ -65,6 +65,7 @@
     <string name="text_test_burst_ball">Лопните воздушный шар</string>
     <string name="text_test_mole">Игра в крота</string>
     <string name="text_test_target">Тест на постукивание</string>
+    <!--    TutorialFragment-->
     <string name="tutorial_title_welcome">Добро пожаловать в \n State Of Health Tracker!</string>
     <string name="tutorial_description_welcome">Это трекер здоровья, который помогает нам отслеживать ваше самочувствие и вовремя реагировать на изменения</string>
     <string name="tutorial_title_test">Тесты</string>
@@ -87,10 +88,10 @@
     <string name="radioButton_other">Другое</string>
 
 
-<!--    Profile Fragment-->
+    <!--    Profile Fragment-->
     <string name="profile_text_fio">ФИО</string>
     <string name="profile_text_user_name">Иванов Иван Иванович</string>
-    <string name="profile_text_birthday">дата рождения</string>
+    <string name="profile_text_birthday">Дата рождения</string>
     <string name="profile_text_data_birthday">11.11.2017</string>
     <string name="profile_text_phone">Моб.телефон</string>
     <string name="profile_text_number_phone">+7 (777) 777-77-77</string>

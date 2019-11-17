@@ -1,12 +1,34 @@
 package stanevich.elizaveta.stateofhealthtracker.tutorial
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.github.paolorotolo.appintro.AppIntro
+import stanevich.elizaveta.stateofhealthtracker.MainActivity
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.tutorial.fragments.*
 
+
 class TutorialActivity : AppIntro() {
+
+    var prevStarted = "prevStartedTutorial"
+
+    override fun onResume() {
+        super.onResume()
+        val sharedPreferences =
+            getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
+        if (!sharedPreferences.getBoolean(prevStarted, false)) {
+            val editor = sharedPreferences.edit()
+            editor.putBoolean(prevStarted, java.lang.Boolean.TRUE)
+            editor.apply()
+        } else {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +51,10 @@ class TutorialActivity : AppIntro() {
 
         showSeparator(false)
         setNextArrowColor(mainColor)
+    }
 
+    override fun onDonePressed(currentFragment: Fragment) {
+        super.onDonePressed(currentFragment)
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }

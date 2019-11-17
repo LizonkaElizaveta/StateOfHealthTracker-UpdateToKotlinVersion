@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import stanevich.elizaveta.stateofhealthtracker.profile.database.Profile
 import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDao
 import stanevich.elizaveta.stateofhealthtracker.profile.model.PopulateProfileData
 import stanevich.elizaveta.stateofhealthtracker.profile.model.populateData
@@ -15,6 +16,12 @@ class ProfileViewModel(
     private val database: ProfileDao,
     application: Application
 ) : AndroidViewModel(application) {
+
+    private val _navigateToSelectedProperty = MutableLiveData<Profile>()
+
+    val navigateToSelectedProperty: LiveData<Profile>
+        get() = _navigateToSelectedProperty
+
     private val _data = MutableLiveData<List<PopulateProfileData>>()
 
     val data: LiveData<List<PopulateProfileData>>
