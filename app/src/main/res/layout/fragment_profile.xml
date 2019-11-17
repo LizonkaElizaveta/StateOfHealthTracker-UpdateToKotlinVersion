@@ -17,11 +17,10 @@
             android:layout_marginTop="?attr/actionBarSize">
 
         <ImageView
-
                 android:id="@+id/iv_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/profile_image_marginTop"
                 android:src="@drawable/image_button_bad_full"
                 app:layout_constraintBottom_toTopOf="@id/profile_list"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -32,14 +31,15 @@
                 android:id="@+id/profile_list"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="@dimen/profile_recyclerview_marginTop"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_photo"
-                app:testListData="@{testViewModel.data}"
                 tools:listitem="@layout/list_item_profile" />
+
+        <!--        app:profileListData="@{profileViewModel.data}"-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
