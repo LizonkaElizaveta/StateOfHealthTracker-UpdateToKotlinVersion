@@ -13,8 +13,8 @@ data class PopulateProfileData(
     @ColumnInfo(name = "title")
     var title: String = "",
 
-    @ColumnInfo(name = "description")
-    var description: String = ""
+    @ColumnInfo(name = "detail")
+    var detail: String = ""
 )
 
 fun populateData(): List<PopulateProfileData> {

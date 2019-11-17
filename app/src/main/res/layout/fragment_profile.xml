@@ -12,8 +12,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_horizontal"
             android:layout_marginTop="?attr/actionBarSize">
 
         <ImageView
@@ -30,16 +32,20 @@
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/profile_list"
                 android:layout_width="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/profile_recyclerview_marginTop"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_photo"
+                app:profileListData="@{profileViewModel.data}"
                 tools:listitem="@layout/list_item_profile" />
 
-        <!--        app:profileListData="@{profileViewModel.data}"-->
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -5,13 +5,13 @@ import androidx.room.*
 @Dao
 interface ProfileDao {
 
-    @Query("SELECT * from users_table WHERE usersId =:key")
+    @Query("SELECT * from users_table WHERE id =:key")
     fun get(key: Long): Profile?
 
     @Query("DELETE from users_table")
     fun clear()
 
-    @Query("SELECT * from users_table ORDER BY usersId DESC LIMIT 1")
+    @Query("SELECT * from users_table ORDER BY id DESC LIMIT 1")
     fun getLastUser(): Profile?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -26,7 +26,7 @@ interface ProfileDao {
         update(user)
     }
 
-    @Query("SELECT * from users_table WHERE usersId = 1")
+    @Query("SELECT * from users_table WHERE id = 1")
     fun findByUser(): Profile?
 
 }
