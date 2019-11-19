@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:id="@+id/text_please_fill_out_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/text_profile_please_fill_out_profile"
+                android:textColor="@color/MainTextColor"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+                android:id="@+id/iv_user_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/profile_avatar"
+                app:layout_constraintStart_toStartOf="@id/text_please_fill_out_profile"
+                app:layout_constraintTop_toBottomOf="@id/text_please_fill_out_profile" />
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toTopOf="@id/til_user_surname"
+                app:layout_constraintStart_toEndOf="@id/iv_user_photo"
+                app:layout_constraintTop_toTopOf="@id/iv_user_photo">
+
+            <EditText
+                    android:id="@+id/et_user_name"
+                    style="@style/EditTextStyle"
+                    android:ems="10"
+                    android:hint="ИМЯ"
+                    android:inputType="textPersonName"
+                    android:text="Иван" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_user_surname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/iv_user_photo"
+                app:layout_constraintStart_toStartOf="@id/til_user_name"
+                app:layout_constraintTop_toBottomOf="@id/til_user_name">
+
+            <EditText
+                    android:id="@+id/et_user_surname"
+                    style="@style/EditTextStyle"
+                    android:ems="10"
+                    android:hint="ФАМИЛИЯ"
+                    android:inputType="textPersonName"
+                    android:text="Иванов" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <ImageView
+                android:id="@+id/iv_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/profile_ic_calendar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_user_photo" />
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_user_birthday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_calendar"
+                app:layout_constraintEnd_toEndOf="@id/til_user_surname"
+                app:layout_constraintStart_toEndOf="@id/iv_calendar"
+                app:layout_constraintTop_toTopOf="@id/iv_calendar">
+
+            <EditText
+                    android:id="@+id/et_user_birthday"
+                    style="@style/EditTextStyle"
+                    android:hint="ДАТА РОЖДЕНИЯ"
+                    android:inputType="date"
+                    android:text="11.11.2019" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <ImageView
+                android:id="@+id/iv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/profile_ic_phone"
+                app:layout_constraintStart_toStartOf="@id/iv_calendar"
+                app:layout_constraintTop_toBottomOf="@id/til_user_birthday" />
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_user_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_phone"
+                app:layout_constraintEnd_toEndOf="@id/til_user_surname"
+                app:layout_constraintStart_toEndOf="@id/iv_phone"
+                app:layout_constraintTop_toTopOf="@id/iv_phone">
+
+            <EditText
+                    android:id="@+id/et_user_phone"
+                    style="@style/EditTextStyle"
+                    android:hint="МОБ.ТЕЛЕФОН"
+                    android:inputType="phone"
+                    android:text="+79112533945" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="Ваши контактные данные являются конфиденциальной информацией и доступны для просмотра только вашему лечащему врачу."
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/til_user_phone"
+                app:layout_constraintStart_toStartOf="@id/iv_phone"
+                app:layout_constraintTop_toBottomOf="@id/til_user_phone" />
+
+        <Button
+                android:id="@+id/btn_save"
+                style="@style/MyButtonStyle"
+                android:layout_width="@dimen/btn_save_layout_width"
+                android:text="@string/text_save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.9" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -97,6 +97,7 @@
     <string name="profile_text_number_phone">+7 (777) 777-77-77</string>
     <string name="profile_text_mail">Эл.почта лечащего врача</string>
     <string name="profile_text_number_mail">liza_soft_1313@mail.ru</string>
+    <string name="text_profile_please_fill_out_profile">Пожалуйста, заполните профиль</string>
 
 
 </resources>

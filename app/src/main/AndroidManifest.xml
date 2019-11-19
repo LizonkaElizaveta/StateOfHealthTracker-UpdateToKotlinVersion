@@ -12,11 +12,15 @@
         <activity
                 android:name=".MainActivity"
                 android:configChanges="orientation"
-                android:screenOrientation="portrait"></activity>
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".profile.ProfileFirstStartActivity"
+                android:configChanges="orientation"
+                android:screenOrientation="portrait"/>
         <activity
                 android:name=".tutorial.TutorialActivity"
                 android:configChanges="orientation"
-                android:screenOrientation="portrait"></activity>
+                android:screenOrientation="portrait"/>
         <activity android:name=".splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
