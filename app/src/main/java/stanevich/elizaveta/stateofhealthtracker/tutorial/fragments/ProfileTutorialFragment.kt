@@ -4,14 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTutorialProfileBinding
 
 class ProfileTutorialFragment : Fragment() {
-
-    lateinit var binding: FragmentTutorialProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,8 +15,7 @@ class ProfileTutorialFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_tutorial_profile, container, false)
+        val binding = FragmentTutorialProfileBinding.inflate(inflater)
 
         return binding.root
     }

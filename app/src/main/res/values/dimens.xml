@@ -11,6 +11,7 @@
 
     <dimen name="btn_layout_height">60dp</dimen>
     <dimen name="tv_size_24">24sp</dimen>
+    <dimen name="tv_size_18">18sp</dimen>
 
 
     <!--     TestFragment-->

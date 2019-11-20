@@ -4,47 +4,36 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#ffffff">
+            android:layout_height="match_parent">
 
         <ImageView
                 android:id="@+id/tutorial_anim_test"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/image_button_bad"
+                android:src="@drawable/tutorial_image_test"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.3" />
+                app:layout_constraintVertical_bias="0.2" />
 
         <TextView
                 android:id="@+id/tutorial_title_test"
-                style="@style/MyTextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal|center_vertical"
+                style="@style/ProfileTitleTextView"
                 android:text="@string/tutorial_title_test"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tutorial_anim_test"
-                app:layout_constraintVertical_bias="0.2" />
+                app:layout_constraintTop_toBottomOf="@id/tutorial_anim_test" />
 
         <TextView
                 android:id="@+id/tutorial_description_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical|center_horizontal"
-                android:paddingStart="24dp"
-                android:paddingEnd="24dp"
+                style="@style/ProfileDescriptionTextView"
                 android:text="@string/tutorial_description_test"
-                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tutorial_title_test"
-                app:layout_constraintVertical_bias="0.1" />
+                app:layout_constraintTop_toBottomOf="@id/tutorial_title_test" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

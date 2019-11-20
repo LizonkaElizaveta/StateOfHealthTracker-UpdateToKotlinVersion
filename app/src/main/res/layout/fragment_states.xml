@@ -19,14 +19,18 @@
 
 
         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/MainTextColor"
+                android:textSize="@dimen/tv_size_24"
+                android:gravity="center"
+               android:layout_marginTop="@dimen/margin"
                 android:id="@+id/textView_howDoYouFeel"
-                style="@style/MyTextViewStyle"
                 android:contentDescription="@string/text_how_do_you_feel"
                 android:text="@string/text_how_do_you_feel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
         <ImageButton
                 android:id="@+id/imageButton_excellent"

@@ -31,17 +31,28 @@
         <item name="android:textColor">@color/colorTextButton</item>
     </style>
 
-    <!--    TextView style-->
-    <style name="MyTextViewStyle">
+
+    <style name="ProfileTitleTextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">@dimen/margin</item>
         <item name="android:textColor">@color/MainTextColor</item>
         <item name="android:textSize">@dimen/tv_size_24</item>
-        <item name="android:gravity">center_horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="layout_constraintVertical_bias">0.1</item>
     </style>
 
+    <style name="ProfileDescriptionTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:textSize">@dimen/tv_size_18</item>
+        <item name="layout_constraintVertical_bias">0.02</item>
 
+
+    </style>
     <!--    TimePickerDialog style-->
     <style name="CustomTimePickerDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:dialogTheme">@style/MyDialogTheme</item>
