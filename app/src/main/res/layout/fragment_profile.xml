@@ -1,12 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="profileViewModel"
+                type="stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModel" />
+    </data>
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_marginTop="?attr/actionBarSize">
 
-    </LinearLayout>
+        <ImageView
+                android:id="@+id/iv_user_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/profile_margin_16"
+                android:src="@drawable/profile_avatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/til_user_surname"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintStart_toEndOf="@id/iv_user_photo"
+                app:layout_constraintTop_toTopOf="@id/iv_user_photo">
+
+            <EditText
+                    android:id="@+id/et_user_name"
+                    style="@style/EditTextStyle"
+                    android:hint="@string/profile_text_hint_name"
+                    android:inputType="textPersonName"
+                    android:onTextChanged="@{(text, start, before, count) -> profileViewModel.onUserNameTextChanged(text)}"
+                    android:text="@{profileViewModel.name}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_user_surname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/iv_user_photo"
+                app:layout_constraintEnd_toEndOf="@id/til_user_name"
+                app:layout_constraintStart_toStartOf="@id/til_user_name"
+                app:layout_constraintTop_toBottomOf="@id/til_user_name">
+
+            <EditText
+                    android:id="@+id/et_user_surname"
+                    style="@style/EditTextStyle"
+                    android:hint="@string/profile_text_hint_surname"
+                    android:inputType="textPersonName"
+                    android:onTextChanged="@{(text, start, before, count) -> profileViewModel.onUserSurnameTextChanged(text)}"
+                    android:text="@={profileViewModel.surname}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+                android:id="@+id/iv_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/profile_margin_32"
+                android:layout_marginTop="@dimen/profile_margin_32"
+                android:src="@drawable/profile_ic_calendar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_user_photo" />
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_user_birthday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/profile_margin_8"
+                android:layout_marginTop="@dimen/profile_margin_40"
+                app:layout_constraintBottom_toBottomOf="@id/iv_calendar"
+                app:layout_constraintEnd_toEndOf="@id/til_user_surname"
+                app:layout_constraintStart_toEndOf="@id/iv_calendar"
+                app:layout_constraintTop_toTopOf="@id/iv_calendar">
+
+            <EditText
+                    android:id="@+id/et_user_birthday"
+                    style="@style/EditTextStyle"
+                    android:hint="@string/profile_text_hint_birthday"
+                    android:inputType="date"
+                    android:onTextChanged="@{(text, start, before, count) -> profileViewModel.onUserBirthdayTextChanged(text)}"
+                    android:text="@={profileViewModel.birthday}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <ImageView
+                android:id="@+id/iv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/profile_margin_16"
+                android:src="@drawable/profile_ic_phone"
+                app:layout_constraintStart_toStartOf="@id/iv_calendar"
+                app:layout_constraintTop_toBottomOf="@id/til_user_birthday" />
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_user_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/profile_margin_8"
+                android:layout_marginTop="@dimen/profile_margin_40"
+                app:layout_constraintBottom_toBottomOf="@id/iv_phone"
+                app:layout_constraintEnd_toEndOf="@id/til_user_surname"
+                app:layout_constraintStart_toEndOf="@id/iv_phone"
+                app:layout_constraintTop_toTopOf="@id/iv_phone">
+
+            <EditText
+                    android:id="@+id/et_user_phone"
+                    style="@style/EditTextStyle"
+                    android:hint="@string/profile_text_hint_phone"
+                    android:inputType="phone"
+                    android:onTextChanged="@{(text, start, before, count) -> profileViewModel.onUserPhoneTextChanged(text)}"
+                    android:text="@={profileViewModel.phone}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/profile_margin_24"
+                android:gravity="center"
+                android:text="@string/profile_text_confidential_contact_data"
+                android:textSize="@dimen/profile_text_size_12"
+                app:layout_constraintEnd_toEndOf="@id/til_user_phone"
+                app:layout_constraintStart_toStartOf="@id/iv_phone"
+                app:layout_constraintTop_toBottomOf="@id/til_user_phone" />
+
+        <Button
+                android:id="@+id/btn_save"
+                style="@style/MyButtonStyle"
+                android:layout_width="@dimen/btn_save_layout_width"
+                android:onClick="@{() -> profileViewModel.saveUserData()}"
+                android:text="@string/text_save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.9" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

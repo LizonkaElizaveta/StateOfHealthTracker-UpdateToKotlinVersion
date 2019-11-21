@@ -4,8 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentProfileBinding
+import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
+import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModel
+import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModelFactory
 
 class ProfileFragment : Fragment() {
 
@@ -13,34 +19,22 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentProfileBinding.inflate(inflater)
-//
-//        binding.lifecycleOwner = this
-//
-//        binding.profileViewModel = profileViewModel
+        val binding: FragmentProfileBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_profile,container,false)
 
-//        val application = requireNotNull(this.activity).application
-//
-//        val dataSource = ProfileDatabase.getInstance(application).statesDatabaseDao
-//
-//        val viewModelFactory = ProfileViewModelFactory(dataSource, application)
-//
-//        val profileViewModel =
-//            ViewModelProviders.of(this, viewModelFactory).get(ProfileViewModel::class.java)
-//
-//
+        val application = requireNotNull(this.activity).application
 
-//        binding.profileList.adapter = ProfileAdapter(ProfileAdapter.OnClickListener {
-//            profileViewModel.displayPropertyDetails(it)
-//        })
-//
-//        profileViewModel.navigateToSelectedProperty.observe(this, Observer {
-//            if (null != it) {
-//                this.findNavController().navigate(ProfileFragmentDirections.actionShowDetail(it))
-//                // Tell the ViewModel we've made the navigate call to prevent multiple navigation
-//                profileViewModel.displayPropertyDetailsComplete()
-//            }
-//        })
+        val dataSource = ProfileDatabase.getInstance(application).profileDatabaseDao
+
+        val viewModelFactory =
+            ProfileViewModelFactory(dataSource, application)
+
+        val profileViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(ProfileViewModel::class.java)
+
+        binding.lifecycleOwner = this
+
+        binding.profileViewModel = profileViewModel
 
         return binding.root
     }

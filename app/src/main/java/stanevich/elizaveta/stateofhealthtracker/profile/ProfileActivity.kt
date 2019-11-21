@@ -1,9 +1,12 @@
 package stanevich.elizaveta.stateofhealthtracker.profile
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import stanevich.elizaveta.stateofhealthtracker.MainActivity
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.ActivityProfileBinding
 import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
@@ -11,6 +14,23 @@ import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewMod
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModelFactory
 
 class ProfileActivity : AppCompatActivity() {
+
+    private var prevStarted = "prevProfileActivity"
+
+    override fun onResume() {
+        super.onResume()
+        val sharedPreferences =
+            getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
+        if (!sharedPreferences.getBoolean(prevStarted, false)) {
+            val editor = sharedPreferences.edit()
+            editor.putBoolean(prevStarted, java.lang.Boolean.TRUE)
+            editor.apply()
+        } else {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +52,10 @@ class ProfileActivity : AppCompatActivity() {
 
         binding.profileViewModel = profileViewModel
 
-
+        binding.btnSave.setOnClickListener {
+            profileViewModel.saveUserData()
+            startActivity(Intent(this, MainActivity::class.java))
+        }
 
 
     }

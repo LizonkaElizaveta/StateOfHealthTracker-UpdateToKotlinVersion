@@ -1,15 +1,22 @@
 package stanevich.elizaveta.stateofhealthtracker
 
+
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationView
+import stanevich.elizaveta.stateofhealthtracker.databinding.ActivityMainBinding
+import stanevich.elizaveta.stateofhealthtracker.databinding.NavHeaderMainBinding
+import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
+import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModel
+import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModelFactory
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,23 +25,45 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
+        val binding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         toolbar.bringToFront()
         setSupportActionBar(toolbar)
 
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = this.findNavController(R.id.nav_host_fragment)
+
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_notifications,
                 R.id.nav_profile, R.id.nav_settings, R.id.nav_test
-            ), drawerLayout
+            ), binding.drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        binding.navView.setupWithNavController(navController)
+
+        val headerBind = DataBindingUtil.inflate<NavHeaderMainBinding>(
+            layoutInflater,
+            R.layout.nav_header_main,
+            binding.navView,
+            false
+        )
+        binding.navView.addHeaderView(headerBind.root)
+
+        val application = requireNotNull(this).application
+
+        val dataSource = ProfileDatabase.getInstance(application).profileDatabaseDao
+
+        val viewModelFactory =
+            ProfileViewModelFactory(dataSource, application)
+
+        val profileViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(ProfileViewModel::class.java)
+
+        headerBind.lifecycleOwner = this
+
+        headerBind.profileViewModel = profileViewModel
     }
 
     override fun onSupportNavigateUp(): Boolean {

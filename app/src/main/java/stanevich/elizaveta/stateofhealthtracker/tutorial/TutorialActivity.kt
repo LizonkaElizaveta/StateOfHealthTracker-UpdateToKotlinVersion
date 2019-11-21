@@ -1,5 +1,6 @@
 package stanevich.elizaveta.stateofhealthtracker.tutorial
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.content.ContextCompat
@@ -12,22 +13,22 @@ import stanevich.elizaveta.stateofhealthtracker.tutorial.fragments.*
 
 class TutorialActivity : AppIntro() {
 
-//    private var prevStarted = "prevStartedTutorial"
-//
-//    override fun onResume() {
-//        super.onResume()
-//        val sharedPreferences =
-//            getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
-//        if (!sharedPreferences.getBoolean(prevStarted, false)) {
-//            val editor = sharedPreferences.edit()
-//            editor.putBoolean(prevStarted, java.lang.Boolean.TRUE)
-//            editor.apply()
-//        } else {
-//            startActivity(Intent(this, ProfileFirstStartActivity::class.java))
-//            finish()
-//
-//        }
-//    }
+    private var prevStarted = "prevStartedTutorial"
+
+    override fun onResume() {
+        super.onResume()
+        val sharedPreferences =
+            getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
+        if (!sharedPreferences.getBoolean(prevStarted, false)) {
+            val editor = sharedPreferences.edit()
+            editor.putBoolean(prevStarted, java.lang.Boolean.TRUE)
+            editor.apply()
+        } else {
+            startActivity(Intent(this, ProfileActivity::class.java))
+            finish()
+
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

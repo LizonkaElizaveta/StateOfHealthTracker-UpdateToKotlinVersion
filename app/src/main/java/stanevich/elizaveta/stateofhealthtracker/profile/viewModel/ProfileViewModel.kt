@@ -25,13 +25,6 @@ class ProfileViewModel(
     val phone = MutableLiveData<String>()
     val birthday = MutableLiveData<String>()
 
-
-//    fun loadUser(){
-//        uiScope.launch {
-//            usersData.value = getUserFromDatabase()
-//        }
-//    }
-
     init {
         initializeUser()
     }
@@ -43,6 +36,7 @@ class ProfileViewModel(
             surname.value = usersData.value?.surname
             phone.value = usersData.value?.phone
             birthday.value = usersData.value?.birthday
+
 
             Log.d("mLog", "Insert ${usersData.value}")
         }
