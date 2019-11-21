@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.profile.fragments
+package stanevich.elizaveta.stateofhealthtracker.profile.viewModel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel

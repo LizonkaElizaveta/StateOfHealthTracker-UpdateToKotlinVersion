@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin">8dp</dimen>
+    <dimen name="margin_material_8">8dp</dimen>
+    <dimen name="margin_material_16">16</dimen>
+
+
     <dimen name="icon_size">64dp</dimen>
     <dimen name="title_text_size">20sp</dimen>
     <dimen name="triple_margin">48dp</dimen>
@@ -12,6 +15,7 @@
     <dimen name="btn_layout_height">60dp</dimen>
     <dimen name="tv_size_24">24sp</dimen>
     <dimen name="tv_size_18">18sp</dimen>
+    <dimen name="tv_size_16">16sp</dimen>
 
 
     <!--     TestFragment-->
@@ -28,11 +32,16 @@
     <!--    Profile Fragment-->
     <dimen name="profile_card_layout_height">65dp</dimen>
     <dimen name="profile_card_marginStart_marginEnd">24dp</dimen>
-    <dimen name="profile_card_marginTop">12dp</dimen>
     <dimen name="profile_card_corner">10dp</dimen>
     <dimen name="profile_border_layout_radius">9dp</dimen> // need to be smaller on 1 dp, than card_corner
-    <dimen name="profile_recyclerview_marginTop">48dp</dimen>
-    <dimen name="profile_image_marginTop">16dp</dimen>
+    <dimen name="profile_margin_48">48dp</dimen>
+    <dimen name="profile_margin_40">40dp</dimen>
+    <dimen name="profile_margin_32">32dp</dimen>
+    <dimen name="profile_margin_24">24dp</dimen>
+    <dimen name="profile_margin_16">16dp</dimen>
+    <dimen name="profile_margin_12">12dp</dimen>
+    <dimen name="profile_margin_8">8dp</dimen>
+    <dimen name="profile_text_size_12">12sp</dimen>
 
 
     <!--    SplashActivity-->

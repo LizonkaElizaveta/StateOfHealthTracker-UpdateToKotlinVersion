@@ -28,7 +28,7 @@
 
     <fragment
             android:id="@+id/nav_profile"
-            android:name="stanevich.elizaveta.stateofhealthtracker.profile.fragments.ProfileFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.profile.ProfileFragment"
             android:label="@string/menu_profile"
             tools:layout="@layout/fragment_profile" />
     <fragment

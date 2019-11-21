@@ -14,7 +14,7 @@
                 android:configChanges="orientation"
                 android:screenOrientation="portrait"/>
         <activity
-                android:name=".profile.ProfileFirstStartActivity"
+                android:name=".profile.ProfileActivity"
                 android:configChanges="orientation"
                 android:screenOrientation="portrait"/>
         <activity

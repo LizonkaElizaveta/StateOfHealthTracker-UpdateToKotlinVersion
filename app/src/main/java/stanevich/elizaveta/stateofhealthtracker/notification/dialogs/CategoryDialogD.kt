@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.MutableLiveData
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.databinding.CustomDialogCategoryBinding
+import stanevich.elizaveta.stateofhealthtracker.databinding.DialogCategoryBinding
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 
 class CategoryDialogD(
@@ -24,10 +24,10 @@ class CategoryDialogD(
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val binding: CustomDialogCategoryBinding =
+        val binding: DialogCategoryBinding =
             DataBindingUtil.inflate(
                 LayoutInflater.from(context),
-                R.layout.custom_dialog_category,
+                R.layout.dialog_category,
                 null,
                 false
             )
@@ -81,7 +81,7 @@ class CategoryDialogD(
 //        onStartTracking.invoke()
 //    }
 
-    private fun checkedRadioButtonListener(binding: CustomDialogCategoryBinding): RadioButton {
+    private fun checkedRadioButtonListener(binding: DialogCategoryBinding): RadioButton {
         selectedId = binding.radioCategory.checkedRadioButtonId
 
         val checked = resources.getResourceEntryName(selectedId)

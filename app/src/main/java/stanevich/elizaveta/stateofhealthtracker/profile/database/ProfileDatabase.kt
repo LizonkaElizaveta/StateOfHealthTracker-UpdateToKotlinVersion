@@ -5,10 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Profile::class], version = 2, exportSchema = false)
+@Database(entities = [Profile::class], version = 3, exportSchema = false)
 abstract class ProfileDatabase : RoomDatabase() {
 
-    abstract val statesDatabaseDao: ProfileDao
+    abstract val profileDatabaseDao: ProfileDao
 
     companion object {
 
@@ -26,7 +26,7 @@ abstract class ProfileDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         contex.applicationContext,
                         ProfileDatabase::class.java,
-                        "users_database_history"
+                        "profile_database_history"
                     ).fallbackToDestructiveMigration()
                         .build()
 

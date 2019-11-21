@@ -1,35 +1,23 @@
-package stanevich.elizaveta.stateofhealthtracker.profile.fragments
+package stanevich.elizaveta.stateofhealthtracker.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
-import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentProfileBinding
-import stanevich.elizaveta.stateofhealthtracker.profile.adapter.ProfileAdapter
-import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
 
 class ProfileFragment : Fragment() {
-
-    private val profileViewModel: ProfileViewModel by lazy {
-        ViewModelProviders.of(this).get(ProfileViewModel::class.java)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentProfileBinding.inflate(inflater)
-
-        binding.lifecycleOwner = this
-
-        binding.profileViewModel = profileViewModel
+//
+//        binding.lifecycleOwner = this
+//
+//        binding.profileViewModel = profileViewModel
 
 //        val application = requireNotNull(this.activity).application
 //

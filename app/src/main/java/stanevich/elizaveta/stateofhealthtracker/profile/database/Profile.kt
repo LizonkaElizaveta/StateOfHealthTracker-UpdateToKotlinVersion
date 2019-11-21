@@ -10,11 +10,14 @@ data class Profile(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0L,
 
-    @ColumnInfo(name = "userName")
-    var userName: String = "",
+    @ColumnInfo(name = "name")
+    var name: String = "",
 
-    @ColumnInfo(name = "email")
-    var email: String = "",
+    @ColumnInfo(name = "surname")
+    var surname: String = "",
+
+    @ColumnInfo(name = "birthday")
+    var birthday: String = "",
 
     @ColumnInfo(name = "phone")
     var phone: String = ""

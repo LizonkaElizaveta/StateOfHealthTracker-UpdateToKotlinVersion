@@ -12,7 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.MutableLiveData
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.databinding.CustomDialogMedicationBinding
+import stanevich.elizaveta.stateofhealthtracker.databinding.DialogDateAndTimeBinding
 import stanevich.elizaveta.stateofhealthtracker.home.database.States
 import stanevich.elizaveta.stateofhealthtracker.utils.getDate
 import stanevich.elizaveta.stateofhealthtracker.utils.getDateTimeValue
@@ -24,10 +24,10 @@ class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : Di
     private lateinit var etTime: EditText
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val binding: CustomDialogMedicationBinding =
+        val binding: DialogDateAndTimeBinding =
             DataBindingUtil.inflate(
                 LayoutInflater.from(context),
-                R.layout.custom_dialog_medication,
+                R.layout.dialog_date_and_time,
                 null,
                 false
             )
