@@ -70,6 +70,7 @@ class ProfileViewModel(
         uiScope.launch {
             withContext(Dispatchers.IO) {
                 database.upsert(usersData.value!!)
+                usersData.postValue(usersData.value)
                 Log.d("mLog", usersData.value.toString())
             }
         }

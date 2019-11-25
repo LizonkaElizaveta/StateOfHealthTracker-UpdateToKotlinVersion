@@ -10,7 +10,7 @@
                 android:id="@+id/tutorial_anim_welcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/image_button_bad"
+                android:src="@drawable/tutorial_image_welcome"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

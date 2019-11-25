@@ -71,7 +71,7 @@
     <string name="tutorial_title_test">Тесты!</string>
     <string name="tutorial_title_profile">Заполните профиль!</string>
     <string name="tutorial_title_notification">Все успеть!</string>
-    <string name="tutorial_description_welcome">Это трекер здоровья, который помогает нам отслеживать ваше самочувствие и вовремя реагировать на изменения</string>
+    <string name="tutorial_description_welcome">Трекер, который помогает отслеживать самочувствие и вовремя реагировать на изменения</string>
     <string name="tutorial_description_test">Играйте,чтобы увеличить точность получаемых данных</string>
     <string name="tutorial_description_profile">Информация является конфиденциальной</string>
     <string name="tutorial_description_notification">Заполните график один раз и больше не беспокойтесь</string>
