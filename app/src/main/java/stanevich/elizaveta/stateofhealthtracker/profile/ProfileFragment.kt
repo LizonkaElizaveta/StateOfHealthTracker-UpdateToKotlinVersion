@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentProfileBinding
 import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
@@ -35,6 +37,14 @@ class ProfileFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.profileViewModel = profileViewModel
+
+
+        binding.btnSave.setOnClickListener { view: View ->
+            profileViewModel.saveUserData()
+            Navigation.findNavController(view)
+                .navigate(R.id.action_nav_profile_to_nav_home)
+        }
+
 
         return binding.root
     }

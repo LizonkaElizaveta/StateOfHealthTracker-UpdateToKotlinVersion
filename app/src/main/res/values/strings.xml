@@ -70,7 +70,7 @@
     <string name="tutorial_title_home">Ведите дневник!</string>
     <string name="tutorial_title_test">Тесты!</string>
     <string name="tutorial_title_profile">Заполните профиль!</string>
-    <string name="tutorial_title_notification">Все успеть!</string>
+    <string name="tutorial_title_notification">Всё успеть!</string>
     <string name="tutorial_description_welcome">Трекер, который помогает отслеживать самочувствие и вовремя реагировать на изменения</string>
     <string name="tutorial_description_test">Играйте,чтобы увеличить точность получаемых данных</string>
     <string name="tutorial_description_profile">Информация является конфиденциальной</string>

@@ -142,7 +142,6 @@
                 android:id="@+id/btn_save"
                 style="@style/MyButtonStyle"
                 android:layout_width="@dimen/btn_save_layout_width"
-                android:onClick="@{() -> profileViewModel.saveUserData()}"
                 android:text="@string/text_save"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
