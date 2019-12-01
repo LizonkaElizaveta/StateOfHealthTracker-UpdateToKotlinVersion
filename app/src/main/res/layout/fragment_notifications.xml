@@ -7,14 +7,14 @@
 
         <variable
                 name="notificationsViewModel"
-                type="stanevich.elizaveta.stateofhealthtracker.notification.notification_fragment.NotificationsViewModel" />
+                type="stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="?attr/actionBarSize"
-            tools:context=".notification.notification_fragment.NotificationsFragment">
+            tools:context=".notification.NotificationsFragment">
 
 
         <androidx.recyclerview.widget.RecyclerView

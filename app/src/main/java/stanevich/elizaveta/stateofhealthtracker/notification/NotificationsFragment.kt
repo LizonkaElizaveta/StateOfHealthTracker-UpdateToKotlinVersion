@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.notification.notification_fragment
+package stanevich.elizaveta.stateofhealthtracker.notification
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,8 @@ import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotificationsBinding
 import stanevich.elizaveta.stateofhealthtracker.notification.adapter.NotificationsAdapter
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabase
+import stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsViewModel
+import stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsViewModelFactory
 
 class NotificationsFragment : Fragment() {
 
@@ -34,7 +36,10 @@ class NotificationsFragment : Fragment() {
 
         val dataSource = NotificationsDatabase.getInstance(application).notificationsDatabaseDao
 
-        val viewModelFactory = NotificationsViewModelFactory(dataSource)
+        val viewModelFactory =
+            NotificationsViewModelFactory(
+                dataSource
+            )
 
         val notificationsViewModel =
             ViewModelProviders.of(this, viewModelFactory)

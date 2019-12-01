@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.notification.notification_fragment
+package stanevich.elizaveta.stateofhealthtracker.notification.viewModel
 
 import androidx.lifecycle.ViewModel
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao

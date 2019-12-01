@@ -6,7 +6,7 @@
 
         <variable
                 name="notificationsSettingsViewModel"
-                type="stanevich.elizaveta.stateofhealthtracker.notification.notifications_settings_fragment.NotificationsSettingsViewModel" />
+                type="stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsSettingsViewModel" />
     </data>
 
 

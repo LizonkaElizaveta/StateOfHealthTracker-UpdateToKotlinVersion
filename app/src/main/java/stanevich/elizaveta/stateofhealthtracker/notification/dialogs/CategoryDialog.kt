@@ -13,7 +13,7 @@ import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.DialogCategoryBinding
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 
-class CategoryDialogD(
+class CategoryDialog(
     private val tonightNotification: MutableLiveData<Notifications?>,
     private val categoryText: TextView
 ) : DialogFragment() {

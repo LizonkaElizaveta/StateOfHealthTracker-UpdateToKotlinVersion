@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.notification.notifications_settings_fragment
+package stanevich.elizaveta.stateofhealthtracker.notification.viewModel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.notification.notifications_settings_fragment
+package stanevich.elizaveta.stateofhealthtracker.notification
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -16,7 +16,9 @@ import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotification
 import stanevich.elizaveta.stateofhealthtracker.dialogs.DatePickerFragment
 import stanevich.elizaveta.stateofhealthtracker.dialogs.TimePickerFragment
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabase
-import stanevich.elizaveta.stateofhealthtracker.notification.dialogs.CategoryDialogD
+import stanevich.elizaveta.stateofhealthtracker.notification.dialogs.CategoryDialog
+import stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsSettingsViewModel
+import stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsSettingsViewModelFactory
 import stanevich.elizaveta.stateofhealthtracker.utils.getFullDate
 import stanevich.elizaveta.stateofhealthtracker.utils.getTime
 
@@ -58,7 +60,7 @@ class NotificationSettingsFragment : Fragment() {
         notificationsSettingsViewModel.showNotDialogCategory.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 fragmentManager?.let { it1 ->
-                    CategoryDialogD(
+                    CategoryDialog(
                         notificationsSettingsViewModel.tonightNotification,
                         tvCategory
                     ).show(

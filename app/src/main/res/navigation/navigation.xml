@@ -12,7 +12,7 @@
 
     <fragment
             android:id="@+id/nav_notifications"
-            android:name="stanevich.elizaveta.stateofhealthtracker.notification.notification_fragment.NotificationsFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.notification.NotificationsFragment"
             android:label="@string/menu_notifications"
             tools:layout="@layout/fragment_notifications">
         <action
@@ -36,7 +36,7 @@
             tools:layout="@layout/fragment_test" />
     <fragment
             android:id="@+id/notificationSettingsFragment"
-            android:name="stanevich.elizaveta.stateofhealthtracker.notification.notifications_settings_fragment.NotificationSettingsFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.notification.NotificationSettingsFragment"
             android:icon="@drawable/ic_close"
             android:label="\ "
             app:navigationIcon="@drawable/ic_close">

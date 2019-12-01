@@ -17,13 +17,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <!--        app:notificationImage="@{notification}"-->
+        <ImageView
                 android:id="@+id/ivNotification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_material_8"
-                android:backgroundTint="@color/colorPrimary"
-                android:src="@drawable/ic_notification_doctor"
+                android:layout_marginStart="@dimen/notification_margin_16"
+                android:layout_marginTop="@dimen/notification_margin_8"
+                android:layout_marginBottom="@dimen/notification_margin_8"
+                android:src="@drawable/icon_doctor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -32,23 +34,24 @@
                 android:id="@+id/tvCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_material_8"
+                android:layout_marginStart="@dimen/notification_margin_8"
                 android:textColor="@color/MainTextColor"
-                android:textSize="@dimen/text_recycler_category_size"
+                android:textSize="@dimen/notification_tv_size_16"
                 app:layout_constraintBottom_toTopOf="@id/tvNotificationDate"
                 app:layout_constraintStart_toEndOf="@+id/ivNotification"
                 app:layout_constraintTop_toTopOf="@+id/ivNotification"
-                app:notificationTime="@{notification}"
+                app:notificationCategory="@{notification}"
                 tools:text="Прием у врача" />
 
         <TextView
                 android:id="@+id/tvNotificationDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/notification_tv_size_14"
                 app:layout_constraintBottom_toBottomOf="@id/ivNotification"
                 app:layout_constraintStart_toStartOf="@+id/tvCategory"
                 app:layout_constraintTop_toBottomOf="@+id/tvCategory"
-                app:notificationCategory="@{notification}"
+                app:notificationTime="@{notification}"
                 tools:text="Ежедневно в 14:30" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

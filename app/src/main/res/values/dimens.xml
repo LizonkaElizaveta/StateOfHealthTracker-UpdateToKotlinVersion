@@ -33,7 +33,8 @@
     <dimen name="profile_card_layout_height">65dp</dimen>
     <dimen name="profile_card_marginStart_marginEnd">24dp</dimen>
     <dimen name="profile_card_corner">10dp</dimen>
-    <dimen name="profile_border_layout_radius">9dp</dimen> // need to be smaller on 1 dp, than card_corner
+    <dimen name="profile_border_layout_radius">9dp</dimen>
+    // need to be smaller on 1 dp, than card_corner
     <dimen name="profile_margin_48">48dp</dimen>
     <dimen name="profile_margin_40">40dp</dimen>
     <dimen name="profile_margin_32">32dp</dimen>
@@ -77,6 +78,10 @@
     <dimen name="dialog_conf_margin_48">48dp</dimen>
     <dimen name="dialog_conf_tv_size_18">18sp</dimen>
 
-
+    <!--    NotificationFragment-->
+    <dimen name="notification_margin_16">16dp</dimen>
+    <dimen name="notification_margin_8">8dp</dimen>
+    <dimen name="notification_tv_size_16">16sp</dimen>
+    <dimen name="notification_tv_size_14">14sp</dimen>
 
 </resources>

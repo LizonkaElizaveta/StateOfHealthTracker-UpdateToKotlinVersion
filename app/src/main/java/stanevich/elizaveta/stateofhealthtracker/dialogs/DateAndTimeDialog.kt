@@ -19,7 +19,7 @@ import stanevich.elizaveta.stateofhealthtracker.utils.getDateTimeValue
 import stanevich.elizaveta.stateofhealthtracker.utils.getTime
 import java.util.*
 
-class MedicationDialog(private val stateOfHealth: MutableLiveData<States?>) : DialogFragment() {
+class DateAndTimeDialog(private val stateOfHealth: MutableLiveData<States?>) : DialogFragment() {
     private lateinit var etDate: EditText
     private lateinit var etTime: EditText
 

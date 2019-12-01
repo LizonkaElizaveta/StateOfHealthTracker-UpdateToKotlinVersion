@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentStatesBinding
-import stanevich.elizaveta.stateofhealthtracker.dialogs.MedicationDialog
+import stanevich.elizaveta.stateofhealthtracker.dialogs.DateAndTimeDialog
 import stanevich.elizaveta.stateofhealthtracker.dialogs.ConfirmationSaveResultDialog
 import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabase
 
@@ -50,7 +50,7 @@ class StatesFragment : Fragment() {
         statesViewModel.showMedDialogEvent.observe(this, Observer<Boolean> {
             if (it == true) {
                 fragmentManager?.let { it1 ->
-                    MedicationDialog(statesViewModel.updatedStateOfHealth).show(
+                    DateAndTimeDialog(statesViewModel.updatedStateOfHealth).show(
                         it1,
                         "MedicationDialog"
                     )
