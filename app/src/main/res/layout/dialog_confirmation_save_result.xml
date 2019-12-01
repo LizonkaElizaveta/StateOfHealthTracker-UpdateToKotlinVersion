@@ -23,7 +23,7 @@
                 android:layout_marginTop="@dimen/dialog_conf_margin_18"
                 android:layout_marginBottom="@dimen/dialog_conf_margin_24"
                 android:gravity="center"
-                android:text="@string/dialogText_thanks"
+                android:text="@string/dialog_text_confirmation_save_result"
                 android:textColor="@color/MainTextColor"
                 android:textSize="@dimen/dialog_conf_tv_size_18"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentProfileBinding
+import stanevich.elizaveta.stateofhealthtracker.dialogs.ConfirmationSaveDataDialog
 import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModel
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModelFactory
@@ -22,7 +21,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding: FragmentProfileBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_profile,container,false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
 
         val application = requireNotNull(this.activity).application
 
@@ -38,11 +37,9 @@ class ProfileFragment : Fragment() {
 
         binding.profileViewModel = profileViewModel
 
-
-        binding.btnSave.setOnClickListener { view: View ->
+        binding.btnSave.setOnClickListener {
+            fragmentManager?.let { ConfirmationSaveDataDialog().show(it, "ThanksDialog") }
             profileViewModel.saveUserData()
-            Navigation.findNavController(view)
-                .navigate(R.id.action_nav_profile_to_nav_home)
         }
 
 

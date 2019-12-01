@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentStatesBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.MedicationDialog
-import stanevich.elizaveta.stateofhealthtracker.dialogs.ConfirmationDialog
+import stanevich.elizaveta.stateofhealthtracker.dialogs.ConfirmationSaveResultDialog
 import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabase
 
 class StatesFragment : Fragment() {
@@ -41,7 +41,7 @@ class StatesFragment : Fragment() {
 
         statesViewModel.showThanksDialogEvent.observe(this, Observer<Boolean> {
             if (it == true) {
-                fragmentManager?.let { it1 -> ConfirmationDialog().show(it1, "ThanksDialog") }
+                fragmentManager?.let { it1 -> ConfirmationSaveResultDialog().show(it1, "ThanksDialog") }
                 statesViewModel.doneShowingThanksDialog()
             }
 
