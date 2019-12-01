@@ -10,9 +10,9 @@ fun ImageView.setStatesImage(item: States?) {
     item?.let {
         setImageResource(
             when (item.statesMood) {
-                "+" -> R.drawable.image_button_excellent_full
-                "-" -> R.drawable.image_button_satisfactorily_full
-                else -> R.drawable.image_button_bad_full
+                "+" -> R.drawable.home_smile_excellent_full
+                "-" -> R.drawable.home_smile_satisfactorily_full
+                else -> R.drawable.home_smile_bad_full
             }
         )
     }

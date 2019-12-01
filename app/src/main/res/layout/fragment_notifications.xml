@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fab_margin"
                 android:backgroundTint="@color/BackgroundTintWhite"
-                android:src="@drawable/ic_plus"
+                android:src="@drawable/fab_ic_plus"
                 app:borderWidth="@dimen/fab_border"
                 app:elevation="@dimen/fab_elevation"
                 app:fabSize="normal"

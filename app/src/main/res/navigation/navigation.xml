@@ -37,9 +37,7 @@
     <fragment
             android:id="@+id/notificationSettingsFragment"
             android:name="stanevich.elizaveta.stateofhealthtracker.notification.NotificationSettingsFragment"
-            android:icon="@drawable/ic_close"
-            android:label="\ "
-            app:navigationIcon="@drawable/ic_close">
+            android:label="\ ">
         <action
                 android:id="@+id/action_notificationSettingsFragment_to_nav_notifications"
                 app:destination="@id/nav_notifications" />

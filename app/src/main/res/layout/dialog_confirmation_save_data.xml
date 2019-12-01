@@ -11,7 +11,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dialog_conf_margin_48"
-                android:src="@drawable/icon_check_circle"
+                android:src="@drawable/dialog_ic_check_circle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

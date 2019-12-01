@@ -19,8 +19,10 @@ import stanevich.elizaveta.stateofhealthtracker.notification.database.Notificati
 import stanevich.elizaveta.stateofhealthtracker.notification.dialogs.CategoryDialog
 import stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsSettingsViewModel
 import stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsSettingsViewModelFactory
+import stanevich.elizaveta.stateofhealthtracker.utils.getDate
 import stanevich.elizaveta.stateofhealthtracker.utils.getFullDate
 import stanevich.elizaveta.stateofhealthtracker.utils.getTime
+import java.util.*
 
 class NotificationSettingsFragment : Fragment() {
 
@@ -42,6 +44,11 @@ class NotificationSettingsFragment : Fragment() {
         val dataSource = NotificationsDatabase.getInstance(application).notificationsDatabaseDao
 
         binding.lifecycleOwner = this
+
+        binding.apply {
+            textDay.text = getFullDate(Calendar.getInstance().timeInMillis)
+            textTime.text = getTime(Calendar.getInstance().timeInMillis)
+        }
 
         val viewModelFactory =
             NotificationsSettingsViewModelFactory(
