@@ -6,11 +6,11 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import stanevich.elizaveta.stateofhealthtracker.R
 
-class ThanksDialog : DialogFragment() {
+class ConfirmationDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(context!!)
-            .setMessage(R.string.dialogText_thanks)
+            .setView(R.layout.dialog_confirmation)
             .setPositiveButton(R.string.btn_ok) { _, _ ->
                 dialog!!.dismiss()
             }
