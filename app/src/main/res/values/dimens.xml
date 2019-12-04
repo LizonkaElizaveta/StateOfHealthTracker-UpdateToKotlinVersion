@@ -79,7 +79,7 @@
     <dimen name="dialog_conf_tv_size_18">18sp</dimen>
 
     <!--    NotificationFragment-->
-    <dimen name="notification_margin_16">16dp</dimen>
+    <dimen name="notification_margin_17">17dp</dimen>
     <dimen name="notification_margin_8">8dp</dimen>
     <dimen name="notification_tv_size_16">16sp</dimen>
     <dimen name="notification_tv_size_14">14sp</dimen>

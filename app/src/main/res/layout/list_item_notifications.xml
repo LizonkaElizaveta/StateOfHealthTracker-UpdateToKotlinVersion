@@ -22,7 +22,7 @@
                 android:id="@+id/ivNotification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/notification_margin_16"
+                android:layout_marginStart="@dimen/notification_margin_17"
                 android:layout_marginTop="@dimen/notification_margin_8"
                 android:layout_marginBottom="@dimen/notification_margin_8"
                 android:src="@drawable/notification_ic_doctor"

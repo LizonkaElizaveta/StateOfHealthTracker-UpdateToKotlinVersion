@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="@dimen/icons_days_size"
+        android:height="@dimen/icons_days_size"
+        android:viewportWidth="26"
+        android:viewportHeight="26">
+    <path
+            android:fillColor="@color/colorPrimary"
+            android:pathData="M3,1L23,1A2,2 0,0 1,25 3L25,23A2,2 0,0 1,23 25L3,25A2,2 0,0 1,1 23L1,3A2,2 0,0 1,3 1z"
+            android:strokeWidth="@dimen/icons_days_stroke"
+            android:strokeColor="@color/colorPrimary" />
+    <path
+            android:fillColor="#ffffff"
+            android:pathData="M11.3468,18H9.6241V9.4414H5.2423V18H3.5196V8.0469H11.3468V18ZM21.5009,18H19.7782V13.5771H15.328V18H13.5986V8.0469H15.328V12.1895H19.7782V8.0469H21.5009V18Z" />
+</vector>

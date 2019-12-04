@@ -88,7 +88,7 @@
 
     <!--    RadioButton Style-->
     <style name="MyRadioButtonStyle" parent="@android:style/Widget.CompoundButton.RadioButton">
-        <item name="android:button">@drawable/dialog_selector</item>
+        <item name="android:button">@drawable/selector_dialog</item>
     </style>
 
     <!--    Switch Style-->
