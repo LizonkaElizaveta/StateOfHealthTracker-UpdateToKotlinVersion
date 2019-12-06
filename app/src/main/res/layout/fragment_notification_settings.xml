@@ -119,7 +119,8 @@
                 app:layout_constraintEnd_toEndOf="@id/text_time"
                 app:layout_constraintTop_toTopOf="@id/text_toggle" />
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/checkbox_list"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -128,56 +129,9 @@
                 app:layout_constraintStart_toStartOf="@id/text_toggle"
                 app:layout_constraintTop_toBottomOf="@id/text_toggle">
 
-            <CheckBox
-                    android:id="@+id/ch_monday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
-                    android:button="@drawable/notification_settings_ic_monday" />
 
-            <CheckBox
-                    android:id="@+id/ch_tuesday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
-                    android:button="@drawable/notification_settings_ic_tuesday" />
 
-            <CheckBox
-                    android:id="@+id/ch_wednesday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
-                    android:button="@drawable/notification_settings_ic_wednesday" />
-
-            <CheckBox
-                    android:id="@+id/ch_thursday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
-                    android:button="@drawable/notification_settings_ic_thursday" />
-
-            <CheckBox
-                    android:id="@+id/ch_friday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
-                    android:button="@drawable/notification_settings_ic_friday" />
-
-            <CheckBox
-                    android:id="@+id/ch_saturday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
-                    android:button="@drawable/notification_settings_ic_saturday" />
-
-            <CheckBox
-                    android:id="@+id/ch_sunday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/icons_days_marginEnd"
-                    android:button="@drawable/notification_settings_ic_sunday" />
-
-        </LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <Button
                 android:id="@+id/btn_save"
