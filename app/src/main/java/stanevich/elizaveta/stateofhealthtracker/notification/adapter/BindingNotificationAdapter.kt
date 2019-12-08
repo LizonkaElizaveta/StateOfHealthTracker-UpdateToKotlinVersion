@@ -1,10 +1,12 @@
 package stanevich.elizaveta.stateofhealthtracker.notification.adapter
 
-import android.widget.ImageView
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
+import stanevich.elizaveta.stateofhealthtracker.notification.model.CheckBoxModel
 
 @BindingAdapter("notificationCategory")
 fun TextView.setNotificationCategory(item: Notifications?) {
@@ -20,16 +22,15 @@ fun TextView.setNotificationTime(item: Notifications?) {
     }
 }
 
-//@BindingAdapter("btnCheck")
-//fun ImageView.setBtnCheck(imageView: ImageView, drawableLink: String) {
-//    val drawableField = R.drawable::class.java.getDeclaredField(drawableLink)
-//    val drawableId = drawableField.getInt(drawableField)
-//    imageView.setImageDrawable(imageView.context.getDrawable(drawableId))
-//}
-//
-//@BindingAdapter("btnUncheck")
-//fun ImageView.setBtnUncheck(imageView: ImageView, drawableLink: String) {
-//    val drawableField = R.drawable::class.java.getDeclaredField(drawableLink)
-//    val drawableId = drawableField.getInt(drawableField)
-//    imageView.setImageDrawable(imageView.context.getDrawable(drawableId))
-//}
+@BindingAdapter("btnDrawable")
+fun setBtnDrawable(checkBox: CheckBox, drawableLink: String) {
+    val drawableField = R.drawable::class.java.getDeclaredField(drawableLink)
+    val drawableId = drawableField.getInt(drawableField)
+    checkBox.buttonDrawable = checkBox.context.getDrawable(drawableId)
+}
+
+@BindingAdapter("checkBoxListData")
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<CheckBoxModel>?) {
+    val adapter = recyclerView.adapter as CheckBoxModelAdapter
+    adapter.submitList(data)
+}

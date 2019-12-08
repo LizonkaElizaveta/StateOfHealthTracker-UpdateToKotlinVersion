@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -16,8 +17,9 @@
                 android:id="@+id/ch_days_of_week"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/icons_days_marginEnd"
-                android:button="@drawable/notification_settings_ic_monday"
+                android:paddingEnd="@dimen/icons_days_marginEnd"
+                app:btnDrawable="@{daysOfWeek.btnDrawable}"
+                tools:button="@drawable/notification_settings_ic_monday"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

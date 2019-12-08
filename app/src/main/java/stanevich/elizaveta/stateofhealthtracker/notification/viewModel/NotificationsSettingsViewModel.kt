@@ -5,10 +5,13 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.notification.adapter.OnStartTracking
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao
+import stanevich.elizaveta.stateofhealthtracker.notification.model.CheckBoxModel
+import stanevich.elizaveta.stateofhealthtracker.notification.model.populateData
 
 class NotificationsSettingsViewModel(
     private val database: NotificationsDatabaseDao,
@@ -28,6 +31,22 @@ class NotificationsSettingsViewModel(
     var tonightNotification = MutableLiveData<Notifications?>()
 
     val notifications = database.getAllNotifications()
+
+    private val _data = MutableLiveData<List<CheckBoxModel>>()
+
+    val data: LiveData<List<CheckBoxModel>>
+        get() = _data
+
+    init {
+        val checkBoxDrawable = populateData()
+        viewModelScope.launch {
+            initialize(checkBoxDrawable)
+        }
+    }
+
+    private fun initialize(tests: List<CheckBoxModel>) {
+        this._data.value = tests
+    }
 
 
     private var _showNotDialogCategory = MutableLiveData<Boolean>(false)

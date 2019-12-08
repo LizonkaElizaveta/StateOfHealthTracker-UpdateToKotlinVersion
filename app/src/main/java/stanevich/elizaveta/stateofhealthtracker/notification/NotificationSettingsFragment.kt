@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -15,6 +16,8 @@ import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotificationSettingsBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.DatePickerFragment
 import stanevich.elizaveta.stateofhealthtracker.dialogs.TimePickerFragment
+import stanevich.elizaveta.stateofhealthtracker.notification.adapter.CheckBoxModelAdapter
+import stanevich.elizaveta.stateofhealthtracker.notification.adapter.NotificationsAdapter
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabase
 import stanevich.elizaveta.stateofhealthtracker.notification.dialogs.CategoryDialog
 import stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsSettingsViewModel
@@ -107,6 +110,8 @@ class NotificationSettingsFragment : Fragment() {
             }
         })
 
+        val adapter = CheckBoxModelAdapter()
+        binding.checkboxList.adapter = adapter
         return binding.root
     }
 
