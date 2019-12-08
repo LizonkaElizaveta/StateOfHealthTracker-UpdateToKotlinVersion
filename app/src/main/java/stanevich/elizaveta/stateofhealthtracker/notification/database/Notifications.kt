@@ -12,10 +12,37 @@ data class Notifications(
     @ColumnInfo(name = "time")
     var notificationsTime: String = "",
 
-    @ColumnInfo(name = "text")
-    var notificationsText: String = "",
+    @ColumnInfo(name = "category")
+    var notificationsCategory: String = "",
+
+    @ColumnInfo(name = "date")
+    var notificationsDate: String = "",
 
     @ColumnInfo(name = "repeat")
-    var notificationRepeat: String = ""
+    var notificationRepeat: BooleanArray = BooleanArray(7){false}
 
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Notifications
+
+        if (notificatiionsId != other.notificatiionsId) return false
+        if (notificationsTime != other.notificationsTime) return false
+        if (notificationsCategory != other.notificationsCategory) return false
+        if (notificationsDate != other.notificationsDate) return false
+        if (!notificationRepeat.contentEquals(other.notificationRepeat)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = notificatiionsId.hashCode()
+        result = 31 * result + notificationsTime.hashCode()
+        result = 31 * result + notificationsCategory.hashCode()
+        result = 31 * result + notificationsDate.hashCode()
+        result = 31 * result + notificationRepeat.contentHashCode()
+        return result
+    }
+}

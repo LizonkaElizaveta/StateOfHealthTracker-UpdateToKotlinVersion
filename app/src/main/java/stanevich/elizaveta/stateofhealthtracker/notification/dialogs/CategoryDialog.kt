@@ -41,22 +41,9 @@ class CategoryDialog(
                 val checked = checkedRadioButtonListener(binding)
 
                 val notification = tonightNotification.value!!
-                notification.notificationsText = checked.text.toString()
-                categoryText.text = notification.notificationsText
+                notification.notificationsCategory = checked.text.toString()
+                categoryText.text = notification.notificationsCategory
                 dialog!!.dismiss()
-
-//                fragmentManager?.let {
-//                    TimePickerFragment(
-//                        TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-//                            val calendar =
-//                                TimePickerFragment.getCalendarTime(
-//                                    hourOfDay,
-//                                    minute
-//                                )
-//                            postValue(calendar, notification)
-//                        }).show(it, "TimePickerDialog")
-//                }
-//                onStartTracking.invoke()
 
             }
 
@@ -68,18 +55,6 @@ class CategoryDialog(
 
         return builder.create()
     }
-
-//    private fun postValue(
-//        calendar: Calendar,
-//        notification: Notifications
-//    ) {
-//        val time = getTime(calendar.timeInMillis)
-//        notification.notificationsTime = time
-//        // tonightNotification.postValue(notification)
-//        Log.d("mLog", "From Dialog " + tonightNotification.value.toString())
-//        Log.d("mLog", "From Dialog " + tonightNotification.value.toString())
-//        onStartTracking.invoke()
-//    }
 
     private fun checkedRadioButtonListener(binding: DialogCategoryBinding): RadioButton {
         selectedId = binding.radioCategory.checkedRadioButtonId

@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import stanevich.elizaveta.stateofhealthtracker.utils.IntArrayListConverter
 
-@Database(entities = [Notifications::class], version = 3, exportSchema = false)
+@Database(entities = [Notifications::class], version = 4, exportSchema = false)
+@TypeConverters(IntArrayListConverter::class)
 abstract class NotificationsDatabase:RoomDatabase(){
 
     abstract val notificationsDatabaseDao: NotificationsDatabaseDao

@@ -11,7 +11,7 @@ import stanevich.elizaveta.stateofhealthtracker.notification.model.CheckBoxModel
 @BindingAdapter("notificationCategory")
 fun TextView.setNotificationCategory(item: Notifications?) {
     item?.let {
-        text = item.notificationsText
+        text = item.notificationsCategory
     }
 }
 

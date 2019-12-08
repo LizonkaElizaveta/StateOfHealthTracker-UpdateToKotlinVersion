@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotificationSettingsBinding
-import stanevich.elizaveta.stateofhealthtracker.databinding.ListItemNotificationsDayOfWeekBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.DatePickerFragment
 import stanevich.elizaveta.stateofhealthtracker.dialogs.TimePickerFragment
 import stanevich.elizaveta.stateofhealthtracker.notification.adapter.CheckBoxModelAdapter
@@ -45,12 +44,6 @@ class NotificationSettingsFragment : Fragment() {
             false
         )
 
-        val bindingCheckBox: ListItemNotificationsDayOfWeekBinding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.list_item_notifications_day_of_week,
-            container,
-            false
-        )
         val application = requireNotNull(this.activity).application
 
         val dataSource = NotificationsDatabase.getInstance(application).notificationsDatabaseDao
@@ -58,8 +51,8 @@ class NotificationSettingsFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.apply {
-            textDay.text = getFullDate(Calendar.getInstance().timeInMillis)
-            textTime.text = getTime(Calendar.getInstance().timeInMillis)
+            tvDay.text = getFullDate(Calendar.getInstance().timeInMillis)
+            tvTime.text = getTime(Calendar.getInstance().timeInMillis)
         }
 
         val viewModelFactory =
@@ -76,7 +69,6 @@ class NotificationSettingsFragment : Fragment() {
         tvCategory = binding.tvCategory
 
         binding.notificationsSettingsViewModel = notificationsSettingsViewModel
-        bindingCheckBox.daysViewModel = notificationsSettingsViewModel
 
         notificationsSettingsViewModel.showNotDialogCategory.observe(viewLifecycleOwner, Observer {
             if (it == true) {
@@ -100,7 +92,7 @@ class NotificationSettingsFragment : Fragment() {
                     DatePickerFragment(DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                         val calendar =
                             DatePickerFragment.getCalendarDate(year, monthOfYear, dayOfMonth)
-                        binding.textDay.text = getFullDate(calendar.timeInMillis)
+                        binding.tvDay.text = getFullDate(calendar.timeInMillis)
                     }).show(it, "DatePicker")
                 }
 
@@ -113,7 +105,7 @@ class NotificationSettingsFragment : Fragment() {
                 fragmentManager?.let { it ->
                     TimePickerFragment(TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
                         val calendar = TimePickerFragment.getCalendarTime(hourOfDay, minute)
-                        binding.textTime.text = (getTime(calendar.timeInMillis))
+                        binding.tvTime.text = (getTime(calendar.timeInMillis))
                     }).show(it, "TimePicker")
                 }
 
@@ -142,6 +134,20 @@ class NotificationSettingsFragment : Fragment() {
             }
         }
 
+        binding.apply {
+            btnSave.setOnClickListener {
+                val category = tvCategory.text.toString()
+                val date = tvDay.text.toString()
+                val time = tvTime.text.toString()
+                val repeat = BooleanArray(7)
+                for (i in 0 until (checkboxList.adapter?.itemCount ?: 7)) {
+                    repeat[i] =
+                        (checkboxList[i].findViewById(R.id.ch_days_of_week) as CheckBox).isChecked
+                }
+
+                notificationsSettingsViewModel.onStartTracking(category, date, time, repeat)
+            }
+        }
         return binding.root
     }
 

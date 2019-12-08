@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
-import stanevich.elizaveta.stateofhealthtracker.notification.adapter.OnStartTracking
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.notification.model.CheckBoxModel
@@ -16,28 +15,33 @@ import stanevich.elizaveta.stateofhealthtracker.notification.model.populateData
 class NotificationsSettingsViewModel(
     private val database: NotificationsDatabaseDao,
     application: Application
-) : AndroidViewModel(application),
-    OnStartTracking {
+) : AndroidViewModel(application) {
 
     private var viewModelJob = Job()
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
-
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    var tonightNotification = MutableLiveData<Notifications?>()
 
+    var tonightNotification = MutableLiveData<Notifications?>()
     val notifications = database.getAllNotifications()
 
     private val _checkBox = MutableLiveData<List<CheckBoxModel>>()
-
     val checkBox: LiveData<List<CheckBoxModel>>
         get() = _checkBox
 
+    private var _showNotDialogCategory = MutableLiveData<Boolean>(false)
+    val showNotDialogCategory: LiveData<Boolean>
+        get() = _showNotDialogCategory
+
+    private var _showNotDialogTime = MutableLiveData<Boolean>(false)
+    val showNotDialogTime: LiveData<Boolean>
+        get() = _showNotDialogTime
+
+    private var _showNotDialogDate = MutableLiveData<Boolean>(false)
+    val showNotDialogDate: LiveData<Boolean>
+        get() = _showNotDialogDate
+
     init {
+        initializeNotification()
         val checkBoxDrawable = populateData()
         viewModelScope.launch {
             initialize(checkBoxDrawable)
@@ -48,69 +52,36 @@ class NotificationsSettingsViewModel(
         this._checkBox.value = checkboxes
     }
 
-
-    private var _showNotDialogCategory = MutableLiveData<Boolean>(false)
-    private var _showNotDialogTime = MutableLiveData<Boolean>(false)
-    private var _showNotDialogDate = MutableLiveData<Boolean>(false)
-    private var _switchState = MutableLiveData<Boolean>(false)
-
-    val showNotDialogTime: LiveData<Boolean>
-        get() = _showNotDialogTime
-
-    val showNotDialogCategory: LiveData<Boolean>
-        get() = _showNotDialogCategory
-
-    val showNotDialogDate: LiveData<Boolean>
-        get() = _showNotDialogDate
-
-    val switchState: LiveData<Boolean>
-        get() = _switchState
-
-
-    fun doneShowingNotDialogCategory() {
-        _showNotDialogCategory.value = false
-    }
-
-    fun doneShowingNotDialogTime() {
-        _showNotDialogTime.value = false
-    }
-
-    fun doneShowingNotDialogDate() {
-        _showNotDialogDate.value = false
-    }
-
-
-    init {
-        initializeNotification()
-    }
-
     private fun initializeNotification() {
         uiScope.launch {
             tonightNotification.value =
                 Notifications()
-
         }
     }
 
-    private suspend fun getNotFromDatabase(): Notifications? {
+    private suspend fun getNotFromDatabase(): Notifications {
         return withContext(Dispatchers.IO) {
-            database.getLastNotification()
+            database.getLastNotification() ?: Notifications()
         }
     }
 
-    override fun startTracking() {
+    fun onStartTracking(category: String, date : String, time: String, repeat : BooleanArray) {
         uiScope.launch {
-            // val newNotifications = Notifications()
+            tonightNotification.value = getNotFromDatabase()
+            tonightNotification.value!!.apply {
+                notificationsCategory = category
+                notificationsDate = date
+                notificationsTime = time
+                notificationRepeat = repeat
+            }
             insert(tonightNotification.value!!)
-            tonightNotification.value =
-                Notifications()
+
         }
     }
 
     private suspend fun insert(notification: Notifications) {
         withContext(Dispatchers.IO) {
             database.insert(notification)
-
             Log.d("mLog", "From ViewModel $notification")
         }
     }
@@ -127,13 +98,22 @@ class NotificationsSettingsViewModel(
         _showNotDialogDate.value = true
     }
 
-
-    fun onSwitchChanged(checked: Boolean) {
-        _switchState.value = checked
+    fun doneShowingNotDialogCategory() {
+        _showNotDialogCategory.value = false
     }
 
-    fun checkBoxStateChange(checked: Boolean) {
-
+    fun doneShowingNotDialogTime() {
+        _showNotDialogTime.value = false
     }
+
+    fun doneShowingNotDialogDate() {
+        _showNotDialogDate.value = false
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
 
 }
