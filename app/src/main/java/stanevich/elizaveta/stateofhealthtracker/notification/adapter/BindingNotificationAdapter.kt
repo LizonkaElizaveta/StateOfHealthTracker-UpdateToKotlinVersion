@@ -20,16 +20,16 @@ fun TextView.setNotificationTime(item: Notifications?) {
     }
 }
 
-@BindingAdapter("btnCheck")
-fun ImageView.setBtnCheck(imageView: ImageView, drawableLink: String) {
-    val drawableField = R.drawable::class.java.getDeclaredField(drawableLink)
-    val drawableId = drawableField.getInt(drawableField)
-    imageView.setImageDrawable(imageView.context.getDrawable(drawableId))
-}
-
-@BindingAdapter("btnUncheck")
-fun ImageView.setBtnUncheck(imageView: ImageView, drawableLink: String) {
-    val drawableField = R.drawable::class.java.getDeclaredField(drawableLink)
-    val drawableId = drawableField.getInt(drawableField)
-    imageView.setImageDrawable(imageView.context.getDrawable(drawableId))
-}
+//@BindingAdapter("btnCheck")
+//fun ImageView.setBtnCheck(imageView: ImageView, drawableLink: String) {
+//    val drawableField = R.drawable::class.java.getDeclaredField(drawableLink)
+//    val drawableId = drawableField.getInt(drawableField)
+//    imageView.setImageDrawable(imageView.context.getDrawable(drawableId))
+//}
+//
+//@BindingAdapter("btnUncheck")
+//fun ImageView.setBtnUncheck(imageView: ImageView, drawableLink: String) {
+//    val drawableField = R.drawable::class.java.getDeclaredField(drawableLink)
+//    val drawableId = drawableField.getInt(drawableField)
+//    imageView.setImageDrawable(imageView.context.getDrawable(drawableId))
+//}
