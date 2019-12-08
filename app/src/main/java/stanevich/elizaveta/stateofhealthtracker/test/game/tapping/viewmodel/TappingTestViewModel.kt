@@ -13,17 +13,21 @@ import kotlin.concurrent.timer
 class TappingTestViewModel(application: Application, val onFinish: (taps: Int) -> Unit) :
     AndroidViewModel(application) {
 
+    companion object{
+        const val INITIAL_SECONDS = 60
+    }
+
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    val time = MutableLiveData<String>(secondsToString(60))
+    val time = MutableLiveData<String>(secondsToString(INITIAL_SECONDS))
 
     private val taps = MutableLiveData(0)
 
     private var timer: Timer? = null
 
     private fun initTimer(): Timer {
-        var seconds = 3
+        var seconds = INITIAL_SECONDS - 1
         return timer(period = 1000) {
 
             uiScope.run {

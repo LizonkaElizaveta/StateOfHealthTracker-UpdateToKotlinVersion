@@ -22,15 +22,15 @@ abstract class TestingDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: TestingDatabase? = null
 
-        fun getInstance(contex: Context): TestingDatabase {
+        fun getInstance(context: Context): TestingDatabase {
             synchronized(this) {
                 var instance =
                     INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                        contex.applicationContext,
+                        context.applicationContext,
                         TestingDatabase::class.java,
-                        "states_database_history"
+                        "testing_database"
                     ).fallbackToDestructiveMigration()
                         .build()
 

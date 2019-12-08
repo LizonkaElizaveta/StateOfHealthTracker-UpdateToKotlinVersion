@@ -1,6 +1,7 @@
 package stanevich.elizaveta.stateofhealthtracker.test.game.tapping
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,8 +66,12 @@ class TappingTestFragment : Fragment() {
                             taps = taps
                         )
                     )
+
+                    Log.d("mTag", tappingTestDatabase.findAll().toString())
                 }
             }
+
+
 
             fragmentManager?.let {
                 val dialog = TappingTestResultDialog(taps){
