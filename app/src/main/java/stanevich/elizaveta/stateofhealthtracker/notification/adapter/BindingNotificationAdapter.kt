@@ -22,6 +22,13 @@ fun TextView.setNotificationTime(item: Notifications?) {
     }
 }
 
+@BindingAdapter("notificationDate")
+fun TextView.setNotificationDate(item: Notifications?) {
+    item?.let {
+        text = item.notificationsDate
+    }
+}
+
 @BindingAdapter("btnDrawable")
 fun setBtnDrawable(checkBox: CheckBox, drawableLink: String) {
     val drawableField = R.drawable::class.java.getDeclaredField(drawableLink)

@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotificationSettingsBinding
@@ -146,6 +147,8 @@ class NotificationSettingsFragment : Fragment() {
                 }
 
                 notificationsSettingsViewModel.onStartTracking(category, date, time, repeat)
+                    Navigation.findNavController(it)
+                        .navigate(R.id.action_notificationSettingsFragment_to_nav_notifications)
             }
         }
         return binding.root

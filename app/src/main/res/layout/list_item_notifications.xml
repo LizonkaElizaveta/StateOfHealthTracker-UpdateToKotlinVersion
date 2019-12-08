@@ -37,7 +37,7 @@
                 android:layout_marginStart="@dimen/notification_margin_8"
                 android:textColor="@color/MainTextColor"
                 android:textSize="@dimen/notification_tv_size_16"
-                app:layout_constraintBottom_toTopOf="@id/tvNotificationDate"
+                app:layout_constraintBottom_toTopOf="@id/tvNotificationTime"
                 app:layout_constraintStart_toEndOf="@+id/ivNotification"
                 app:layout_constraintTop_toTopOf="@+id/ivNotification"
                 app:notificationCategory="@{notification}"
@@ -48,11 +48,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/notification_tv_size_14"
+                android:layout_marginStart="4dp"
+                app:layout_constraintBottom_toBottomOf="@id/ivNotification"
+                app:layout_constraintStart_toEndOf="@+id/tvNotificationTime"
+                app:layout_constraintTop_toBottomOf="@+id/tvCategory"
+                app:notificationDate="@{notification}"
+                tools:text="Вт,14 октября" />
+
+        <TextView
+                android:id="@+id/tvNotificationTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/notification_tv_size_14"
                 app:layout_constraintBottom_toBottomOf="@id/ivNotification"
                 app:layout_constraintStart_toStartOf="@+id/tvCategory"
                 app:layout_constraintTop_toBottomOf="@+id/tvCategory"
                 app:notificationTime="@{notification}"
-                tools:text="Ежедневно в 14:30" />
+                tools:text="14:30" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
