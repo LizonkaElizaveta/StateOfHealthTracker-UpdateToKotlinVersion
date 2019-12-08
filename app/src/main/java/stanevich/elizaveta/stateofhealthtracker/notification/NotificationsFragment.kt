@@ -36,10 +36,7 @@ class NotificationsFragment : Fragment() {
 
         val dataSource = NotificationsDatabase.getInstance(application).notificationsDatabaseDao
 
-        val viewModelFactory =
-            NotificationsViewModelFactory(
-                dataSource
-            )
+        val viewModelFactory = NotificationsViewModelFactory(dataSource, application)
 
         val notificationsViewModel =
             ViewModelProviders.of(this, viewModelFactory)

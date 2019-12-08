@@ -15,8 +15,10 @@ interface NotificationsDatabaseDao {
     @Query("DELETE from notifications_table")
     fun clear()
 
+/*
     @Query("SELECT * from notifications_table ORDER BY notificatiionsId DESC LIMIT 1")
     fun getLastNotification(): Notifications?
+*/
 
     @Query("SELECT * FROM notifications_table ORDER BY notificatiionsId DESC")
     fun getAllNotifications(): LiveData<List<Notifications>>

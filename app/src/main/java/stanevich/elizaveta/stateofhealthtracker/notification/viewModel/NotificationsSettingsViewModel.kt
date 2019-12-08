@@ -59,15 +59,10 @@ class NotificationsSettingsViewModel(
         }
     }
 
-    private suspend fun getNotFromDatabase(): Notifications {
-        return withContext(Dispatchers.IO) {
-            database.getLastNotification() ?: Notifications()
-        }
-    }
 
     fun onStartTracking(category: String, date : String, time: String, repeat : BooleanArray) {
         uiScope.launch {
-            tonightNotification.value = getNotFromDatabase()
+            tonightNotification.value = Notifications()
             tonightNotification.value!!.apply {
                 notificationsCategory = category
                 notificationsDate = date
