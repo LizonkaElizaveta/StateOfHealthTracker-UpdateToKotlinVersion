@@ -33,7 +33,11 @@
             android:id="@+id/nav_test"
             android:name="stanevich.elizaveta.stateofhealthtracker.test.TestFragment"
             android:label="@string/menu_test"
-            tools:layout="@layout/fragment_test" />
+            tools:layout="@layout/fragment_test" >
+        <action
+                android:id="@+id/action_nav_test_to_tappingIntroFragment"
+                app:destination="@id/tappingIntroFragment" />
+    </fragment>
     <fragment
             android:id="@+id/notificationSettingsFragment"
             android:name="stanevich.elizaveta.stateofhealthtracker.notification.NotificationSettingsFragment"
@@ -41,5 +45,23 @@
         <action
                 android:id="@+id/action_notificationSettingsFragment_to_nav_notifications"
                 app:destination="@id/nav_notifications" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/tappingIntroFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.test.game.tapping.TappingIntroFragment"
+            android:label="TappingIntroFragment" >
+        <action
+                android:id="@+id/action_tappingIntroFragment_to_tappingTestFragment"
+                app:destination="@id/tappingTestFragment" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/tappingTestFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.test.game.tapping.TappingTestFragment"
+            android:label="TappingTestFragment" >
+        <action
+                android:id="@+id/action_tappingTestFragment_to_nav_test"
+                app:destination="@id/nav_test" />
     </fragment>
 </navigation>

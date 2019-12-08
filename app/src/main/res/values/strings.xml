@@ -27,6 +27,7 @@
     // Strings for dialog text
     <string name="dialog_text_confirmation_save_result">Спасибо!\nВаш результат записан\nв дневник</string>
     <string name="dialog_text_confirmation_save_data">Спасибо!\nВаши данные обновились</string>
+    <string name="dialog_text_tapping_result" formatted="true">Спасибо!\nКоличество нажатий: %1$d\nДанные сохранены</string>
     <string name="dialogText_confirmation">Вы действительно хотите удалить уведомление?</string>
 
     // Strings for dialog headline
