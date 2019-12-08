@@ -110,11 +110,12 @@
                 app:layout_constraintTop_toBottomOf="@id/text_repeat" />
 
         <Switch
-                android:id="@+id/btn_toggle"
+                android:id="@+id/btn_switch"
                 android:theme="@style/SCBSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
+                android:onCheckedChanged="@{(switch, checked) -> notificationsSettingsViewModel.onSwitchChanged(checked)}"
                 app:layout_constraintBottom_toBottomOf="@id/text_toggle"
                 app:layout_constraintEnd_toEndOf="@id/text_time"
                 app:layout_constraintTop_toTopOf="@id/text_toggle" />
@@ -125,9 +126,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal"
-                app:checkBoxListData="@{notificationsSettingsViewModel.data}"
+                app:checkBoxListData="@{notificationsSettingsViewModel.checkBox}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="@id/btn_toggle"
+                app:layout_constraintEnd_toEndOf="@id/btn_switch"
                 app:layout_constraintStart_toStartOf="@id/text_toggle"
                 app:layout_constraintTop_toBottomOf="@id/text_toggle">
 

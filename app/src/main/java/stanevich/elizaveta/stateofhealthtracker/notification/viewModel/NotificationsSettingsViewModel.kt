@@ -32,10 +32,10 @@ class NotificationsSettingsViewModel(
 
     val notifications = database.getAllNotifications()
 
-    private val _data = MutableLiveData<List<CheckBoxModel>>()
+    private val _checkBox = MutableLiveData<List<CheckBoxModel>>()
 
-    val data: LiveData<List<CheckBoxModel>>
-        get() = _data
+    val checkBox: LiveData<List<CheckBoxModel>>
+        get() = _checkBox
 
     init {
         val checkBoxDrawable = populateData()
@@ -44,14 +44,15 @@ class NotificationsSettingsViewModel(
         }
     }
 
-    private fun initialize(tests: List<CheckBoxModel>) {
-        this._data.value = tests
+    private fun initialize(checkboxes: List<CheckBoxModel>) {
+        this._checkBox.value = checkboxes
     }
 
 
     private var _showNotDialogCategory = MutableLiveData<Boolean>(false)
     private var _showNotDialogTime = MutableLiveData<Boolean>(false)
     private var _showNotDialogDate = MutableLiveData<Boolean>(false)
+    private var _switchState = MutableLiveData<Boolean>(false)
 
     val showNotDialogTime: LiveData<Boolean>
         get() = _showNotDialogTime
@@ -61,6 +62,9 @@ class NotificationsSettingsViewModel(
 
     val showNotDialogDate: LiveData<Boolean>
         get() = _showNotDialogDate
+
+    val switchState: LiveData<Boolean>
+        get() = _switchState
 
 
     fun doneShowingNotDialogCategory() {
@@ -121,6 +125,18 @@ class NotificationsSettingsViewModel(
 
     fun showDialogDate() {
         _showNotDialogDate.value = true
+    }
+
+
+    fun onSwitchChanged(checked: Boolean) {
+        _switchState.value = checked
+
+    }
+
+    fun checkBoxStateChange(checked: Boolean) {
+        if (checked) {
+
+        }
     }
 
 }

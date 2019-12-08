@@ -7,6 +7,10 @@
         <variable
                 name="daysOfWeek"
                 type="stanevich.elizaveta.stateofhealthtracker.notification.model.CheckBoxModel" />
+
+        <variable
+                name="daysViewModel"
+                type="stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsSettingsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="@dimen/icons_days_marginEnd"
+
                 app:btnDrawable="@{daysOfWeek.btnDrawable}"
                 tools:button="@drawable/notification_settings_ic_monday"
                 app:layout_constraintStart_toStartOf="parent"

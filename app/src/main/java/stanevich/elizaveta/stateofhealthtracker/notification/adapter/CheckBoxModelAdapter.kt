@@ -52,4 +52,8 @@ class CheckBoxModelAdapter :
         }
     }
 
+    public override fun getItem(position: Int): CheckBoxModel {
+        return super.getItem(position)
+    }
+
 }

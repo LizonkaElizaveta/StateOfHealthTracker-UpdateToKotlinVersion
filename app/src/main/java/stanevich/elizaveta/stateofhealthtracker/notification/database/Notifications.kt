@@ -13,6 +13,9 @@ data class Notifications(
     var notificationsTime: String = "",
 
     @ColumnInfo(name = "text")
-    var notificationsText: String = ""
+    var notificationsText: String = "",
+
+    @ColumnInfo(name = "repeat")
+    var notificationRepeat: String = ""
 
 )

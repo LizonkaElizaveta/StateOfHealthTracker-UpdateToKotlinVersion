@@ -6,23 +6,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
-import android.widget.Toast
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotificationSettingsBinding
+import stanevich.elizaveta.stateofhealthtracker.databinding.ListItemNotificationsDayOfWeekBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.DatePickerFragment
 import stanevich.elizaveta.stateofhealthtracker.dialogs.TimePickerFragment
 import stanevich.elizaveta.stateofhealthtracker.notification.adapter.CheckBoxModelAdapter
-import stanevich.elizaveta.stateofhealthtracker.notification.adapter.NotificationsAdapter
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabase
 import stanevich.elizaveta.stateofhealthtracker.notification.dialogs.CategoryDialog
 import stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsSettingsViewModel
 import stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsSettingsViewModelFactory
-import stanevich.elizaveta.stateofhealthtracker.utils.getDate
 import stanevich.elizaveta.stateofhealthtracker.utils.getFullDate
 import stanevich.elizaveta.stateofhealthtracker.utils.getTime
 import java.util.*
@@ -39,6 +40,13 @@ class NotificationSettingsFragment : Fragment() {
         val binding: FragmentNotificationSettingsBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_notification_settings,
+            container,
+            false
+        )
+
+        val bindingCheckBox: ListItemNotificationsDayOfWeekBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.list_item_notifications_day_of_week,
             container,
             false
         )
@@ -63,9 +71,11 @@ class NotificationSettingsFragment : Fragment() {
             ViewModelProviders.of(this, viewModelFactory)
                 .get(NotificationsSettingsViewModel::class.java)
 
+
         tvCategory = binding.tvCategory
 
         binding.notificationsSettingsViewModel = notificationsSettingsViewModel
+        bindingCheckBox.daysViewModel = notificationsSettingsViewModel
 
         notificationsSettingsViewModel.showNotDialogCategory.observe(viewLifecycleOwner, Observer {
             if (it == true) {
@@ -112,6 +122,16 @@ class NotificationSettingsFragment : Fragment() {
 
         val adapter = CheckBoxModelAdapter()
         binding.checkboxList.adapter = adapter
+
+        notificationsSettingsViewModel.switchState.observe(viewLifecycleOwner, Observer {
+            val checkboxList = binding.checkboxList as RecyclerView
+            val checkBoxAdapter = checkboxList.adapter as CheckBoxModelAdapter
+            for (i in 0 until  checkBoxAdapter.itemCount){
+//                checkBoxAdapter.getItem(i).isChecked = it == true
+                (checkboxList[i].findViewById(R.id.ch_days_of_week) as CheckBox).isChecked = it == true
+            }
+        })
+
         return binding.root
     }
 
