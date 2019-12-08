@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestBinding
 import stanevich.elizaveta.stateofhealthtracker.test.adapter.TestAdapter
@@ -36,9 +37,12 @@ class TestFragment : Fragment() {
         binding.testViewModel = testViewModel
 
 
-        binding.testList.adapter = TestAdapter(TestAdapter.OnClickListener {
+        binding.testList.adapter = TestAdapter {
             Toast.makeText(activity, "Work!", Toast.LENGTH_SHORT).show()
-        })
+            //TODO(ES): implement test selector
+            Navigation.findNavController(binding.testList)
+                .navigate(R.id.action_nav_test_to_tappingIntroFragment)
+        }
 
         return binding.root
     }

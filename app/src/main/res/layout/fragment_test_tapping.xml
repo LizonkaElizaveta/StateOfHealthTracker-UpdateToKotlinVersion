@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="tappingTest"
+                type="stanevich.elizaveta.stateofhealthtracker.test.game.tapping.viewmodel.TappingTestViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:background="@drawable/ic_bg_target">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/timer"
+                android:layout_width="160dp"
+                android:layout_height="56dp"
+                android:background="@drawable/ic_tapping_time"
+                android:foregroundGravity="center"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@id/target"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                    android:id="@+id/timerText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/digital"
+                    android:gravity="center"
+                    android:text="@{tappingTest.time}"
+                    android:textColor="#FF0000"
+                    android:textSize="48sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="00:59" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_target_top"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+                android:id="@+id/target"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:elevation="0dp"
+                android:src="@drawable/target_states"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+<!--        <TextView
+                android:id="@+id/tapText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{``+tappingTest.taps}"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/target"
+                tools:text="195" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
