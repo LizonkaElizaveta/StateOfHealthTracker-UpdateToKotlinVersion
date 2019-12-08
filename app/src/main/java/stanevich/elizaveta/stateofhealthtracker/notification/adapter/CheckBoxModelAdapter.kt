@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.list_item_notifications_day_of_week.view.*
 import stanevich.elizaveta.stateofhealthtracker.databinding.ListItemNotificationsDayOfWeekBinding
 import stanevich.elizaveta.stateofhealthtracker.notification.model.CheckBoxModel
 
-class CheckBoxModelAdapter :
+class CheckBoxModelAdapter(private val onClickListener: (checkBox: CheckBoxModelAdapter)->Unit) :
     androidx.recyclerview.widget.ListAdapter<CheckBoxModel, CheckBoxModelAdapter.CheckBoxModelViewHolder>(
         DiffCallback
     ) {
@@ -35,9 +36,9 @@ class CheckBoxModelAdapter :
         )
     }
 
-
     override fun onBindViewHolder(holder: CheckBoxModelViewHolder, position: Int) {
         val daysOfWeek = getItem(position)
+        holder.itemView.ch_days_of_week.setOnClickListener { onClickListener(this) }
         holder.bind(daysOfWeek)
     }
 

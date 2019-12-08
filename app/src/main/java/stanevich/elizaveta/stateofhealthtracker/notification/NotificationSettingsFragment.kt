@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.Switch
 import android.widget.TextView
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
@@ -119,18 +120,27 @@ class NotificationSettingsFragment : Fragment() {
                 notificationsSettingsViewModel.doneShowingNotDialogTime()
             }
         })
+        val checkboxList = binding.checkboxList as RecyclerView
 
-        val adapter = CheckBoxModelAdapter()
-        binding.checkboxList.adapter = adapter
-
-        notificationsSettingsViewModel.switchState.observe(viewLifecycleOwner, Observer {
-            val checkboxList = binding.checkboxList as RecyclerView
-            val checkBoxAdapter = checkboxList.adapter as CheckBoxModelAdapter
-            for (i in 0 until  checkBoxAdapter.itemCount){
-//                checkBoxAdapter.getItem(i).isChecked = it == true
-                (checkboxList[i].findViewById(R.id.ch_days_of_week) as CheckBox).isChecked = it == true
+        binding.checkboxList.adapter = CheckBoxModelAdapter {
+            var isChecked = true
+            for (i in 0 until it.itemCount) {
+                if (!(checkboxList[i].findViewById(R.id.ch_days_of_week) as CheckBox).isChecked) {
+                    isChecked = false
+                    break
+                }
             }
-        })
+
+            binding.btnSwitch.isChecked = isChecked
+        }
+
+        binding.btnSwitch.setOnClickListener { buttonView ->
+            val checkBoxAdapter = checkboxList.adapter as CheckBoxModelAdapter
+            for (i in 0 until checkBoxAdapter.itemCount) {
+                (checkboxList[i].findViewById(R.id.ch_days_of_week) as CheckBox).isChecked =
+                    (buttonView as Switch).isChecked
+            }
+        }
 
         return binding.root
     }

@@ -46,7 +46,7 @@
 
 
     <!--    SplashActivity-->
-    <dimen name="splash_icon_size">60dp</dimen>
+    <dimen name="splash_icon_size">160dp</dimen>
 
     <!--    NavigationFragment-->
     <dimen name="fab_margin">24dp</dimen>

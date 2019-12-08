@@ -130,13 +130,10 @@ class NotificationsSettingsViewModel(
 
     fun onSwitchChanged(checked: Boolean) {
         _switchState.value = checked
-
     }
 
     fun checkBoxStateChange(checked: Boolean) {
-        if (checked) {
 
-        }
     }
 
 }
