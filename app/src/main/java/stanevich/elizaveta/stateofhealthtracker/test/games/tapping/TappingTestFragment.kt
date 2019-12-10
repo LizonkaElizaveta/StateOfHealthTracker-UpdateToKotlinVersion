@@ -48,8 +48,6 @@ class TappingTestFragment : Fragment() {
 
         binding.tappingTest = tappingTestViewModel
 
-        activity?.actionBar?.setBackgroundDrawable(ColorDrawable(Color.argb(128, 0, 0, 0)))
-
         navigation = NavHostFragment.findNavController(this)
 
         binding.target.setOnClickListener {

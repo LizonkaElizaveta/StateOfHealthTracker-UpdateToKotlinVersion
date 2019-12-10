@@ -37,6 +37,12 @@
         <action
                 android:id="@+id/action_nav_test_to_tappingIntroFragment"
                 app:destination="@id/tappingIntroFragment" />
+        <action
+                android:id="@+id/action_nav_test_to_printIntroFragment"
+                app:destination="@id/printIntroFragment" />
+        <action
+                android:id="@+id/action_nav_test_to_drawingIntroFragment"
+                app:destination="@id/drawingIntroFragment" />
     </fragment>
     <fragment
             android:id="@+id/notificationSettingsFragment"
@@ -62,6 +68,38 @@
             android:label="" >
         <action
                 android:id="@+id/action_tappingTestFragment_to_nav_test"
+                app:destination="@id/nav_test" />
+    </fragment>
+    <fragment
+            android:id="@+id/printIntroFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.test.games.print.PrintIntroFragment"
+            android:label="@string/menu_introduction" >
+        <action
+                android:id="@+id/action_printIntroFragment_to_printTestFragment"
+                app:destination="@id/printTestFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/printTestFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.test.games.print.PrintTestFragment"
+            android:label="" >
+        <action
+                android:id="@+id/action_printTestFragment_to_nav_test"
+                app:destination="@id/nav_test" />
+    </fragment>
+    <fragment
+            android:id="@+id/drawingIntroFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.test.games.drawing.DrawingIntroFragment"
+            android:label="@string/menu_introduction" >
+        <action
+                android:id="@+id/action_drawingIntroFragment_to_drawingTestFragment"
+                app:destination="@id/drawingTestFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/drawingTestFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.test.games.drawing.DrawingTestFragment"
+            android:label="" >
+        <action
+                android:id="@+id/action_drawingTestFragment_to_nav_test"
                 app:destination="@id/nav_test" />
     </fragment>
 </navigation>

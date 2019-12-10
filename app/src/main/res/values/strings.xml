@@ -64,7 +64,7 @@
     <string name="menu_profile">Профиль</string>
     <string name="menu_support">Поддержка</string>
     <string name="menu_settings">Настройки</string>
-    <string name="menu_introduction">Введение</string>
+    <string name="menu_introduction">Описание теста</string>
 
     <string name="text_test_draw_figure">Обведите фигуру</string>
     <string name="text_test_burst_ball">Лопните воздушный шар</string>
