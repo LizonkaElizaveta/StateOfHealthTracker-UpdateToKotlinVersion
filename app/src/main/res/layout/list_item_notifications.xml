@@ -25,6 +25,7 @@
                 android:layout_marginStart="@dimen/notification_margin_17"
                 android:layout_marginTop="@dimen/notification_margin_8"
                 android:layout_marginBottom="@dimen/notification_margin_8"
+                app:notificationIcon="@{notification.notificationsCategory}"
                 tools:src="@drawable/notification_ic_doctor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

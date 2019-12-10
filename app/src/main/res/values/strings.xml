@@ -58,18 +58,20 @@
     <string name="radioButton_other">Другое</string>
 
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home">Главная</string>
     <string name="menu_test">Тесты</string>
     <string name="menu_notifications">Оповещения</string>
     <string name="menu_profile">Профиль</string>
-    <string name="menu_data_collection">Сбор данных</string>
+    <string name="menu_support">Поддержка</string>
     <string name="menu_settings">Настройки</string>
     <string name="menu_introduction">Введение</string>
 
     <string name="text_test_draw_figure">Обведите фигуру</string>
     <string name="text_test_burst_ball">Лопните воздушный шар</string>
+    <string name="text_test_reading">Прочтите текст</string>
     <string name="text_test_mole">Игра в крота</string>
     <string name="text_test_target">Тест на постукивание</string>
+    <string name="text_test_stars">Соедините звёзды в созвездие</string>
     <!--    TutorialFragment-->
     <string name="tutorial_title_welcome">Добро пожаловать в \n State Of Health Tracker!</string>
     <string name="tutorial_title_home">Ведите дневник!</string>
