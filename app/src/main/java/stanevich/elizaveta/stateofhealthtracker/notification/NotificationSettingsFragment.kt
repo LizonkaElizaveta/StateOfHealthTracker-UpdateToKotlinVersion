@@ -47,12 +47,6 @@ class NotificationSettingsFragment : Fragment() {
             container,
             false
         )
-        val bindingNotification: ListItemNotificationsBinding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.list_item_notifications,
-            container,
-            false
-        )
 
         val application = requireNotNull(this.activity).application
 
@@ -147,13 +141,6 @@ class NotificationSettingsFragment : Fragment() {
         binding.apply {
             btnSave.setOnClickListener {
                 val category = tvCategory.text.toString()
-                when (category) {
-                    getString(R.string.radioButton_doctors_appointment) -> bindingNotification.ivCategory.setImageDrawable(
-                        application.getDrawable(R.drawable.notification_ic_doctor))
-                    getString(R.string.radioButton_medication) -> bindingNotification.ivCategory.setImageResource(R.drawable.notification_ic_pill)
-                    getString(R.string.radioButton_state_tracker) -> bindingNotification.ivCategory.setImageResource(R.drawable.notification_ic_evaluation)
-                    else -> bindingNotification.ivCategory.setImageResource(R.drawable.notification_ic_other)
-                }
                 val date = tvDay.text.toString()
                 val time = tvTime.text.toString()
                 val repeat = BooleanArray(7)

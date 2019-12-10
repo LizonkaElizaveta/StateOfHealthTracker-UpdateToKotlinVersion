@@ -70,7 +70,6 @@ class NotificationsSettingsViewModel(
                 notificationRepeat = repeat
             }
             insert(tonightNotification.value!!)
-
         }
     }
 

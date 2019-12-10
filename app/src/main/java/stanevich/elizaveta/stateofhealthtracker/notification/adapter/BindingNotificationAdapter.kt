@@ -23,6 +23,23 @@ fun TextView.setNotificationTime(item: Notifications?) {
     }
 }
 
+@BindingAdapter("notificationIcon")
+fun bindNotificationIcon(imageView: ImageView, category: String) {
+    val context = imageView.context
+
+    val drawable = when (category) {
+        context.getString(R.string.radioButton_doctors_appointment) ->
+            context.getDrawable(R.drawable.notification_ic_doctor)
+        context.getString(R.string.radioButton_medication) ->
+            context.getDrawable(R.drawable.notification_ic_pill)
+        context.getString(R.string.radioButton_state_tracker) ->
+            context.getDrawable(R.drawable.notification_ic_evaluation)
+        else -> context.getDrawable(R.drawable.notification_ic_other)
+    }
+
+    imageView.setImageDrawable(drawable)
+}
+
 @BindingAdapter("notificationDate")
 fun TextView.setNotificationDate(item: Notifications?) {
     item?.let {
