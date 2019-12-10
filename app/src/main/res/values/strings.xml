@@ -71,6 +71,7 @@
     <string name="text_test_reading">Прочтите текст</string>
     <string name="text_test_mole">Игра в крота</string>
     <string name="text_test_target">Тест на постукивание</string>
+    <string name="text_test_stars">Соедините звёзды в созвездие</string>
     <!--    TutorialFragment-->
     <string name="tutorial_title_welcome">Добро пожаловать в \n State Of Health Tracker!</string>
     <string name="tutorial_title_home">Ведите дневник!</string>
