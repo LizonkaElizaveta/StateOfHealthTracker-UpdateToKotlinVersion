@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.test.game.tapping
+package stanevich.elizaveta.stateofhealthtracker.test.games.tapping
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestBinding
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestIntroBinding
 
 class TappingIntroFragment : Fragment() {

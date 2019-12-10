@@ -49,8 +49,8 @@
 
     <fragment
             android:id="@+id/tappingIntroFragment"
-            android:name="stanevich.elizaveta.stateofhealthtracker.test.game.tapping.TappingIntroFragment"
-            android:label="TappingIntroFragment" >
+            android:name="stanevich.elizaveta.stateofhealthtracker.test.games.tapping.TappingIntroFragment"
+            android:label="@string/menu_introduction" >
         <action
                 android:id="@+id/action_tappingIntroFragment_to_tappingTestFragment"
                 app:destination="@id/tappingTestFragment" />
@@ -58,8 +58,8 @@
 
     <fragment
             android:id="@+id/tappingTestFragment"
-            android:name="stanevich.elizaveta.stateofhealthtracker.test.game.tapping.TappingTestFragment"
-            android:label="TappingTestFragment" >
+            android:name="stanevich.elizaveta.stateofhealthtracker.test.games.tapping.TappingTestFragment"
+            android:label="\ " >
         <action
                 android:id="@+id/action_tappingTestFragment_to_nav_test"
                 app:destination="@id/nav_test" />

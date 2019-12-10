@@ -1,6 +1,7 @@
 package stanevich.elizaveta.stateofhealthtracker.notification.adapter
 
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView

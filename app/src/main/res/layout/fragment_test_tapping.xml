@@ -7,20 +7,19 @@
 
         <variable
                 name="tappingTest"
-                type="stanevich.elizaveta.stateofhealthtracker.test.game.tapping.viewmodel.TappingTestViewModel" />
+                type="stanevich.elizaveta.stateofhealthtracker.test.games.tapping.viewmodel.TappingTestViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"
             android:background="@drawable/ic_bg_target">
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/timer"
                 android:layout_width="160dp"
                 android:layout_height="56dp"
+                android:layout_marginTop="?attr/actionBarSize"
                 android:background="@drawable/ic_tapping_time"
                 android:foregroundGravity="center"
                 android:paddingStart="16dp"
@@ -53,13 +52,13 @@
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_marginBottom="20dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_target_top"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
                 android:id="@+id/target"
@@ -73,17 +72,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <TextView
-                android:id="@+id/tapText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{``+tappingTest.taps}"
-                android:textSize="36sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/target"
-                tools:text="195" />-->
+        <!--        <TextView
+                        android:id="@+id/tapText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{``+tappingTest.taps}"
+                        android:textSize="36sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/target"
+                        tools:text="195" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

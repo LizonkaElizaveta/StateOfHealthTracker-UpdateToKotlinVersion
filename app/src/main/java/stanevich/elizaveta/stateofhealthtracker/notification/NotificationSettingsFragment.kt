@@ -16,8 +16,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.list_item_notifications.*
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotificationSettingsBinding
+import stanevich.elizaveta.stateofhealthtracker.databinding.ListItemNotificationsBinding
+import stanevich.elizaveta.stateofhealthtracker.databinding.ListItemNotificationsDayOfWeekBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.DatePickerFragment
 import stanevich.elizaveta.stateofhealthtracker.dialogs.TimePickerFragment
 import stanevich.elizaveta.stateofhealthtracker.notification.adapter.CheckBoxModelAdapter
@@ -41,6 +44,12 @@ class NotificationSettingsFragment : Fragment() {
         val binding: FragmentNotificationSettingsBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_notification_settings,
+            container,
+            false
+        )
+        val bindingNotification: ListItemNotificationsBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.list_item_notifications,
             container,
             false
         )
@@ -138,6 +147,13 @@ class NotificationSettingsFragment : Fragment() {
         binding.apply {
             btnSave.setOnClickListener {
                 val category = tvCategory.text.toString()
+                when (category) {
+                    getString(R.string.radioButton_doctors_appointment) -> bindingNotification.ivCategory.setImageDrawable(
+                        application.getDrawable(R.drawable.notification_ic_doctor))
+                    getString(R.string.radioButton_medication) -> bindingNotification.ivCategory.setImageResource(R.drawable.notification_ic_pill)
+                    getString(R.string.radioButton_state_tracker) -> bindingNotification.ivCategory.setImageResource(R.drawable.notification_ic_evaluation)
+                    else -> bindingNotification.ivCategory.setImageResource(R.drawable.notification_ic_other)
+                }
                 val date = tvDay.text.toString()
                 val time = tvTime.text.toString()
                 val repeat = BooleanArray(7)
@@ -147,11 +163,12 @@ class NotificationSettingsFragment : Fragment() {
                 }
 
                 notificationsSettingsViewModel.onStartTracking(category, date, time, repeat)
-                    Navigation.findNavController(it)
-                        .navigate(R.id.action_notificationSettingsFragment_to_nav_notifications)
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_notificationSettingsFragment_to_nav_notifications)
             }
         }
         return binding.root
+
     }
 
 

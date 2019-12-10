@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.test.game.tapping
+package stanevich.elizaveta.stateofhealthtracker.test.games.tapping
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

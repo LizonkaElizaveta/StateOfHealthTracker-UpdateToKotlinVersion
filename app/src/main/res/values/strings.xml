@@ -54,6 +54,8 @@
 
     <string name="radioButton_medication">Прием лекарств</string>
     <string name="radioButton_doctors_appointment">Поход к врачу</string>
+    <string name="radioButton_state_tracker">Оценка самочувствия</string>
+    <string name="radioButton_other">Другое</string>
 
 
     <string name="menu_home">Home</string>
@@ -62,6 +64,7 @@
     <string name="menu_profile">Профиль</string>
     <string name="menu_data_collection">Сбор данных</string>
     <string name="menu_settings">Настройки</string>
+    <string name="menu_introduction">Введение</string>
 
     <string name="text_test_draw_figure">Обведите фигуру</string>
     <string name="text_test_burst_ball">Лопните воздушный шар</string>
@@ -93,9 +96,9 @@
     <string name="text_day">Каждый день</string>
     <string name="text_time">13:30</string>
     <string name="text_repeat">Повтор</string>
-    <string name="radioButton_state_tracker">Оценка самочувствия</string>
-    <string name="radioButton_other">Другое</string>
+
     <string name="profile_text_confidential_contact_data">Ваши контактные данные являются конфиденциальной информацией и доступны для просмотра только вашему лечащему врачу.</string>
+    <string name="text_test_print">Белеет парус одинокий \nВ тумане моря голубом!.. \nЧто ищет он в стране далекой? \nЧто кинул он в краю родном?.. \n\nИграют волны — ветер свищет, \nИ мачта гнется и скрыпит… \nУвы! он счастия не ищет \nИ не от счастия бежит!</string>
 
 
 </resources>

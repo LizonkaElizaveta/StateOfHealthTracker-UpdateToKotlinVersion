@@ -1,8 +1,7 @@
-package stanevich.elizaveta.stateofhealthtracker.test.game.database
+package stanevich.elizaveta.stateofhealthtracker.test.games.database
 
 import androidx.room.*
-import stanevich.elizaveta.stateofhealthtracker.test.game.tapping.TappingTest
-import java.util.*
+import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.TappingTest
 
 @Dao
 interface TappingTestDatabaseDao {

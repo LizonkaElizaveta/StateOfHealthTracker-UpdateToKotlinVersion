@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.test.game.tapping.viewmodel
+package stanevich.elizaveta.stateofhealthtracker.test.games.tapping.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel

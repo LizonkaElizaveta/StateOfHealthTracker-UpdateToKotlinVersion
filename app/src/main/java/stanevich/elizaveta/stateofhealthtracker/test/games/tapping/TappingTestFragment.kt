@@ -1,23 +1,25 @@
-package stanevich.elizaveta.stateofhealthtracker.test.game.tapping
+package stanevich.elizaveta.stateofhealthtracker.test.games.tapping
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestTappingBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.TappingTestResultDialog
-import stanevich.elizaveta.stateofhealthtracker.test.game.database.TestingDatabase
-import stanevich.elizaveta.stateofhealthtracker.test.game.tapping.viewmodel.TappingTestViewModel
-import stanevich.elizaveta.stateofhealthtracker.test.game.tapping.viewmodel.TappingTestViewModelFactory
+import stanevich.elizaveta.stateofhealthtracker.test.games.database.TestingDatabase
+import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.viewmodel.TappingTestViewModel
+import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.viewmodel.TappingTestViewModelFactory
 
 
 class TappingTestFragment : Fragment() {
@@ -42,6 +44,8 @@ class TappingTestFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.tappingTest = tappingTestViewModel
+
+        activity?.actionBar?.setBackgroundDrawable(ColorDrawable(Color.argb(128, 0, 0, 0)))
 
         navigation = NavHostFragment.findNavController(this)
 
