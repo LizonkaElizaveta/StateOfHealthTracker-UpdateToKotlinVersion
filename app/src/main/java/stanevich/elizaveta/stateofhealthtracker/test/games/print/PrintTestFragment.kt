@@ -31,8 +31,8 @@ class PrintTestFragment : Fragment() {
         binding.btnSave.setOnClickListener {
             fragmentManager?.let { fm ->
                 TestResultDialog {
-                    NavHostFragment.findNavController(this)
-                        .navigate(R.id.action_tappingTestFragment_to_nav_test)
+                    NavHostFragment.findNavController(this@PrintTestFragment)
+                        .navigate(R.id.action_printTestFragment_to_nav_test)
                 }.show(fm, "TestResultDialog")
             }
         }

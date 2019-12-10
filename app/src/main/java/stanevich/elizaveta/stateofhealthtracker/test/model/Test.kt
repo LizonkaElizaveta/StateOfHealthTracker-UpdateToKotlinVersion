@@ -21,7 +21,7 @@ data class Test(
 
 fun populateData(): List<Test> {
     return listOf(
-        Test(1, "reading", "test_background_reading", "text_test_reading"),
+        Test(1, "print", "test_background_print", "text_test_printing"),
         Test(2, "tapping", "test_background_target", "text_test_target"),
         Test(3, "stars", "test_background_stars", "text_test_stars"),
         Test(4, "draw", "test_background_circle", "text_test_draw_figure"),

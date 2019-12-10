@@ -31,8 +31,8 @@ class DrawingTestFragment : Fragment() {
         binding.btnSave.setOnClickListener {
             fragmentManager?.let { fm ->
                 TestResultDialog {
-                    NavHostFragment.findNavController(this)
-                        .navigate(R.id.action_tappingTestFragment_to_nav_test)
+                    NavHostFragment.findNavController(this@DrawingTestFragment)
+                        .navigate(R.id.action_drawingTestFragment_to_nav_test)
                 }.show(fm, "TestResultDialog")
             }
         }
