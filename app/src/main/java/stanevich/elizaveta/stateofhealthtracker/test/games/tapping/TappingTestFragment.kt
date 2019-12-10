@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestTappingBinding
@@ -36,6 +37,8 @@ class TappingTestFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        setupToolbar()
+
         val binding: FragmentTestTappingBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_test_tapping, container, false)
 
@@ -54,6 +57,12 @@ class TappingTestFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun setupToolbar() {
+        val toolbar = activity?.toolbar
+        toolbar?.setBackgroundColor(Color.parseColor("#00000000"))
+        toolbar?.title = ""
     }
 
     private fun getTappingTestViewModel(): TappingTestViewModel {

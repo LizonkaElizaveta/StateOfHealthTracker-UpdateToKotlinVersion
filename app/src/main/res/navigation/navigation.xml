@@ -59,7 +59,7 @@
     <fragment
             android:id="@+id/tappingTestFragment"
             android:name="stanevich.elizaveta.stateofhealthtracker.test.games.tapping.TappingTestFragment"
-            android:label="\ " >
+            android:label="" >
         <action
                 android:id="@+id/action_tappingTestFragment_to_nav_test"
                 app:destination="@id/nav_test" />
