@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestDrawingFigureBinding
 
-class DrawingTest : Fragment() {
+class DrawingTestFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

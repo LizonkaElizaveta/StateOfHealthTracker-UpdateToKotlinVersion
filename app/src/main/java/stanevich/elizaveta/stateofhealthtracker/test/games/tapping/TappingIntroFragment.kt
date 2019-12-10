@@ -19,7 +19,7 @@ class TappingIntroFragment : Fragment() {
     ): View? {
 
         val binding: FragmentTestIntroBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_test_intro, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_test_tapping_intro, container, false)
 
         binding.btnStart.setOnClickListener {
             Navigation.findNavController(it)
