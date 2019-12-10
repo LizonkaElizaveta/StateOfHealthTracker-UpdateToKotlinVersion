@@ -58,11 +58,11 @@
     <string name="radioButton_other">Другое</string>
 
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home">Главная</string>
     <string name="menu_test">Тесты</string>
     <string name="menu_notifications">Оповещения</string>
     <string name="menu_profile">Профиль</string>
-    <string name="menu_data_collection">Сбор данных</string>
+    <string name="menu_support">Поддержка</string>
     <string name="menu_settings">Настройки</string>
     <string name="menu_introduction">Введение</string>
 

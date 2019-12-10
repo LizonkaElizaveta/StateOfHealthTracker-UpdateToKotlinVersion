@@ -31,7 +31,7 @@
         <item
                 android:id="@+id/nav_data_collection"
                 android:icon="@drawable/menu_ic_data_collection"
-                android:title="@string/menu_data_collection" />
+                android:title="@string/menu_support" />
     </group>
 
     <group
