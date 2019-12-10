@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestIntroBinding
+import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestDrawingIntroBinding
 
 class TappingIntroFragment : Fragment() {
 
@@ -18,7 +18,7 @@ class TappingIntroFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: FragmentTestIntroBinding =
+        val binding: FragmentTestDrawingIntroBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_test_tapping_intro, container, false)
 
         binding.btnStart.setOnClickListener {
