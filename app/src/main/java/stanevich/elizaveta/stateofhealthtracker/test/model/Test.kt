@@ -9,19 +9,23 @@ data class Test(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    @ColumnInfo(name = "name")
+    val name: String = "",
+
     @ColumnInfo(name = "image")
-    var image: String = "",
+    val image: String = "",
 
     @ColumnInfo(name = "text")
-    var text: String = ""
+    val text: String = ""
 )
 
 fun populateData(): List<Test> {
     return listOf(
-        Test(1, "test_background_circle", "text_test_draw_figure"),
-        Test(2, "test_background_balloon", "text_test_burst_ball"),
-        Test(3, "test_background_hole_mole", "text_test_mole"),
-        Test(4, "test_background_target", "text_test_target")
+        Test(1, "draw", "test_background_circle", "text_test_draw_figure"),
+        Test(2,"balloon","test_background_balloon", "text_test_burst_ball"),
+        Test(3,"reading","test_background_reading", "text_test_reading"),
+//        Test(3, "",, "test_background_hole_mole", "text_test_mole"),
+        Test(4,"tapping","test_background_target", "text_test_target")
     )
 }
 

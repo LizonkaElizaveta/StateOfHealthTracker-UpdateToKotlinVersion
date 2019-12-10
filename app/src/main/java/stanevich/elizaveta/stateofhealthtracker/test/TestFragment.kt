@@ -38,10 +38,13 @@ class TestFragment : Fragment() {
 
 
         binding.testList.adapter = TestAdapter {
-            Toast.makeText(activity, "Work!", Toast.LENGTH_SHORT).show()
             //TODO(ES): implement test selector
-            Navigation.findNavController(binding.testList)
-                .navigate(R.id.action_nav_test_to_tappingIntroFragment)
+            when (it.name) {
+                "tapping" -> Navigation.findNavController(binding.testList)
+                    .navigate(R.id.action_nav_test_to_tappingIntroFragment)
+                else -> Toast.makeText(activity, "В разработке", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
         return binding.root
