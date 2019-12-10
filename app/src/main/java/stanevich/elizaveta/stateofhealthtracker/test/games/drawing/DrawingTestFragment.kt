@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import kotlinx.android.synthetic.main.app_bar_main.*
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestDrawingFigureBinding
+import stanevich.elizaveta.stateofhealthtracker.dialogs.TestResultDialog
 
 class DrawingTestFragment : Fragment() {
 
@@ -26,7 +28,14 @@ class DrawingTestFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-
+        binding.btnSave.setOnClickListener {
+            fragmentManager?.let { fm ->
+                TestResultDialog {
+                    NavHostFragment.findNavController(this)
+                        .navigate(R.id.action_tappingTestFragment_to_nav_test)
+                }.show(fm, "TestResultDialog")
+            }
+        }
         return binding.root
     }
 
