@@ -1,14 +1,14 @@
 package stanevich.elizaveta.stateofhealthtracker.test.games.print
 
+import android.app.Activity
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.doBeforeTextChanged
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -20,6 +20,9 @@ import stanevich.elizaveta.stateofhealthtracker.dialogs.TestResultDialog
 import stanevich.elizaveta.stateofhealthtracker.test.games.database.TestingDatabase
 import stanevich.elizaveta.stateofhealthtracker.test.games.print.viewmodel.PrintTestViewModel
 import stanevich.elizaveta.stateofhealthtracker.test.games.print.viewmodel.PrintTestViewModelFactory
+import java.util.*
+import kotlin.random.Random
+
 
 class PrintTestFragment : Fragment() {
 
@@ -30,7 +33,17 @@ class PrintTestFragment : Fragment() {
         val binding: FragmentTestPrintBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_test_print, container, false)
 
-        var originalText = binding.text.text.toString()
+        val textList : List<String> = listOf(
+            getString(R.string.list_poems_one),
+            getString(R.string.list_poems_two),
+            getString(R.string.list_poems_three),
+            getString(R.string.list_poems_four),
+            getString(R.string.list_poems_five),
+            getString(R.string.list_poems_six)
+        )
+
+        val originalText = textList[Random(Calendar.getInstance().timeInMillis).nextInt(textList.size)]
+        binding.text.text = originalText
 
         setupToolbar()
 
@@ -48,6 +61,12 @@ class PrintTestFragment : Fragment() {
                 }.show(fm, "TestResultDialog")
             }
             printTestViewModel.savePrintData(originalText)
+        }
+
+        binding.etPrint.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                hideKeyboard(v)
+            }
         }
 
 
@@ -69,5 +88,10 @@ class PrintTestFragment : Fragment() {
         val viewModelFactory = PrintTestViewModelFactory(application, printTestDatabase)
 
         return ViewModelProviders.of(this, viewModelFactory).get(PrintTestViewModel::class.java)
+    }
+
+    fun hideKeyboard(view: View) {
+        val inputMethodManager = activity!!.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager?
+        inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

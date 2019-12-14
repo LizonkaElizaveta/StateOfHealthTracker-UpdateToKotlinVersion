@@ -1,9 +1,11 @@
 package stanevich.elizaveta.stateofhealthtracker.profile
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -42,7 +44,36 @@ class ProfileFragment : Fragment() {
             profileViewModel.saveUserData()
         }
 
+        binding.etUserName.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                hideKeyboard(v)
+            }
+        }
+
+        binding.etUserBirthday.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                hideKeyboard(v)
+            }
+        }
+
+        binding.etUserPhone.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                hideKeyboard(v)
+            }
+        }
+
+        binding.etUserSurname.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                hideKeyboard(v)
+            }
+        }
+
 
         return binding.root
+    }
+
+    private fun hideKeyboard(view: View) {
+        val inputMethodManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
