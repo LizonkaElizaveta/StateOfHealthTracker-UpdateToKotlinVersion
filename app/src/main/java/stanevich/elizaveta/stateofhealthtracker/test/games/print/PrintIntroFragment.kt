@@ -1,5 +1,7 @@
 package stanevich.elizaveta.stateofhealthtracker.test.games.print
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +10,26 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestDrawingIntroBinding
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestPrintIntroBinding
 
 class PrintIntroFragment : Fragment() {
+
+//
+//    private var prevStarted = "prevStartedPrintTest"
+//
+//    override fun onResume() {
+//        super.onResume()
+//        val sharedPreferences =
+//            this.context!!.getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
+//        if (!sharedPreferences.getBoolean(prevStarted, false)) {
+//            val editor = sharedPreferences.edit()
+//            editor.putBoolean(prevStarted, java.lang.Boolean.TRUE)
+//            editor.apply()
+//        } else {
+//            startActivity(Intent(context, PrintTestFragment::class.java))
+//
+//        }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

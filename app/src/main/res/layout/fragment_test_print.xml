@@ -40,7 +40,7 @@
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/border_edit_text"
                 android:gravity="center_horizontal"
-                android:inputType="textMultiLine"
+                android:inputType="textMultiLine|textNoSuggestions"
                 android:lines="16"
                 android:beforeTextChanged="@{(text, start, count, after) -> printTest.onPrintTextChanged(text, start, count,after)}"
                 android:maxLines="16"
