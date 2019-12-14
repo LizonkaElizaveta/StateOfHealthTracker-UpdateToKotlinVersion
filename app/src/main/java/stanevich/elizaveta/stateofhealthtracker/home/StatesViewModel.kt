@@ -120,8 +120,6 @@ class StatesViewModel(
         uiScope.launch {
             withContext(Dispatchers.IO) {
                 missClickDatabaseDao.insert(MissClick(null, timestamp, closestEvents.size))
-
-                Log.d("missclickmy", missClickDatabaseDao.findAll().toString())
             }
         }
     }
