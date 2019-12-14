@@ -18,10 +18,10 @@ data class PrintTest(
     var userText: String = "",
 
     @ColumnInfo(name = "date")
-    var date: Date = Date(),
+    var date: Long = 0L,
 
     @ColumnInfo(name = "time")
-    var time: Date = Date(),
+    var time: Long = 0L,
 
     @ColumnInfo(name = "erased")
     var erased: Int = 0

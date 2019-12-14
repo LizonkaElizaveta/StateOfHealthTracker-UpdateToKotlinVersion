@@ -10,7 +10,7 @@ import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.TappingTest
 import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 
 
-@Database(entities = [TappingTest::class, PrintTest::class], version = 1, exportSchema = false)
+@Database(entities = [TappingTest::class, PrintTest::class], version = 2, exportSchema = false)
 @TypeConverters(DateConverters::class)
 abstract class TestingDatabase : RoomDatabase() {
 

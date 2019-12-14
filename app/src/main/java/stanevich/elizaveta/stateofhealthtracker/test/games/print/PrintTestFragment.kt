@@ -2,9 +2,13 @@ package stanevich.elizaveta.stateofhealthtracker.test.games.print
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doBeforeTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -26,6 +30,8 @@ class PrintTestFragment : Fragment() {
         val binding: FragmentTestPrintBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_test_print, container, false)
 
+        var originalText = binding.text.text.toString()
+
         setupToolbar()
 
         val printTestViewModel = getPrintTestViewModel()
@@ -41,7 +47,10 @@ class PrintTestFragment : Fragment() {
                         .navigate(R.id.action_printTestFragment_to_nav_test)
                 }.show(fm, "TestResultDialog")
             }
+            printTestViewModel.savePrintData(originalText)
         }
+
+
         return binding.root
     }
 

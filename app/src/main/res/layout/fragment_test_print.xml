@@ -38,6 +38,7 @@
                 android:gravity="center_horizontal"
                 android:inputType="textMultiLine"
                 android:lines="16"
+                android:beforeTextChanged="@{(text, start, count, after) -> printTest.onPrintTextChanged(text, start, count,after)}"
                 android:maxLines="16"
                 android:minLines="8"
                 android:scrollbars="vertical"
