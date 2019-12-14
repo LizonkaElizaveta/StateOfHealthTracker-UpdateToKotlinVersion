@@ -1,6 +1,7 @@
 package stanevich.elizaveta.stateofhealthtracker
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -16,6 +17,7 @@ import stanevich.elizaveta.stateofhealthtracker.databinding.NavHeaderMainBinding
 import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModel
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModelFactory
+import stanevich.elizaveta.stateofhealthtracker.service.location.LocationPermissionsActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             ), binding.drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
+
         binding.navView.setupWithNavController(navController)
 
         val headerBind = DataBindingUtil.inflate<NavHeaderMainBinding>(
@@ -64,6 +67,8 @@ class MainActivity : AppCompatActivity() {
         headerBind.lifecycleOwner = this
 
         headerBind.profileViewModel = profileViewModel
+
+        startActivity(Intent(this, LocationPermissionsActivity::class.java))
     }
 
     override fun onSupportNavigateUp(): Boolean {

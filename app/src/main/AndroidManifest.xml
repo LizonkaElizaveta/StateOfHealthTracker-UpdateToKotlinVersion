@@ -2,12 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="stanevich.elizaveta.stateofhealthtracker">
 
+    <uses-feature
+            android:name="android.hardware.sensor.accelerometer"
+            android:required="true" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@drawable/ic_launcher"
             android:supportsRtl="true"
+            android:fullBackupContent="true"
             android:theme="@style/AppTheme">
         <activity
                 android:name=".MainActivity"
@@ -26,10 +35,16 @@
         <activity android:name=".splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".service.location.LocationPermissionsActivity" />
+
+
+        <service android:name=".service.rotation.RotationDetectorService" />
     </application>
 
 </manifest>
