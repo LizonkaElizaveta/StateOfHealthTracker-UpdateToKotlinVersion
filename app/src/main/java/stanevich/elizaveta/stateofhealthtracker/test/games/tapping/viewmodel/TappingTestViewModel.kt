@@ -14,7 +14,7 @@ class TappingTestViewModel(application: Application, val onFinish: (taps: Int) -
     AndroidViewModel(application) {
 
     companion object{
-        const val INITIAL_SECONDS = 60
+        const val INITIAL_SECONDS = 20
     }
 
     private var viewModelJob = Job()

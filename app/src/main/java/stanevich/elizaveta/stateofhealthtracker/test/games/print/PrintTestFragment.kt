@@ -28,7 +28,11 @@ class PrintTestFragment : Fragment() {
 
         setupToolbar()
 
+        val printTestViewModel = getPrintTestViewModel()
+
         binding.lifecycleOwner = this
+
+        binding.printTest = printTestViewModel
 
         binding.btnSave.setOnClickListener {
             fragmentManager?.let { fm ->
@@ -53,7 +57,7 @@ class PrintTestFragment : Fragment() {
 
         val printTestDatabase = TestingDatabase.getInstance(application).printTestDatabaseDao
 
-        val viewModelFactory = PrintTestViewModelFactory(application)
+        val viewModelFactory = PrintTestViewModelFactory(application, printTestDatabase)
 
         return ViewModelProviders.of(this, viewModelFactory).get(PrintTestViewModel::class.java)
     }

@@ -5,11 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import stanevich.elizaveta.stateofhealthtracker.test.games.print.model.PrintTest
 import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.TappingTest
 import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 
 
-@Database(entities = [TappingTest::class], version = 1, exportSchema = false)
+@Database(entities = [TappingTest::class, PrintTest::class], version = 1, exportSchema = false)
 @TypeConverters(DateConverters::class)
 abstract class TestingDatabase : RoomDatabase() {
 
