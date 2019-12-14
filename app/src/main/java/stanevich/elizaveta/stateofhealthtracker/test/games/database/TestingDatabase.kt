@@ -14,6 +14,7 @@ import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 abstract class TestingDatabase : RoomDatabase() {
 
     abstract val tappingTestDatabaseDao: TappingTestDatabaseDao
+    abstract val printTestDatabaseDao: PrintTestDatabaseDao
 
     companion object {
 

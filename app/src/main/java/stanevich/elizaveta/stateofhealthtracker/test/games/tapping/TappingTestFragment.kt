@@ -82,8 +82,6 @@ class TappingTestFragment : Fragment() {
                 }
             }
 
-
-
             fragmentManager?.let {
                 val dialog = TappingTestResultDialog(taps){
                     uiScope.launch{

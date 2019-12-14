@@ -16,7 +16,7 @@ class SplashViewModel : ViewModel() {
 
     init {
         GlobalScope.launch {
-            delay(200)
+            delay(500)
             _splashState.postValue(TutorialState.TutorialActivity())
         }
     }
