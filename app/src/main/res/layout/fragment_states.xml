@@ -11,104 +11,109 @@
                 type="stanevich.elizaveta.stateofhealthtracker.home.StatesViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/statesConstraint"
+    <stanevich.elizaveta.stateofhealthtracker.view.tracking.TrackingViewGroup
+            android:id="@+id/trackingView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize">
-
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/MainTextColor"
-                android:textSize="@dimen/tv_size_24"
-                android:gravity="center"
-               android:layout_marginTop="@dimen/margin_material_8"
-                android:id="@+id/textView_howDoYouFeel"
-                android:contentDescription="@string/text_how_do_you_feel"
-                android:text="@string/text_how_do_you_feel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-                android:id="@+id/imageButton_excellent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/BackgroundColorWhite"
-                android:contentDescription="@string/imageButton_excellent"
-                android:onClick="@{() -> statesViewModel.onStartTrackingMood(`+`)}"
-                android:src="@drawable/home_smile_excellent"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton_satisfactorily"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_howDoYouFeel" />
-
-        <ImageButton
-                android:id="@+id/imageButton_satisfactorily"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/BackgroundColorWhite"
-                android:contentDescription="@string/imageButton_satisfactorily"
-                android:onClick="@{() ->  statesViewModel.onStartTrackingMood(`~`)}"
-                android:src="@drawable/home_smile_satisfactorily"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton_bad"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton_excellent" />
-
-
-        <ImageButton
-                android:id="@+id/imageButton_bad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/BackgroundColorWhite"
-                android:contentDescription="@string/imageButton_bad"
-                android:onClick="@{() ->  statesViewModel.onStartTrackingMood(`-`)}"
-                android:src="@drawable/home_smile_bad"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton_satisfactorily" />
-
+            android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
+                android:id="@+id/statesConstraint"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_material_8"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageButton_bad">
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize">
 
-            <Button
-                    android:id="@+id/button_dyskinesia"
-                    style="@style/MyButtonStyle"
-                    android:layout_width="0dp"
-                    android:contentDescription="@string/btn_dyskinesia"
-                    android:onClick="@{() ->  statesViewModel.onStartTrackingDiskinezia(`D`)}"
-                    android:text="@string/btn_dyskinesia"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/button_medication"
+            <TextView
+                    android:id="@+id/textView_howDoYouFeel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_material_8"
+                    android:contentDescription="@string/text_how_do_you_feel"
+                    android:gravity="center"
+                    android:text="@string/text_how_do_you_feel"
+                    android:textColor="@color/MainTextColor"
+                    android:textSize="@dimen/tv_size_24"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                    android:id="@+id/button_medication"
-                    style="@style/MyButtonStyle"
-                    android:layout_width="0dp"
-                    android:contentDescription="@string/btn_medication"
-                    android:onClick="@{() -> statesViewModel.onStartTrackingPill(`X`)}"
-                    android:text="@string/btn_medication"
+            <ImageButton
+                    android:id="@+id/imageButton_excellent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/BackgroundColorWhite"
+                    android:contentDescription="@string/imageButton_excellent"
+                    android:onClick="@{() -> statesViewModel.onStartTrackingMood(`+`)}"
+                    android:src="@drawable/home_smile_excellent"
+                    app:layout_constraintBottom_toTopOf="@+id/imageButton_satisfactorily"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_howDoYouFeel" />
+
+            <ImageButton
+                    android:id="@+id/imageButton_satisfactorily"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/BackgroundColorWhite"
+                    android:contentDescription="@string/imageButton_satisfactorily"
+                    android:onClick="@{() ->  statesViewModel.onStartTrackingMood(`~`)}"
+                    android:src="@drawable/home_smile_satisfactorily"
+                    app:layout_constraintBottom_toTopOf="@+id/imageButton_bad"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton_excellent" />
+
+
+            <ImageButton
+                    android:id="@+id/imageButton_bad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/BackgroundColorWhite"
+                    android:contentDescription="@string/imageButton_bad"
+                    android:onClick="@{() ->  statesViewModel.onStartTrackingMood(`-`)}"
+                    android:src="@drawable/home_smile_bad"
+                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton_satisfactorily" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_material_8"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/button_dyskinesia"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageButton_bad">
+
+                <Button
+                        android:id="@+id/button_dyskinesia"
+                        style="@style/MyButtonStyle"
+                        android:layout_width="0dp"
+                        android:contentDescription="@string/btn_dyskinesia"
+                        android:onClick="@{() ->  statesViewModel.onStartTrackingDiskinezia(`D`)}"
+                        android:text="@string/btn_dyskinesia"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/button_medication"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                        android:id="@+id/button_medication"
+                        style="@style/MyButtonStyle"
+                        android:layout_width="0dp"
+                        android:contentDescription="@string/btn_medication"
+                        android:onClick="@{() -> statesViewModel.onStartTrackingPill(`X`)}"
+                        android:text="@string/btn_medication"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/button_dyskinesia"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </stanevich.elizaveta.stateofhealthtracker.view.tracking.TrackingViewGroup>
 </layout>

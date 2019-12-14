@@ -6,12 +6,16 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
+import stanevich.elizaveta.stateofhealthtracker.home.database.MissClick
+import stanevich.elizaveta.stateofhealthtracker.home.database.MissClickDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.home.database.States
 import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabaseDao
+import stanevich.elizaveta.stateofhealthtracker.view.tracking.ViewTracker
 import java.util.*
 
 class StatesViewModel(
-    private val database: StatesDatabaseDao,
+    private val statesDatabaseDao: StatesDatabaseDao,
+    private val missClickDatabaseDao: MissClickDatabaseDao,
     application: Application
 ) : AndroidViewModel(application) {
 
@@ -21,7 +25,7 @@ class StatesViewModel(
 
     private var stateOfHealth = MutableLiveData<States?>()
     val updatedStateOfHealth = MutableLiveData<States?>()
-
+    val trackedViews: MutableList<ViewTracker> = ArrayList()
 
     private var _showMedDialogEvent = MutableLiveData<Boolean>()
 
@@ -70,7 +74,7 @@ class StatesViewModel(
 
     private suspend fun getStatesFromDatabase(): States? {
         return withContext(Dispatchers.IO) {
-            database.getLastState()
+            statesDatabaseDao.getLastState()
         }
     }
 
@@ -84,7 +88,7 @@ class StatesViewModel(
 
     private suspend fun getStates(): States {
         var states = withContext(Dispatchers.IO) {
-            database.findByDate(Date())
+            statesDatabaseDao.findByDate(Date())
         }
         if (states == null) {
             states = States()
@@ -108,6 +112,20 @@ class StatesViewModel(
         }
     }
 
+    fun saveMissClick(
+        timestamp: Long,
+        clickDistanceFromCenter: Double,
+        closestEvents: List<ViewTracker.ClosestTouchEvent>
+    ) {
+        uiScope.launch {
+            withContext(Dispatchers.IO) {
+                missClickDatabaseDao.insert(MissClick(null, timestamp, closestEvents.size))
+
+                Log.d("missclickmy", missClickDatabaseDao.findAll().toString())
+            }
+        }
+    }
+
     private suspend fun updateStates(
         newState: States
     ) {
@@ -117,7 +135,7 @@ class StatesViewModel(
 
     private suspend fun upsert(newState: States) {
         withContext(Dispatchers.IO) {
-            database.upsert(newState)
+            statesDatabaseDao.upsert(newState)
         }
     }
 

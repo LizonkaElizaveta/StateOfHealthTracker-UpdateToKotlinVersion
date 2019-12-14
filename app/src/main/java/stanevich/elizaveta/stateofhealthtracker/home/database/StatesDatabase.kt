@@ -8,11 +8,12 @@ import androidx.room.TypeConverters
 import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 
 
-@Database(entities = [States::class], version = 2, exportSchema = false)
+@Database(entities = [States::class, MissClick::class], version = 3, exportSchema = false)
 @TypeConverters(DateConverters::class)
 abstract class StatesDatabase : RoomDatabase() {
 
     abstract val statesDatabaseDao: StatesDatabaseDao
+    abstract val missClickDatabaseDao: MissClickDatabaseDao
 
     companion object {
 
