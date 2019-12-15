@@ -6,10 +6,9 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.widget.Toast
+import stanevich.elizaveta.stateofhealthtracker.home.database.Rotation
+import java.util.*
 
-/**
- * Объект который работает с датчиком поворота
- */
 class RotationDetector(
     private val context: Context,
     private val debounceParam: Long
@@ -62,8 +61,14 @@ class RotationDetector(
         // Convert radians to degrees
         val pitch = orientation[1] * 180.0 / Math.PI
         val roll = orientation[2] * 180.0 / Math.PI
-        val azimut = orientation[0] * 180.0 / Math.PI
-        return Rotation(pitch.toFloat(), azimut.toFloat(), roll.toFloat())
+        val azimuth = orientation[0] * 180.0 / Math.PI
+        return Rotation(
+            null,
+            Calendar.getInstance().timeInMillis,
+            pitch.toFloat(),
+            azimuth.toFloat(),
+            roll.toFloat()
+        )
     }
 
     fun clear() {
@@ -81,5 +86,5 @@ class RotationDetector(
         }
     }
 
-    class Rotation(val pitch: Float, val azimut: Float, val roll: Float)
+
 }

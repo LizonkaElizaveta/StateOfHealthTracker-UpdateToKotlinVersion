@@ -8,12 +8,17 @@ import androidx.room.TypeConverters
 import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 
 
-@Database(entities = [States::class, MissClick::class], version = 3, exportSchema = false)
+@Database(
+    entities = [States::class, MissClick::class, Rotation::class],
+    version = 4,
+    exportSchema = false
+)
 @TypeConverters(DateConverters::class)
 abstract class StatesDatabase : RoomDatabase() {
 
     abstract val statesDatabaseDao: StatesDatabaseDao
     abstract val missClickDatabaseDao: MissClickDatabaseDao
+    abstract val rotationDatabaseDao: RotationDatabaseDao
 
     companion object {
 
@@ -22,13 +27,13 @@ abstract class StatesDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: StatesDatabase? = null
 
-        fun getInstance(contex: Context): StatesDatabase {
+        fun getInstance(context: Context): StatesDatabase {
             synchronized(this) {
                 var instance =
                     INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                        contex.applicationContext,
+                        context.applicationContext,
                         StatesDatabase::class.java,
                         "states_database_history"
                     ).fallbackToDestructiveMigration()

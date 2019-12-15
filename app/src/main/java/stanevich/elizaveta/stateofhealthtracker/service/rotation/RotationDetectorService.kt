@@ -4,28 +4,33 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.location.Location
 import android.os.Build
 import android.os.IBinder
+import android.util.Log
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.work.BackoffPolicy
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import stanevich.elizaveta.stateofhealthtracker.R
+import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabase
 import stanevich.elizaveta.stateofhealthtracker.service.location.LocationProvider
 import java.util.concurrent.TimeUnit
 
 
 /**
- * Сервис, который постоянно мониторинг углы наклона устройств
- * и записывает их в базу данных.
- * Данные записываются в базу данных каждую секунду,
- * при изменении значений. Если телефон находится в одинаковом положении,
- * т.е его углы наклона не меняются, то данные в базу не сохраняются.
+ * Service for monitor phone's rotation.
+ * It checks only changed rotation, nothing is happened for calm state.
  */
-class RotationDetectorService(private val onLocationUpdate: (location: Location) -> Unit = { _ -> }) :
+class RotationDetectorService :
     Service() {
+
+
+    private val ioScope = CoroutineScope(Dispatchers.IO)
 
     companion object {
         const val LOCATION_PERMISSIONS_KEY = "LOCATION_PERMISSIONS_KEY"
@@ -33,6 +38,8 @@ class RotationDetectorService(private val onLocationUpdate: (location: Location)
 
         const val WORK_NAME_DEFAULT = "Rotation service startup worker"
         const val WORK_DELAY_MINUTES = 30L
+        const val REPEAT_IN_SECS = 1000
+
 
         fun saveNotificationEnabled(enabled: Boolean, context: Context) {
             context
@@ -57,9 +64,23 @@ class RotationDetectorService(private val onLocationUpdate: (location: Location)
 
     override fun onCreate() {
         super.onCreate()
-        this.rotationDetector = RotationDetector(this, 100)
-        this.locationProvider = LocationProvider(1000, this, onLocationUpdate)
-        rotationDetector.getOrientation {}
+
+        val rotationDatabaseDao = StatesDatabase.getInstance(application).rotationDatabaseDao
+
+        this.rotationDetector = RotationDetector(this, REPEAT_IN_SECS.toLong())
+        this.locationProvider = LocationProvider(REPEAT_IN_SECS, this) {
+            if (it.speed > 0.0) {
+                Toast.makeText(application, "${(it.speed * 3600) / 1000}", Toast.LENGTH_SHORT)
+                    .show()
+                Log.d("LocationMy", "${(it.speed * 3600) / 1000}")
+            }
+        }
+        rotationDetector.getOrientation {
+            ioScope.launch {
+                rotationDatabaseDao.insert(it)
+                Log.d("RotationMy", rotationDatabaseDao.findAll().toString())
+            }
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             moveToForeground()
         }

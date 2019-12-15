@@ -6,13 +6,13 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface MissClickDatabaseDao {
+interface RotationDatabaseDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(missClick: MissClick)
+    fun insert(rotation: Rotation)
 
-    @Query("SELECT * FROM miss_click_table")
-    fun findAll(): List<MissClick>?
+    @Query("SELECT * FROM rotation_table")
+    fun findAll(): List<Rotation>?
 
-    @Query("DELETE from miss_click_table")
+    @Query("DELETE from rotation_table")
     fun clear()
 }

@@ -38,12 +38,12 @@ class TrackingViewGroup(
 ) : FrameLayout(context, attrs) {
     companion object {
         const val DEFAULT_TIMEOUT = 5000L
-        const val DEFAULT_MAX_DISTANCE = 30.0
+        const val DEFAULT_MAX_DISTANCE = 50.0
     }
 
-    var timeout = DEFAULT_TIMEOUT
-    var maxDistanceValue = DEFAULT_MAX_DISTANCE
-    var drawRect = true
+    private var timeout = DEFAULT_TIMEOUT
+    private var maxDistanceValue = DEFAULT_MAX_DISTANCE
+    private var drawRect = false
     private var borderDrawer: BorderDrawer? = null
 
     private val views: MutableList<ViewTracker> = ArrayList()
