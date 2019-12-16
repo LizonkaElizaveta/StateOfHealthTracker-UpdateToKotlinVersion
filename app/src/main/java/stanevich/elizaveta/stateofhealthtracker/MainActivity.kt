@@ -69,12 +69,14 @@ class MainActivity : AppCompatActivity() {
         headerBind.profileViewModel = profileViewModel
 
 
-        DataMiningDialog({
-            startActivity(Intent(this@MainActivity, LocationPermissionsActivity::class.java))
-            DataMiningForegroundService.saveServiceEnabled(this@MainActivity, true)
-        }, {
-            DataMiningForegroundService.saveServiceEnabled(this@MainActivity, false)
-        }).show(supportFragmentManager, "DataMiningDialog")
+        if (!DataMiningForegroundService.isServiceEnabled(this)) {
+            DataMiningDialog({
+                startActivity(Intent(this@MainActivity, LocationPermissionsActivity::class.java))
+                DataMiningForegroundService.saveServiceEnabled(this@MainActivity, true)
+            }, {
+                DataMiningForegroundService.saveServiceEnabled(this@MainActivity, false)
+            }).show(supportFragmentManager, "DataMiningDialog")
+        }
 
         getRotationViewModel(application)
     }

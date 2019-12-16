@@ -28,7 +28,7 @@ class DataMiningForegroundService : Service() {
 
     companion object {
         const val LOCATION_PERMISSIONS_KEY = "LOCATION_PERMISSIONS_KEY"
-        private const val SERVICE_ENABLED = "SERVICE_ENABLED "
+        private const val SERVICE_ENABLED = "SERVICE_ENABLED"
 
         const val WORK_NAME_DEFAULT = "Data Mining Foreground Service Worker"
         const val WORK_DELAY_MINUTES = 30L
@@ -48,11 +48,12 @@ class DataMiningForegroundService : Service() {
             return context
                 .applicationContext
                 .getSharedPreferences(SERVICE_ENABLED, Context.MODE_PRIVATE)
-                .getBoolean(SERVICE_ENABLED, true)
+                .getBoolean(SERVICE_ENABLED, false)
         }
     }
 
     private lateinit var locationProvider: LocationProvider
+    private var deleteNotificationPendingIntent: PendingIntent? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -96,8 +97,8 @@ class DataMiningForegroundService : Service() {
 
 
     private fun moveToForeground() {
-        val deletePendingIntent = deleteNotificationIntent()
         val notificationManager = SHTNotificationManager(this)
+        val deletePendingIntent = deleteNotificationIntent()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationManager.createMainNotificationChannel()
@@ -118,9 +119,12 @@ class DataMiningForegroundService : Service() {
     }
 
     private fun deleteNotificationIntent(): PendingIntent {
-        val disableIntent = Intent(this, DataMiningForegroundService::class.java)
-        disableIntent.putExtra(SERVICE_ENABLED, false)
-        return PendingIntent.getService(this, 0, disableIntent, 0)
+        if (deleteNotificationPendingIntent == null) {
+            val disableIntent = Intent(this, DataMiningForegroundService::class.java)
+            disableIntent.putExtra(SERVICE_ENABLED, false)
+            deleteNotificationPendingIntent = PendingIntent.getService(this, 0, disableIntent, 0)
+        }
+        return deleteNotificationPendingIntent!!
     }
 
     override fun onBind(intent: Intent?): IBinder? {
