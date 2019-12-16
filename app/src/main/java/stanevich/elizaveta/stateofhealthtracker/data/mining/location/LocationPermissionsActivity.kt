@@ -1,10 +1,10 @@
-package stanevich.elizaveta.stateofhealthtracker.service.location
+package stanevich.elizaveta.stateofhealthtracker.data.mining.location
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import stanevich.elizaveta.stateofhealthtracker.service.rotation.RotationDetectorService
+import stanevich.elizaveta.stateofhealthtracker.data.mining.service.DataMiningForegroundService
 
 class LocationPermissionsActivity : AppCompatActivity() {
 
@@ -33,9 +33,9 @@ class LocationPermissionsActivity : AppCompatActivity() {
 
 
     private fun startMonitoringServiceIntent(context: Context) {
-        val intent = Intent(context, RotationDetectorService::class.java)
+        val intent = Intent(context, DataMiningForegroundService::class.java)
         val withLocation = permissionRequire.itHaveAllPermissions()
-        intent.putExtra(RotationDetectorService.LOCATION_PERMISSIONS_KEY, withLocation)
+        intent.putExtra(DataMiningForegroundService.LOCATION_PERMISSIONS_KEY, withLocation)
         context.startService(intent)
     }
 

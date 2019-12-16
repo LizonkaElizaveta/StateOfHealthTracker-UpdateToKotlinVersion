@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.service.location
+package stanevich.elizaveta.stateofhealthtracker.data.mining.location
 
 import android.Manifest
 import android.content.Context
@@ -9,16 +9,15 @@ import com.google.android.gms.location.*
 
 
 class LocationProvider constructor(
-    private val intervalMs: Int = 1000, private val context: Context,
+    private val context: Context,
+    private val intervalMs: Int = 1000,
     private val onLocationChanged: (location: Location) -> Unit = { _ -> }
-) :
-    LocationCallback() {
+) : LocationCallback() {
+
     private val locationPermission = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.ACCESS_COARSE_LOCATION
     )
-    private val accuracy: Int = LocationRequest.PRIORITY_HIGH_ACCURACY
-
 
     var isTrackingLocation: Boolean = false
         private set
@@ -35,7 +34,7 @@ class LocationProvider constructor(
             val locationRequest = LocationRequest()
             locationRequest.interval = intervalMs.toLong()
             locationRequest.fastestInterval = (intervalMs / 2).toLong()
-            locationRequest.priority = accuracy
+            locationRequest.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
             return locationRequest
         }
 

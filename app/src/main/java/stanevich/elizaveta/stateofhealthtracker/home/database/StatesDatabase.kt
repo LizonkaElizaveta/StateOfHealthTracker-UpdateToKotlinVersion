@@ -9,8 +9,8 @@ import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 
 
 @Database(
-    entities = [States::class, MissClick::class, Rotation::class],
-    version = 4,
+    entities = [States::class, MissClick::class, Rotation::class, Speed::class],
+    version = 5,
     exportSchema = false
 )
 @TypeConverters(DateConverters::class)
@@ -19,6 +19,7 @@ abstract class StatesDatabase : RoomDatabase() {
     abstract val statesDatabaseDao: StatesDatabaseDao
     abstract val missClickDatabaseDao: MissClickDatabaseDao
     abstract val rotationDatabaseDao: RotationDatabaseDao
+    abstract val speedDatabaseDao: SpeedDatabaseDao
 
     companion object {
 

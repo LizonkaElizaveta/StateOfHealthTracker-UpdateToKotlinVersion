@@ -1,10 +1,11 @@
-package stanevich.elizaveta.stateofhealthtracker.service.rotation
+package stanevich.elizaveta.stateofhealthtracker.data.mining.rotation
 
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.hardware.SensorManager.SENSOR_DELAY_GAME
 import android.widget.Toast
 import stanevich.elizaveta.stateofhealthtracker.home.database.Rotation
 import java.util.*
@@ -13,6 +14,10 @@ class RotationDetector(
     private val context: Context,
     private val debounceParam: Long
 ) {
+
+    companion object {
+        const val REPEAT_IN_MILLISECONDS = 1000L
+    }
 
     private var sensorEventListener: SensorEventListener? = null
     private var currentCallback: (rotation: Rotation) -> Unit = {}
@@ -38,7 +43,7 @@ class RotationDetector(
                 }
             }
         }
-        sensorManager.registerListener(sensorEventListener, rotationSensor, 16000)
+        sensorManager.registerListener(sensorEventListener, rotationSensor, SENSOR_DELAY_GAME)
     }
 
     private fun getDataFromSensors(rotationVector: FloatArray?): Rotation {

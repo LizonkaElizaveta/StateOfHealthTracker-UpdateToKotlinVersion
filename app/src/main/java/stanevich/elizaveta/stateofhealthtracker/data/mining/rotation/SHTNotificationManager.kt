@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.service.rotation
+package stanevich.elizaveta.stateofhealthtracker.data.mining.rotation
 
 import android.app.NotificationChannel
 import android.app.NotificationManager

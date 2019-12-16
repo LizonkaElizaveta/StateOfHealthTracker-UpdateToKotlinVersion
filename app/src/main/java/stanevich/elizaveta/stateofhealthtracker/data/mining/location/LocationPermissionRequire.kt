@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.service.location
+package stanevich.elizaveta.stateofhealthtracker.data.mining.location
 
 import android.Manifest
 import android.app.Activity

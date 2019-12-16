@@ -25,7 +25,6 @@ class StatesViewModel(
 
     private var stateOfHealth = MutableLiveData<States?>()
     val updatedStateOfHealth = MutableLiveData<States?>()
-    val trackedViews: MutableList<ViewTracker> = ArrayList()
 
     private var _showMedDialogEvent = MutableLiveData<Boolean>()
 
@@ -117,10 +116,8 @@ class StatesViewModel(
         clickDistanceFromCenter: Double,
         closestEvents: List<ViewTracker.ClosestTouchEvent>
     ) {
-        uiScope.launch {
-            withContext(Dispatchers.IO) {
-                missClickDatabaseDao.insert(MissClick(null, timestamp, closestEvents.size))
-            }
+        CoroutineScope(Dispatchers.IO).launch {
+            missClickDatabaseDao.insert(MissClick(null, timestamp, closestEvents.size))
         }
     }
 

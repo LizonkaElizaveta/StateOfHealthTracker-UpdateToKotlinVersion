@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.service.rotation
+package stanevich.elizaveta.stateofhealthtracker.data.mining.service
 
 import android.app.PendingIntent
 import android.app.Service
@@ -6,8 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.IBinder
-import android.util.Log
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.work.BackoffPolicy
 import androidx.work.ExistingPeriodicWorkPolicy
@@ -15,72 +13,66 @@ import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import stanevich.elizaveta.stateofhealthtracker.R
+import stanevich.elizaveta.stateofhealthtracker.data.mining.location.LocationProvider
+import stanevich.elizaveta.stateofhealthtracker.data.mining.rotation.SHTNotificationManager
+import stanevich.elizaveta.stateofhealthtracker.home.database.Speed
 import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabase
-import stanevich.elizaveta.stateofhealthtracker.service.location.LocationProvider
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 
-/**
- * Service for monitor phone's rotation.
- * It checks only changed rotation, nothing is happened for calm state.
- */
-class RotationDetectorService :
-    Service() {
-
-
-    private val ioScope = CoroutineScope(Dispatchers.IO)
+class DataMiningForegroundService : Service() {
 
     companion object {
         const val LOCATION_PERMISSIONS_KEY = "LOCATION_PERMISSIONS_KEY"
-        private const val NOTIFICATION_ENABLED = "NOTIFICATION_ENABLED "
+        private const val SERVICE_ENABLED = "SERVICE_ENABLED "
 
-        const val WORK_NAME_DEFAULT = "Rotation service startup worker"
+        const val WORK_NAME_DEFAULT = "Data Mining Foreground Service Worker"
         const val WORK_DELAY_MINUTES = 30L
-        const val REPEAT_IN_SECS = 1000
 
+        private const val COLLECTING_DATA_HOURS = 2L
 
-        fun saveNotificationEnabled(enabled: Boolean, context: Context) {
+        fun saveServiceEnabled(context: Context, enabled: Boolean) {
             context
                 .applicationContext
-                .getSharedPreferences(NOTIFICATION_ENABLED, Context.MODE_PRIVATE)
+                .getSharedPreferences(SERVICE_ENABLED, Context.MODE_PRIVATE)
                 .edit()
-                .putBoolean(NOTIFICATION_ENABLED, enabled)
+                .putBoolean(SERVICE_ENABLED, enabled)
                 .apply()
         }
 
-        fun isNotificationEnabled(context: Context): Boolean {
+        fun isServiceEnabled(context: Context): Boolean {
             return context
                 .applicationContext
-                .getSharedPreferences(NOTIFICATION_ENABLED, Context.MODE_PRIVATE)
-                .getBoolean(NOTIFICATION_ENABLED, true)
-
+                .getSharedPreferences(SERVICE_ENABLED, Context.MODE_PRIVATE)
+                .getBoolean(SERVICE_ENABLED, true)
         }
     }
 
-    private lateinit var rotationDetector: RotationDetector
     private lateinit var locationProvider: LocationProvider
 
     override fun onCreate() {
         super.onCreate()
 
-        val rotationDatabaseDao = StatesDatabase.getInstance(application).rotationDatabaseDao
+        val speedDatabaseDao = StatesDatabase.getInstance(applicationContext).speedDatabaseDao
 
-        this.rotationDetector = RotationDetector(this, REPEAT_IN_SECS.toLong())
-        this.locationProvider = LocationProvider(REPEAT_IN_SECS, this) {
-            if (it.speed > 0.0) {
-                Toast.makeText(application, "${(it.speed * 3600) / 1000}", Toast.LENGTH_SHORT)
-                    .show()
-                Log.d("LocationMy", "${(it.speed * 3600) / 1000}")
+        locationProvider = LocationProvider(this, 1000) {
+            if (it.speed > 1.5) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    speedDatabaseDao.insert(
+                        Speed(
+                            null,
+                            Calendar.getInstance().timeInMillis,
+                            (it.speed * 3600) / 1000
+                        )
+                    )
+                }
             }
         }
-        rotationDetector.getOrientation {
-            ioScope.launch {
-                rotationDatabaseDao.insert(it)
-                Log.d("RotationMy", rotationDatabaseDao.findAll().toString())
-            }
-        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             moveToForeground()
         }
@@ -88,7 +80,7 @@ class RotationDetectorService :
 
     private fun createWorkRequest() = PeriodicWorkRequest
         .Builder(
-            RotationServiceStartupWorker::class.java,
+            ForegroundServiceStartupWorker::class.java,
             WORK_DELAY_MINUTES,
             TimeUnit.MINUTES,
             WORK_DELAY_MINUTES / 2,
@@ -104,26 +96,31 @@ class RotationDetectorService :
 
 
     private fun moveToForeground() {
-        val disableIntent = Intent(this, RotationDetectorService::class.java)
-        disableIntent.putExtra(NOTIFICATION_ENABLED, false)
-        val deletePendingIntent = PendingIntent.getService(this, 0, disableIntent, 0)
+        val deletePendingIntent = deleteNotificationIntent()
         val notificationManager = SHTNotificationManager(this)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationManager.createMainNotificationChannel()
             val notification =
                 NotificationCompat.Builder(this, notificationManager.getMainNotificationId())
-                    .setSmallIcon(R.drawable.ic_target)
-                    .setContentTitle("Rotation Title")
-                    .setContentText("Rotation Content")
-                    .setGroup("Rotation group")
+                    .setSmallIcon(R.drawable.menu_ic_data_collection)
+                    .setContentTitle(getString(R.string.data_mining_activated))
+                    .setContentText(getString(R.string.data_mining_is_collected))
+                    .setGroup("DataMiningStateOfHealthTrackerNotification")
                     .addAction(
                         android.R.drawable.ic_delete,
-                        "Disable monitoring action",
+                        getString(R.string.data_mining_stop_collect),
                         deletePendingIntent
                     )
                     .build()
             startForeground(1224, notification)
         }
+    }
+
+    private fun deleteNotificationIntent(): PendingIntent {
+        val disableIntent = Intent(this, DataMiningForegroundService::class.java)
+        disableIntent.putExtra(SERVICE_ENABLED, false)
+        return PendingIntent.getService(this, 0, disableIntent, 0)
     }
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -132,17 +129,21 @@ class RotationDetectorService :
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
+
         if (intent?.getBooleanExtra(LOCATION_PERMISSIONS_KEY, false) == true) {
             locationProvider.startTrackingLocation()
         }
-        val savedState = isNotificationEnabled(this)
-        val enabled = intent?.getBooleanExtra(NOTIFICATION_ENABLED, savedState) ?: savedState
-        saveNotificationEnabled(enabled, this)
+
+        val savedState = isServiceEnabled(this)
+        val enabled = intent?.getBooleanExtra(SERVICE_ENABLED, savedState) ?: savedState
+        saveServiceEnabled(this, enabled)
+
         if (!enabled) {
             stopScheduledWorks()
             stopSelf()
             return START_NOT_STICKY
         }
+
         scheduleWorks()
         return START_STICKY
     }
@@ -155,19 +156,22 @@ class RotationDetectorService :
                 ExistingPeriodicWorkPolicy.KEEP,
                 createWorkRequest()
             )
+
+        CoroutineScope(Dispatchers.Default).launch {
+            delay(COLLECTING_DATA_HOURS * 60 * 60 * 1000)
+            stopScheduledWorks()
+            deleteNotificationIntent().send()
+        }
     }
 
     private fun stopScheduledWorks() {
-        WorkManager
-            .getInstance(this).cancelUniqueWork(WORK_NAME_DEFAULT)
+        saveServiceEnabled(applicationContext, false)
+        WorkManager.getInstance(this).cancelUniqueWork(WORK_NAME_DEFAULT)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         locationProvider.stopTrackingLocation()
-        rotationDetector.clear()
-        val broadcastIntent = Intent("stanevich.elizaveta.stateofhealthtracker.service.rotation")
-        sendBroadcast(broadcastIntent)
     }
 
 }

@@ -41,10 +41,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".service.location.LocationPermissionsActivity" />
+        <activity android:name="stanevich.elizaveta.stateofhealthtracker.data.mining.location.LocationPermissionsActivity" />
 
 
-        <service android:name=".service.rotation.RotationDetectorService" />
+        <service android:name="stanevich.elizaveta.stateofhealthtracker.data.mining.service.DataMiningForegroundService" />
     </application>
 
 </manifest>
