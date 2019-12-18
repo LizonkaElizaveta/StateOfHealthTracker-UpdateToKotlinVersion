@@ -70,10 +70,12 @@ dependencies {
 
     // AppIntro
     implementation 'com.github.AppIntro:AppIntro:5.1.0'
-
     implementation 'com.google.code.gson:gson:2.8.6'
 
+    // Location
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 
-
+    implementation 'androidx.work:work-runtime:2.2.0'
+    implementation "androidx.concurrent:concurrent-futures:1.0.0"
 
 }

@@ -109,4 +109,7 @@
     <string name="list_poems_four">Утро таяло в тумане,\nШелестели камыши.\nГрациозные, как лани,\nШли по полю алкаши.</string>
     <string name="list_poems_five">В те дни, когда уж нет надежд,\nА есть одно воспоминанье,\nВеселье чуждо наших вежд,\nИ легче на груди страданье.</string>
     <string name="list_poems_six">Не стоит себя мыслями грузить,\nВо всем до понимания доходить,\nУменье жизнью насладиться\nВсегда любому пригодится.</string>
+    <string name="data_mining_activated">Сбор данных активирован</string>
+    <string name="data_mining_is_collected">В данный момент мы собираем статистику о скорости передвижении</string>
+    <string name="data_mining_stop_collect">Остановить сбор статистики</string>
 </resources>
