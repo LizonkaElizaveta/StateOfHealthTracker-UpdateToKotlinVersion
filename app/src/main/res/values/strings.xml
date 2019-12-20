@@ -112,4 +112,11 @@
     <string name="data_mining_activated">Сбор данных активирован</string>
     <string name="data_mining_is_collected">В данный момент мы собираем статистику о скорости передвижении</string>
     <string name="data_mining_stop_collect">Остановить сбор статистики</string>
+    <string name="text_support_policy">Политика конфиденциальности</string>
+    <string name="text_support_users">Техническая поддержка</string>
+
+    <string name="send_email">Отправить email</string>
+    <string name="not_install_email_app">Не установлено приложение для отправки писем</string>
+    <string name="feedback_subject_pattern">Обращение пользователя из приложения SHT</string>
+    <string name="feedback_app_version_pattern" formatted="false">\n\n\nВерсия приложения(не стирайте): OS - %s, SDK - %d, %s, %s, %s, %d.</string>
 </resources>
