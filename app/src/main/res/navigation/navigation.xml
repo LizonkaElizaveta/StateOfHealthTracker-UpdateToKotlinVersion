@@ -102,4 +102,12 @@
                 android:id="@+id/action_drawingTestFragment_to_nav_test"
                 app:destination="@id/nav_test" />
     </fragment>
+    <fragment
+            android:id="@+id/nav_settings"
+            android:name="stanevich.elizaveta.stateofhealthtracker.settings.SettingsFragment"
+            android:label="@string/menu_settings" />
+    <fragment
+            android:id="@+id/nav_support"
+            android:name="stanevich.elizaveta.stateofhealthtracker.support.SupportFragment"
+            android:label="@string/menu_support" />
 </navigation>
