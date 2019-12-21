@@ -13,7 +13,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.work.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -109,13 +108,13 @@ class MainActivity : AppCompatActivity() {
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
         val request =
-            PeriodicWorkRequestBuilder<SendDataWorker>(1, TimeUnit.SECONDS).setConstraints(
+            PeriodicWorkRequestBuilder<SendDataWorker>(24, TimeUnit.HOURS).setConstraints(
                 constraints
             ).build()
         WorkManager.getInstance(application)
             .enqueueUniquePeriodicWork(
                 "SHTSendingData",
-                ExistingPeriodicWorkPolicy.REPLACE,
+                ExistingPeriodicWorkPolicy.KEEP,
                 request
             )
     }

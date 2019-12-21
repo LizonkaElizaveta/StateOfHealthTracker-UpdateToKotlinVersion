@@ -11,6 +11,7 @@ import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabase
 import stanevich.elizaveta.stateofhealthtracker.network.api.dataStore.DataStoreAPI
 import stanevich.elizaveta.stateofhealthtracker.network.dto.*
 import stanevich.elizaveta.stateofhealthtracker.test.games.database.TestingDatabase
+import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.model.TappingTest
 import stanevich.elizaveta.stateofhealthtracker.utils.ConnectivityUtil
 
 class SendDataWorker(
@@ -36,7 +37,7 @@ class SendDataWorker(
                 sendTappingTestData(dataStoreApi)
                 sendTappingTestData(dataStoreApi)
 
-                Result.retry()
+                Result.Success()
             } catch (e: Exception) {
                 Log.e("SendingError", e.toString())
                 Result.failure()
@@ -85,7 +86,17 @@ class SendDataWorker(
             TestingDatabase.getInstance(applicationContext).tappingTestDatabaseDao
         val states = tappingTestDatabase.findAll().map { TappingTestDto.fromTappingTest(it) }
         if (states.isNotEmpty()) {
-            dataStoreApi.sendTappingTestData(states)
+            dataStoreApi.sendTappingTestData(
+                listOf(
+                    TappingTestDto.fromTappingTest(
+                        TappingTest(
+                            1,
+                            2,
+                            3
+                        )
+                    )
+                )
+            )
             tappingTestDatabase.clear()
         }
     }
