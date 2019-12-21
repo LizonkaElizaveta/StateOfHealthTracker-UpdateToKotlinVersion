@@ -92,7 +92,7 @@
                         style="@style/MyButtonStyle"
                         android:layout_width="0dp"
                         android:contentDescription="@string/btn_dyskinesia"
-                        android:onClick="@{() ->  statesViewModel.onStartTrackingDiskinezia(`D`)}"
+                        android:onClick="@{() ->  statesViewModel.onStartTrackingDyskinesia(`D`)}"
                         android:text="@string/btn_dyskinesia"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/button_medication"

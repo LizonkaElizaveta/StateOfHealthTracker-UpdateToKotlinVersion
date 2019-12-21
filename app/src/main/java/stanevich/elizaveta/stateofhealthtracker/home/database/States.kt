@@ -3,22 +3,29 @@ package stanevich.elizaveta.stateofhealthtracker.home.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
 
 @Entity(tableName = "states_table")
 data class States(
     @PrimaryKey(autoGenerate = true)
-    var statesId: Long = 0L,
+    var id: Long = 0L,
 
     @ColumnInfo(name = "date")
-    var statesDate: Date = Date(),
+    var date: Long = 0,
 
     @ColumnInfo(name = "mood")
-    var statesMood: String = "",
+    var mood: String = "",
 
     @ColumnInfo(name = "pill")
-    var statesPill: String = "",
+    var pill: Long = 0,
 
-    @ColumnInfo(name = "diskinezia")
-    var statesDiskinezia: String = ""
-)
+    @ColumnInfo(name = "dyskinesia")
+    var dyskinesia: Long = 0
+) {
+    fun moodToInt(): Int {
+        return when (mood) {
+            "-" -> -1
+            "+" -> 1
+            else -> 0
+        }
+    }
+}

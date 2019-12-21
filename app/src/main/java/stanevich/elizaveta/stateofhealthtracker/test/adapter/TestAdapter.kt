@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import stanevich.elizaveta.stateofhealthtracker.databinding.ListItemTestBinding
 import stanevich.elizaveta.stateofhealthtracker.test.model.Test
 
-class TestAdapter(private val onClickListener: (Test)->Unit) :
+class TestAdapter(private val onClickListener: (Test) -> Unit) :
     androidx.recyclerview.widget.ListAdapter<Test, TestAdapter.TestViewHolder>(DiffCallback) {
 
     class TestViewHolder(private var binding: ListItemTestBinding) :

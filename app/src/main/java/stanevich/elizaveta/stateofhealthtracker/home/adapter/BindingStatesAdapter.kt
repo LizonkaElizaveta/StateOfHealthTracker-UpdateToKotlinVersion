@@ -9,7 +9,7 @@ import stanevich.elizaveta.stateofhealthtracker.home.database.States
 fun ImageView.setStatesImage(item: States?) {
     item?.let {
         setImageResource(
-            when (item.statesMood) {
+            when (item.mood) {
                 "+" -> R.drawable.home_smile_excellent_full
                 "-" -> R.drawable.home_smile_satisfactorily_full
                 else -> R.drawable.home_smile_bad_full

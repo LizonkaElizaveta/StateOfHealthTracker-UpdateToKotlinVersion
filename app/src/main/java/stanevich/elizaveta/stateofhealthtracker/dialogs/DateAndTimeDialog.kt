@@ -63,7 +63,7 @@ class DateAndTimeDialog(private val stateOfHealth: MutableLiveData<States?>) : D
             .setTitle(R.string.dialogHeadline_choseDateAndTime)
             .setPositiveButton(R.string.btn_ok) { _, _ ->
                 val states = stateOfHealth.value!!
-                states.statesDate = getDateTimeValue(etDate.text.toString(), etTime.text.toString())
+                states.date = getDateTimeValue(etDate.text.toString(), etTime.text.toString()).time
                 Log.d("mLog", states.toString())
                 stateOfHealth.postValue(states)
                 dialog!!.dismiss()

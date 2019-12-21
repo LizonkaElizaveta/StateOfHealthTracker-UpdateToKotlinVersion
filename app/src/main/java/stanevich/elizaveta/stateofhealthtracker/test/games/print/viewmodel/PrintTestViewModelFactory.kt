@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import stanevich.elizaveta.stateofhealthtracker.test.games.database.PrintTestDatabaseDao
 
-class PrintTestViewModelFactory (
+class PrintTestViewModelFactory(
     private val application: Application,
     private val dataSource: PrintTestDatabaseDao
 ) : ViewModelProvider.Factory {

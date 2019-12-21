@@ -20,7 +20,12 @@ class DrawingTestFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding: FragmentTestDrawingFigureBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_test_drawing_figure, container, false)
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_test_drawing_figure,
+                container,
+                false
+            )
 
         setupToolbar()
 

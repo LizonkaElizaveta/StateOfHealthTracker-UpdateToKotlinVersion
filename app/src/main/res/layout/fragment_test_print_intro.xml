@@ -41,7 +41,7 @@
                 android:id="@+id/btn_start"
                 style="@style/MyButtonStyle"
                 android:layout_width="@dimen/btn_save_layout_width"
-                android:text="Начать тест"
+                android:text="@string/start_test"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

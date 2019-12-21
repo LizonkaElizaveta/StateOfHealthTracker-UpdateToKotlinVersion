@@ -12,11 +12,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.work.*
 import stanevich.elizaveta.stateofhealthtracker.data.mining.location.LocationPermissionsActivity
 import stanevich.elizaveta.stateofhealthtracker.data.mining.rotation.RotationViewModel
 import stanevich.elizaveta.stateofhealthtracker.data.mining.rotation.RotationViewModelFactory
 import stanevich.elizaveta.stateofhealthtracker.data.mining.service.DataMiningForegroundService
+import stanevich.elizaveta.stateofhealthtracker.data.mining.service.SendDataWorker
 import stanevich.elizaveta.stateofhealthtracker.databinding.ActivityMainBinding
 import stanevich.elizaveta.stateofhealthtracker.databinding.NavHeaderMainBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.DataMiningDialog
@@ -24,6 +25,7 @@ import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabase
 import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModel
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModelFactory
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,17 +42,7 @@ class MainActivity : AppCompatActivity() {
         toolbar.bringToFront()
         setSupportActionBar(toolbar)
 
-        val navController = this.findNavController(R.id.nav_host_fragment)
-
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_notifications,
-                R.id.nav_profile, R.id.nav_settings, R.id.nav_test, R.id.nav_support, R.id.nav_settings
-            ), binding.drawerLayout
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.navView.setupWithNavController(navController)
+        setupNavigation(binding)
 
         val headerBind = DataBindingUtil.inflate<NavHeaderMainBinding>(
             layoutInflater,
@@ -68,6 +60,29 @@ class MainActivity : AppCompatActivity() {
 
         headerBind.profileViewModel = profileViewModel
 
+        setupDataMining(application)
+    }
+
+    private fun setupNavigation(binding: ActivityMainBinding) {
+        val navController = this.findNavController(R.id.nav_host_fragment)
+
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_home,
+                R.id.nav_notifications,
+                R.id.nav_profile,
+                R.id.nav_settings,
+                R.id.nav_test,
+                R.id.nav_support,
+                R.id.nav_settings
+            ), binding.drawerLayout
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+//        binding.navView.setupWithNavController(navController)
+    }
+
+    private fun setupDataMining(application: Application) {
         if (!DataMiningForegroundService.isServiceEnabled(this)) {
             DataMiningDialog({
                 startActivity(Intent(this@MainActivity, LocationPermissionsActivity::class.java))
@@ -78,6 +93,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         getRotationViewModel(application)
+
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
+        val request =
+            PeriodicWorkRequestBuilder<SendDataWorker>(24, TimeUnit.HOURS).setConstraints(
+                constraints
+            ).build()
+        WorkManager.getInstance(application)
+            .enqueueUniquePeriodicWork(
+                "SHTSendingData",
+                ExistingPeriodicWorkPolicy.REPLACE,
+                request
+            )
     }
 
     private fun getRotationViewModel(application: Application): RotationViewModel {

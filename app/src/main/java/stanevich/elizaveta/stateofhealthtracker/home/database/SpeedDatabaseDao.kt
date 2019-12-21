@@ -4,15 +4,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import stanevich.elizaveta.stateofhealthtracker.network.api.dataStore.NetworkDao
 
 @Dao
-interface SpeedDatabaseDao {
+interface SpeedDatabaseDao : NetworkDao<Speed> {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(speed: Speed)
 
     @Query("SELECT * FROM speed_table")
-    fun findAll(): List<Speed>?
+    override fun findAll(): List<Speed>
 
     @Query("DELETE from speed_table")
-    fun clear()
+    override fun clear()
 }

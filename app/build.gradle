@@ -17,19 +17,23 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        buildConfigField 'String', 'API_DEVELOPER_TOKEN', "\"MY_API_TOKEN (1234rhjk23h4jk132)\""
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField 'String', 'API_ENDPOINT', "\"http://0.0.0.0/\""
         }
-
-
+        debug {
+            buildConfigField 'String', 'API_ENDPOINT', "\"http://192.168.25.28:9090/\""
+        }
     }
 
-        dataBinding {
-            enabled = true
-        }
+    dataBinding {
+        enabled = true
+    }
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
@@ -75,10 +79,17 @@ dependencies {
     // Location
     implementation 'com.google.android.gms:play-services-location:17.0.0'
 
-    implementation 'androidx.work:work-runtime:2.2.0'
-    implementation "androidx.concurrent:concurrent-futures:1.0.0"
-
     // WorkManager
     implementation 'androidx.work:work-runtime:2.3.0-beta02'
+    implementation 'androidx.work:work-runtime:2.2.0'
+    implementation "androidx.work:work-runtime-ktx:2.2.0"
+    implementation "androidx.concurrent:concurrent-futures:1.0.0"
 
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+    // Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:1.9.2"
+    implementation("com.squareup.moshi:moshi-adapters:1.9.2")
 }

@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.test.games.tapping
+package stanevich.elizaveta.stateofhealthtracker.test.games.tapping.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -10,10 +10,13 @@ data class TappingTest(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
 
-    @ColumnInfo(name = "taps")
-    var taps: Int = 0,
+    @ColumnInfo(name = "leftCount")
+    var leftCount: Int = 0,
+
+    @ColumnInfo(name = "rightCount")
+    var rightCount: Int = 0,
 
     @ColumnInfo(name = "date")
-    var date: Date = Date()
+    var date: Long = Calendar.getInstance().timeInMillis
 )
 

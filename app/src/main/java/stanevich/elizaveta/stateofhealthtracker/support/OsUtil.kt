@@ -3,9 +3,7 @@ package stanevich.elizaveta.stateofhealthtracker.support
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
-import android.os.Looper
 import android.util.Log
-import stanevich.elizaveta.stateofhealthtracker.BuildConfig
 
 object OsUtil {
 

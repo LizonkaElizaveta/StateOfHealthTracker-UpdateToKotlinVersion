@@ -7,7 +7,11 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import stanevich.elizaveta.stateofhealthtracker.R
 
-class TappingTestResultDialog(private val taps: Int, private val onDismiss: ()->Unit) : DialogFragment() {
+class TappingTestResultDialog(
+    private val leftCount: Int,
+    private val rightCount: Int,
+    private val onDismiss: () -> Unit
+) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val inf = activity?.layoutInflater?.inflate(R.layout.dialog_tapping_test_result, null)
@@ -23,7 +27,7 @@ class TappingTestResultDialog(private val taps: Int, private val onDismiss: ()->
 
         val msg = inf?.findViewById(R.id.tv_thanks) as TextView?
         msg?.let {
-            it.text = getString(R.string.dialog_text_tapping_result, taps)
+            it.text = getString(R.string.dialog_text_tapping_result, leftCount, rightCount)
         }
 
         return alert

@@ -80,7 +80,7 @@ class StatesViewModel(
     fun onStartTrackingMood(mood: String) {
         uiScope.launch {
             updatedStateOfHealth.value = getStates()
-            updatedStateOfHealth.value!!.statesMood = mood
+            updatedStateOfHealth.value!!.mood = mood
             _showThanksDialogEvent.value = true
         }
     }
@@ -95,10 +95,10 @@ class StatesViewModel(
         return states
     }
 
-    fun onStartTrackingDiskinezia(diskinezia: String) {
+    fun onStartTrackingDyskinesia(dyskinesia: String) {
         uiScope.launch {
             updatedStateOfHealth.value = getStates()
-            updatedStateOfHealth.value!!.statesDiskinezia = diskinezia
+            updatedStateOfHealth.value!!.dyskinesia = Calendar.getInstance().timeInMillis
             _showMedDialogEvent.value = true
         }
     }
@@ -106,7 +106,7 @@ class StatesViewModel(
     fun onStartTrackingPill(pill: String) {
         uiScope.launch {
             updatedStateOfHealth.value = getStates()
-            updatedStateOfHealth.value!!.statesDiskinezia = pill
+            updatedStateOfHealth.value!!.pill = Calendar.getInstance().timeInMillis
             _showMedDialogEvent.value = true
         }
     }
