@@ -13,7 +13,6 @@ data class TappingTestDto(
                 rightCount = tappingTest.rightCount
             )
             return SendWrapper(
-                userId = 0,
                 timestamp = tappingTest.date,
                 data = data,
                 testType = "tapping"

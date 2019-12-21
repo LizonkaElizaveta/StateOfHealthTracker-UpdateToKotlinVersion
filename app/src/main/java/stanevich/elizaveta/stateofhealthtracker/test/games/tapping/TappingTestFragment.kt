@@ -2,7 +2,6 @@ package stanevich.elizaveta.stateofhealthtracker.test.games.tapping
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -78,8 +77,6 @@ class TappingTestFragment : Fragment() {
                             rightCount = rightCount
                         )
                     )
-
-                    Log.d("mTag", tappingTestDatabase.findAll().toString())
                 }
             }
 

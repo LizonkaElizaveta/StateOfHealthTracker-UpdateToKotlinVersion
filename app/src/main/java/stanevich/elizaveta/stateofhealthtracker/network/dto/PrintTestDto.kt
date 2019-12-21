@@ -17,7 +17,6 @@ data class PrintTestDto(
                 time = printTest.time
             )
             return SendWrapper(
-                userId = 0,
                 timestamp = printTest.date,
                 data = data,
                 testType = "print"

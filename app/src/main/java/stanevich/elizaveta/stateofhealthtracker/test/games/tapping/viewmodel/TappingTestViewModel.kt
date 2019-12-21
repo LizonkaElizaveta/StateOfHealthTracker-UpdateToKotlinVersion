@@ -67,7 +67,11 @@ class TappingTestViewModel(
                     fragmentManager?.let {
                         leftCount = taps.value ?: 0
                         TappingTestChangeHandDialog {
+
                             seconds = INITIAL_SECONDS - 1
+                            uiScope.run {
+                                time.postValue(secondsToString(seconds))
+                            }
                             timer = null
                         }.show(it, "DialogChangeHand")
                     }

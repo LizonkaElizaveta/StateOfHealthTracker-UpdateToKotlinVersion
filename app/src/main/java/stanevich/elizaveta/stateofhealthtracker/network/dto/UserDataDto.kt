@@ -10,7 +10,7 @@ data class UserDataDto(
     companion object {
         fun fromStates(states: States): SendWrapper {
             val data = UserDataDto(states.moodToInt(), states.dyskinesia, states.pill)
-            return SendWrapper(userId = 0, timestamp = states.date, data = data)
+            return SendWrapper(timestamp = states.date, data = data)
         }
     }
 }

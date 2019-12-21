@@ -7,7 +7,7 @@ data class VoiceTestDto(
     companion object {
         fun fromVoiceTest(): SendWrapper {
             val data = PrintTestDto()
-            return SendWrapper(userId = 0, timestamp = 0, data = data, testType = "voice")
+            return SendWrapper(timestamp = 0, data = data, testType = "voice")
         }
     }
 

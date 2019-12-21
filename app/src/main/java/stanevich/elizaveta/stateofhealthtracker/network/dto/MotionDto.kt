@@ -8,7 +8,7 @@ data class MotionDto(
     companion object {
         fun fromSpeed(speed: Speed): SendWrapper {
             val data = MotionDto(speed = speed.speed)
-            return SendWrapper(userId = 0, timestamp = speed.timestamp, data = data)
+            return SendWrapper(timestamp = speed.timestamp, data = data)
         }
     }
 }

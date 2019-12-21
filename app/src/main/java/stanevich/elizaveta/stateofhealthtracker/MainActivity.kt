@@ -109,13 +109,13 @@ class MainActivity : AppCompatActivity() {
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
         val request =
-            PeriodicWorkRequestBuilder<SendDataWorker>(1, TimeUnit.DAYS).setConstraints(
+            PeriodicWorkRequestBuilder<SendDataWorker>(1, TimeUnit.SECONDS).setConstraints(
                 constraints
             ).build()
         WorkManager.getInstance(application)
             .enqueueUniquePeriodicWork(
                 "SHTSendingData",
-                ExistingPeriodicWorkPolicy.KEEP,
+                ExistingPeriodicWorkPolicy.REPLACE,
                 request
             )
     }

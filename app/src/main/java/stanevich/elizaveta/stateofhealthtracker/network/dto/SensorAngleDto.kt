@@ -15,7 +15,6 @@ data class SensorAngleDto(
                 roll = rotation.roll
             )
             return SendWrapper(
-                userId = 0,
                 timestamp = rotation.timestamp,
                 data = data
             )
