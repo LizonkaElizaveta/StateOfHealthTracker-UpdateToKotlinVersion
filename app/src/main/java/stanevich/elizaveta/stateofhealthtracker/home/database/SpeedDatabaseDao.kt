@@ -11,7 +11,7 @@ interface SpeedDatabaseDao {
     fun insert(speed: Speed)
 
     @Query("SELECT * FROM speed_table")
-    fun findAll(): List<Speed>?
+    fun findAll(): List<Speed>
 
     @Query("DELETE from speed_table")
     fun clear()

@@ -10,4 +10,18 @@ class DataStoreAPI : BaseDataSource() {
     suspend fun sendUserData(sendWrapper: List<SendWrapper>) =
         getResult { dataStoreService.sendUserData(sendWrapper) }
 
+    suspend fun sendMotionData(sendWrapper: List<SendWrapper>) =
+        getResult { dataStoreService.sendMotionData(sendWrapper) }
+
+    suspend fun sendPrintTestData(sendWrapper: List<SendWrapper>) =
+        getResult { dataStoreService.sendPrintTestData(sendWrapper) }
+
+    suspend fun sendSensorAngleData(sendWrapper: List<SendWrapper>) =
+        getResult { dataStoreService.sendSensorAngleData(sendWrapper) }
+
+    suspend fun sendTappingTestData(sendWrapper: List<SendWrapper>) =
+        getResult { dataStoreService.sendTappingTestData(sendWrapper) }
+
+    suspend fun sendVoiceTestData(sendWrapper: List<SendWrapper>) =
+        getResult { dataStoreService.sendVoiceTestData(sendWrapper) }
 }

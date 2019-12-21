@@ -11,7 +11,7 @@ interface MissClickDatabaseDao {
     fun insert(missClick: MissClick)
 
     @Query("SELECT * FROM miss_click_table")
-    fun findAll(): List<MissClick>?
+    fun findAll(): List<MissClick>
 
     @Query("DELETE from miss_click_table")
     fun clear()

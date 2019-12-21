@@ -18,7 +18,7 @@ data class PrintTest(
     var userText: String = "",
 
     @ColumnInfo(name = "date")
-    var date: Long = 0L,
+    var date: Long = Calendar.getInstance().timeInMillis,
 
     @ColumnInfo(name = "time")
     var time: Long = 0L,

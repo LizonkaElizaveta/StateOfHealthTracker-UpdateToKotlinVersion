@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import stanevich.elizaveta.stateofhealthtracker.test.games.print.model.PrintTest
-import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.TappingTest
+import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.model.TappingTest
 import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 
 

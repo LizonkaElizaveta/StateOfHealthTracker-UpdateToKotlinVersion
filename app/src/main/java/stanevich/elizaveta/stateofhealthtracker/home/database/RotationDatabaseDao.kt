@@ -11,7 +11,7 @@ interface RotationDatabaseDao {
     fun insert(rotation: Rotation)
 
     @Query("SELECT * FROM rotation_table")
-    fun findAll(): List<Rotation>?
+    fun findAll(): List<Rotation>
 
     @Query("DELETE from rotation_table")
     fun clear()

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">StateOfHealthTracker</string>
 
-    // Button
+    <!--    Button-->
     <string name="btn_dyskinesia">Дискинезия</string>
     <string name="btn_medication">Приём лекарств</string>
     <string name="imageButton_excellent">Чувствую себя отлично!</string>
@@ -12,26 +12,28 @@
     <string name="btn_next">Далее</string>
 
 
-    // Text
+    <!--    Text-->
     <string name="text_how_do_you_feel">Как вы себя чувствуете?</string>
     <string name="hint_time">Время</string>
     <string name="hint_date">Дата</string>
 
 
-    // Strings for toasts
+    <!--    Strings for toasts-->
     <string name="toast_save_data">Ваши данные сохранены!</string>
 
-    // Strings for dialog button
+    <!--    Strings for dialog button-->
 
 
-    // Strings for dialog text
+    <!-- Strings for dialog text-->
+
     <string name="dialog_text_confirmation_save_result">Спасибо!\nВаш результат записан\nв дневник</string>
     <string name="dialog_text_confirmation_save_data">Спасибо!\nВаши данные обновились</string>
-    <string name="dialog_text_tapping_result" formatted="true">Спасибо!\nКоличество нажатий: %1$d\nДанные сохранены</string>
+    <string name="dialog_text_tapping_result" formatted="true">Спасибо!\nВы нажали:\nЛевой рукой: %1$d\nПравой рукой: %2$d\nДанные сохранены</string>
+    <string name="dialog_text_tapping_change">Теперь нажимайте правой рукой</string>
     <string name="dialog_text_common_result" formatted="true">Спасибо!\nДанные сохранены</string>
     <string name="dialogText_confirmation">Вы действительно хотите удалить уведомление?</string>
 
-    // Strings for dialog headline
+    <!-- Strings for dialog headline -->
     <string name="dialogHeadline_choseDateAndTime">Укажите дату и время</string>
     <string name="dialogHeadline_thanks">Благодарность</string>
     <string name="dialogHeadline_category">Категория</string>
@@ -39,7 +41,7 @@
     <string name="dialogHeadline_choseDate">Укажите дату</string>
 
 
-    <!--    // Strings for SettingsActivity-->
+    <!--  Strings for SettingsActivity -->
     <string name="button_personal_date">Личные данные</string>
     <string name="button_notification">Уведомления</string>
     <string name="button_send_data">Отправка данных</string>
@@ -119,4 +121,7 @@
     <string name="not_install_email_app">Не установлено приложение для отправки писем</string>
     <string name="feedback_subject_pattern">Обращение пользователя из приложения SHT</string>
     <string name="feedback_app_version_pattern" formatted="false">\n\n\nВерсия приложения(не стирайте): OS - %s, SDK - %d, %s, %s, %s, %d.</string>
+    <string name="text_tapping_test_description">Бейте пальцем по мишене \n в течении 1 минуты \n сперва левой рукой, затем правой</string>
+    <string name="text_tapping_test_header">Бейте по мишене!</string>
+    <string name="start_test">Начать тест</string>
 </resources>

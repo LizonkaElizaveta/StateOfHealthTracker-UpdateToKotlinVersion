@@ -24,5 +24,20 @@ interface DataStoreService {
     @POST("/users_data")
     suspend fun sendUserData(@Body sendWrapper: List<SendWrapper>): Response<DataResponse>
 
+    @POST("/motion")
+    suspend fun sendMotionData(@Body sendWrapper: List<SendWrapper>): Response<DataResponse>
+
+    @POST("/print_test")
+    suspend fun sendPrintTestData(@Body sendWrapper: List<SendWrapper>): Response<DataResponse>
+
+    @POST("/sensor_angle")
+    suspend fun sendSensorAngleData(@Body sendWrapper: List<SendWrapper>): Response<DataResponse>
+
+    @POST("/tapping_test")
+    suspend fun sendTappingTestData(@Body sendWrapper: List<SendWrapper>): Response<DataResponse>
+
+    @POST("/voice_test")
+    suspend fun sendVoiceTestData(@Body sendWrapper: List<SendWrapper>): Response<DataResponse>
+
 }
 

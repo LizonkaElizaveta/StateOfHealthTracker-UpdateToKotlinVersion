@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
         WorkManager.getInstance(application)
             .enqueueUniquePeriodicWork(
                 "SHTSendingData",
-                ExistingPeriodicWorkPolicy.REPLACE,
+                ExistingPeriodicWorkPolicy.KEEP,
                 request
             )
     }

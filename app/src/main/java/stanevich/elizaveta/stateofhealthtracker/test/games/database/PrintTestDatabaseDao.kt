@@ -14,4 +14,6 @@ interface PrintTestDatabaseDao {
     @Query("SELECT * from print_test_table")
     fun findAll(): List<PrintTest>
 
+    @Query("DELETE from print_test_table")
+    fun clear()
 }
