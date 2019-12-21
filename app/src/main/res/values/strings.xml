@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">StateOfHealthTracker</string>
+    <string name="nameMainFolder">Recording</string>
+    <string name="baseNameForRecordFile">record</string>
 
     <!--    Button-->
     <string name="btn_dyskinesia">Дискинезия</string>
@@ -75,6 +77,7 @@
     <string name="text_test_mole">Игра в крота</string>
     <string name="text_test_target">Тест на постукивание</string>
     <string name="text_test_stars">Соедините звёзды в созвездие</string>
+    <string name="text_test_voice_emotional">Расскажите свое самочувствие</string>
     <!--    TutorialFragment-->
     <string name="tutorial_title_welcome">Добро пожаловать в \n State Of Health Tracker!</string>
     <string name="tutorial_title_home">Ведите дневник!</string>

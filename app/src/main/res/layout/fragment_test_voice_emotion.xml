@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="210dp"
+                android:layout_height="210dp"
+                android:background="@android:color/transparent"
+                style="?android:attr/progressBarStyleLarge"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:theme="@style/ProgressBarPurple"
+                android:rotation="-90"/>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:backgroundTint="@color/colorPrimary"
+                android:src="@drawable/ic_keyboard_voice"
+                android:id="@+id/btn_voice"
+                app:fabCustomSize="120dp"
+                app:maxImageSize="60dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
