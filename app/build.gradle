@@ -18,7 +18,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField 'String', 'API_DEVELOPER_TOKEN', "\"MY_API_TOKEN (1234rhjk23h4jk132)\""
-}
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -82,12 +82,14 @@ dependencies {
     // WorkManager
     implementation 'androidx.work:work-runtime:2.3.0-beta02'
     implementation 'androidx.work:work-runtime:2.2.0'
+    implementation "androidx.work:work-runtime-ktx:2.2.0"
     implementation "androidx.concurrent:concurrent-futures:1.0.0"
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$version_retrofit"
     implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
-
+    // Moshi
     implementation "com.squareup.moshi:moshi-kotlin:1.9.2"
+    implementation("com.squareup.moshi:moshi-adapters:1.9.2")
 }

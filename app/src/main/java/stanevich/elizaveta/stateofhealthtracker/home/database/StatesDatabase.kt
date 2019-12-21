@@ -10,7 +10,7 @@ import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 
 @Database(
     entities = [States::class, MissClick::class, Rotation::class, Speed::class],
-    version = 5,
+    version = 6,
     exportSchema = false
 )
 @TypeConverters(DateConverters::class)

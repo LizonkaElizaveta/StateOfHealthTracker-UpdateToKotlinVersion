@@ -15,7 +15,7 @@ interface StatesDatabaseDao {
     @Query("DELETE from states_table")
     fun clear()
 
-    @Query("SELECT * from states_table ORDER BY statesId DESC LIMIT 1")
+    @Query("SELECT * from states_table ORDER BY id DESC LIMIT 1")
     fun getLastState(): States?
 
     @Transaction
@@ -26,4 +26,7 @@ interface StatesDatabaseDao {
 
     @Query("SELECT * from states_table WHERE date =:date")
     fun findByDate(date: Date): States?
+
+    @Query("SELECT * from states_table")
+    fun findAll(): List<States>
 }
