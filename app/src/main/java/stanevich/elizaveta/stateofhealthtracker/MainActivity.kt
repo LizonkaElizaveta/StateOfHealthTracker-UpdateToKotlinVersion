@@ -68,7 +68,6 @@ class MainActivity : AppCompatActivity() {
 
         headerBind.profileViewModel = profileViewModel
 
-
         if (!DataMiningForegroundService.isServiceEnabled(this)) {
             DataMiningDialog({
                 startActivity(Intent(this@MainActivity, LocationPermissionsActivity::class.java))
