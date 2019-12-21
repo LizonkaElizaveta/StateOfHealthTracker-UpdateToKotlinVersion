@@ -25,8 +25,7 @@ import stanevich.elizaveta.stateofhealthtracker.databinding.ActivityMainBinding
 import stanevich.elizaveta.stateofhealthtracker.databinding.NavHeaderMainBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.DataMiningDialog
 import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabase
-import stanevich.elizaveta.stateofhealthtracker.network.api.DataStoreAPI
-import stanevich.elizaveta.stateofhealthtracker.network.api.DataStoreService.DataStoreAPI.dataStoreService
+import stanevich.elizaveta.stateofhealthtracker.network.api.dataStore.DataStoreAPI
 import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModel
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModelFactory
@@ -75,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         headerBind.profileViewModel = profileViewModel
 
         CoroutineScope(Dispatchers.IO).launch {
-            val alive = DataStoreAPI(dataStoreService).isAlive()
+            val alive = DataStoreAPI().isAlive()
             Log.d("Alive", alive.data.toString())
         }
 
