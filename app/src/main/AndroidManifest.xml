@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         package="stanevich.elizaveta.stateofhealthtracker">
 
     <uses-feature
@@ -11,6 +12,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
 
     <application
@@ -20,7 +23,9 @@
             android:roundIcon="@drawable/ic_launcher"
             android:supportsRtl="true"
             android:fullBackupContent="true"
-            android:theme="@style/AppTheme">
+            android:networkSecurityConfig="@xml/network_security_config"
+            android:theme="@style/AppTheme"
+            tools:targetApi="n">
         <activity
                 android:name=".MainActivity"
                 android:configChanges="orientation"
