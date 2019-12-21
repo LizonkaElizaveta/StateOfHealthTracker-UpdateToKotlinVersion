@@ -21,6 +21,9 @@ abstract class StatesDatabase : RoomDatabase() {
     abstract val rotationDatabaseDao: RotationDatabaseDao
     abstract val speedDatabaseDao: SpeedDatabaseDao
 
+    fun getAllNetworkDao() =
+        listOf(statesDatabaseDao, missClickDatabaseDao, rotationDatabaseDao, speedDatabaseDao)
+
     companion object {
 
         /* The value of a volatile variable will never be cached, and all writes and

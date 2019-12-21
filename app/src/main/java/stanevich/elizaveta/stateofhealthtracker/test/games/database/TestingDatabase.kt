@@ -17,6 +17,8 @@ abstract class TestingDatabase : RoomDatabase() {
     abstract val tappingTestDatabaseDao: TappingTestDatabaseDao
     abstract val printTestDatabaseDao: PrintTestDatabaseDao
 
+    fun getAllNetworkDao() = listOf(tappingTestDatabaseDao, printTestDatabaseDao)
+
     companion object {
 
         /* The value of a volatile variable will never be cached, and all writes and

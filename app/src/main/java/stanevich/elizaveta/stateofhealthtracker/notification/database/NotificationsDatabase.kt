@@ -9,7 +9,7 @@ import stanevich.elizaveta.stateofhealthtracker.utils.IntArrayListConverter
 
 @Database(entities = [Notifications::class], version = 5, exportSchema = false)
 @TypeConverters(IntArrayListConverter::class)
-abstract class NotificationsDatabase:RoomDatabase(){
+abstract class NotificationsDatabase : RoomDatabase() {
 
     abstract val notificationsDatabaseDao: NotificationsDatabaseDao
 

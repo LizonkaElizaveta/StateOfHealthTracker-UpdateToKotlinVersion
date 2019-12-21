@@ -3,7 +3,10 @@ package stanevich.elizaveta.stateofhealthtracker.notification.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao
 
@@ -36,8 +39,6 @@ class NotificationsViewModel(
 
         }
     }
-
-
 
 
 }

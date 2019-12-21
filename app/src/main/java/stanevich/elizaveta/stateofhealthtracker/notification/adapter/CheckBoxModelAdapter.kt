@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.list_item_notifications_day_of_week.view.*
 import stanevich.elizaveta.stateofhealthtracker.databinding.ListItemNotificationsDayOfWeekBinding
 import stanevich.elizaveta.stateofhealthtracker.notification.model.CheckBoxModel
 
-class CheckBoxModelAdapter(private val onClickListener: (checkBox: CheckBoxModelAdapter)->Unit) :
+class CheckBoxModelAdapter(private val onClickListener: (checkBox: CheckBoxModelAdapter) -> Unit) :
     androidx.recyclerview.widget.ListAdapter<CheckBoxModel, CheckBoxModelAdapter.CheckBoxModelViewHolder>(
         DiffCallback
     ) {

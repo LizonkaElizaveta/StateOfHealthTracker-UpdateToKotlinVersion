@@ -8,10 +8,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabase
+import stanevich.elizaveta.stateofhealthtracker.network.api.Result.Status
 import stanevich.elizaveta.stateofhealthtracker.network.api.dataStore.DataStoreAPI
-import stanevich.elizaveta.stateofhealthtracker.network.dto.*
+import stanevich.elizaveta.stateofhealthtracker.network.api.dataStore.NetworkDao
+import stanevich.elizaveta.stateofhealthtracker.network.dto.convertToSendWrapper
 import stanevich.elizaveta.stateofhealthtracker.test.games.database.TestingDatabase
-import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.model.TappingTest
 import stanevich.elizaveta.stateofhealthtracker.utils.ConnectivityUtil
 
 class SendDataWorker(
@@ -30,12 +31,12 @@ class SendDataWorker(
             val dataStoreApi = DataStoreAPI()
 
             try {
-                sendUserData(dataStoreApi)
-                sendMotionData(dataStoreApi)
-                sendPrintTestData(dataStoreApi)
-                sendSensorAngleData(dataStoreApi)
-                sendTappingTestData(dataStoreApi)
-                sendTappingTestData(dataStoreApi)
+                TestingDatabase.getInstance(applicationContext).getAllNetworkDao().forEach {
+                    commonSendData(dataStoreApi, it)
+                }
+                StatesDatabase.getInstance(applicationContext).getAllNetworkDao().forEach {
+                    commonSendData(dataStoreApi, it)
+                }
 
                 Result.Success()
             } catch (e: Exception) {
@@ -45,69 +46,15 @@ class SendDataWorker(
         }
     }
 
-    private suspend fun sendUserData(dataStoreApi: DataStoreAPI) {
-        val statesDatabase = StatesDatabase.getInstance(applicationContext).statesDatabaseDao
-        val states = statesDatabase.findAll().map { UserDataDto.fromStates(it) }
-        if (states.isNotEmpty()) {
-            dataStoreApi.sendUserData(states)
-            statesDatabase.clear()
-        }
-    }
-
-    private suspend fun sendMotionData(dataStoreApi: DataStoreAPI) {
-        val speedDatabase = StatesDatabase.getInstance(applicationContext).speedDatabaseDao
-        val states = speedDatabase.findAll().map { MotionDto.fromSpeed(it) }
-        if (states.isNotEmpty()) {
-            dataStoreApi.sendMotionData(states)
-            speedDatabase.clear()
-        }
-    }
-
-    private suspend fun sendSensorAngleData(dataStoreApi: DataStoreAPI) {
-        val rotationDatabase = StatesDatabase.getInstance(applicationContext).rotationDatabaseDao
-        val states = rotationDatabase.findAll().map { SensorAngleDto.fromRotation(it) }
-        if (states.isNotEmpty()) {
-            dataStoreApi.sendSensorAngleData(states)
-            rotationDatabase.clear()
-        }
-    }
-
-    private suspend fun sendPrintTestData(dataStoreApi: DataStoreAPI) {
-        val printTestDatabase = TestingDatabase.getInstance(applicationContext).printTestDatabaseDao
-        val states = printTestDatabase.findAll().map { PrintTestDto.fromPrintTest(it) }
-        if (states.isNotEmpty()) {
-            dataStoreApi.sendPrintTestData(states)
-            printTestDatabase.clear()
-        }
-    }
-
-    private suspend fun sendTappingTestData(dataStoreApi: DataStoreAPI) {
-        val tappingTestDatabase =
-            TestingDatabase.getInstance(applicationContext).tappingTestDatabaseDao
-        val states = tappingTestDatabase.findAll().map { TappingTestDto.fromTappingTest(it) }
-        if (states.isNotEmpty()) {
-            dataStoreApi.sendTappingTestData(
-                listOf(
-                    TappingTestDto.fromTappingTest(
-                        TappingTest(
-                            1,
-                            2,
-                            3
-                        )
-                    )
-                )
-            )
-            tappingTestDatabase.clear()
-        }
-    }
-
-    private suspend fun sendVoiceTestData(dataStoreApi: DataStoreAPI) {
-        val tappingTestDatabase =
-            TestingDatabase.getInstance(applicationContext).tappingTestDatabaseDao
-        val states = tappingTestDatabase.findAll().map { VoiceTestDto.fromVoiceTest() }
-        if (states.isNotEmpty()) {
-            dataStoreApi.sendTappingTestData(states)
-            tappingTestDatabase.clear()
+    private suspend fun commonSendData(dataStoreApi: DataStoreAPI, database: NetworkDao<Any>) {
+        val tappingData = database.findAll().map { convertToSendWrapper(it) }
+        if (tappingData.isNotEmpty()) {
+            if (dataStoreApi.isAlive().status === Status.SUCCESS) {
+                val res = dataStoreApi.sendTappingTestData(tappingData)
+                if (res.status === Status.SUCCESS) {
+                    database.clear()
+                }
+            }
         }
     }
 }

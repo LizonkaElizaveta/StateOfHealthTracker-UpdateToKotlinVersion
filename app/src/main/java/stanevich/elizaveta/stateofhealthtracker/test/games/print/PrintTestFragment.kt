@@ -1,6 +1,5 @@
 package stanevich.elizaveta.stateofhealthtracker.test.games.print
 
-import android.app.Activity
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.graphics.Color
 import android.os.Bundle
@@ -8,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -33,7 +31,7 @@ class PrintTestFragment : Fragment() {
         val binding: FragmentTestPrintBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_test_print, container, false)
 
-        val textList : List<String> = listOf(
+        val textList: List<String> = listOf(
             getString(R.string.list_poems_one),
             getString(R.string.list_poems_two),
             getString(R.string.list_poems_three),
@@ -42,7 +40,8 @@ class PrintTestFragment : Fragment() {
             getString(R.string.list_poems_six)
         )
 
-        val originalText = textList[Random(Calendar.getInstance().timeInMillis).nextInt(textList.size)]
+        val originalText =
+            textList[Random(Calendar.getInstance().timeInMillis).nextInt(textList.size)]
         binding.text.text = originalText
 
         setupToolbar()
@@ -64,7 +63,7 @@ class PrintTestFragment : Fragment() {
         }
 
         binding.etPrint.setOnFocusChangeListener { v, hasFocus ->
-            if(!hasFocus){
+            if (!hasFocus) {
                 hideKeyboard(v)
             }
         }
@@ -91,7 +90,8 @@ class PrintTestFragment : Fragment() {
     }
 
     fun hideKeyboard(view: View) {
-        val inputMethodManager = activity!!.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager?
+        val inputMethodManager =
+            activity!!.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager?
         inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

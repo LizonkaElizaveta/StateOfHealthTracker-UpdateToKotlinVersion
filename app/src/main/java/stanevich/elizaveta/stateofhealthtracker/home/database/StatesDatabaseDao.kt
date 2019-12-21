@@ -1,10 +1,11 @@
 package stanevich.elizaveta.stateofhealthtracker.home.database
 
 import androidx.room.*
+import stanevich.elizaveta.stateofhealthtracker.network.api.dataStore.NetworkDao
 import java.util.*
 
 @Dao
-interface StatesDatabaseDao {
+interface StatesDatabaseDao : NetworkDao<States> {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(state: States)
@@ -13,7 +14,7 @@ interface StatesDatabaseDao {
     fun update(state: States)
 
     @Query("DELETE from states_table")
-    fun clear()
+    override fun clear()
 
     @Query("SELECT * from states_table ORDER BY id DESC LIMIT 1")
     fun getLastState(): States?
@@ -28,5 +29,5 @@ interface StatesDatabaseDao {
     fun findByDate(date: Date): States?
 
     @Query("SELECT * from states_table")
-    fun findAll(): List<States>
+    override fun findAll(): List<States>
 }

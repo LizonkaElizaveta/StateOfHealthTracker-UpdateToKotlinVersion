@@ -60,7 +60,7 @@ class NotificationsSettingsViewModel(
     }
 
 
-    fun onStartTracking(category: String, date : String, time: String, repeat : BooleanArray) {
+    fun onStartTracking(category: String, date: String, time: String, repeat: BooleanArray) {
         uiScope.launch {
             tonightNotification.value = Notifications()
             tonightNotification.value!!.apply {

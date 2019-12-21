@@ -16,7 +16,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.list_item_notifications.*
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotificationSettingsBinding
 import stanevich.elizaveta.stateofhealthtracker.databinding.ListItemNotificationsBinding

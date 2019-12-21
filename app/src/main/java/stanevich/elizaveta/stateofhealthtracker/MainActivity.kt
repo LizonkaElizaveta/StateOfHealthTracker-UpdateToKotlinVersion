@@ -4,7 +4,6 @@ package stanevich.elizaveta.stateofhealthtracker
 import android.app.Application
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
@@ -14,9 +13,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.work.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import stanevich.elizaveta.stateofhealthtracker.data.mining.location.LocationPermissionsActivity
 import stanevich.elizaveta.stateofhealthtracker.data.mining.rotation.RotationViewModel
 import stanevich.elizaveta.stateofhealthtracker.data.mining.rotation.RotationViewModelFactory
@@ -26,7 +22,6 @@ import stanevich.elizaveta.stateofhealthtracker.databinding.ActivityMainBinding
 import stanevich.elizaveta.stateofhealthtracker.databinding.NavHeaderMainBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.DataMiningDialog
 import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabase
-import stanevich.elizaveta.stateofhealthtracker.network.api.dataStore.DataStoreAPI
 import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModel
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModelFactory
@@ -65,11 +60,6 @@ class MainActivity : AppCompatActivity() {
 
         headerBind.profileViewModel = profileViewModel
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val alive = DataStoreAPI().isAlive()
-            Log.d("Alive", alive.data.toString())
-        }
-
         setupDataMining(application)
     }
 
@@ -89,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.navView.setupWithNavController(navController)
+//        binding.navView.setupWithNavController(navController)
     }
 
     private fun setupDataMining(application: Application) {
@@ -114,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         WorkManager.getInstance(application)
             .enqueueUniquePeriodicWork(
                 "SHTSendingData",
-                ExistingPeriodicWorkPolicy.KEEP,
+                ExistingPeriodicWorkPolicy.REPLACE,
                 request
             )
     }

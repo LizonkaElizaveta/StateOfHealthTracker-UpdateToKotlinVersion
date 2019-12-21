@@ -45,25 +45,25 @@ class ProfileFragment : Fragment() {
         }
 
         binding.etUserName.setOnFocusChangeListener { v, hasFocus ->
-            if(!hasFocus){
+            if (!hasFocus) {
                 hideKeyboard(v)
             }
         }
 
         binding.etUserBirthday.setOnFocusChangeListener { v, hasFocus ->
-            if(!hasFocus){
+            if (!hasFocus) {
                 hideKeyboard(v)
             }
         }
 
         binding.etUserPhone.setOnFocusChangeListener { v, hasFocus ->
-            if(!hasFocus){
+            if (!hasFocus) {
                 hideKeyboard(v)
             }
         }
 
         binding.etUserSurname.setOnFocusChangeListener { v, hasFocus ->
-            if(!hasFocus){
+            if (!hasFocus) {
                 hideKeyboard(v)
             }
         }
@@ -73,7 +73,8 @@ class ProfileFragment : Fragment() {
     }
 
     private fun hideKeyboard(view: View) {
-        val inputMethodManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        val inputMethodManager =
+            activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
         inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

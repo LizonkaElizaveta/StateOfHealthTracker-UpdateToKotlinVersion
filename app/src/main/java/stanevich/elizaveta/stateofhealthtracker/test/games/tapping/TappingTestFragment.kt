@@ -69,26 +69,26 @@ class TappingTestFragment : Fragment() {
         val viewModelFactory =
             TappingTestViewModelFactory(application, fragmentManager) { leftCount, rightCount ->
 
-            uiScope.launch {
-                withContext(Dispatchers.IO){
-                    tappingTestDatabase.insert(
-                        TappingTest(
-                            leftCount = leftCount,
-                            rightCount = rightCount
+                uiScope.launch {
+                    withContext(Dispatchers.IO) {
+                        tappingTestDatabase.insert(
+                            TappingTest(
+                                leftCount = leftCount,
+                                rightCount = rightCount
+                            )
                         )
-                    )
-                }
-            }
-
-            fragmentManager?.let {
-                val dialog = TappingTestResultDialog(leftCount, rightCount) {
-                    uiScope.launch{
-                        navigation.navigate(R.id.action_tappingTestFragment_to_nav_test)
                     }
                 }
-                dialog.show(it, "TappingResultDialog")
+
+                fragmentManager?.let {
+                    val dialog = TappingTestResultDialog(leftCount, rightCount) {
+                        uiScope.launch {
+                            navigation.navigate(R.id.action_tappingTestFragment_to_nav_test)
+                        }
+                    }
+                    dialog.show(it, "TappingResultDialog")
+                }
             }
-        }
 
         return ViewModelProviders.of(this, viewModelFactory).get(TappingTestViewModel::class.java)
     }

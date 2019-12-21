@@ -20,7 +20,7 @@ class PrintTestViewModel(application: Application, private val database: PrintTe
     private var usersData = MutableLiveData<PrintTest?>()
 
     private var erased = 0
-    private lateinit var userText : String
+    private lateinit var userText: String
 
     private var startTimer: Long = 0
     private var stopTimer: Long = 0
@@ -28,12 +28,13 @@ class PrintTestViewModel(application: Application, private val database: PrintTe
     init {
         usersData.value = PrintTest()
     }
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
     }
 
-    fun savePrintData(origText : String) {
+    fun savePrintData(origText: String) {
         if (stopTimer == 0L) {
             stopTimer = Calendar.getInstance().timeInMillis
             usersData.value!!.apply {
