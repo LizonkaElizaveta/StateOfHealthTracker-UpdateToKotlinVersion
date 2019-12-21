@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,12 @@ import stanevich.elizaveta.stateofhealthtracker.support.OsUtil.getOsVersionNum
 import stanevich.elizaveta.stateofhealthtracker.support.OsUtil.getSDKVersion
 import stanevich.elizaveta.stateofhealthtracker.support.OsUtil.getVersionCode
 
+
 class SupportFragment : Fragment() {
+
+    companion object {
+        const val ATI_MOBILE_SUPPORT_EMAIL = "liza_soft_1313@mail.ru"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,26 +43,15 @@ class SupportFragment : Fragment() {
     }
 
 
-    companion object {
-        const val ATI_MOBILE_SUPPORT_EMAIL = "liza_soft_1313@mail.ru"
-    }
-
     private fun sendEmail() {
         val context: Context = view!!.context
-
-//        if (!mConnectManager.isNetworkConnected) {
-//            view?.showToastShort(R.string.no_network_connection)
-//            return
-//        }
-
         val emailIntent =
             Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:$ATI_MOBILE_SUPPORT_EMAIL"))
 
         emailIntent.apply {
-            putExtra(Intent.EXTRA_SUBJECT, R.string.feedback_subject_pattern)
+            putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.feedback_subject_pattern))
             putExtra(Intent.EXTRA_TEXT, getApplicationVersion())
         }
-
 
         try {
             view!!.context.startActivity(
