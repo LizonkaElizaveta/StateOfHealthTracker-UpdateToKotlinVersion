@@ -10,12 +10,13 @@ import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.model.Tapping
 import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 
 
-@Database(entities = [TappingTest::class, PrintTest::class], version = 2, exportSchema = false)
+@Database(entities = [TappingTest::class, PrintTest::class, TestingDatabase::class], version = 3, exportSchema = false)
 @TypeConverters(DateConverters::class)
 abstract class TestingDatabase : RoomDatabase() {
 
     abstract val tappingTestDatabaseDao: TappingTestDatabaseDao
     abstract val printTestDatabaseDao: PrintTestDatabaseDao
+    abstract val emotionalTestDatabaseDao: EmotionalTestDatabaseDao
 
     fun getAllNetworkDao() = listOf(tappingTestDatabaseDao, printTestDatabaseDao)
 

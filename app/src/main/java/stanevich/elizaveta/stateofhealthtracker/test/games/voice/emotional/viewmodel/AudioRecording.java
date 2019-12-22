@@ -83,7 +83,7 @@ public class AudioRecording {
         recordingThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                writeAudioDataToFile();
+                //writeAudioDataToFile();
                 ConvertToFile();
             }
         }, "AudioRecorder Thread");
