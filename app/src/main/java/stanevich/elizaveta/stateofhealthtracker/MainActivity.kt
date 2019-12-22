@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-//        binding.navView.setupWithNavController(navController)
+        binding.navView.setupWithNavController(navController)
     }
 
     private fun setupDataMining(application: Application) {
