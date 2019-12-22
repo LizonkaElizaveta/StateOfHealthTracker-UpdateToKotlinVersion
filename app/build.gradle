@@ -26,6 +26,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
+            buildConfigField 'String', 'API_DEVELOPER_TOKEN', "\"YWRtaW46cGFzc3dvcmQ=\""
+            buildConfigField 'String', 'API_ENDPOINT', "\"http://192.168.25.28:9090\""
         }
     }
 

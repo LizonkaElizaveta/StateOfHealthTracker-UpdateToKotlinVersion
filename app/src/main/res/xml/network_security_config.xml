@@ -2,6 +2,7 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">192.168.25.28</domain>
+        <domain includeSubdomains="true">0.0.0.0</domain>
         <domain includeSubdomains="true">healthapp.space</domain>
     </domain-config>
 </network-security-config>

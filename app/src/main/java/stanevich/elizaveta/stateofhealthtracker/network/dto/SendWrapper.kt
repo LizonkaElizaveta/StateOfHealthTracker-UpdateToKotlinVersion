@@ -50,6 +50,7 @@ fun convertToSendWrapper(dto: Any): SendWrapper {
                 time = dto.time
             )
             timestamp = dto.date
+            testType = "print"
         }
         is Rotation -> {
             data = SensorAngleDto(
