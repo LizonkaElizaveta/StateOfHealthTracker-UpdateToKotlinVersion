@@ -117,7 +117,14 @@ class StatesViewModel(
         closestEvents: List<ViewTracker.ClosestTouchEvent>
     ) {
         CoroutineScope(Dispatchers.IO).launch {
-            missClickDatabaseDao.insert(MissClick(null, timestamp, closestEvents.size))
+            missClickDatabaseDao.insert(
+                MissClick(
+                    null,
+                    timestamp,
+                    closestEvents.size,
+                    clickDistanceFromCenter
+                )
+            )
         }
     }
 

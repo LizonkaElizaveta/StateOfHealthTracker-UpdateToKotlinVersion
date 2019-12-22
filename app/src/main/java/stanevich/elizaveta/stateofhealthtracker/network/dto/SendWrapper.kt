@@ -3,6 +3,7 @@ package stanevich.elizaveta.stateofhealthtracker.network.dto
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import stanevich.elizaveta.stateofhealthtracker.App.Companion.context
+import stanevich.elizaveta.stateofhealthtracker.home.database.MissClick
 import stanevich.elizaveta.stateofhealthtracker.home.database.Rotation
 import stanevich.elizaveta.stateofhealthtracker.home.database.Speed
 import stanevich.elizaveta.stateofhealthtracker.home.database.States
@@ -61,6 +62,10 @@ fun convertToSendWrapper(dto: Any): SendWrapper {
         is States -> {
             data = UserDataDto(dto.moodToInt(), dto.dyskinesia, dto.pill)
             timestamp = dto.date
+        }
+        is MissClick -> {
+            data = MissClickDto(dto.count, dto.distance)
+            timestamp = dto.timestamp
         }
         else -> {
             throw IllegalArgumentException("Unknown type of object: $dto to convert")

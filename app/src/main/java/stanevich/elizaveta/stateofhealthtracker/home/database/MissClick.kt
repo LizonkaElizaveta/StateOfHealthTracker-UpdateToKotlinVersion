@@ -13,5 +13,8 @@ data class MissClick(
     var timestamp: Long = 0L,
 
     @ColumnInfo(name = "count")
-    var count: Int = 0
+    var count: Int = 0,
+
+    @ColumnInfo(name = "distance")
+    var distance: Double = 0.0
 )

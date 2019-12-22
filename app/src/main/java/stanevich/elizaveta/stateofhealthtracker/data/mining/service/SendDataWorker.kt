@@ -47,10 +47,10 @@ class SendDataWorker(
     }
 
     private suspend fun commonSendData(dataStoreApi: DataStoreAPI, database: NetworkDao<Any>) {
-        val tappingData = database.findAll().map { convertToSendWrapper(it) }
-        if (tappingData.isNotEmpty()) {
+        val data = database.findAll().map { convertToSendWrapper(it) }
+        if (data.isNotEmpty()) {
             if (dataStoreApi.isAlive().status === Status.SUCCESS) {
-                val res = dataStoreApi.sendTappingTestData(tappingData)
+                val res = dataStoreApi.sendTappingTestData(data)
                 if (res.status === Status.SUCCESS) {
                     database.clear()
                 }
