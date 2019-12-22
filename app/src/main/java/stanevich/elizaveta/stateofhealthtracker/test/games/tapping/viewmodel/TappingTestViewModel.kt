@@ -66,6 +66,7 @@ class TappingTestViewModel(
                 } else {
                     fragmentManager?.let {
                         leftCount = taps.value ?: 0
+                        taps.postValue(0)
                         TappingTestChangeHandDialog {
 
                             seconds = INITIAL_SECONDS - 1
