@@ -3,6 +3,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+                name="emotion_test"
+                type="stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.EmotionalTestViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -12,13 +19,17 @@
                 android:layout_width="210dp"
                 android:layout_height="210dp"
                 android:background="@android:color/transparent"
-                style="?android:attr/progressBarStyleLarge"
+                style="?android:attr/progressBarStyleHorizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:progressDrawable="@drawable/ciruclar_progress_bar"
                 android:theme="@style/ProgressBarPurple"
-                android:rotation="-90"/>
+                android:rotation="-90"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="@{emotion_test.procent}"/>
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
