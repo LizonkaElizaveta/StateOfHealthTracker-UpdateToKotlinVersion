@@ -17,17 +17,15 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField 'String', 'API_DEVELOPER_TOKEN', "\"MY_API_TOKEN (1234rhjk23h4jk132)\""
+        buildConfigField 'String', 'API_DEVELOPER_TOKEN', "\"YXBpdXNlcjpqNTZlWEc3dFJxWU1wbVJIV1J4dFhUV0c=\""
+        buildConfigField 'String', 'API_ENDPOINT', "\"https://healthapp.space\""
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
-            buildConfigField 'String', 'API_ENDPOINT', "\"http://0.0.0.0/\""
         }
         debug {
-            buildConfigField 'String', 'API_ENDPOINT', "\"http://192.168.25.28:9090/\""
         }
     }
 

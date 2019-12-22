@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.work.*
 import stanevich.elizaveta.stateofhealthtracker.data.mining.location.LocationPermissionsActivity
 import stanevich.elizaveta.stateofhealthtracker.data.mining.rotation.RotationViewModel
@@ -104,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         WorkManager.getInstance(application)
             .enqueueUniquePeriodicWork(
                 "SHTSendingData",
-                ExistingPeriodicWorkPolicy.REPLACE,
+                ExistingPeriodicWorkPolicy.KEEP,
                 request
             )
     }

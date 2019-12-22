@@ -50,8 +50,8 @@ class SendDataWorker(
         val data = database.findAll().map { convertToSendWrapper(it) }
         if (data.isNotEmpty()) {
             if (dataStoreApi.isAlive().status === Status.SUCCESS) {
-                val res = dataStoreApi.sendTappingTestData(data)
-                if (res.status === Status.SUCCESS) {
+                val res = dataStoreApi.sendByDto(data)
+                if (res?.status === Status.SUCCESS) {
                     database.clear()
                 }
             }
