@@ -9,10 +9,10 @@ interface EmotionalTestDatabaseDao : NetworkDao<EmotionalTest>{
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(state: EmotionalTest)
 
-    @Query("SELECT * from print_test_table")
+    @Query("SELECT * from emotional_test_table")
     override fun findAll(): List<EmotionalTest>
 
-    @Query("DELETE from print_test_table")
+    @Query("DELETE from emotional_test_table")
     override fun clear()
 
 }
