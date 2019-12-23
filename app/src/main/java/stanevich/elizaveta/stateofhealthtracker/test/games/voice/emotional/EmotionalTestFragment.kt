@@ -1,15 +1,11 @@
 package stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional
 
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.widget.ProgressBar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -17,19 +13,17 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.coroutines.*
-import org.jetbrains.anko.custom.style
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestVoiceEmotionBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.ConfirmationSaveDataDialog
 import stanevich.elizaveta.stateofhealthtracker.test.games.database.TestingDatabase
-import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.AudioRecording
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.EmotionalTest
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.AudioRecording
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.EmotionalTestViewModel
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.EmotionalTestViewModelFactory
-import java.util.*
 
 
 class EmotionalTestFragment : Fragment() {
-    private var recording: AudioRecording? = null
 
     private var viewModelJob = Job()
 
@@ -56,8 +50,6 @@ class EmotionalTestFragment : Fragment() {
 
         navigation = NavHostFragment.findNavController(this)
 
-        recording = AudioRecording(this.context)
-
         binding.btnVoice.setOnClickListener {
             emotionalTestViewModel.incTaps()
         }
@@ -74,21 +66,20 @@ class EmotionalTestFragment : Fragment() {
     private fun getEmotonalTestViewModel(): EmotionalTestViewModel {
         val application = requireNotNull(this.activity).application
 
-        val tappingTestDatabase = TestingDatabase.getInstance(application).emotionalTestDatabaseDao
+        val emotionalTestDatabase = TestingDatabase.getInstance(application).emotionalTestDatabaseDao
 
-        val viewModelFactory = EmotionalTestViewModelFactory(application) { taps ->
+        val viewModelFactory = EmotionalTestViewModelFactory(application) { ampl, path ->
 
             uiScope.launch {
                 withContext(Dispatchers.IO){
-                    tappingTestDatabase.insert(
+                    emotionalTestDatabase.insert(
                         EmotionalTest(
-                            /*taps = */
+                            amplitudes = ampl,
+                            path = path
                         )
                     )
-
-                    Log.d("mTag", tappingTestDatabase.findAll().toString())
                 }
-            }
+            } 
 
             fragmentManager?.let { ConfirmationSaveDataDialog().show(it, "ThanksDialog") }
         }

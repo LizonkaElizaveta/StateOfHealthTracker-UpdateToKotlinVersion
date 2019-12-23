@@ -1,6 +1,7 @@
 package stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel
 
 import android.app.Application
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.AndroidViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -9,8 +10,10 @@ import java.util.*
 import kotlin.concurrent.timer
 
 
-class EmotionalTestViewModel(application: Application, val onFinish: (taps: Int) -> Unit) :
-    AndroidViewModel(application) {
+class EmotionalTestViewModel(
+    application: Application,
+    val onFinish: (ampl: Array<Double>, path: String) -> Unit
+) : AndroidViewModel(application) {
 
     companion object{
         const val INITIAL_SECONDS = 0
@@ -19,11 +22,10 @@ class EmotionalTestViewModel(application: Application, val onFinish: (taps: Int)
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    /*val time = MutableLiveData<String>(secondsToString(INITIAL_SECONDS))
-*/
-    /*private val taps = MutableLiveData(0)
-*/
     var procent: Int = 0
+
+    private var ampl: Array<Double> = arrayOf(0.6,0.3)
+    private var path = "Recording"
 
     private var timer: Timer? = null
 
@@ -36,8 +38,10 @@ class EmotionalTestViewModel(application: Application, val onFinish: (taps: Int)
             }
 
             if (seconds == 30) {
-                cancel()/*
-                onFinish(taps.value ?: 0 )*/
+                cancel()
+
+                //здесь запомнить все сохраненные данные
+                onFinish(ampl, path)
             }
 
             ++seconds

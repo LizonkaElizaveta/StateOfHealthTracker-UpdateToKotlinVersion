@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 
 class EmotionalTestViewModelFactory(
     private val application: Application,
-    private val onFinish: (taps: Int)->Unit
+    private val onFinish: (ampl: Array<Double>, path: String)->Unit
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

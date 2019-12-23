@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel;
+package stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model;
 
 import android.content.Context;
 import android.media.AudioFormat;
@@ -14,8 +14,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.appFile.FileRec;
-import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.appFile.PathRecName;
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.appFile.FileRec;
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.appFile.PathRecName;
 
 public class AudioRecording {
     private static final int sampleRateInHz = 44100;

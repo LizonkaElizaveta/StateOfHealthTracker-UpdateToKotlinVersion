@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.appFile;
+package stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.appFile;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.AudioRecording;
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.AudioRecording;
 
 public class toWav {
     final int sampleRate;

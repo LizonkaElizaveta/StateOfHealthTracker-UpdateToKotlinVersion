@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.appFile;
+package stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.appFile;
 
 import android.content.Context;
 import android.os.Environment;

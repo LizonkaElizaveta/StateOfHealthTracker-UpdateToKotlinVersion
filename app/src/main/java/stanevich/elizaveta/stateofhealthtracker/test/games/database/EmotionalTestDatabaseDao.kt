@@ -1,14 +1,18 @@
 package stanevich.elizaveta.stateofhealthtracker.test.games.database
 
 import androidx.room.*
-import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.EmotionalTest
+import stanevich.elizaveta.stateofhealthtracker.network.api.dataStore.NetworkDao
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.EmotionalTest
 
 @Dao
-interface EmotionalTestDatabaseDao {
-
+interface EmotionalTestDatabaseDao : NetworkDao<EmotionalTest>{
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(state: EmotionalTest)
 
-    @Query("SELECT * from tapping_test_table")
-    fun findAll(): List<EmotionalTest>
+    @Query("SELECT * from print_test_table")
+    override fun findAll(): List<EmotionalTest>
+
+    @Query("DELETE from print_test_table")
+    override fun clear()
+
 }
