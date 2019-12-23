@@ -9,17 +9,18 @@ import stanevich.elizaveta.stateofhealthtracker.test.games.print.model.PrintTest
 import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.model.TappingTest
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.EmotionalTest
 import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
+import stanevich.elizaveta.stateofhealthtracker.utils.DoubleArrayConverters
 
 
 @Database(entities = [TappingTest::class, PrintTest::class, EmotionalTest::class], version = 3, exportSchema = false)
-@TypeConverters(DateConverters::class)
+@TypeConverters(DateConverters::class, DoubleArrayConverters::class)
 abstract class TestingDatabase : RoomDatabase() {
 
     abstract val tappingTestDatabaseDao: TappingTestDatabaseDao
     abstract val printTestDatabaseDao: PrintTestDatabaseDao
     abstract val emotionalTestDatabaseDao: EmotionalTestDatabaseDao
 
-    fun getAllNetworkDao() = listOf(tappingTestDatabaseDao, printTestDatabaseDao)
+    fun getAllNetworkDao() = listOf(tappingTestDatabaseDao, printTestDatabaseDao, emotionalTestDatabaseDao)
 
     companion object {
 
