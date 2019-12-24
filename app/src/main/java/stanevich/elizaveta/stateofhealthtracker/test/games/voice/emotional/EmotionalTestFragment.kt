@@ -79,7 +79,11 @@ class EmotionalTestFragment : Fragment() {
                 }
             } 
 
-            fragmentManager?.let { ConfirmationSaveDataDialog().show(it, "ThanksDialog") }
+            fragmentManager?.let {
+                uiScope.launch {
+                    navigation.navigate(R.id.action_emotionalTestFragment_to_nav_test)
+                }
+                ConfirmationSaveDataDialog().show(it, "ThanksDialog") }
         }
 
         return ViewModelProviders.of(this, viewModelFactory).get(EmotionalTestViewModel::class.java)
