@@ -2,7 +2,6 @@ package stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestVoiceEmo
 import stanevich.elizaveta.stateofhealthtracker.dialogs.ConfirmationSaveDataDialog
 import stanevich.elizaveta.stateofhealthtracker.test.games.database.TestingDatabase
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.EmotionalTest
-import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.AudioRecording
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.EmotionalTestViewModel
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.EmotionalTestViewModelFactory
 
