@@ -8,7 +8,7 @@ class PcmFile {
         val f1 = File(pathDirectory, "$fileName.pcm")
         val f2 = File(pathDirectory, "$fileName.wav")
 
-        var converterToWav = ConverterPcmToWav(sampleRate, channel, format)
+        var converterToWav = ConverterPcmToWav()
         converterToWav!!.pcmToWave(f1, f2)
 
         return f2.exists()
