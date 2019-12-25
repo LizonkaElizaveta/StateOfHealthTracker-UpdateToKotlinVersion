@@ -44,9 +44,7 @@ class EmotionalTestViewModel(
 
             if (seconds == MAX_SECONDS) {
                 cancel()
-
-                //здесь запомнить все сохраненные данные
-                onFinish(ampl, path)
+                stop()
             }
 
             ++seconds
@@ -61,8 +59,13 @@ class EmotionalTestViewModel(
         }
         else {
             timer!!.cancel()
-            audioRecord.stopRecording()
-            onFinish(ampl, path)
+            stop()
         }
+    }
+
+    private fun stop(){
+        audioRecord.stopRecording()
+        path = audioRecord.getCurNameFile()!!
+        onFinish(ampl, path)
     }
 }
