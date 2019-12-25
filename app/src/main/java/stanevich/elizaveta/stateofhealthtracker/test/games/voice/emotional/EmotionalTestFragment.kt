@@ -66,7 +66,7 @@ class EmotionalTestFragment : Fragment() {
 
         val emotionalTestDatabase = TestingDatabase.getInstance(application).emotionalTestDatabaseDao
 
-        val viewModelFactory = EmotionalTestViewModelFactory(application) { ampl, path ->
+        val viewModelFactory = EmotionalTestViewModelFactory(application, context) { ampl, path ->
 
             uiScope.launch {
                 withContext(Dispatchers.IO){
@@ -77,7 +77,7 @@ class EmotionalTestFragment : Fragment() {
                         )
                     )
                 }
-            } 
+            }
 
             fragmentManager?.let {
                 uiScope.launch {

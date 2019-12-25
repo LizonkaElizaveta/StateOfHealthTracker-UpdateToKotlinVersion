@@ -5,7 +5,8 @@ import android.os.Environment
 import stanevich.elizaveta.stateofhealthtracker.R
 import java.io.File
 
-class MyDirectory(private val context: Context?) {
+class DirectoryRecording(private val context: Context?) {
+
     private var fullNameDir: String = "Recording"
 
     @Suppress("DEPRECATION")

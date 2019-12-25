@@ -5,8 +5,12 @@ import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.media.audiofx.NoiseSuppressor
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.model.NameFile
+import java.io.File
+import java.io.FileOutputStream
+import java.nio.ByteBuffer
 
-class AudioRecording(private var contex: Context?, nameFile: String) {
+class AudioRecording(private var contex: Context?) {
     companion object{
         const val sampleRateInHz = 44100
         const val channels = AudioFormat.CHANNEL_IN_MONO
@@ -23,7 +27,7 @@ class AudioRecording(private var contex: Context?, nameFile: String) {
     private var isRecording : Boolean = false
 
     private var curNameFile : String? = null
-    private var directory : MyDirectory = MyDirectory(contex)
+    private var directory : DirectoryRecording = DirectoryRecording(contex)
 
     private var recorder: AudioRecord? = null
     private var recordingThread: Thread? = null
@@ -40,8 +44,8 @@ class AudioRecording(private var contex: Context?, nameFile: String) {
         return curNameFile
     }
 
-    fun stopRecording() {
-        if (recorder == null) return
+    fun stopRecording() : Boolean {
+        if (recorder == null) return false
 
         isRecording = false
         recorder!!.stop()
@@ -49,72 +53,67 @@ class AudioRecording(private var contex: Context?, nameFile: String) {
         recorder = null
         recordingThread = null
 
-        /*if (fileRec.saveToWav(curNameFile)) {
-            fileRec.deletePCM(curNameFile)
-        }*/
+        return deletePcmFile()
+    }
+
+    private fun deletePcmFile() : Boolean{
+        var pcmFile = PcmFile()
+        if (pcmFile!!.convertToWav(curNameFile, directory.getFullNameDirectory(), sampleRateInHz, channels, audioFormat)){
+            pcmFile!!.deletePCM(curNameFile, directory.getFullNameDirectory())
+            return true
+        }
+        return false
     }
 
     fun startRecording(): Boolean {
-        if (directory.createRecDirectory()){
-            recorder = AudioRecord(
-                MediaRecorder.AudioSource.VOICE_RECOGNITION,
-                sampleRateInHz,
-                channels,
-                audioFormat,
-                bufferSize
-            )
+        recorder = AudioRecord(
+            MediaRecorder.AudioSource.VOICE_RECOGNITION,
+            sampleRateInHz,
+            channels,
+            audioFormat,
+            bufferSize
+        )
 
-            enableNoiseSuppressor()
+        enableNoiseSuppressor()
 
-            recorder!!.startRecording()
-            isRecording = true
+        recorder!!.startRecording()
+        isRecording = true
 
-            recordingThread = Thread(Runnable {
-                //writeAudioDataToFile();
-                ConvertToFile()
-            }, "AudioRecorder Thread")
-            recordingThread!!.start()
-        }
+        recordingThread = Thread(Runnable {
+            ConvertToFile()
+        }, "AudioRecorder Thread")
+        recordingThread!!.start()
 
         return isRecording
     }
 
     private fun enableNoiseSuppressor() {
-        val audioSessionId = recorder!!.getAudioSessionId()
+        val audioSessionId = recorder!!.audioSessionId
         if (NoiseSuppressor.isAvailable()) {
             NoiseSuppressor.create(audioSessionId)
         }
     }
 
     private fun ConvertToFile() {
-        /*if (!fileRec.isExternalStorage()) {
-            return
-        }
+        directory.createRecDirectory()
 
-        curNameFile = pathRecName.getNewName()
-        val file = File(FileRec.getPathMainRecFolder(), "$curNameFile.pcm")
+        var pathNameFile = NameFile()
+        curNameFile = pathNameFile.getName()
+
+        val file = File(directory.getFullNameDirectory(), "$curNameFile.pcm")
 
         val byteBuffer = ByteBuffer.allocateDirect(bufferSize)
 
-        try {
-            FileOutputStream(file).use { outputStream ->
-                while (isRecording) {
-                    val result = recorder.read(byteBuffer, bufferSize)
-                    if (result < 0) {
-                        throw RuntimeException("Reading failed")
-                    }
-
-                    println(result)
-                    outputStream.write(byteBuffer.array(), 0, bufferSize)
-                    byteBuffer.clear()
+        FileOutputStream(file).use { outputStream ->
+            while (isRecording) {
+                val result = recorder!!.read(byteBuffer, bufferSize)
+                if (result < 0) {
+                    throw RuntimeException("Reading failed")
                 }
+                outputStream.write(byteBuffer.array(), 0, bufferSize)
+                byteBuffer.clear()
             }
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
-            e.printStackTrace()
         }
-*/
     }
 
     internal fun writeAudioDataToFile(): Double {
