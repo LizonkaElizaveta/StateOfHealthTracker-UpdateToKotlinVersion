@@ -65,7 +65,7 @@ class EmotionalTestViewModel(
 
     private fun stop(){
         audioRecord.stopRecording()
-        path = audioRecord.getCurNameFile()!!
+        path = audioRecord.getFullNameAudioFile()
         onFinish(ampl, path)
     }
 }

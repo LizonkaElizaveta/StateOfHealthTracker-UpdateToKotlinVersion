@@ -9,6 +9,8 @@ import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.model
 import java.io.File
 import java.io.FileOutputStream
 import java.nio.ByteBuffer
+import kotlin.experimental.and
+import kotlin.math.abs
 
 class AudioRecording(private var contex: Context?) {
     companion object{
@@ -31,6 +33,14 @@ class AudioRecording(private var contex: Context?) {
 
     private var recorder: AudioRecord? = null
     private var recordingThread: Thread? = null
+
+    private var listAmpl: MutableList<Double> = mutableListOf()
+
+    fun getFullNameAudioFile(): String{
+        return directory.getFullNameDirectory() +
+                File.separator +
+                curNameFile
+    }
 
     fun isRecording(): Boolean {
         return isRecording
@@ -80,7 +90,7 @@ class AudioRecording(private var contex: Context?) {
         isRecording = true
 
         recordingThread = Thread(Runnable {
-            ConvertToFile()
+            convertToFile()
         }, "AudioRecorder Thread")
         recordingThread!!.start()
 
@@ -94,7 +104,7 @@ class AudioRecording(private var contex: Context?) {
         }
     }
 
-    private fun ConvertToFile() {
+    private fun convertToFile() {
         directory.createRecDirectory()
 
         var pathNameFile = NameFile()
@@ -110,39 +120,18 @@ class AudioRecording(private var contex: Context?) {
                 if (result < 0) {
                     throw RuntimeException("Reading failed")
                 }
+                addNewAmpl(byteBuffer)
                 outputStream.write(byteBuffer.array(), 0, bufferSize)
                 byteBuffer.clear()
             }
         }
     }
 
-    internal fun writeAudioDataToFile(): Double {
-        //val file = File(FileRec.getPathMainRecFolder(), "log.txt")
-        var db2 = 0.0
+    private fun addNewAmpl(byteBuffer: ByteBuffer){
+        var amplitude = ((byteBuffer[0] and 0xFF.toByte()).toInt() shl 8 or byteBuffer[1].toInt()) / 1.0
+        amplitude = abs(amplitude)
 
-        /*val buffer = ShortArray(bufferSize)
-
-        while (isRecording) {
-            recorder.read(buffer, 0, bufferSize)
-            var amplitude = buffer[0] and 0xFF shl 8 or buffer[1]
-            amplitude = Math.abs(amplitude)
-
-            db2 = 20 * Math.log10(amplitude / 1.0)
-            if (db2 > 0 && db2 < 25000) {
-                try {
-                    //BufferedWriter for performance, true to set append to file flag
-                    val buf = BufferedWriter(FileWriter(file, true))
-                    buf.append(db2.toString())
-                    buf.newLine()
-                    buf.close()
-                } catch (e: IOException) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace()
-                }
-
-            }
-        }*/
-
-        return db2
+        if (amplitude > 0 && amplitude < 25000)
+            listAmpl.add(amplitude)
     }
 }
