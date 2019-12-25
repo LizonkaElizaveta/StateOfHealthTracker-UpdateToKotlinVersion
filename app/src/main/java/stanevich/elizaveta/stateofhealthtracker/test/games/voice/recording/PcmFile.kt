@@ -1,30 +1,23 @@
 package stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording
 
 import java.io.File
-import java.io.IOException
 
 class PcmFile {
 
-    /*fun convertToWav(fileName: String): Boolean {
-        val f1 = File(pathMainRecFolder, "$fileName.pcm")
-        val f2 = File(pathMainRecFolder, "$fileName.wav")
+    fun convertToWav(fileName: String?, pathDirectory: String, sampleRate: Int, channel: Int, format: Int) : Boolean {
+        val f1 = File(pathDirectory, "$fileName.pcm")
+        val f2 = File(pathDirectory, "$fileName.wav")
 
-        var save = false
-        try {
-            val wav = toWav()
-            wav.pcvToWave(f1, f2)
-            save = true
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+        var converterToWav = ConverterPcmToWav(sampleRate, channel, format)
+        converterToWav!!.pcmToWave(f1, f2)
 
-        return save
+        return f2.exists()
     }
 
-    fun deletePCM(fileName: String) {
-        val file = File(pathMainRecFolder, "$fileName.pcm")
+    fun deletePCM(fileName: String?, pathDirectory: String) {
+        val file = File(pathDirectory, "$fileName.pcm")
         if (file.exists()) {
             file.delete()
         }
-    }*/
+    }
 }
