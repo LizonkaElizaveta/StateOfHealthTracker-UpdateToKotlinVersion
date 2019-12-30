@@ -10,6 +10,10 @@ import stanevich.elizaveta.stateofhealthtracker.home.database.States
 import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
 import stanevich.elizaveta.stateofhealthtracker.test.games.print.model.PrintTest
 import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.model.TappingTest
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.EmotionalTest
+import java.io.File
+import java.io.FileInputStream
+import android.util.Base64
 
 data class SendWrapper(
     val userId: Int = getUserId(),
@@ -51,6 +55,23 @@ fun convertToSendWrapper(dto: Any): SendWrapper {
             )
             timestamp = dto.date
             testType = "print"
+        }
+        is EmotionalTest -> {
+            val audioFile: File = File(dto.path)
+            val bytesArray = ByteArray(audioFile.length() as Int)
+
+            val fis = FileInputStream(audioFile)
+            fis.read(bytesArray)
+            fis.close()
+
+            val encoded: String = Base64.encodeToString(bytesArray, 0)
+
+            data = VoiceTestDto(
+                audio = encoded,
+                amp = dto.amplitudes
+            )
+            timestamp = dto.date
+            testType = "voice_emotional"
         }
         is Rotation -> {
             data = SensorAngleDto(

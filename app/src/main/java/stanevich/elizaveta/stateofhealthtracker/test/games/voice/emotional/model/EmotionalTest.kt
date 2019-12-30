@@ -12,10 +12,10 @@ data class EmotionalTest(
     val id: Int? = null,
 
     @ColumnInfo(name = "amplitudes")
-    var amplitudes: Array<Double>? = null,
+    var amplitudes: Array<Double> = arrayOf(),
 
     @ColumnInfo(name = "path_to_file")
-    var path: String? = null,
+    var path: String = "",
 
     @ColumnInfo(name = "date")
     var date: Long = Calendar.getInstance().timeInMillis
