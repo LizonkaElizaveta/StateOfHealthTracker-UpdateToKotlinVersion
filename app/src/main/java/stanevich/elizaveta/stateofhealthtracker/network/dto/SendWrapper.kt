@@ -70,8 +70,9 @@ fun convertToSendWrapper(dto: Any): SendWrapper {
                 encoded = Base64.encodeToString(bytesArray, 0)
             }
 
+
             data = VoiceTestDto(
-                audio = encoded,
+                audioFile = encoded,
                 amp = dto.amplitudes
             )
             timestamp = dto.date
