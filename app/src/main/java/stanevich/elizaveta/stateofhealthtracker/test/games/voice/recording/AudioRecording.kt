@@ -39,7 +39,7 @@ class AudioRecording(private var contex: Context?) {
     fun getFullNameAudioFile(): String{
         return directory.getFullNameDirectory() +
                 File.separator +
-                curNameFile
+                curNameFile + ".wav"
     }
 
     fun isRecording(): Boolean {

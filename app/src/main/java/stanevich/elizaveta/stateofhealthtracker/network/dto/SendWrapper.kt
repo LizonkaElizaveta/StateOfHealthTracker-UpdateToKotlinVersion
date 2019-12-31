@@ -57,14 +57,18 @@ fun convertToSendWrapper(dto: Any): SendWrapper {
             testType = "print"
         }
         is EmotionalTest -> {
+            var encoded: String = ""
             val audioFile: File = File(dto.path)
-            val bytesArray = ByteArray(audioFile.length() as Int)
 
-            val fis = FileInputStream(audioFile)
-            fis.read(bytesArray)
-            fis.close()
+            if (audioFile.exists()){
+                val bytesArray = ByteArray(audioFile.length().toInt())
 
-            val encoded: String = Base64.encodeToString(bytesArray, 0)
+                val fis = FileInputStream(audioFile)
+                fis.read(bytesArray)
+                fis.close()
+
+                encoded = Base64.encodeToString(bytesArray, 0)
+            }
 
             data = VoiceTestDto(
                 audio = encoded,
