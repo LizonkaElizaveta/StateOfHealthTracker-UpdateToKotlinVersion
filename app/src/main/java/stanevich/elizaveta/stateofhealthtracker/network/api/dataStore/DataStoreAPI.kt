@@ -48,6 +48,9 @@ class DataStoreAPI : BaseDataSource() {
             is MotionDto -> {
                 sendMotionData(sendWrapper)
             }
+            is VoiceTestDto -> {
+                sendVoiceTestData(sendWrapper)
+            }
             else -> {
                 null
             }
