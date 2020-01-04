@@ -34,7 +34,11 @@ class AudioRecording(private var contex: Context?) {
     private var recorder: AudioRecord? = null
     private var recordingThread: Thread? = null
 
-    private var listAmpl: MutableList<Double> = mutableListOf()
+    private var listAmpl: ArrayList<Double> = ArrayList<Double>()
+
+    fun getAmplitudes(): ArrayList<Double>{
+        return listAmpl
+    }
 
     fun getFullNameAudioFile(): String{
         return directory.getFullNameDirectory() +
@@ -113,6 +117,8 @@ class AudioRecording(private var contex: Context?) {
         val file = File(directory.getFullNameDirectory(), "$curNameFile.pcm")
 
         val byteBuffer = ByteBuffer.allocateDirect(bufferSize)
+
+        addNewAmpl(byteBuffer)
 
         FileOutputStream(file).use { outputStream ->
             while (isRecording) {

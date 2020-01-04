@@ -29,7 +29,7 @@ class EmotionalTestViewModel(
     val valur_progressBar = MutableLiveData<Int>(0)
     var max_valur_progressBar = MAX_SECONDS
 
-    private var ampl: Array<Double> = arrayOf(0.6,0.3)
+    private var ampl: Array<Double> = arrayOf()
     private var path = "Recording"
 
     private var timer: Timer? = null
@@ -65,7 +65,12 @@ class EmotionalTestViewModel(
 
     private fun stop(){
         audioRecord.stopRecording()
+
         path = audioRecord.getFullNameAudioFile()
+
+        val array = arrayOfNulls<Double>(audioRecord.getAmplitudes().size)
+        ampl = audioRecord.getAmplitudes().toArray(array)
+
         onFinish(ampl, path)
     }
 }
