@@ -154,17 +154,6 @@ class NotificationSettingsFragment : Fragment() {
                 notificationsSettingsViewModel.onStartTracking(category, date, time, repeat)
                 Navigation.findNavController(it)
                     .navigate(R.id.action_notificationSettingsFragment_to_nav_notifications)
-                val requestBuilder =
-                    PeriodicWorkRequest.Builder(
-                        NotificationWorker::class.java,
-                        15,
-                        TimeUnit.MINUTES
-                    )
-
-                WorkManager.getInstance(application).enqueueUniquePeriodicWork(
-                    "workTag",
-                    ExistingPeriodicWorkPolicy.REPLACE,requestBuilder.build()
-                )
             }
         }
         return binding.root

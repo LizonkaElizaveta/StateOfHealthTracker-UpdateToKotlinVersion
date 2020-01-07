@@ -6,11 +6,20 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.OneTimeWorkRequest
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao
+import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationWorker
 import stanevich.elizaveta.stateofhealthtracker.notification.model.CheckBoxModel
 import stanevich.elizaveta.stateofhealthtracker.notification.model.populateData
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.math.abs
 
 class NotificationsSettingsViewModel(
     private val database: NotificationsDatabaseDao,
@@ -59,8 +68,10 @@ class NotificationsSettingsViewModel(
         }
     }
 
-
     fun onStartTracking(category: String, date: String, time: String, repeat: BooleanArray) {
+        val formatter = SimpleDateFormat("E, dd MMM, yyyy HH:mm", Locale.getDefault())
+        val fullDate = formatter.parse("$date $time")
+        val milliseconds = fullDate!!.time
         uiScope.launch {
             tonightNotification.value = Notifications()
             tonightNotification.value!!.apply {
@@ -68,6 +79,7 @@ class NotificationsSettingsViewModel(
                 notificationsDate = date
                 notificationsTime = time
                 notificationRepeat = repeat
+                timestamp = milliseconds
             }
             insert(tonightNotification.value!!)
         }
@@ -78,6 +90,35 @@ class NotificationsSettingsViewModel(
             database.insert(notification)
             Log.d("mLog", "From ViewModel $notification")
         }
+        startNotification()
+    }
+
+    private fun startNotification() {
+        val diff = abs(Calendar.getInstance().timeInMillis - tonightNotification.value!!.timestamp)
+        val repeatDays = tonightNotification.value!!.notificationRepeat
+        for (i in 0 until 7) {
+            if (!repeatDays[i]) {
+                val request = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
+                    .setInitialDelay(diff, TimeUnit.MILLISECONDS)
+                WorkManager.getInstance(getApplication()).enqueue(request.build())
+            }
+        }
+
+
+        val requestBuilder =
+            PeriodicWorkRequest.Builder(
+                NotificationWorker::class.java,
+                15,
+                TimeUnit.MINUTES
+            )
+                .setInitialDelay(diff, TimeUnit.MILLISECONDS)
+
+        WorkManager.getInstance(getApplication()).enqueueUniquePeriodicWork(
+            "workTag",
+            ExistingPeriodicWorkPolicy.REPLACE, requestBuilder.build()
+        )
+
+
     }
 
     fun showDialogCategory() {

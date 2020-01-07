@@ -19,7 +19,10 @@ data class Notifications(
     var notificationsDate: String = "",
 
     @ColumnInfo(name = "repeat")
-    var notificationRepeat: BooleanArray = BooleanArray(7) { false }
+    var notificationRepeat: BooleanArray = BooleanArray(7) { false },
+
+    @ColumnInfo(name = "timestamp")
+    var timestamp: Long = 0L
 
 ) {
     override fun equals(other: Any?): Boolean {
