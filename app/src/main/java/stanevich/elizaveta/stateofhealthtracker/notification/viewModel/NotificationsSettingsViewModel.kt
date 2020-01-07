@@ -2,6 +2,7 @@ package stanevich.elizaveta.stateofhealthtracker.notification.viewModel
 
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -90,21 +91,34 @@ class NotificationsSettingsViewModel(
             database.insert(notification)
             Log.d("mLog", "From ViewModel $notification")
         }
-        startNotification()
+        notificationHandler()
     }
 
-    private fun startNotification() {
+    private fun notificationHandler() {
         val diff = abs(Calendar.getInstance().timeInMillis - tonightNotification.value!!.timestamp)
         val repeatDays = tonightNotification.value!!.notificationRepeat
-        for (i in 0 until 7) {
-            if (!repeatDays[i]) {
-                val request = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
-                    .setInitialDelay(diff, TimeUnit.MILLISECONDS)
-                WorkManager.getInstance(getApplication()).enqueue(request.build())
+        val everyDaysRepeating = repeatDays.all { it }
+        val noRepeatingDays = !repeatDays.all { it }
+        when {
+            noRepeatingDays -> {
+                startSingleNotification(diff)
+            }
+            everyDaysRepeating -> {
+                startEveryDayNotification(diff)
+            }
+            else -> {
+                Toast.makeText(getApplication(),"Multiply",Toast.LENGTH_SHORT).show()
             }
         }
 
+    }
 
+    private fun startMultiplyNotification(diff:Long) {
+        
+    }
+
+    private fun startEveryDayNotification(diff: Long) {
+        Toast.makeText(getApplication(),"EveryDay",Toast.LENGTH_SHORT).show()
         val requestBuilder =
             PeriodicWorkRequest.Builder(
                 NotificationWorker::class.java,
@@ -117,8 +131,13 @@ class NotificationsSettingsViewModel(
             "workTag",
             ExistingPeriodicWorkPolicy.REPLACE, requestBuilder.build()
         )
+    }
 
-
+    private fun startSingleNotification(diff: Long) {
+        Toast.makeText(getApplication(),"Single",Toast.LENGTH_SHORT).show()
+        val requestBuilder = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
+            .setInitialDelay(diff, TimeUnit.MILLISECONDS)
+        WorkManager.getInstance(getApplication()).enqueue(requestBuilder.build())
     }
 
     fun showDialogCategory() {

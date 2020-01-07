@@ -20,12 +20,12 @@ class NotificationWorker(context: Context, workerParams: WorkerParameters) :
     }
 
     override fun doWork(): Result {
-        sendSingleNotification()
+        sendNotification()
         return Result.success()
     }
 
 
-    private fun sendSingleNotification() {
+    private fun sendNotification() {
         createNotificationChannel()
         val notification = NotificationCompat.Builder(applicationContext, channelId)
             .setContentTitle("Single Worker")
