@@ -6,7 +6,7 @@
     <data>
 
         <variable
-                name="emotion_test"
+                name="emotionTest"
                 type="stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.EmotionalTestViewModel" />
     </data>
 
@@ -28,8 +28,8 @@
                 android:theme="@style/ProgressBarPurple"
                 android:rotation="-90"
                 android:indeterminate="false"
-                android:max="@{emotion_test.maxValueProgressBar}"
-                android:progress="@{emotion_test.valueProgressBar}"/>
+                android:max="@{emotionTest.maxValueProgressBar}"
+                android:progress="@{emotionTest.valueProgressBar}"/>
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -78,8 +78,6 @@ public class ConverterPcmToWav {
     }
 
     private void writeString(final DataOutputStream output, final String value) throws IOException {
-        for (int i = 0; i < value.length(); i++) {
-            output.write(value.charAt(i));
-        }
+        output.write(value.getBytes());
     }
 }

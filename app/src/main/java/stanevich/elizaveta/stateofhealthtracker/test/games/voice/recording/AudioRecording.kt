@@ -1,6 +1,5 @@
 package stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording
 
-import android.content.Context
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
@@ -9,7 +8,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.model.NameFile
 import java.io.File
 import java.io.FileOutputStream
@@ -17,7 +15,7 @@ import java.nio.ByteBuffer
 import kotlin.experimental.and
 import kotlin.math.abs
 
-class AudioRecording(context: Context?) {
+class AudioRecording {
     companion object {
         const val sampleRateInHz = 44100
         const val channels = AudioFormat.CHANNEL_IN_MONO
@@ -34,7 +32,7 @@ class AudioRecording(context: Context?) {
     private var isRecording = false
 
     private var currentNameFile: String? = null
-    private var directory: DirectoryRecording = DirectoryRecording(context)
+    private var directory: DirectoryRecording = DirectoryRecording()
 
     private var recorder: AudioRecord? = null
 

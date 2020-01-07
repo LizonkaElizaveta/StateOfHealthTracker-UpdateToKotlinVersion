@@ -15,7 +15,6 @@ class EmotionalTestViewModelFactory(
         if (modelClass.isAssignableFrom(EmotionalTestViewModel::class.java)) {
             return EmotionalTestViewModel(
                 application,
-                context,
                 onFinish
             ) as T
         }
