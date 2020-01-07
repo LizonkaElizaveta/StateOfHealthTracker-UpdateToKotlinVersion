@@ -25,13 +25,12 @@ class EmotionalTestViewModel(
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     val valueProgressBar = MutableLiveData(0)
-    var maxValueProgressBar = MAX_SECONDS
-
-    private var ampl: Array<Double> = arrayOf()
-    private var path = ""
+    val maxValueProgressBar = MAX_SECONDS
 
     private var timer: Timer? = null
+
     private var audioRecord: AudioRecording = AudioRecording()
+
     private fun initTimer(): Timer {
         var seconds = INITIAL_SECONDS + 1
         return timer(period = 1000) {
@@ -42,7 +41,7 @@ class EmotionalTestViewModel(
 
             if (seconds == MAX_SECONDS) {
                 cancel()
-                stop()
+                stopRecording()
             }
 
             ++seconds
@@ -56,16 +55,16 @@ class EmotionalTestViewModel(
             audioRecord.startRecording()
         } else {
             timer!!.cancel()
-            stop()
+            stopRecording()
         }
     }
 
-    private fun stop() {
+    private fun stopRecording() {
         audioRecord.stopRecording()
 
-        path = audioRecord.getFullNameAudioFile()
-        ampl = audioRecord.getAmplitudes().toTypedArray()
+        val path = audioRecord.getFullNameAudioFile()
+        var amp = audioRecord.listAmp.toTypedArray()
 
-        onFinish(ampl, path)
+        onFinish(amp, path)
     }
 }
