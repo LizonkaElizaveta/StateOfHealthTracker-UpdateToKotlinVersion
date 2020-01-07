@@ -2,7 +2,7 @@ package stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording
 
 import java.io.File
 
-class PcmFile {
+object PcmFile {
 
     fun convertToWav(
         fileName: String?,
@@ -15,7 +15,7 @@ class PcmFile {
         val f2 = File(pathDirectory, "$fileName.wav")
 
         var converterToWav = ConverterPcmToWav()
-        converterToWav!!.pcmToWave(f1, f2)
+        converterToWav!!.pcmToWave(f1, f2, sampleRate)
 
         return f2.exists()
     }

@@ -5,6 +5,11 @@ import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.media.audiofx.NoiseSuppressor
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import okhttp3.Dispatcher
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.model.NameFile
 import java.io.File
 import java.io.FileOutputStream
@@ -26,13 +31,12 @@ class AudioRecording(context: Context?) {
         audioFormat
     ) * bufferSizeFactor
 
-    private var isRecording: Boolean = false
+    private var isRecording = false
 
     private var currentNameFile: String? = null
     private var directory: DirectoryRecording = DirectoryRecording(context)
 
     private var recorder: AudioRecord? = null
-    private var recordingThread: Thread? = null
 
     private val listAmp: MutableList<Double> = arrayListOf()
 
@@ -46,28 +50,19 @@ class AudioRecording(context: Context?) {
                 currentNameFile + ".wav"
     }
 
-    fun isRecording(): Boolean {
-        return isRecording
-    }
-
-    fun getSampleRateInHz(): Int {
-        return sampleRateInHz
-    }
-
     fun stopRecording(): Boolean {
         if (recorder == null) return false
 
         isRecording = false
-        recorder!!.stop()
-        recorder!!.release()
+        recorder?.let { it.stop() }
+        recorder?.let { it.release() }
         recorder = null
-        recordingThread = null
 
         return deletePcmFile()
     }
 
     private fun deletePcmFile(): Boolean {
-        var pcmFile = PcmFile()
+        var pcmFile = PcmFile
         if (pcmFile!!.convertToWav(
                 currentNameFile,
                 directory.getFullNameDirectory(),
@@ -93,13 +88,12 @@ class AudioRecording(context: Context?) {
 
         enableNoiseSuppressor()
 
-        recorder!!.startRecording()
+        recorder?.let { it.startRecording() }
         isRecording = true
 
-        recordingThread = Thread(Runnable {
+        CoroutineScope(Dispatchers.IO + Job()).launch {
             convertToFile()
-        }, "AudioRecorder Thread")
-        recordingThread!!.start()
+        }
 
         return isRecording
     }
