@@ -7,9 +7,7 @@ object PcmFile {
     fun convertToWav(
         fileName: String?,
         pathDirectory: String,
-        sampleRate: Int,
-        channel: Int,
-        format: Int
+        sampleRate: Int
     ): Boolean {
         val f1 = File(pathDirectory, "$fileName.pcm")
         val f2 = File(pathDirectory, "$fileName.wav")

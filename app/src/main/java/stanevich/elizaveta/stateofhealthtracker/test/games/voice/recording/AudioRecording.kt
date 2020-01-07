@@ -43,9 +43,7 @@ class AudioRecording {
     }
 
     fun getFullNameAudioFile(): String {
-        return directory.getFullNameDirectory() +
-                File.separator +
-                currentNameFile + ".wav"
+        return "${directory.fullNameDir}${File.separator}$currentNameFile.wav"
     }
 
     fun stopRecording(): Boolean {
@@ -63,13 +61,11 @@ class AudioRecording {
         var pcmFile = PcmFile
         if (pcmFile!!.convertToWav(
                 currentNameFile,
-                directory.getFullNameDirectory(),
-                sampleRateInHz,
-                channels,
-                audioFormat
+                directory.fullNameDir,
+                sampleRateInHz
             )
         ) {
-            pcmFile?.let { it.deletePCM(currentNameFile, directory.getFullNameDirectory()) }
+            pcmFile?.let { it.deletePCM(currentNameFile, directory.fullNameDir) }
             return true
         }
         return false
@@ -109,7 +105,7 @@ class AudioRecording {
         var pathNameFile = NameFile()
         currentNameFile = pathNameFile.getName()
 
-        val file = File(directory.getFullNameDirectory(), "$currentNameFile.pcm")
+        val file = File(directory.fullNameDir, "$currentNameFile.pcm")
 
         val byteBuffer = ByteBuffer.allocateDirect(bufferSize)
 
