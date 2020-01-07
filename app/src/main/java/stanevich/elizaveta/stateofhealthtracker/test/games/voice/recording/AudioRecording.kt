@@ -69,7 +69,7 @@ class AudioRecording {
                 audioFormat
             )
         ) {
-            pcmFile!!.deletePCM(currentNameFile, directory.getFullNameDirectory())
+            pcmFile?.let { it.deletePCM(currentNameFile, directory.getFullNameDirectory()) }
             return true
         }
         return false

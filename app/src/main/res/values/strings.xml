@@ -126,5 +126,7 @@
     <string name="feedback_app_version_pattern" formatted="false">\n\n\nВерсия приложения(не стирайте): OS - %s, SDK - %d, %s, %s, %s, %d.</string>
     <string name="text_tapping_test_description">Бейте пальцем по мишене \n в течении 1 минуты \n сперва левой рукой, затем правой</string>
     <string name="text_tapping_test_header">Бейте по мишене!</string>
+    <string name="text_voice_emotion_header">Расскажи свое состояние!</string>
+    <string name="text_voice_emotion_description">Нажмите на кнопку и начните рассказывать.</string>
     <string name="start_test">Начать тест</string>
 </resources>
