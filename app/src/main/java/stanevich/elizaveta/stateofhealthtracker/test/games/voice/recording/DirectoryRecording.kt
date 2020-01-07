@@ -1,34 +1,29 @@
 package stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording
 
 import android.os.Environment
+import androidx.core.content.ContextCompat
 import stanevich.elizaveta.stateofhealthtracker.App.Companion.context
 import stanevich.elizaveta.stateofhealthtracker.R
 import java.io.File
 
 class DirectoryRecording {
 
-    private var fullNameDir: String = ""
+    val fullNameDir =
+        "${context?.getExternalFilesDir(Environment.DIRECTORY_RINGTONES)}${File.separator}${context?.getString(
+            R.string.nameMainFolder
+        )}"
 
     fun createRecDirectory(): Boolean {
-        if (isExternalStorage()) {
-            val file = File(
-                context?.externalMediaDirs.toString(),
-                R.string.nameMainFolder.toString()
-            )
+        if (!isExternalStorage()) return false
 
-            fullNameDir =
-                """${context?.externalMediaDirs}${File.separator}${R.string.nameMainFolder}"""
+        val directoryRecording = File(fullNameDir)
 
-            return file.mkdirs()
-        }
-        return false
+        if (directoryRecording.exists()) return true
+
+        return directoryRecording.mkdirs()
     }
 
     private fun isExternalStorage(): Boolean {
         return Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()
-    }
-
-    fun getFullNameDirectory(): String {
-        return fullNameDir
     }
 }
