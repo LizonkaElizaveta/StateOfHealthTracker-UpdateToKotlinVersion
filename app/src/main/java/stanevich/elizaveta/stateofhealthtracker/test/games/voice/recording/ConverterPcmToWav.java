@@ -57,6 +57,7 @@ public class ConverterPcmToWav {
             }
         }
     }
+
     byte[] fullyReadFileToBytes(File f) throws IOException {
         int size = (int) f.length();
         byte bytes[] = new byte[size];
@@ -78,6 +79,7 @@ public class ConverterPcmToWav {
 
         return bytes;
     }
+
     private void writeInt(final DataOutputStream output, final int value) throws IOException {
         output.write(value >> 0);
         output.write(value >> 8);

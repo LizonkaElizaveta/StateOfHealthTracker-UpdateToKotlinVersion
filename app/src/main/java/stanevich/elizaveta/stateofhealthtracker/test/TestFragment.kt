@@ -46,7 +46,7 @@ class TestFragment : Fragment() {
                     .navigate(R.id.action_nav_test_to_drawingIntroFragment)
                 "print" -> Navigation.findNavController(binding.testList)
                     .navigate(R.id.action_nav_test_to_printIntroFragment)
-                "voice_emotional" ->Navigation.findNavController(binding.testList)
+                "voice_emotional" -> Navigation.findNavController(binding.testList)
                     .navigate(R.id.action_nav_test_to_emotionalIntroFragment)
                 else -> Toast.makeText(activity, "В разработке", Toast.LENGTH_SHORT).show()
             }

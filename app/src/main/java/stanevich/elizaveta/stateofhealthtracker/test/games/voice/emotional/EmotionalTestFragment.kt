@@ -38,9 +38,14 @@ class EmotionalTestFragment : Fragment() {
         setupToolbar()
 
         val binding: FragmentTestVoiceEmotionBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_test_voice_emotion, container, false)
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_test_voice_emotion,
+                container,
+                false
+            )
 
-        val emotionalTestViewModel = getEmotonalTestViewModel()
+        val emotionalTestViewModel = getEmotionalTestViewModel()
 
         binding.lifecycleOwner = this
 
@@ -49,7 +54,7 @@ class EmotionalTestFragment : Fragment() {
         navigation = NavHostFragment.findNavController(this)
 
         binding.btnVoice.setOnClickListener {
-            emotionalTestViewModel.incTaps()
+            emotionalTestViewModel.startRecording()
         }
 
         return binding.root
@@ -61,15 +66,16 @@ class EmotionalTestFragment : Fragment() {
         toolbar?.title = ""
     }
 
-    private fun getEmotonalTestViewModel(): EmotionalTestViewModel {
+    private fun getEmotionalTestViewModel(): EmotionalTestViewModel {
         val application = requireNotNull(this.activity).application
 
-        val emotionalTestDatabase = TestingDatabase.getInstance(application).emotionalTestDatabaseDao
+        val emotionalTestDatabase =
+            TestingDatabase.getInstance(application).emotionalTestDatabaseDao
 
         val viewModelFactory = EmotionalTestViewModelFactory(application, context) { ampl, path ->
 
             uiScope.launch {
-                withContext(Dispatchers.IO){
+                withContext(Dispatchers.IO) {
                     emotionalTestDatabase.insert(
                         EmotionalTest(
                             amplitudes = ampl,
@@ -83,7 +89,8 @@ class EmotionalTestFragment : Fragment() {
                 uiScope.launch {
                     navigation.navigate(R.id.action_emotionalTestFragment_to_nav_test)
                 }
-                ConfirmationSaveDataDialog().show(it, "ThanksDialog") }
+                ConfirmationSaveDataDialog().show(it, "ThanksDialog")
+            }
         }
 
         return ViewModelProviders.of(this, viewModelFactory).get(EmotionalTestViewModel::class.java)

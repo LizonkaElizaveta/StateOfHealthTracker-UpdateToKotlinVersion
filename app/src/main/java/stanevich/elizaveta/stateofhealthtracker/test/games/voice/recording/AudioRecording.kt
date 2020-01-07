@@ -12,38 +12,38 @@ import java.nio.ByteBuffer
 import kotlin.experimental.and
 import kotlin.math.abs
 
-class AudioRecording(contex: Context?) {
-    companion object{
+class AudioRecording(context: Context?) {
+    companion object {
         const val sampleRateInHz = 44100
         const val channels = AudioFormat.CHANNEL_IN_MONO
         const val audioFormat = AudioFormat.ENCODING_PCM_16BIT
         const val bufferSizeFactor = 2
     }
 
-    private var bufferSize : Int = AudioRecord.getMinBufferSize(
+    private var bufferSize: Int = AudioRecord.getMinBufferSize(
         sampleRateInHz,
         channels,
         audioFormat
     ) * bufferSizeFactor
 
-    private var isRecording : Boolean = false
+    private var isRecording: Boolean = false
 
-    private var curNameFile : String? = null
-    private var directory : DirectoryRecording = DirectoryRecording(contex)
+    private var currentNameFile: String? = null
+    private var directory: DirectoryRecording = DirectoryRecording(context)
 
     private var recorder: AudioRecord? = null
     private var recordingThread: Thread? = null
 
-    private var listAmpl: ArrayList<Double> = arrayListOf()
+    private val listAmp: MutableList<Double> = arrayListOf()
 
-    fun getAmplitudes(): ArrayList<Double>{
-        return listAmpl
+    fun getAmplitudes(): MutableList<Double> {
+        return listAmp
     }
 
-    fun getFullNameAudioFile(): String{
+    fun getFullNameAudioFile(): String {
         return directory.getFullNameDirectory() +
                 File.separator +
-                curNameFile + ".wav"
+                currentNameFile + ".wav"
     }
 
     fun isRecording(): Boolean {
@@ -54,11 +54,7 @@ class AudioRecording(contex: Context?) {
         return sampleRateInHz
     }
 
-    fun getCurNameFile(): String? {
-        return curNameFile
-    }
-
-    fun stopRecording() : Boolean {
+    fun stopRecording(): Boolean {
         if (recorder == null) return false
 
         isRecording = false
@@ -70,10 +66,17 @@ class AudioRecording(contex: Context?) {
         return deletePcmFile()
     }
 
-    private fun deletePcmFile() : Boolean{
+    private fun deletePcmFile(): Boolean {
         var pcmFile = PcmFile()
-        if (pcmFile!!.convertToWav(curNameFile, directory.getFullNameDirectory(), sampleRateInHz, channels, audioFormat)){
-            pcmFile!!.deletePCM(curNameFile, directory.getFullNameDirectory())
+        if (pcmFile!!.convertToWav(
+                currentNameFile,
+                directory.getFullNameDirectory(),
+                sampleRateInHz,
+                channels,
+                audioFormat
+            )
+        ) {
+            pcmFile!!.deletePCM(currentNameFile, directory.getFullNameDirectory())
             return true
         }
         return false
@@ -112,13 +115,13 @@ class AudioRecording(contex: Context?) {
         directory.createRecDirectory()
 
         var pathNameFile = NameFile()
-        curNameFile = pathNameFile.getName()
+        currentNameFile = pathNameFile.getName()
 
-        val file = File(directory.getFullNameDirectory(), "$curNameFile.pcm")
+        val file = File(directory.getFullNameDirectory(), "$currentNameFile.pcm")
 
         val byteBuffer = ByteBuffer.allocateDirect(bufferSize)
 
-        addNewAmpl(byteBuffer)
+        addNewAmp(byteBuffer)
 
         FileOutputStream(file).use { outputStream ->
             while (isRecording) {
@@ -126,18 +129,19 @@ class AudioRecording(contex: Context?) {
                 if (result < 0) {
                     throw RuntimeException("Reading failed")
                 }
-                addNewAmpl(byteBuffer)
+                addNewAmp(byteBuffer)
                 outputStream.write(byteBuffer.array(), 0, bufferSize)
                 byteBuffer.clear()
             }
         }
     }
 
-    private fun addNewAmpl(byteBuffer: ByteBuffer){
-        var amplitude = ((byteBuffer[0] and 0xFF.toByte()).toInt() shl 8 or byteBuffer[1].toInt()) / 1.0
+    private fun addNewAmp(byteBuffer: ByteBuffer) {
+        var amplitude =
+            ((byteBuffer[0] and 0xFF.toByte()).toInt() shl 8 or byteBuffer[1].toInt()) / 1.0
         amplitude = abs(amplitude)
 
         if (amplitude > 0 && amplitude < 25000)
-            listAmpl.add(amplitude)
+            listAmp.add(amplitude)
     }
 }

@@ -28,8 +28,8 @@
                 android:theme="@style/ProgressBarPurple"
                 android:rotation="-90"
                 android:indeterminate="false"
-                android:max="@{emotion_test.max_valur_progressBar}"
-                android:progress="@{emotion_test.valur_progressBar}"/>
+                android:max="@{emotion_test.maxValueProgressBar}"
+                android:progress="@{emotion_test.valueProgressBar}"/>
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -4,7 +4,13 @@ import java.io.File
 
 class PcmFile {
 
-    fun convertToWav(fileName: String?, pathDirectory: String, sampleRate: Int, channel: Int, format: Int) : Boolean {
+    fun convertToWav(
+        fileName: String?,
+        pathDirectory: String,
+        sampleRate: Int,
+        channel: Int,
+        format: Int
+    ): Boolean {
         val f1 = File(pathDirectory, "$fileName.pcm")
         val f2 = File(pathDirectory, "$fileName.wav")
 

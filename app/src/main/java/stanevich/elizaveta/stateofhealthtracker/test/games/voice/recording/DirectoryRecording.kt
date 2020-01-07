@@ -31,7 +31,7 @@ class DirectoryRecording(private val context: Context?) {
         return Environment.MEDIA_MOUNTED == state
     }
 
-    fun getFullNameDirectory():String{
+    fun getFullNameDirectory(): String {
         return fullNameDir
     }
 }

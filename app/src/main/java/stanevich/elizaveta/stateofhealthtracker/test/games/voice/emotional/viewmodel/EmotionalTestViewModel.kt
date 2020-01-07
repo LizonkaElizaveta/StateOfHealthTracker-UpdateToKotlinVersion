@@ -18,7 +18,7 @@ class EmotionalTestViewModel(
     val onFinish: (ampl: Array<Double>, path: String) -> Unit
 ) : AndroidViewModel(application) {
 
-    companion object{
+    companion object {
         const val INITIAL_SECONDS = 0
         const val MAX_SECONDS = 30
     }
@@ -26,8 +26,8 @@ class EmotionalTestViewModel(
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    val valur_progressBar = MutableLiveData<Int>(0)
-    var max_valur_progressBar = MAX_SECONDS
+    val valueProgressBar = MutableLiveData(0)
+    var maxValueProgressBar = MAX_SECONDS
 
     private var ampl: Array<Double> = arrayOf()
     private var path = "Recording"
@@ -39,7 +39,7 @@ class EmotionalTestViewModel(
         return timer(period = 1000) {
 
             uiScope.run {
-                valur_progressBar.postValue(seconds)
+                valueProgressBar.postValue(seconds)
             }
 
             if (seconds == MAX_SECONDS) {
@@ -52,24 +52,21 @@ class EmotionalTestViewModel(
 
     }
 
-    fun incTaps() {
+    fun startRecording() {
         if (timer == null) {
             timer = initTimer()
             audioRecord.startRecording()
-        }
-        else {
+        } else {
             timer!!.cancel()
             stop()
         }
     }
 
-    private fun stop(){
+    private fun stop() {
         audioRecord.stopRecording()
 
         path = audioRecord.getFullNameAudioFile()
-
-        val array = arrayOfNulls<Double>(audioRecord.getAmplitudes().size)
-        ampl = audioRecord.getAmplitudes().toArray(array)
+        ampl = audioRecord.getAmplitudes().toTypedArray()
 
         onFinish(ampl, path)
     }
