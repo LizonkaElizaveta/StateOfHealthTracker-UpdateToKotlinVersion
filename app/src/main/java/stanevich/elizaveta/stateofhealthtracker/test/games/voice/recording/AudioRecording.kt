@@ -12,7 +12,7 @@ import java.nio.ByteBuffer
 import kotlin.experimental.and
 import kotlin.math.abs
 
-class AudioRecording(private var contex: Context?) {
+class AudioRecording(contex: Context?) {
     companion object{
         const val sampleRateInHz = 44100
         const val channels = AudioFormat.CHANNEL_IN_MONO
@@ -34,7 +34,7 @@ class AudioRecording(private var contex: Context?) {
     private var recorder: AudioRecord? = null
     private var recordingThread: Thread? = null
 
-    private var listAmpl: ArrayList<Double> = ArrayList<Double>()
+    private var listAmpl: ArrayList<Double> = arrayListOf()
 
     fun getAmplitudes(): ArrayList<Double>{
         return listAmpl
