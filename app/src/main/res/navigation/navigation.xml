@@ -125,7 +125,7 @@
     <fragment
             android:id="@+id/emotionalIntroFragment"
             android:name="stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.EmotionalIntroFragment"
-            android:label="EmotionalIntroFragment" >
+            android:label="@string/menu_introduction" >
         <action
                 android:id="@+id/action_emotionalIntroFragment_to_emotionalTestFragment2"
                 app:destination="@id/emotionalTestFragment" />
