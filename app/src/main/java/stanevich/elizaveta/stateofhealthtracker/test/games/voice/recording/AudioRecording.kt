@@ -101,8 +101,7 @@ class AudioRecording {
     private fun enableNoiseSuppressor() {
         var noiseSuppressor: NoiseSuppressor? = null
         if (NoiseSuppressor.isAvailable() && noiseSuppressor == null) {
-            noiseSuppressor = NoiseSuppressor.create(recorder!!.audioSessionId)
-            //noiseSuppressor.enabled = true
+            NoiseSuppressor.create(recorder!!.audioSessionId)
         }
     }
 
@@ -136,15 +135,4 @@ class AudioRecording {
         if (amplitude > 0 && amplitude < 25000)
             listAmp.add(amplitude)
     }
-
-    /*fun requestRecordAudioPermission() {
-        if (ContextCompat.checkSelfPermission(
-                context!!,
-                android.Manifest.permission.RECORD_AUDIO
-            ) != PackageManager.PERMISSION_GRANTED
-        ){
-            ActivityCompat.requestPermissions(context as Activity,
-                arrayOf(android.Manifest.permission.RECORD_AUDIO), 1)
-        }
-    }*/
 }
