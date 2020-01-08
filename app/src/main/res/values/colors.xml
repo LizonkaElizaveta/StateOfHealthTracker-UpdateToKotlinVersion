@@ -16,4 +16,6 @@
 
     <color name="colorCardBorder">#CBD0D0D0</color>
 
+    <color name="colorBackgroundDelete">#EB5757</color>
+
 </resources>

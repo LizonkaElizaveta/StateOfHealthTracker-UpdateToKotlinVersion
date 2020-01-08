@@ -93,4 +93,7 @@ dependencies {
     // Moshi
     implementation "com.squareup.moshi:moshi-kotlin:1.9.2"
     implementation("com.squareup.moshi:moshi-adapters:1.9.2")
+
+    //Recycler View
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.1'
 }

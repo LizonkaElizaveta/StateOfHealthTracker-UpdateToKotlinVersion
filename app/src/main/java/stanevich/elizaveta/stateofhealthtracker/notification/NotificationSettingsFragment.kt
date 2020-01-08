@@ -151,6 +151,8 @@ class NotificationSettingsFragment : Fragment() {
                     .navigate(R.id.action_notificationSettingsFragment_to_nav_notifications)
             }
         }
+
+
         return binding.root
 
     }
