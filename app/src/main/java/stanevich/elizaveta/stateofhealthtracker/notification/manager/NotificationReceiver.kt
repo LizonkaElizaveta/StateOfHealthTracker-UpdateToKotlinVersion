@@ -18,7 +18,7 @@ import stanevich.elizaveta.stateofhealthtracker.home.StatesFragment
 
 class NotificationReceiver : BroadcastReceiver() {
     companion object {
-        const val MEDICATION = "medication"
+        const val CATEGORY = "category"
         const val ID = "id"
     }
 
@@ -54,7 +54,7 @@ class NotificationReceiver : BroadcastReceiver() {
             .setContentIntent(pendingIntent)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setContentText(intent.getStringExtra(MEDICATION))
+            .setContentText(intent.getStringExtra(CATEGORY))
             .setSound(alarmSound)
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
 

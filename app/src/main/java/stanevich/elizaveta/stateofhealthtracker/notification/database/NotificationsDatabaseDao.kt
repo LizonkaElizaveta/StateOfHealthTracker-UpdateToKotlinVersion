@@ -23,6 +23,9 @@ interface NotificationsDatabaseDao {
     @Query("SELECT * FROM notifications_table ORDER BY notificatiionsId DESC")
     fun getAllNotifications(): LiveData<List<Notifications>>
 
+    @Query("SELECT * FROM notifications_table ORDER BY notificatiionsId DESC LIMIT 1")
+    fun getLast(): Notifications
+
     @Transaction
     fun upsert(notification: Notifications) {
         insert(notification)

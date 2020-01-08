@@ -20,6 +20,7 @@ import stanevich.elizaveta.stateofhealthtracker.App
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationReceiver
+import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationReceiver.Companion.CATEGORY
 import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationReceiver.Companion.ID
 import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationWorker
 import stanevich.elizaveta.stateofhealthtracker.notification.model.CheckBoxModel
@@ -40,6 +41,9 @@ class NotificationsSettingsViewModel(
 
     var tonightNotification = MutableLiveData<Notifications?>()
     val notifications = database.getAllNotifications()
+//    private val dat =
+//        Room.databaseBuilder(application, NotificationsDatabase::class.java, "NotificationDatabase")
+//            .allowMainThreadQueries().build()
 
     private val _checkBox = MutableLiveData<List<CheckBoxModel>>()
     val checkBox: LiveData<List<CheckBoxModel>>
@@ -98,10 +102,16 @@ class NotificationsSettingsViewModel(
 
     private suspend fun insert(notification: Notifications) {
         withContext(Dispatchers.IO) {
-            database.upsert(notification)
+            database.insert(notification)
             Log.d("mLog", "From ViewModel $notification")
+
+            val lastNotifications = database.getLast()
+            withContext(Dispatchers.Main + Job()) {
+                tonightNotification.value = lastNotifications
+                notificationHandler()
+            }
         }
-        notificationHandler()
+
     }
 
     private fun notificationHandler() {
@@ -128,7 +138,7 @@ class NotificationsSettingsViewModel(
 
     }
 
-    private fun startMultiplyNotification(hour: Int, minute : Int, repeatDays: BooleanArray) {
+    private fun startMultiplyNotification(hour: Int, minute: Int, repeatDays: BooleanArray) {
         val calendar = Calendar.getInstance()
 
         repeatDays.forEachIndexed { index, daySet ->
@@ -144,22 +154,25 @@ class NotificationsSettingsViewModel(
                     set(Calendar.MINUTE, minute)
                     set(Calendar.SECOND, 0)
                 }
-                startAlarmManagerWithWorker(calendar.timeInMillis)
+                startAlarmManagerWithWorker(calendar.timeInMillis, dayOfWeek)
             }
         }
 
     }
 
-    private fun startAlarmManagerWithWorker(time: Long) {
+    private fun startAlarmManagerWithWorker(time: Long, dayOfWeek: Int) {
         val app = getApplication<App>()
-        val intent1 = Intent(app, NotificationReceiver::class.java)
-        val id = Calendar.getInstance().timeInMillis
-        intent1.putExtra(ID, id)
+        val intent = Intent(app, NotificationReceiver::class.java)
+
+        val id = tonightNotification.value!!.notificatiionsId!! * 7 + dayOfWeek
+        val category = tonightNotification.value!!.notificationsCategory
+        intent.putExtra(ID, id.toInt())
+        intent.putExtra(CATEGORY, category)
 
         val pendingIntent = PendingIntent.getBroadcast(
             app,
-            id!!.toInt(),
-            intent1,
+            id.toInt(),
+            intent,
             PendingIntent.FLAG_UPDATE_CURRENT
         )
 
@@ -168,7 +181,7 @@ class NotificationsSettingsViewModel(
         am.setRepeating(
             AlarmManager.RTC_WAKEUP,
             time,
-            2000,
+            AlarmManager.INTERVAL_DAY * 7,
             pendingIntent
         )
 
