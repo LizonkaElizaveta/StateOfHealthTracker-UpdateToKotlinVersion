@@ -26,6 +26,7 @@ import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabase
 import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModel
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModelFactory
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.RecordPermissionsActivity
 import java.util.concurrent.TimeUnit
 
 

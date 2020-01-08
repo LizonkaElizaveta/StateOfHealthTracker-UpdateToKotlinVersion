@@ -7,7 +7,7 @@ import stanevich.elizaveta.stateofhealthtracker.R
 import java.util.*
 
 @Entity
-class NameFile {
+object NameFile {
     @ColumnInfo(name = "date")
     var date: Long = Calendar.getInstance().timeInMillis
 
