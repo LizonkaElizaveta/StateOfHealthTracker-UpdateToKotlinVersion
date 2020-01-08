@@ -8,12 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import stanevich.elizaveta.stateofhealthtracker.databinding.ListItemNotificationsBinding
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 
+
 class NotificationsAdapter : ListAdapter<Notifications,
         NotificationsAdapter.ViewHolder>(NotificationsDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+    }
+
+    override fun getItemId(position: Int): Long {
+        return getItem(position).notificatiionsId?:0
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

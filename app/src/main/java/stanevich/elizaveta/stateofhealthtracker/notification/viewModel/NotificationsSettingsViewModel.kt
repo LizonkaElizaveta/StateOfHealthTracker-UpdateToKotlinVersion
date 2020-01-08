@@ -1,16 +1,34 @@
 package stanevich.elizaveta.stateofhealthtracker.notification.viewModel
 
+import android.app.AlarmManager
 import android.app.Application
+import android.app.PendingIntent
+import android.content.Context.ALARM_SERVICE
+import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.OneTimeWorkRequest
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import kotlinx.coroutines.*
+import stanevich.elizaveta.stateofhealthtracker.App
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao
+import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationReceiver
+import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationReceiver.Companion.CATEGORY
+import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationReceiver.Companion.ID
+import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationWorker
 import stanevich.elizaveta.stateofhealthtracker.notification.model.CheckBoxModel
 import stanevich.elizaveta.stateofhealthtracker.notification.model.populateData
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.math.abs
 
 class NotificationsSettingsViewModel(
     private val database: NotificationsDatabaseDao,
@@ -22,7 +40,9 @@ class NotificationsSettingsViewModel(
 
 
     var tonightNotification = MutableLiveData<Notifications?>()
-    val notifications = database.getAllNotifications()
+//    private val dat =
+//        Room.databaseBuilder(application, NotificationsDatabase::class.java, "NotificationDatabase")
+//            .allowMainThreadQueries().build()
 
     private val _checkBox = MutableLiveData<List<CheckBoxModel>>()
     val checkBox: LiveData<List<CheckBoxModel>>
@@ -59,6 +79,11 @@ class NotificationsSettingsViewModel(
         }
     }
 
+    private fun getFormattingDetailDate(date: String, time: String): Long {
+        val formatter = SimpleDateFormat("E, dd MMM, yyyy HH:mm", Locale.getDefault())
+        val fullDate = formatter.parse("$date $time")
+        return fullDate!!.time
+    }
 
     fun onStartTracking(category: String, date: String, time: String, repeat: BooleanArray) {
         uiScope.launch {
@@ -68,6 +93,7 @@ class NotificationsSettingsViewModel(
                 notificationsDate = date
                 notificationsTime = time
                 notificationRepeat = repeat
+                timestamp = getFormattingDetailDate(date, time)
             }
             insert(tonightNotification.value!!)
         }
@@ -77,7 +103,110 @@ class NotificationsSettingsViewModel(
         withContext(Dispatchers.IO) {
             database.insert(notification)
             Log.d("mLog", "From ViewModel $notification")
+
+            val lastNotifications = database.getLast()
+            withContext(Dispatchers.Main + Job()) {
+                tonightNotification.value = lastNotifications
+                notificationHandler()
+            }
         }
+
+    }
+
+    private fun notificationHandler() {
+        val diffFullDate =
+            abs(Calendar.getInstance().timeInMillis - tonightNotification.value!!.timestamp)
+        val c = Calendar.getInstance()
+        c.timeInMillis = tonightNotification.value!!.timestamp
+        val hour = c.get(Calendar.HOUR_OF_DAY)
+        val minute = c.get(Calendar.MINUTE)
+        val repeatDays = tonightNotification.value!!.notificationRepeat
+        val everyDaysRepeating = repeatDays.all { it }
+        val noRepeatingDays = repeatDays.all { !it }
+        when {
+            noRepeatingDays -> {
+                startSingleNotification(diffFullDate)
+            }
+            everyDaysRepeating -> {
+                startEveryDayNotification(diffFullDate)
+            }
+            else -> {
+                startMultiplyNotification(hour, minute, repeatDays)
+            }
+        }
+
+    }
+
+    private fun startMultiplyNotification(hour: Int, minute: Int, repeatDays: BooleanArray) {
+        val calendar = Calendar.getInstance()
+
+        repeatDays.forEachIndexed { index, daySet ->
+            if (daySet) {
+                var dayOfWeek = index + 2
+                if (dayOfWeek > 7) {
+                    dayOfWeek = 1
+                }
+                calendar.apply {
+                    timeInMillis = Calendar.getInstance().timeInMillis
+                    set(Calendar.DAY_OF_WEEK, dayOfWeek)
+                    set(Calendar.HOUR_OF_DAY, hour)
+                    set(Calendar.MINUTE, minute)
+                    set(Calendar.SECOND, 0)
+                }
+                startAlarmManagerWithWorker(calendar.timeInMillis, dayOfWeek)
+            }
+        }
+
+    }
+
+    private fun startAlarmManagerWithWorker(time: Long, dayOfWeek: Int) {
+        val app = getApplication<App>()
+        val intent = Intent(app, NotificationReceiver::class.java)
+
+        val id = tonightNotification.value!!.notificatiionsId!! * 7 + dayOfWeek
+        val category = tonightNotification.value!!.notificationsCategory
+        intent.putExtra(ID, id.toInt())
+        intent.putExtra(CATEGORY, category)
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            app,
+            id.toInt(),
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val am =
+            app.getSystemService(ALARM_SERVICE) as AlarmManager
+        am.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            time,
+            AlarmManager.INTERVAL_DAY * 7,
+            pendingIntent
+        )
+
+    }
+
+    private fun startEveryDayNotification(diff: Long) {
+        Toast.makeText(getApplication(), "EveryDay", Toast.LENGTH_SHORT).show()
+        val requestBuilder =
+            PeriodicWorkRequest.Builder(
+                NotificationWorker::class.java,
+                24,
+                TimeUnit.HOURS
+            )
+                .setInitialDelay(diff, TimeUnit.MILLISECONDS)
+
+        WorkManager.getInstance(getApplication()).enqueueUniquePeriodicWork(
+            "workTag",
+            ExistingPeriodicWorkPolicy.REPLACE, requestBuilder.build()
+        )
+    }
+
+    private fun startSingleNotification(diff: Long) {
+        Toast.makeText(getApplication(), "Single", Toast.LENGTH_SHORT).show()
+        val requestBuilder = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
+            .setInitialDelay(diff, TimeUnit.MILLISECONDS)
+        WorkManager.getInstance(getApplication()).enqueue(requestBuilder.build())
     }
 
     fun showDialogCategory() {

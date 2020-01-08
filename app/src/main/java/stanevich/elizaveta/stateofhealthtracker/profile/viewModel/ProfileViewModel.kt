@@ -18,7 +18,7 @@ class ProfileViewModel(
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private var usersData = MutableLiveData<Profile?>()
+     var usersData = MutableLiveData<Profile?>()
 
     val name = MutableLiveData<String>()
     val surname = MutableLiveData<String>()
@@ -70,7 +70,10 @@ class ProfileViewModel(
         uiScope.launch {
             withContext(Dispatchers.IO) {
                 database.upsert(usersData.value!!)
+
                 usersData.postValue(usersData.value)
+                name.postValue(usersData.value!!.name)
+                surname.postValue(usersData.value!!.surname)
                 Log.d("mLog", usersData.value.toString())
             }
         }

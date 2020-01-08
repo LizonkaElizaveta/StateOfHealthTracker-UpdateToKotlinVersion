@@ -89,7 +89,11 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$version_retrofit"
     implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
     // Moshi
     implementation "com.squareup.moshi:moshi-kotlin:1.9.2"
     implementation("com.squareup.moshi:moshi-adapters:1.9.2")
+
+    //Recycler View
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.1'
 }

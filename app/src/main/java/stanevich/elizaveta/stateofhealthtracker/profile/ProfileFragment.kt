@@ -33,7 +33,7 @@ class ProfileFragment : Fragment() {
             ProfileViewModelFactory(dataSource, application)
 
         val profileViewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(ProfileViewModel::class.java)
+            ViewModelProviders.of(this.activity!!, viewModelFactory).get(ProfileViewModel::class.java)
 
         binding.lifecycleOwner = this
 

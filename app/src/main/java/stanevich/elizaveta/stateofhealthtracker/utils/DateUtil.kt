@@ -22,7 +22,7 @@ fun getDateTimeValue(date: String, time: String): Date {
     return formatter.parse("$date $time")
 }
 
-fun getFullDate(date: Long): String {
+fun getDetailDate(date: Long): String {
     val dateFormat = SimpleDateFormat("E, dd MMM, yyyy", Locale.getDefault())
     return dateFormat.format(date)
 }

@@ -3,10 +3,7 @@ package stanevich.elizaveta.stateofhealthtracker.notification.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao
 
@@ -26,8 +23,7 @@ class NotificationsViewModel(
 
     var tonightNotification = MutableLiveData<Notifications?>()
 
-    val notifications = database.getAllNotifications()
-
+    val notifications: MutableLiveData<List<Notifications>> = MutableLiveData(listOf())
 
     init {
         initializeNot()
@@ -36,7 +32,16 @@ class NotificationsViewModel(
     private fun initializeNot() {
         uiScope.launch {
             tonightNotification.value = Notifications()
+            withContext(Dispatchers.IO){
+                notifications.postValue(database.getAllNotifications())
+            }
+        }
+    }
 
+    suspend fun delete(notId: Long) {
+        withContext(Dispatchers.IO) {
+            database.deleteByNotificationId(notId)
+            notifications.postValue(database.getAllNotifications())
         }
     }
 
