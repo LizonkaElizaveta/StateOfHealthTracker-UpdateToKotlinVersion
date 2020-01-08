@@ -1,6 +1,10 @@
 package stanevich.elizaveta.stateofhealthtracker.notification.viewModel
 
+import android.app.AlarmManager
 import android.app.Application
+import android.app.PendingIntent
+import android.content.Context.ALARM_SERVICE
+import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
@@ -12,8 +16,11 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import kotlinx.coroutines.*
+import stanevich.elizaveta.stateofhealthtracker.App
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao
+import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationReceiver
+import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationReceiver.Companion.ID
 import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationWorker
 import stanevich.elizaveta.stateofhealthtracker.notification.model.CheckBoxModel
 import stanevich.elizaveta.stateofhealthtracker.notification.model.populateData
@@ -69,10 +76,13 @@ class NotificationsSettingsViewModel(
         }
     }
 
-    fun onStartTracking(category: String, date: String, time: String, repeat: BooleanArray) {
+    private fun getFormattingDetailDate(date: String, time: String): Long {
         val formatter = SimpleDateFormat("E, dd MMM, yyyy HH:mm", Locale.getDefault())
         val fullDate = formatter.parse("$date $time")
-        val milliseconds = fullDate!!.time
+        return fullDate!!.time
+    }
+
+    fun onStartTracking(category: String, date: String, time: String, repeat: BooleanArray) {
         uiScope.launch {
             tonightNotification.value = Notifications()
             tonightNotification.value!!.apply {
@@ -80,7 +90,7 @@ class NotificationsSettingsViewModel(
                 notificationsDate = date
                 notificationsTime = time
                 notificationRepeat = repeat
-                timestamp = milliseconds
+                timestamp = getFormattingDetailDate(date, time)
             }
             insert(tonightNotification.value!!)
         }
@@ -88,42 +98,89 @@ class NotificationsSettingsViewModel(
 
     private suspend fun insert(notification: Notifications) {
         withContext(Dispatchers.IO) {
-            database.insert(notification)
+            database.upsert(notification)
             Log.d("mLog", "From ViewModel $notification")
         }
         notificationHandler()
     }
 
     private fun notificationHandler() {
-        val diff = abs(Calendar.getInstance().timeInMillis - tonightNotification.value!!.timestamp)
+        val diffFullDate =
+            abs(Calendar.getInstance().timeInMillis - tonightNotification.value!!.timestamp)
+        val c = Calendar.getInstance()
+        c.timeInMillis = tonightNotification.value!!.timestamp
+        val hour = c.get(Calendar.HOUR_OF_DAY)
+        val minute = c.get(Calendar.MINUTE)
         val repeatDays = tonightNotification.value!!.notificationRepeat
         val everyDaysRepeating = repeatDays.all { it }
-        val noRepeatingDays = !repeatDays.all { it }
+        val noRepeatingDays = repeatDays.all { !it }
         when {
             noRepeatingDays -> {
-                startSingleNotification(diff)
+                startSingleNotification(diffFullDate)
             }
             everyDaysRepeating -> {
-                startEveryDayNotification(diff)
+                startEveryDayNotification(diffFullDate)
             }
             else -> {
-                Toast.makeText(getApplication(),"Multiply",Toast.LENGTH_SHORT).show()
+                startMultiplyNotification(hour, minute, repeatDays)
             }
         }
 
     }
 
-    private fun startMultiplyNotification(diff:Long) {
-        
+    private fun startMultiplyNotification(hour: Int, minute : Int, repeatDays: BooleanArray) {
+        val calendar = Calendar.getInstance()
+
+        repeatDays.forEachIndexed { index, daySet ->
+            if (daySet) {
+                var dayOfWeek = index + 2
+                if (dayOfWeek > 7) {
+                    dayOfWeek = 1
+                }
+                calendar.apply {
+                    timeInMillis = Calendar.getInstance().timeInMillis
+                    set(Calendar.DAY_OF_WEEK, dayOfWeek)
+                    set(Calendar.HOUR_OF_DAY, hour)
+                    set(Calendar.MINUTE, minute)
+                    set(Calendar.SECOND, 0)
+                }
+                startAlarmManagerWithWorker(calendar.timeInMillis)
+            }
+        }
+
+    }
+
+    private fun startAlarmManagerWithWorker(time: Long) {
+        val app = getApplication<App>()
+        val intent1 = Intent(app, NotificationReceiver::class.java)
+        val id = Calendar.getInstance().timeInMillis
+        intent1.putExtra(ID, id)
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            app,
+            id!!.toInt(),
+            intent1,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val am =
+            app.getSystemService(ALARM_SERVICE) as AlarmManager
+        am.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            time,
+            2000,
+            pendingIntent
+        )
+
     }
 
     private fun startEveryDayNotification(diff: Long) {
-        Toast.makeText(getApplication(),"EveryDay",Toast.LENGTH_SHORT).show()
+        Toast.makeText(getApplication(), "EveryDay", Toast.LENGTH_SHORT).show()
         val requestBuilder =
             PeriodicWorkRequest.Builder(
                 NotificationWorker::class.java,
-                15,
-                TimeUnit.MINUTES
+                24,
+                TimeUnit.HOURS
             )
                 .setInitialDelay(diff, TimeUnit.MILLISECONDS)
 
@@ -134,7 +191,7 @@ class NotificationsSettingsViewModel(
     }
 
     private fun startSingleNotification(diff: Long) {
-        Toast.makeText(getApplication(),"Single",Toast.LENGTH_SHORT).show()
+        Toast.makeText(getApplication(), "Single", Toast.LENGTH_SHORT).show()
         val requestBuilder = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
             .setInitialDelay(diff, TimeUnit.MILLISECONDS)
         WorkManager.getInstance(getApplication()).enqueue(requestBuilder.build())

@@ -16,9 +16,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequest
-import androidx.work.WorkManager
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotificationSettingsBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.DatePickerFragment
@@ -26,13 +23,11 @@ import stanevich.elizaveta.stateofhealthtracker.dialogs.TimePickerFragment
 import stanevich.elizaveta.stateofhealthtracker.notification.adapter.CheckBoxModelAdapter
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabase
 import stanevich.elizaveta.stateofhealthtracker.notification.dialogs.CategoryDialog
-import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationWorker
 import stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsSettingsViewModel
 import stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsSettingsViewModelFactory
-import stanevich.elizaveta.stateofhealthtracker.utils.getFullDate
+import stanevich.elizaveta.stateofhealthtracker.utils.getDetailDate
 import stanevich.elizaveta.stateofhealthtracker.utils.getTime
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 class NotificationSettingsFragment : Fragment() {
 
@@ -57,7 +52,7 @@ class NotificationSettingsFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.apply {
-            tvDay.text = getFullDate(Calendar.getInstance().timeInMillis)
+            tvDay.text = getDetailDate(Calendar.getInstance().timeInMillis)
             tvTime.text = getTime(Calendar.getInstance().timeInMillis)
         }
 
@@ -98,7 +93,7 @@ class NotificationSettingsFragment : Fragment() {
                     DatePickerFragment(DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                         val calendar =
                             DatePickerFragment.getCalendarDate(year, monthOfYear, dayOfMonth)
-                        binding.tvDay.text = getFullDate(calendar.timeInMillis)
+                        binding.tvDay.text = getDetailDate(calendar.timeInMillis)
                     }).show(it, "DatePicker")
                 }
 
