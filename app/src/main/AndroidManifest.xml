@@ -15,10 +15,13 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
 
     <application
             android:name="stanevich.elizaveta.stateofhealthtracker.App"
@@ -73,6 +76,7 @@
 
 
         <activity android:name="stanevich.elizaveta.stateofhealthtracker.data.mining.location.LocationPermissionsActivity" />
+        <activity android:name="stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.RecordPermissionsActivity" />
 
 
         <service android:name="stanevich.elizaveta.stateofhealthtracker.data.mining.service.DataMiningForegroundService" />

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="emotionTest"
+                type="stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.EmotionalTestViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="@dimen/progress_bar_layout_width"
+                android:layout_height="@dimen/progress_bar_layout_height"
+                android:background="@android:color/transparent"
+                style="?android:attr/progressBarStyleHorizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:progressDrawable="@drawable/ciruclar_progress_bar"
+                android:theme="@style/ProgressBarPurple"
+                android:rotation="-90"
+                android:indeterminate="false"
+                android:max="@{emotionTest.maxValueProgressBar}"
+                android:progress="@{emotionTest.valueProgressBar}"/>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:backgroundTint="@color/colorPrimary"
+                android:src="@drawable/ic_keyboard_voice"
+                android:id="@+id/btn_voice"
+                app:fabCustomSize="@dimen/emotion_button_fabCustomSize"
+                app:maxImageSize="@dimen/emotion_button_maxImageSize"
+                android:layout_width="@dimen/emotion_button_layout_width"
+                android:layout_height="@dimen/emotion_button_layout_height"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

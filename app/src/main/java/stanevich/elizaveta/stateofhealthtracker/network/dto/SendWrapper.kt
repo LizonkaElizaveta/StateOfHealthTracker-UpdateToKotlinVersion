@@ -1,5 +1,6 @@
 package stanevich.elizaveta.stateofhealthtracker.network.dto
 
+import android.util.Base64
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import stanevich.elizaveta.stateofhealthtracker.App.Companion.context
@@ -10,6 +11,9 @@ import stanevich.elizaveta.stateofhealthtracker.home.database.States
 import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
 import stanevich.elizaveta.stateofhealthtracker.test.games.print.model.PrintTest
 import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.model.TappingTest
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.EmotionalTest
+import java.io.File
+import java.io.FileInputStream
 
 data class SendWrapper(
     val userId: Int = getUserId(),
@@ -52,6 +56,14 @@ fun convertToSendWrapper(dto: Any): SendWrapper {
             timestamp = dto.date
             testType = "print"
         }
+        is EmotionalTest -> {
+            data = VoiceTestDto(
+                audioFile = convertFileToBase64(dto.path),
+                amp = dto.amplitudes
+            )
+            timestamp = dto.date
+            testType = "voice_emotional"
+        }
         is Rotation -> {
             data = SensorAngleDto(
                 pitch = dto.pitch,
@@ -74,4 +86,18 @@ fun convertToSendWrapper(dto: Any): SendWrapper {
     }
 
     return SendWrapper(timestamp = timestamp, data = data, testType = testType)
+}
+
+fun convertFileToBase64(path: String): String {
+    val file = File(path)
+
+    if (!file.exists()) return ""
+
+    val bytesArray = ByteArray(file.length().toInt())
+
+    FileInputStream(file).use {
+        it.read(bytesArray)
+    }
+
+    return Base64.encodeToString(bytesArray, 0)
 }

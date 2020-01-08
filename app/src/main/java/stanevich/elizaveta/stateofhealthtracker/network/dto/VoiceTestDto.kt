@@ -1,7 +1,7 @@
 package stanevich.elizaveta.stateofhealthtracker.network.dto
 
 data class VoiceTestDto(
-    val audio: String,
+    val audioFile: String = "",
     val amp: Array<Double> = arrayOf()
 ) : DataWrapper() {
     override fun equals(other: Any?): Boolean {
@@ -10,14 +10,14 @@ data class VoiceTestDto(
 
         other as VoiceTestDto
 
-        if (audio != other.audio) return false
+        if (audioFile != other.audioFile) return false
         if (!amp.contentEquals(other.amp)) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = audio.hashCode()
+        var result = audioFile.hashCode()
         result = 31 * result + amp.contentHashCode()
         return result
     }

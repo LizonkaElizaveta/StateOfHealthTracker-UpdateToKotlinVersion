@@ -84,4 +84,13 @@
     <dimen name="notification_tv_size_16">16sp</dimen>
     <dimen name="notification_tv_size_14">14sp</dimen>
 
+    <!--    ProgressBar-->
+    <dimen name="progress_bar_layout_width">210dp</dimen>
+    <dimen name="progress_bar_layout_height">210dp</dimen>
+
+    <!--    EmotionButton-->
+    <dimen name="emotion_button_fabCustomSize">120dp</dimen>
+    <dimen name="emotion_button_maxImageSize">60dp</dimen>
+    <dimen name="emotion_button_layout_width">120dp</dimen>
+    <dimen name="emotion_button_layout_height">120dp</dimen>
 </resources>

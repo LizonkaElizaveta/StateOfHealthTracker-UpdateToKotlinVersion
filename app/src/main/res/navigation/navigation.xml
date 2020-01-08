@@ -43,6 +43,9 @@
         <action
                 android:id="@+id/action_nav_test_to_drawingIntroFragment"
                 app:destination="@id/drawingIntroFragment" />
+        <action
+                android:id="@+id/action_nav_test_to_emotionalIntroFragment"
+                app:destination="@id/emotionalIntroFragment" />
     </fragment>
     <fragment
             android:id="@+id/notificationSettingsFragment"
@@ -110,4 +113,21 @@
             android:id="@+id/nav_support"
             android:name="stanevich.elizaveta.stateofhealthtracker.support.SupportFragment"
             android:label="@string/menu_support" />
+    <fragment
+            android:id="@+id/emotionalTestFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.EmotionalTestFragment"
+            android:label="EmotionalTestFragment" >
+        <action
+                android:id="@+id/action_emotionalTestFragment_to_nav_test"
+                app:destination="@id/nav_test" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/emotionalIntroFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.EmotionalIntroFragment"
+            android:label="@string/menu_introduction" >
+        <action
+                android:id="@+id/action_emotionalIntroFragment_to_emotionalTestFragment2"
+                app:destination="@id/emotionalTestFragment" />
+    </fragment>
 </navigation>
