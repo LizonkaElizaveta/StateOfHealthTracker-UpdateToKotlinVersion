@@ -1,15 +1,11 @@
 package stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel
 
 import android.app.Application
-import android.content.pm.PackageManager
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import stanevich.elizaveta.stateofhealthtracker.App
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.AudioRecording
 import java.util.*
 import kotlin.concurrent.timer
@@ -33,7 +29,7 @@ class EmotionalTestViewModel(
 
     private var timer: Timer? = null
 
-    private var audioRecord: AudioRecording = AudioRecording()
+    private val audioRecord: AudioRecording = AudioRecording()
 
     private fun initTimer(): Timer {
         var seconds = INITIAL_SECONDS + 1
@@ -67,7 +63,7 @@ class EmotionalTestViewModel(
         audioRecord.stopRecording()
 
         val path = audioRecord.getFullNameAudioFile()
-        var amp = audioRecord.listAmp.toTypedArray()
+        val amp = audioRecord.listAmp.toTypedArray()
 
         onFinish(amp, path)
     }

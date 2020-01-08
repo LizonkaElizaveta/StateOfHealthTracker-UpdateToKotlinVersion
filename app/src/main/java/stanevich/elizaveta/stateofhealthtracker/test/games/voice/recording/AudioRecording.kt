@@ -1,10 +1,8 @@
 package stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording
 
-import android.app.Activity
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
-import android.media.audiofx.AudioEffect
 import android.media.audiofx.NoiseSuppressor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,39 +14,32 @@ import java.io.FileOutputStream
 import java.nio.ByteBuffer
 import kotlin.experimental.and
 import kotlin.math.abs
-import android.widget.Toast
-import android.content.pm.PackageManager
-import androidx.annotation.NonNull
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import stanevich.elizaveta.stateofhealthtracker.App.Companion.context
-import java.util.jar.Manifest
 
 
 class AudioRecording {
 
     companion object {
-        const val audioSource = MediaRecorder.AudioSource.MIC
-        const val sampleRateInHz = 44100
-        const val channels = AudioFormat.CHANNEL_IN_MONO
-        const val audioFormat = AudioFormat.ENCODING_PCM_16BIT
-        const val bufferSizeFactor = 2
+        const val AUDIO_SOURCE = MediaRecorder.AudioSource.MIC
+        const val SAMPLE_RATE = 44100
+        const val CHANNELS = AudioFormat.CHANNEL_IN_MONO
+        const val AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT
+        const val BUFFER_SIZE_FACTOR = 2
     }
 
     private val bufferSize = AudioRecord.getMinBufferSize(
-        sampleRateInHz,
-        channels,
-        audioFormat
-    ) * bufferSizeFactor
+        SAMPLE_RATE,
+        CHANNELS,
+        AUDIO_FORMAT
+    ) * BUFFER_SIZE_FACTOR
 
-    private var currentNameFile = ""
-    private var directory: DirectoryRecording = DirectoryRecording()
+    private val currentNameFile = NameFile.getName()
+    private val directory: DirectoryRecording = DirectoryRecording()
 
     private val recorder = AudioRecord(
-        audioSource,
-        sampleRateInHz,
-        channels,
-        audioFormat,
+        AUDIO_SOURCE,
+        SAMPLE_RATE,
+        CHANNELS,
+        AUDIO_FORMAT,
         bufferSize
     )
     private var isRecording = false
@@ -62,7 +53,7 @@ class AudioRecording {
     fun startRecording(): Boolean {
         enableNoiseSuppressor()
 
-        recorder?.let { it.startRecording() }
+        recorder.startRecording()
 
         isRecording = true
 
@@ -74,41 +65,36 @@ class AudioRecording {
     }
 
     fun stopRecording(): Boolean {
-        if (recorder == null) return false
-
         isRecording = false
 
-        recorder?.let { it.stop() }
-        recorder?.let { it.release() }
+        recorder.stop()
+        recorder.release()
 
         return deletePcmFile()
     }
 
     private fun deletePcmFile(): Boolean {
-        var pcmFile = PcmFile
-        if (pcmFile.convertToWav(
+        if (PcmFile.convertToWav(
                 currentNameFile,
                 directory.fullNameDir,
-                sampleRateInHz
+                SAMPLE_RATE
             )
         ) {
-            pcmFile.let { it.deletePCM(currentNameFile, directory.fullNameDir) }
+            PcmFile.deletePCM(currentNameFile, directory.fullNameDir)
             return true
         }
         return false
     }
 
     private fun enableNoiseSuppressor() {
-        var noiseSuppressor: NoiseSuppressor? = null
+        val noiseSuppressor: NoiseSuppressor? = null
         if (NoiseSuppressor.isAvailable() && noiseSuppressor == null) {
-            NoiseSuppressor.create(recorder!!.audioSessionId)
+            NoiseSuppressor.create(recorder.audioSessionId)
         }
     }
 
     private fun convertToFile() {
         directory.createRecDirectory()
-
-        currentNameFile = NameFile.getName()
 
         val file = File(directory.fullNameDir, "$currentNameFile.pcm")
 
@@ -116,7 +102,7 @@ class AudioRecording {
 
         FileOutputStream(file).use { outputStream ->
             while (isRecording) {
-                val result = recorder!!.read(byteBuffer, bufferSize)
+                val result = recorder.read(byteBuffer, bufferSize)
                 if (result < 0) {
                     throw RuntimeException("Reading failed")
                 }

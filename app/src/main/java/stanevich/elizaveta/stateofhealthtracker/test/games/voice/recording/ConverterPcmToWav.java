@@ -45,10 +45,10 @@ public class ConverterPcmToWav {
         }
     }
 
-    byte[] fullyReadFileToBytes(File f) throws IOException {
+    private byte[] fullyReadFileToBytes(File f) throws IOException {
         int size = (int) f.length();
-        byte bytes[] = new byte[size];
-        byte tmpBuff[] = new byte[size];
+        byte[] bytes = new byte[size];
+        byte[] tmpBuff = new byte[size];
 
         try (FileInputStream fis = new FileInputStream(f)) {
             int read = fis.read(bytes, 0, size);
