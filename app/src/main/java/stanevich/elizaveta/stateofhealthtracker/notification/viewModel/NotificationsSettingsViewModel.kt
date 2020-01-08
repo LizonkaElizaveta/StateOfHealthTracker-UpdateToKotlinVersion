@@ -40,7 +40,6 @@ class NotificationsSettingsViewModel(
 
 
     var tonightNotification = MutableLiveData<Notifications?>()
-    val notifications = database.getAllNotifications()
 //    private val dat =
 //        Room.databaseBuilder(application, NotificationsDatabase::class.java, "NotificationDatabase")
 //            .allowMainThreadQueries().build()

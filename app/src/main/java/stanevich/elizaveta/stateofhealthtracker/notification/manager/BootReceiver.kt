@@ -5,13 +5,13 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import kotlinx.coroutines.CoroutineScope
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabase
-import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationReceiver.Companion.CATEGORY
 import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationReceiver.Companion.ID
 import java.util.*
@@ -20,16 +20,17 @@ class BootReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         if (Intent.ACTION_BOOT_COMPLETED == intent.action) {
-            lateinit var notificationsDatabase: NotificationsDatabaseDao
-            CoroutineScope(Dispatchers.IO + Job()).launch {
-                notificationsDatabase =
-                    NotificationsDatabase.getInstance(context).notificationsDatabaseDao
+            val notifications: List<Notifications> = runBlocking {
+                return@runBlocking withContext(Dispatchers.IO + Job()) {
+                    return@withContext NotificationsDatabase.getInstance(context)
+                        .notificationsDatabaseDao.getAllNotifications()
+                }
             }
 
             val calendar = Calendar.getInstance()
             initAlarmsFromNotificationDb(
                 context,
-                notificationsDatabase.getAllNotificationsList(),
+                notifications,
                 calendar
             )
         }
@@ -40,6 +41,7 @@ class BootReceiver : BroadcastReceiver() {
         database: List<Notifications>,
         calendar: Calendar
     ) {
+        Log.d("BoorReceiver", "initAlarmsFromNotificationDb")
         database.forEach { notification ->
             val repeatDays = notification.notificationRepeat
             val everyDaysRepeating = repeatDays.all { it }
@@ -103,7 +105,7 @@ class BootReceiver : BroadcastReceiver() {
         alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP,
             timeInMillis,
-            AlarmManager.INTERVAL_DAY,
+            AlarmManager.INTERVAL_DAY * 7,
             pendingIntent
         )
     }
