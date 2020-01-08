@@ -54,6 +54,7 @@
         </activity>
 
         <activity android:name="stanevich.elizaveta.stateofhealthtracker.data.mining.location.LocationPermissionsActivity" />
+        <activity android:name="stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.RecordPermissionsActivity" />
 
 
         <service android:name="stanevich.elizaveta.stateofhealthtracker.data.mining.service.DataMiningForegroundService" />
