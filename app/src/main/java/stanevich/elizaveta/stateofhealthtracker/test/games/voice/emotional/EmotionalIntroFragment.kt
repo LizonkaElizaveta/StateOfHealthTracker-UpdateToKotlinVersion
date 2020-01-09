@@ -8,11 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestTappingIntroBinding
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestVoiceEmotionIntroBinding
 
 class EmotionalIntroFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

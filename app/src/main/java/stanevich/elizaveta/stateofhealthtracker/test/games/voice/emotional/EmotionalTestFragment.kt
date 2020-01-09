@@ -14,11 +14,8 @@ import androidx.navigation.fragment.NavHostFragment
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.data.mining.location.LocationPermissionsActivity
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestVoiceEmotionBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.ConfirmationSaveDataDialog
-import stanevich.elizaveta.stateofhealthtracker.dialogs.DataEmotionDialog
-import stanevich.elizaveta.stateofhealthtracker.dialogs.DataMiningDialog
 import stanevich.elizaveta.stateofhealthtracker.test.games.database.TestingDatabase
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.EmotionalTest
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.EmotionalTestViewModel
@@ -58,10 +55,8 @@ class EmotionalTestFragment : Fragment() {
 
         navigation = NavHostFragment.findNavController(this)
 
-        fragmentManager?.let {
-            DataEmotionDialog({
-                startActivity(Intent(this.activity, RecordPermissionsActivity::class.java))
-            }, { }).show(it, "DataMiningDialog")
+        uiScope.launch {
+            startActivity(Intent(activity, RecordPermissionsActivity::class.java))
         }
 
         binding.btnVoice.setOnClickListener {
