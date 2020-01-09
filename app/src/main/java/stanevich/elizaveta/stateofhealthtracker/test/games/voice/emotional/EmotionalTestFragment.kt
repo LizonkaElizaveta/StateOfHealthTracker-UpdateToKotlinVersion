@@ -60,7 +60,7 @@ class EmotionalTestFragment : Fragment() {
         }
 
         binding.btnVoice.setOnClickListener {
-            emotionalTestViewModel.startRecording()
+            emotionalTestViewModel.voiceBtnClick()
         }
 
         return binding.root
