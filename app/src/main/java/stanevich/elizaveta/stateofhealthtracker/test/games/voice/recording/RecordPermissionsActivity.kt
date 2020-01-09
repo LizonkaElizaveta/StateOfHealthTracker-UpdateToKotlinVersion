@@ -39,7 +39,6 @@ class RecordPermissionsActivity : AppCompatActivity() {
                     recordingPermission,
                     REQUEST_ID_MULTIPLE_PERMISSIONS
                 )
-                println("Плохо")
                 false
             }
         }
