@@ -29,7 +29,7 @@ class EmotionalTestViewModel(
 
     private var timer: Timer? = null
 
-    private val audioRecord: AudioRecording = AudioRecording()
+    private lateinit var audioRecord: AudioRecording
 
     private fun initTimer(): Timer {
         var seconds = INITIAL_SECONDS + 1
@@ -49,9 +49,10 @@ class EmotionalTestViewModel(
 
     }
 
-    fun startRecording() {
+    fun voiceBtnClick() {
         if (timer == null) {
             timer = initTimer()
+            audioRecord = AudioRecording()
             audioRecord.startRecording()
         } else {
             timer!!.cancel()
