@@ -35,6 +35,7 @@
     <string name="dialog_text_common_result" formatted="true">Спасибо!\nДанные сохранены</string>
     <string name="dialogText_confirmation">Вы действительно хотите удалить уведомление?</string>
     <string name="dialogText_voice_permission">Чтобы пройти тест, разрешите доступ к микрофону</string>
+    <string name="dialogText_voice_permission_go_setting">Чтобы пройти тест, необходим доступ к микрофону!\nОткрыть настройки?</string>
 
     <!-- Strings for dialog headline -->
     <string name="dialogHeadline_choseDateAndTime">Укажите дату и время</string>
