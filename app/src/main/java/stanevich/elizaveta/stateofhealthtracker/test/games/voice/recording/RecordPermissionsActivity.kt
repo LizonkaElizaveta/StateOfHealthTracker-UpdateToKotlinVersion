@@ -11,9 +11,9 @@ class RecordPermissionsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.dialog_emotion)
+        setContentView(R.layout.action_voice_permission)
 
-        permissionRequire = RecordPermissionRequire(this)
+        permissionRequire = RecordPermissionRequire(this, supportFragmentManager)
 
         if (permissionRequire.checkAndRequestPermissions()) {
             finish()

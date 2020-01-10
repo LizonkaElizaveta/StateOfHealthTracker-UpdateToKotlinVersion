@@ -60,7 +60,7 @@ class EmotionalTestFragment : Fragment() {
 
         navigation = NavHostFragment.findNavController(this)
 
-        permissionRequire = RecordPermissionRequire(this.activity!!)
+        permissionRequire = RecordPermissionRequire(this.activity!!, fragmentManager!!)
 
         binding.btnVoice.setOnClickListener {
             onClickBtnVoice()

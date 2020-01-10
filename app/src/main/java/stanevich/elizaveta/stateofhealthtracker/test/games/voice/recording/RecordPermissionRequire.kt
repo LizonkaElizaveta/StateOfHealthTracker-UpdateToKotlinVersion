@@ -2,17 +2,18 @@ package stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording
 
 import android.Manifest
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
-import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
-import stanevich.elizaveta.stateofhealthtracker.R
+import androidx.fragment.app.FragmentManager
+import stanevich.elizaveta.stateofhealthtracker.dialogs.DataVoiceDialogPermission
+import stanevich.elizaveta.stateofhealthtracker.dialogs.DataVoiceDialogPermissionSetting
 
 class RecordPermissionRequire(
-    private val activity: Activity
+    private val activity: Activity,
+    private val supportFragmentManager: FragmentManager
 ) {
     companion object {
         const val REQUEST_ID_MULTIPLE_PERMISSIONS = 1
@@ -33,39 +34,32 @@ class RecordPermissionRequire(
                     activity.finish()
                 } else {
                     if (itShouldRequestPermissionRationaleAny()) {
-                        showDialogOK(this.activity.getString(R.string.dialogText_voice_permission),
-                            DialogInterface.OnClickListener { dialog, which ->
-                                when (which) {
-                                    DialogInterface.BUTTON_POSITIVE -> checkAndRequestPermissions()
-                                    DialogInterface.BUTTON_NEGATIVE -> onRequestPermissionsResult(
-                                        requestCode,
-                                        permissions,
-                                        grantResults
-                                    )
-                                }
-                            })
+                        DataVoiceDialogPermission({
+                            checkAndRequestPermissions()
+                        }, {
+                            activity.finish()
+                        }).show(supportFragmentManager, "DataVoiceDialogPermission")
                     } else {
                         //ask user to go setting permission
-                        showDialogOK(this.activity.getString(R.string.dialogText_voice_permission_go_setting),
-                            DialogInterface.OnClickListener { dialog, which ->
-                                when (which) {
-                                    DialogInterface.BUTTON_POSITIVE -> {
-                                        //startActivity(Intent(this.activity, RecordPermissionsActivity::class.java))
-                                        val intent = Intent(
-                                            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                                            Uri.fromParts("package", activity.packageName, null)
-                                        )
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                        activity.startActivity(intent)
-                                        activity.finish()
-                                    }
-                                    DialogInterface.BUTTON_NEGATIVE -> activity.finish()
-                                }
-                            })
+                        DataVoiceDialogPermissionSetting({
+                            startSettingAp(activity)
+                            activity.finish()
+                        }, {
+                            activity.finish()
+                        }).show(supportFragmentManager, "DataVoiceDialogPermissionSetting")
                     }
                 }
             }
         }
+    }
+
+    private fun startSettingAp(activity: Activity) {
+        val intent = Intent(
+            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+            Uri.fromParts("package", activity.packageName, null)
+        )
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        activity.startActivity(intent)
     }
 
     private fun allGranted(grantResults: IntArray): Boolean {
@@ -102,14 +96,5 @@ class RecordPermissionRequire(
                 it
             )
         }
-    }
-
-    private fun showDialogOK(message: String, okListener: DialogInterface.OnClickListener) {
-        AlertDialog.Builder(activity)
-            .setMessage(message)
-            .setPositiveButton(R.string.btn_ok, okListener)
-            .setNegativeButton(R.string.btn_cancel, okListener)
-            .create()
-            .show()
     }
 }
