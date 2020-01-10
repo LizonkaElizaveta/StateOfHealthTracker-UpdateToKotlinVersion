@@ -34,6 +34,7 @@
     <string name="dialog_text_tapping_change">Теперь нажимайте правой рукой</string>
     <string name="dialog_text_common_result" formatted="true">Спасибо!\nДанные сохранены</string>
     <string name="dialogText_confirmation">Вы действительно хотите удалить уведомление?</string>
+    <string name="dialogText_voice_permission">Чтобы пройти тест, разрешите доступ к микрофону</string>
 
     <!-- Strings for dialog headline -->
     <string name="dialogHeadline_choseDateAndTime">Укажите дату и время</string>
