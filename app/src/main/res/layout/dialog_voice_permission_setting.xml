@@ -23,7 +23,7 @@
                 android:layout_marginTop="@dimen/dialog_conf_margin_18"
                 android:layout_marginBottom="@dimen/dialog_conf_margin_24"
                 android:gravity="center"
-                android:text="Разрешите записать ваш голос."
+                android:text="@string/dialogText_voice_permission_go_setting"
                 android:textColor="@color/MainTextColor"
                 android:textSize="@dimen/dialog_conf_tv_size_18"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -6,14 +6,14 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import stanevich.elizaveta.stateofhealthtracker.R
 
-class DataEmotionDialog(
+class DataVoiceDialogPermission(
     private val onPositiveBtn: () -> Unit,
     private val onNegativeBtn: () -> Unit
 ) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(context!!)
-            .setView(R.layout.dialog_emotion)
+            .setView(R.layout.dialog_voice_permission)
             .setPositiveButton(R.string.btn_ok) { _, _ ->
                 onPositiveBtn()
                 this.dismiss()

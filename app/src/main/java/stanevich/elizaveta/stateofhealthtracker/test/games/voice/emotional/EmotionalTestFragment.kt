@@ -20,6 +20,7 @@ import stanevich.elizaveta.stateofhealthtracker.test.games.database.TestingDatab
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.EmotionalTest
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.EmotionalTestViewModel
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.EmotionalTestViewModelFactory
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.RecordPermissionRequire
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.RecordPermissionsActivity
 
 
@@ -30,6 +31,10 @@ class EmotionalTestFragment : Fragment() {
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private lateinit var navigation: NavController
+
+    private lateinit var permissionRequire: RecordPermissionRequire
+
+    private lateinit var emotionalTestViewModel: EmotionalTestViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +52,7 @@ class EmotionalTestFragment : Fragment() {
                 false
             )
 
-        val emotionalTestViewModel = getEmotionalTestViewModel()
+        emotionalTestViewModel = getEmotionalTestViewModel()
 
         binding.lifecycleOwner = this
 
@@ -55,15 +60,21 @@ class EmotionalTestFragment : Fragment() {
 
         navigation = NavHostFragment.findNavController(this)
 
-        uiScope.launch {
-            startActivity(Intent(activity, RecordPermissionsActivity::class.java))
-        }
+        permissionRequire = RecordPermissionRequire(this.activity!!, fragmentManager!!)
 
         binding.btnVoice.setOnClickListener {
-            emotionalTestViewModel.voiceBtnClick()
+            onClickBtnVoice()
         }
 
         return binding.root
+    }
+
+    private fun onClickBtnVoice() {
+        if (permissionRequire.checkAllPermissions()) {
+            emotionalTestViewModel.voiceBtnClick()
+        } else {
+            startActivity(Intent(activity, RecordPermissionsActivity::class.java))
+        }
     }
 
     private fun setupToolbar() {
