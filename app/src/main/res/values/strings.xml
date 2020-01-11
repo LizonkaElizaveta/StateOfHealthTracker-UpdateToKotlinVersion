@@ -9,7 +9,7 @@
     <string name="imageButton_excellent">Чувствую себя отлично!</string>
     <string name="imageButton_satisfactorily">Чувствую себя удовлетворительно.</string>
     <string name="imageButton_bad">Чувствую себя плохо.</string>
-    <string name="btn_ok">Продолжить</string>
+    <string name="btn_ok">Принять</string>
     <string name="btn_cancel">Отменить</string>
     <string name="btn_next">Далее</string>
 
@@ -77,7 +77,7 @@
     <string name="text_test_mole">Игра в крота</string>
     <string name="text_test_target">Тест на постукивание</string>
     <string name="text_test_stars">Соедините звёзды в созвездие</string>
-    <string name="text_test_emotional">Расскажите свое самочувствие</string>
+    <string name="text_test_emotional">Опишите самочувствие</string>
     <!--    TutorialFragment-->
     <string name="tutorial_title_welcome">Добро пожаловать в \n State Of Health Tracker!</string>
     <string name="tutorial_title_home">Ведите дневник!</string>

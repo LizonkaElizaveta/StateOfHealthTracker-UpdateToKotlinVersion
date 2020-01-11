@@ -9,9 +9,8 @@
   <path
       android:pathData="M178,41L284,141H163V125.5H167.5L177,122.5L185,116.5L189.5,108.5L192.5,98L194,86H183.5V62.5L178,41Z"
       android:fillColor="#055262"/>
-  <group>
-    <clip-path android:pathData="M101,17h126v126h-126z M 0,0"/>
-    <path
+
+  <path
         android:pathData="M168.366,157.346C168.366,159.758 166.411,161.713 164,161.713C161.588,161.713 159.634,159.758 159.634,157.346V127.406C159.634,124.994 161.588,123.04 164,123.04C166.411,123.04 168.366,124.994 168.366,127.406V157.346Z"
         android:fillColor="#E4E7ED"/>
     <path
@@ -47,7 +46,6 @@
     <path
         android:pathData="M181.802,83.787H183.379V89.08H181.802V83.787Z"
         android:fillColor="#E0E0E0"/>
-  </group>
   <path
       android:pathData="M2,140H326V173C326,181.284 319.284,188 311,188H17C8.716,188 2,181.284 2,173V140Z"
       android:fillColor="#9B51E0"/>

@@ -53,7 +53,11 @@ class DateAndTimeDialog(private val stateOfHealth: MutableLiveData<States?>) : D
                         val calendar = TimePickerFragment.getCalendarTime(hourOfDay, minute)
                         etTime.setText(getTime(calendar.timeInMillis))
                     })
-                fragmentManager?.let { it1 -> tpd.show(it1, "TimePickerDialog") }
+                fragmentManager?.let { it1 ->
+                    {
+                        tpd.show(it1, "TimePickerDialog")
+                    }
+                }
 
             }
         }

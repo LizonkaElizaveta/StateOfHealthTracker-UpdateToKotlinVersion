@@ -7,7 +7,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:timePickerDialogTheme">@style/AlertDialogCustom</item>
+        <item name="android:timePickerDialogTheme">@style/CustomTimePickerDialog</item>
         <item name="android:datePickerDialogTheme">@style/AlertDialogCustom</item>
         <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
     </style>
@@ -15,8 +15,9 @@
     <!--     Dialog style-->
     <style name="AlertDialogCustom" parent="android:Theme.Material.Light.Dialog.Alert">
         <item name="android:colorAccent">@color/colorPrimary</item>
+        <item name="android:textColorPrimaryInverse">@color/colorAccent</item>
         <item name="android:headerMonthTextAppearance">@style/MyDatePickerTextAppearance</item>
-
+        <item name="android:headerDayOfMonthTextAppearance">@style/MyDatePickerTextAppearance</item>
     </style>
 
     <style name="MyDatePickerTextAppearance" parent="TextAppearance.AppCompat.Body1">
@@ -57,8 +58,6 @@
     <style name="CustomTimePickerDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:dialogTheme">@style/MyDialogTheme</item>
         <item name="android:timePickerStyle">@style/MyTimePicker</item>
-        <item name="android:colorPrimary">@color/colorPrimary</item>
-        <item name="android:colorAccent">@color/colorPrimary</item>
     </style>
 
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog">
@@ -67,7 +66,6 @@
 
     <style name="MyTimePicker" parent="@android:style/Widget.Material.Light.TimePicker">
         <item name="android:timePickerMode">spinner</item>
-
     </style>
 
     <!--    Dialog EditText style-->

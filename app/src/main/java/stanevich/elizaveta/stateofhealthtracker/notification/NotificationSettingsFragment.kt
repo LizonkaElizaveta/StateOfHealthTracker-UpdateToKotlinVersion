@@ -103,11 +103,13 @@ class NotificationSettingsFragment : Fragment() {
 
         notificationsSettingsViewModel.showNotDialogTime.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-                fragmentManager?.let { it ->
+                val tpd =
                     TimePickerFragment(TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
                         val calendar = TimePickerFragment.getCalendarTime(hourOfDay, minute)
                         binding.tvTime.text = (getTime(calendar.timeInMillis))
-                    }).show(it, "TimePicker")
+                    })
+                fragmentManager?.let { fmt ->
+                    tpd.show(fmt, "TimePicker")
                 }
 
                 notificationsSettingsViewModel.doneShowingNotDialogTime()

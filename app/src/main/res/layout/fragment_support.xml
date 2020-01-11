@@ -72,33 +72,13 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_policy"/>
 
 
-        <TextView
-                android:id="@+id/tv_offers"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:background="@drawable/selected_state"
-                android:clickable="false"
-                android:drawableStart="@drawable/menu_ic_settings"
-                android:drawablePadding="12dp"
-                android:gravity="center_vertical"
-                android:paddingStart="17dp"
-                android:paddingEnd="17dp"
-                android:text="Предложить улучшения"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line2" />
-
-
         <View
-
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/colorLine"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_offers"/>
+                app:layout_constraintTop_toBottomOf="@id/line2" />
 
 
 

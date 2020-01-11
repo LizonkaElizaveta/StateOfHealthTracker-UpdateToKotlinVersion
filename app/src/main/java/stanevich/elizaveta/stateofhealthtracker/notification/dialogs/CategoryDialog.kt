@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.RadioButton
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
@@ -19,7 +18,7 @@ class CategoryDialog(
 ) : DialogFragment() {
 
 
-    private lateinit var radioButton: RadioButton
+
     private var selectedId: Int = 0
 
 
@@ -38,10 +37,10 @@ class CategoryDialog(
         builder.setView(binding.root)
             .setPositiveButton(R.string.btn_ok) { _, _ ->
 
-                val checked = checkedRadioButtonListener(binding)
+                val checkedText = checkedRadioButtonListener(binding)
 
                 val notification = tonightNotification.value!!
-                notification.notificationsCategory = checked.text.toString()
+                notification.notificationsCategory = checkedText
                 categoryText.text = notification.notificationsCategory
                 dialog!!.dismiss()
 
@@ -56,17 +55,14 @@ class CategoryDialog(
         return builder.create()
     }
 
-    private fun checkedRadioButtonListener(binding: DialogCategoryBinding): RadioButton {
+    private fun checkedRadioButtonListener(binding: DialogCategoryBinding): String {
         selectedId = binding.radioCategory.checkedRadioButtonId
 
-        val checked = resources.getResourceEntryName(selectedId)
-
-        radioButton = when (checked) {
-            "rbMedication" -> binding.rbMedication
-            "rbDoctor" -> binding.rbDoctor
-            "rbAppointment" -> binding.rbAppointment
-            else -> binding.rbOther
+        return when (resources.getResourceEntryName(selectedId)) {
+            "rbMedication" -> binding.rbMedication.text.toString()
+            "rbDoctor" -> binding.rbDoctor.text.toString()
+            "rbAppointment" -> binding.rbAppointment.text.toString()
+            else -> "Категория..."
         }
-        return radioButton
     }
 }

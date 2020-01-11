@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.DialogInterface
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import stanevich.elizaveta.stateofhealthtracker.R
 import java.util.*
@@ -40,6 +41,12 @@ class TimePickerFragment(private val listener: TimePickerDialog.OnTimeSetListene
             resources.getString(R.string.btn_cancel),
             timePickerDialog
         )
+        timePickerDialog.setOnShowListener {
+            listOf(DialogInterface.BUTTON_POSITIVE, DialogInterface.BUTTON_NEGATIVE)
+                .map { timePickerDialog.getButton(it) }.forEach {
+                    it.setTextColor(ContextCompat.getColor(activity!!, R.color.colorPrimary))
+                }
+        }
 
         return timePickerDialog
     }

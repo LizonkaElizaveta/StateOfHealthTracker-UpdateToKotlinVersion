@@ -42,13 +42,13 @@ class TestFragment : Fragment() {
             when (it.name) {
                 "tapping" -> Navigation.findNavController(binding.testList)
                     .navigate(R.id.action_nav_test_to_tappingIntroFragment)
-                "draw" -> Navigation.findNavController(binding.testList)
-                    .navigate(R.id.action_nav_test_to_drawingIntroFragment)
                 "print" -> Navigation.findNavController(binding.testList)
                     .navigate(R.id.action_nav_test_to_printIntroFragment)
                 "emotional" -> Navigation.findNavController(binding.testList)
                     .navigate(R.id.action_nav_test_to_emotionalIntroFragment)
-                else -> Toast.makeText(activity, "В разработке", Toast.LENGTH_SHORT).show()
+//                "draw" -> Navigation.findNavController(binding.testList)
+////                    .navigate(R.id.action_nav_test_to_drawingIntroFragment)
+                else -> Toast.makeText(application, "В разработке", Toast.LENGTH_SHORT).show()
             }
 
         }
