@@ -137,8 +137,10 @@ class NotificationSettingsFragment : Fragment() {
             btnSwitch.setOnClickListener { buttonView ->
                 val checkBoxAdapter = checkboxList.adapter as CheckBoxModelAdapter
                 for (i in 0 until checkBoxAdapter.itemCount) {
-                    (checkboxList[i].findViewById(R.id.ch_days_of_week) as CheckBox).isChecked =
-                        (buttonView as Switch).isChecked
+                    val checkBox = checkboxList[i].findViewById(R.id.ch_days_of_week) as CheckBox
+                    checkBox.isChecked = (buttonView as Switch).isChecked
+                    checkBox.jumpDrawablesToCurrentState()
+                    checkBox.refreshDrawableState()
                 }
             }
             btnSave.setOnClickListener {

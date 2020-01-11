@@ -35,6 +35,9 @@ class ProfileViewModel(
             name.value = usersData.value?.name
             surname.value = usersData.value?.surname
             phone.value = usersData.value?.phone.toString()
+            if (phone.value == "0") {
+                phone.value = ""
+            }
             birthday.value = usersData.value?.birthday
         }
     }

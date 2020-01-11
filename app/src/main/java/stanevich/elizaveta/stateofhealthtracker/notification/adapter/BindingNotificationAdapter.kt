@@ -1,5 +1,6 @@
 package stanevich.elizaveta.stateofhealthtracker.notification.adapter
 
+import android.os.Build
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
@@ -69,9 +70,23 @@ fun TextView.setNotificationDate(item: Notifications?) {
 
 @BindingAdapter("btnDrawable")
 fun setBtnDrawable(checkBox: CheckBox, drawableLink: String) {
-    val drawableField = R.drawable::class.java.getDeclaredField(drawableLink)
-    val drawableId = drawableField.getInt(drawableField)
-    checkBox.buttonDrawable = checkBox.context.getDrawable(drawableId)
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        val text = when (drawableLink) {
+            "notification_settings_ic_monday" -> "ПН"
+            "notification_settings_ic_tuesday" -> "ВТ"
+            "notification_settings_ic_wednesday" -> "СР"
+            "notification_settings_ic_thursday" -> "ЧТ"
+            "notification_settings_ic_friday" -> "ПТ"
+            "notification_settings_ic_saturday" -> "СБ"
+            "notification_settings_ic_sunday" -> "ВС"
+            else -> ""
+        }
+        checkBox.text = text
+    } else {
+        val drawableField = R.drawable::class.java.getDeclaredField(drawableLink)
+        val drawableId = drawableField.getInt(drawableField)
+        checkBox.buttonDrawable = checkBox.context.getDrawable(drawableId)
+    }
 }
 
 @BindingAdapter("checkBoxListData")

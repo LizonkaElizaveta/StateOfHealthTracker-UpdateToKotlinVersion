@@ -30,9 +30,6 @@ android {
             buildConfigField 'String', 'API_ENDPOINT', "\"http://192.168.25.28:9090\""
         }
     }
-    defaultConfig {
-        vectorDrawables.useSupportLibrary = true
-    }
 
     dataBinding {
         enabled = true
