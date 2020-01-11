@@ -13,7 +13,6 @@ import stanevich.elizaveta.stateofhealthtracker.network.api.dataStore.DataStoreA
 import stanevich.elizaveta.stateofhealthtracker.network.api.dataStore.NetworkDao
 import stanevich.elizaveta.stateofhealthtracker.network.dto.convertToSendWrapper
 import stanevich.elizaveta.stateofhealthtracker.test.games.database.TestingDatabase
-import stanevich.elizaveta.stateofhealthtracker.utils.ConnectivityUtil
 
 class SendDataWorker(
     context: Context,
@@ -21,12 +20,6 @@ class SendDataWorker(
 ) : CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result = coroutineScope {
-
-        if (!ConnectivityUtil.isConnected(applicationContext)) {
-            Log.e("NetworkError", "No available connection")
-            return@coroutineScope Result.failure()
-        }
-
         withContext(Dispatchers.IO) {
             val dataStoreApi = DataStoreAPI()
 

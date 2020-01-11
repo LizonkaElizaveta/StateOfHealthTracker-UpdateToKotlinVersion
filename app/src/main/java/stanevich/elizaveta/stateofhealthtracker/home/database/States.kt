@@ -21,11 +21,11 @@ data class States(
     @ColumnInfo(name = "dyskinesia")
     var dyskinesia: Long = 0
 ) {
-    fun moodToInt(): Int {
+    fun moodToDouble(): Double {
         return when (mood) {
-            "-" -> -1
-            "+" -> 1
-            else -> 0
+            "-" -> 0.0
+            "+" -> 1.0
+            else -> 0.5
         }
     }
 }

@@ -12,14 +12,14 @@ import stanevich.elizaveta.stateofhealthtracker.notification.model.CheckBoxModel
 @BindingAdapter("notificationCategory")
 fun TextView.setNotificationCategory(item: Notifications?) {
     item?.let {
-        text = item.notificationsCategory
+        text = item.category
     }
 }
 
 @BindingAdapter("notificationTime")
 fun TextView.setNotificationTime(item: Notifications?) {
     item?.let {
-        text = item.notificationsTime
+        text = item.time
     }
 }
 
@@ -42,8 +42,28 @@ fun bindNotificationIcon(imageView: ImageView, category: String) {
 
 @BindingAdapter("notificationDate")
 fun TextView.setNotificationDate(item: Notifications?) {
-    item?.let {
-        text = item.notificationsDate
+    item?.let { notification ->
+        val daysOfWeek = notification.repeat
+        if (daysOfWeek.all { it }) {
+            text = context.getString(R.string.EveryDay)
+        } else if (daysOfWeek.any { it }) {
+            text = daysOfWeek.mapIndexed { index, b ->
+                if (b) {
+                    when (index) {
+                        0 -> "ПН"
+                        1 -> "ВТ"
+                        2 -> "СР"
+                        3 -> "ЧТ"
+                        4 -> "ПТ"
+                        5 -> "СБ"
+                        6 -> "ВС"
+                        else -> ""
+                    }
+                } else ""
+            }.filter { it.isNotEmpty() }.joinToString(separator = ", ")
+        } else {
+            text = notification.date
+        }
     }
 }
 

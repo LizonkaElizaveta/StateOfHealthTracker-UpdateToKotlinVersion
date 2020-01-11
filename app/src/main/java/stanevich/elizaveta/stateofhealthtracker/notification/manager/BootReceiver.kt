@@ -43,7 +43,7 @@ class BootReceiver : BroadcastReceiver() {
     ) {
         Log.d("BoorReceiver", "initAlarmsFromNotificationDb")
         database.forEach { notification ->
-            val repeatDays = notification.notificationRepeat
+            val repeatDays = notification.repeat
             val everyDaysRepeating = repeatDays.all { it }
             val noRepeatingDays = repeatDays.all { !it }
             if (everyDaysRepeating || noRepeatingDays) {
@@ -53,14 +53,14 @@ class BootReceiver : BroadcastReceiver() {
                 c.timeInMillis = notification.timestamp
                 val hour = c.get(Calendar.HOUR_OF_DAY)
                 val minute = c.get(Calendar.MINUTE)
-                val category = notification.notificationsCategory
+                val category = notification.category
                 repeatDays.forEachIndexed { index, daySet ->
                     if (daySet) {
                         var dayOfWeek = index + 2
                         if (dayOfWeek > 7) {
                             dayOfWeek = 1
                         }
-                        val id = notification.notificatiionsId!! * 7 + dayOfWeek
+                        val id = notification.id!! * 7 + dayOfWeek
                         calendar.apply {
                             set(Calendar.DAY_OF_WEEK, dayOfWeek)
                             set(Calendar.HOUR_OF_DAY, hour)

@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
         val request =
-            PeriodicWorkRequestBuilder<SendDataWorker>(24, TimeUnit.HOURS).setConstraints(
+            PeriodicWorkRequestBuilder<SendDataWorker>(3, TimeUnit.HOURS).setConstraints(
                 constraints
             ).build()
         WorkManager.getInstance(application)

@@ -5,16 +5,11 @@ import android.app.Application
 import android.app.PendingIntent
 import android.content.Context.ALARM_SERVICE
 import android.content.Intent
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.OneTimeWorkRequest
-import androidx.work.PeriodicWorkRequest
-import androidx.work.WorkManager
+import androidx.work.*
 import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.App
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
@@ -30,6 +25,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 
+
 class NotificationsSettingsViewModel(
     private val database: NotificationsDatabaseDao,
     application: Application
@@ -40,9 +36,6 @@ class NotificationsSettingsViewModel(
 
 
     var tonightNotification = MutableLiveData<Notifications?>()
-//    private val dat =
-//        Room.databaseBuilder(application, NotificationsDatabase::class.java, "NotificationDatabase")
-//            .allowMainThreadQueries().build()
 
     private val _checkBox = MutableLiveData<List<CheckBoxModel>>()
     val checkBox: LiveData<List<CheckBoxModel>>
@@ -87,14 +80,15 @@ class NotificationsSettingsViewModel(
 
     fun onStartTracking(category: String, date: String, time: String, repeat: BooleanArray) {
         uiScope.launch {
-            tonightNotification.value = Notifications()
-            tonightNotification.value!!.apply {
-                notificationsCategory = category
-                notificationsDate = date
-                notificationsTime = time
-                notificationRepeat = repeat
-                timestamp = getFormattingDetailDate(date, time)
-            }
+            tonightNotification.value = Notifications(
+                null,
+                time,
+                category,
+                date,
+                repeat,
+                getFormattingDetailDate(date, time)
+            )
+
             insert(tonightNotification.value!!)
         }
     }
@@ -102,7 +96,6 @@ class NotificationsSettingsViewModel(
     private suspend fun insert(notification: Notifications) {
         withContext(Dispatchers.IO) {
             database.insert(notification)
-            Log.d("mLog", "From ViewModel $notification")
 
             val lastNotifications = database.getLast()
             withContext(Dispatchers.Main + Job()) {
@@ -120,15 +113,22 @@ class NotificationsSettingsViewModel(
         c.timeInMillis = tonightNotification.value!!.timestamp
         val hour = c.get(Calendar.HOUR_OF_DAY)
         val minute = c.get(Calendar.MINUTE)
-        val repeatDays = tonightNotification.value!!.notificationRepeat
+        val repeatDays = tonightNotification.value!!.repeat
         val everyDaysRepeating = repeatDays.all { it }
         val noRepeatingDays = repeatDays.all { !it }
+        val data = Data.Builder().putString(
+            NotificationWorker.DATA_NOTIFICATION_CATEGORY,
+            tonightNotification.value?.category ?: ""
+        ).putInt(
+            NotificationWorker.DATA_NOTIFICATION_ID,
+            tonightNotification.value?.id?.toInt() ?: Random().nextInt()
+        ).build()
         when {
             noRepeatingDays -> {
-                startSingleNotification(diffFullDate)
+                startSingleNotification(diffFullDate, data)
             }
             everyDaysRepeating -> {
-                startEveryDayNotification(diffFullDate)
+                startEveryDayNotification(diffFullDate, data)
             }
             else -> {
                 startMultiplyNotification(hour, minute, repeatDays)
@@ -163,8 +163,8 @@ class NotificationsSettingsViewModel(
         val app = getApplication<App>()
         val intent = Intent(app, NotificationReceiver::class.java)
 
-        val id = tonightNotification.value!!.notificatiionsId!! * 7 + dayOfWeek
-        val category = tonightNotification.value!!.notificationsCategory
+        val id = (tonightNotification.value?.id ?: 0) * 7 + dayOfWeek
+        val category = tonightNotification.value?.category ?: ""
         intent.putExtra(ID, id.toInt())
         intent.putExtra(CATEGORY, category)
 
@@ -175,8 +175,7 @@ class NotificationsSettingsViewModel(
             PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        val am =
-            app.getSystemService(ALARM_SERVICE) as AlarmManager
+        val am = app.getSystemService(ALARM_SERVICE) as AlarmManager
         am.setRepeating(
             AlarmManager.RTC_WAKEUP,
             time,
@@ -186,25 +185,23 @@ class NotificationsSettingsViewModel(
 
     }
 
-    private fun startEveryDayNotification(diff: Long) {
-        Toast.makeText(getApplication(), "EveryDay", Toast.LENGTH_SHORT).show()
+    private fun startEveryDayNotification(diff: Long, data: Data) {
         val requestBuilder =
             PeriodicWorkRequest.Builder(
                 NotificationWorker::class.java,
                 24,
                 TimeUnit.HOURS
-            )
-                .setInitialDelay(diff, TimeUnit.MILLISECONDS)
+            ).setInputData(data).setInitialDelay(diff, TimeUnit.MILLISECONDS)
 
         WorkManager.getInstance(getApplication()).enqueueUniquePeriodicWork(
-            "workTag",
+            "workTag" + (tonightNotification.value?.id ?: Random().nextInt()),
             ExistingPeriodicWorkPolicy.REPLACE, requestBuilder.build()
         )
     }
 
-    private fun startSingleNotification(diff: Long) {
-        Toast.makeText(getApplication(), "Single", Toast.LENGTH_SHORT).show()
+    private fun startSingleNotification(diff: Long, data: Data) {
         val requestBuilder = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
+            .setInputData(data)
             .setInitialDelay(diff, TimeUnit.MILLISECONDS)
         WorkManager.getInstance(getApplication()).enqueue(requestBuilder.build())
     }

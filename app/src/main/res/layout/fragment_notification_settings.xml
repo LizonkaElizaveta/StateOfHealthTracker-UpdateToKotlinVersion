@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -129,7 +130,8 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="@id/btn_switch"
                 app:layout_constraintStart_toStartOf="@id/text_toggle"
-                app:layout_constraintTop_toBottomOf="@id/text_toggle">
+                app:layout_constraintTop_toBottomOf="@id/text_toggle"
+                tools:listitem="@layout/list_item_notifications_day_of_week">
 
         </androidx.recyclerview.widget.RecyclerView>
 

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.Switch
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -71,50 +72,53 @@ class NotificationSettingsFragment : Fragment() {
 
         binding.notificationsSettingsViewModel = notificationsSettingsViewModel
 
-        notificationsSettingsViewModel.showNotDialogCategory.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                fragmentManager?.let { it1 ->
-                    CategoryDialog(
-                        notificationsSettingsViewModel.tonightNotification,
-                        tvCategory
-                    ).show(
-                        it1,
-                        "CategoryDialogD"
-                    )
+        notificationsSettingsViewModel.apply {
+            showNotDialogCategory.observe(viewLifecycleOwner, Observer {
+                if (it == true) {
+                    fragmentManager?.let { it1 ->
+                        CategoryDialog(
+                            notificationsSettingsViewModel.tonightNotification,
+                            tvCategory
+                        ).show(
+                            it1,
+                            "CategoryDialogD"
+                        )
+                    }
+
+                    notificationsSettingsViewModel.doneShowingNotDialogCategory()
                 }
+            })
 
-                notificationsSettingsViewModel.doneShowingNotDialogCategory()
-            }
-        })
+            showNotDialogDate.observe(viewLifecycleOwner, Observer {
+                if (it == true) {
+                    fragmentManager?.let { fmt ->
+                        DatePickerFragment(DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                            val calendar =
+                                DatePickerFragment.getCalendarDate(year, monthOfYear, dayOfMonth)
+                            binding.tvDay.text = getDetailDate(calendar.timeInMillis)
+                        }).show(fmt, "DatePicker")
+                    }
 
-        notificationsSettingsViewModel.showNotDialogDate.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                fragmentManager?.let { it ->
-                    DatePickerFragment(DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-                        val calendar =
-                            DatePickerFragment.getCalendarDate(year, monthOfYear, dayOfMonth)
-                        binding.tvDay.text = getDetailDate(calendar.timeInMillis)
-                    }).show(it, "DatePicker")
+                    notificationsSettingsViewModel.doneShowingNotDialogDate()
                 }
+            })
 
-                notificationsSettingsViewModel.doneShowingNotDialogDate()
-            }
-        })
+            showNotDialogTime.observe(viewLifecycleOwner, Observer {
+                if (it == true) {
+                    val tpd =
+                        TimePickerFragment(TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                            val calendar = TimePickerFragment.getCalendarTime(hourOfDay, minute)
+                            binding.tvTime.text = (getTime(calendar.timeInMillis))
+                        })
+                    fragmentManager?.let { fmt ->
+                        tpd.show(fmt, "TimePicker")
+                    }
 
-        notificationsSettingsViewModel.showNotDialogTime.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                val tpd =
-                    TimePickerFragment(TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-                        val calendar = TimePickerFragment.getCalendarTime(hourOfDay, minute)
-                        binding.tvTime.text = (getTime(calendar.timeInMillis))
-                    })
-                fragmentManager?.let { fmt ->
-                    tpd.show(fmt, "TimePicker")
+                    notificationsSettingsViewModel.doneShowingNotDialogTime()
                 }
+            })
+        }
 
-                notificationsSettingsViewModel.doneShowingNotDialogTime()
-            }
-        })
         val checkboxList = binding.checkboxList as RecyclerView
 
         binding.checkboxList.adapter = CheckBoxModelAdapter {
@@ -129,17 +133,20 @@ class NotificationSettingsFragment : Fragment() {
             binding.btnSwitch.isChecked = isChecked
         }
 
-        binding.btnSwitch.setOnClickListener { buttonView ->
-            val checkBoxAdapter = checkboxList.adapter as CheckBoxModelAdapter
-            for (i in 0 until checkBoxAdapter.itemCount) {
-                (checkboxList[i].findViewById(R.id.ch_days_of_week) as CheckBox).isChecked =
-                    (buttonView as Switch).isChecked
-            }
-        }
-
         binding.apply {
+            btnSwitch.setOnClickListener { buttonView ->
+                val checkBoxAdapter = checkboxList.adapter as CheckBoxModelAdapter
+                for (i in 0 until checkBoxAdapter.itemCount) {
+                    (checkboxList[i].findViewById(R.id.ch_days_of_week) as CheckBox).isChecked =
+                        (buttonView as Switch).isChecked
+                }
+            }
             btnSave.setOnClickListener {
                 val category = tvCategory.text.toString()
+                if (category == "Категория…") {
+                    Toast.makeText(application, "Выберите категорию", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
                 val date = tvDay.text.toString()
                 val time = tvTime.text.toString()
                 val repeat = BooleanArray(7)
@@ -154,10 +161,7 @@ class NotificationSettingsFragment : Fragment() {
             }
         }
 
-
         return binding.root
-
     }
-
 
 }

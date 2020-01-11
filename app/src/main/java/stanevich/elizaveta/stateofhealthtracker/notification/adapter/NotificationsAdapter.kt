@@ -18,7 +18,7 @@ class NotificationsAdapter : ListAdapter<Notifications,
     }
 
     override fun getItemId(position: Int): Long {
-        return getItem(position).notificatiionsId?:0
+        return getItem(position).id ?: 0
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -52,7 +52,7 @@ class NotificationsAdapter : ListAdapter<Notifications,
      */
     class NotificationsDiffCallback : DiffUtil.ItemCallback<Notifications>() {
         override fun areItemsTheSame(oldItem: Notifications, newItem: Notifications): Boolean {
-            return oldItem.notificatiionsId == newItem.notificatiionsId
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Notifications, newItem: Notifications): Boolean {

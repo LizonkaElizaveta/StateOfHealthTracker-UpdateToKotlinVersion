@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import stanevich.elizaveta.stateofhealthtracker.utils.IntArrayListConverter
 
-@Database(entities = [Notifications::class], version = 7, exportSchema = false)
+@Database(entities = [Notifications::class], version = 8, exportSchema = false)
 @TypeConverters(IntArrayListConverter::class)
 abstract class NotificationsDatabase : RoomDatabase() {
 

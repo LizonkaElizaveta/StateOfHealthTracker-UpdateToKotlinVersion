@@ -7,19 +7,19 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "notifications_table")
 data class Notifications(
     @PrimaryKey(autoGenerate = true)
-    var notificatiionsId: Long? = null,
+    var id: Long? = null,
 
     @ColumnInfo(name = "time")
-    var notificationsTime: String = "",
+    var time: String = "",
 
     @ColumnInfo(name = "category")
-    var notificationsCategory: String = "",
+    var category: String = "",
 
     @ColumnInfo(name = "date")
-    var notificationsDate: String = "",
+    var date: String = "",
 
     @ColumnInfo(name = "repeat")
-    var notificationRepeat: BooleanArray = BooleanArray(7) { false },
+    var repeat: BooleanArray = BooleanArray(7) { false },
 
     @ColumnInfo(name = "timestamp")
     var timestamp: Long = 0L
@@ -31,21 +31,21 @@ data class Notifications(
 
         other as Notifications
 
-        if (notificatiionsId != other.notificatiionsId) return false
-        if (notificationsTime != other.notificationsTime) return false
-        if (notificationsCategory != other.notificationsCategory) return false
-        if (notificationsDate != other.notificationsDate) return false
-        if (!notificationRepeat.contentEquals(other.notificationRepeat)) return false
+        if (id != other.id) return false
+        if (time != other.time) return false
+        if (category != other.category) return false
+        if (date != other.date) return false
+        if (!repeat.contentEquals(other.repeat)) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = notificatiionsId.hashCode()
-        result = 31 * result + notificationsTime.hashCode()
-        result = 31 * result + notificationsCategory.hashCode()
-        result = 31 * result + notificationsDate.hashCode()
-        result = 31 * result + notificationRepeat.contentHashCode()
+        var result = id.hashCode()
+        result = 31 * result + time.hashCode()
+        result = 31 * result + category.hashCode()
+        result = 31 * result + date.hashCode()
+        result = 31 * result + repeat.contentHashCode()
         return result
     }
 }

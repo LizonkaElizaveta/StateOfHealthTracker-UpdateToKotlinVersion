@@ -40,8 +40,8 @@ class CategoryDialog(
                 val checkedText = checkedRadioButtonListener(binding)
 
                 val notification = tonightNotification.value!!
-                notification.notificationsCategory = checkedText
-                categoryText.text = notification.notificationsCategory
+                notification.category = checkedText
+                categoryText.text = notification.category
                 dialog!!.dismiss()
 
             }

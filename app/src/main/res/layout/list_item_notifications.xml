@@ -13,11 +13,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <!--        app:notificationImage="@{notification}"-->
         <ImageView
                 android:id="@+id/ivCategory"
                 android:layout_width="wrap_content"
@@ -25,7 +23,7 @@
                 android:layout_marginStart="@dimen/notification_margin_17"
                 android:layout_marginTop="@dimen/notification_margin_8"
                 android:layout_marginBottom="@dimen/notification_margin_8"
-                app:notificationIcon="@{notification.notificationsCategory}"
+                app:notificationIcon="@{notification.category}"
                 tools:src="@drawable/notification_ic_doctor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -73,7 +73,7 @@ fun convertToSendWrapper(dto: Any): SendWrapper {
             timestamp = dto.timestamp
         }
         is States -> {
-            data = UserDataDto(dto.moodToInt(), dto.dyskinesia, dto.pill)
+            data = UserDataDto(dto.moodToDouble(), dto.dyskinesia, dto.pill)
             timestamp = dto.date
         }
         is MissClick -> {
