@@ -70,3 +70,5 @@ fun createCategoryNotification(
     notificationManager.notify(notificationId, mNotifyBuilder.build())
     wl.release()
 }
+
+const val NOTIFICATION_WORK_TAG = "notificationWorkTag"

@@ -32,19 +32,17 @@ class NotificationsViewModel(
     private fun initializeNot() {
         uiScope.launch {
             tonightNotification.value = Notifications()
-            withContext(Dispatchers.IO){
+            withContext(Dispatchers.IO) {
                 notifications.postValue(database.getAllNotifications())
             }
         }
     }
 
-    suspend fun delete(notId: Long) {
-        withContext(Dispatchers.IO) {
+    fun delete(notId: Long) {
+        CoroutineScope(Dispatchers.IO + viewModelJob).launch {
             database.deleteByNotificationId(notId)
             notifications.postValue(database.getAllNotifications())
         }
     }
-
-
 }
 

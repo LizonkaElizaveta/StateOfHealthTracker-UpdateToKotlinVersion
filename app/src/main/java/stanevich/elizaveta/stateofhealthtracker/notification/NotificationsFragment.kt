@@ -1,6 +1,8 @@
 package stanevich.elizaveta.stateofhealthtracker.notification
 
 import android.app.Application
+import android.app.PendingIntent
+import android.content.Intent
 import android.graphics.Canvas
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,24 +16,18 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.WorkManager
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentNotificationsBinding
 import stanevich.elizaveta.stateofhealthtracker.notification.adapter.NotificationsAdapter
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabase
+import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationReceiver
 import stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsViewModel
 import stanevich.elizaveta.stateofhealthtracker.notification.viewModel.NotificationsViewModelFactory
 
 
 class NotificationsFragment : Fragment() {
-
-    private var viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -136,8 +132,40 @@ class NotificationsFragment : Fragment() {
         notificationsViewModel: NotificationsViewModel,
         notificationId: Long
     ) {
-        uiScope.launch {
-            notificationsViewModel.delete(notificationId)
+
+        val notification =
+            notificationsViewModel.notifications.value?.find { it.id == notificationId }
+        if (notification != null) {
+            val repeatDays = notification.repeat
+            val everyDaysRepeating = repeatDays.all { it }
+            val noRepeatingDays = repeatDays.all { !it }
+            val applicationContext = activity!!.applicationContext
+            if (everyDaysRepeating || noRepeatingDays) {
+                WorkManager.getInstance(applicationContext)
+                    .cancelUniqueWork(NOTIFICATION_WORK_TAG + notificationId)
+            } else {
+                repeatDays.forEachIndexed { index, daySet ->
+                    if (daySet) {
+                        var dayOfWeek = index + 2
+                        if (dayOfWeek > 7) {
+                            dayOfWeek = 1
+                        }
+                        val id = (notification.id ?: 0) * 7 + dayOfWeek
+
+                        val intent = Intent(applicationContext, NotificationReceiver::class.java)
+                        intent.putExtra(NotificationReceiver.ID, id.toInt())
+                        intent.putExtra(NotificationReceiver.CATEGORY, notification.category)
+
+                        PendingIntent.getBroadcast(
+                            applicationContext,
+                            id.toInt(), intent, PendingIntent.FLAG_UPDATE_CURRENT
+                        ).cancel()
+                    }
+                }
+            }
         }
+
+
+        notificationsViewModel.delete(notificationId)
     }
 }

@@ -12,6 +12,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.work.*
 import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.App
+import stanevich.elizaveta.stateofhealthtracker.notification.NOTIFICATION_WORK_TAG
 import stanevich.elizaveta.stateofhealthtracker.notification.database.Notifications
 import stanevich.elizaveta.stateofhealthtracker.notification.database.NotificationsDatabaseDao
 import stanevich.elizaveta.stateofhealthtracker.notification.manager.NotificationReceiver
@@ -33,7 +34,6 @@ class NotificationsSettingsViewModel(
 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-
 
     var tonightNotification = MutableLiveData<Notifications?>()
 
@@ -66,10 +66,7 @@ class NotificationsSettingsViewModel(
     }
 
     private fun initializeNotification() {
-        uiScope.launch {
-            tonightNotification.value =
-                Notifications()
-        }
+        tonightNotification.postValue(Notifications())
     }
 
     private fun getFormattingDetailDate(date: String, time: String): Long {
@@ -98,7 +95,7 @@ class NotificationsSettingsViewModel(
             database.insert(notification)
 
             val lastNotifications = database.getLast()
-            withContext(Dispatchers.Main + Job()) {
+            uiScope.launch {
                 tonightNotification.value = lastNotifications
                 notificationHandler()
             }
@@ -161,10 +158,11 @@ class NotificationsSettingsViewModel(
 
     private fun startAlarmManagerWithWorker(time: Long, dayOfWeek: Int) {
         val app = getApplication<App>()
-        val intent = Intent(app, NotificationReceiver::class.java)
+
 
         val id = (tonightNotification.value?.id ?: 0) * 7 + dayOfWeek
         val category = tonightNotification.value?.category ?: ""
+        val intent = Intent(app, NotificationReceiver::class.java)
         intent.putExtra(ID, id.toInt())
         intent.putExtra(CATEGORY, category)
 
@@ -182,7 +180,6 @@ class NotificationsSettingsViewModel(
             AlarmManager.INTERVAL_DAY * 7,
             pendingIntent
         )
-
     }
 
     private fun startEveryDayNotification(diff: Long, data: Data) {
@@ -194,7 +191,7 @@ class NotificationsSettingsViewModel(
             ).setInputData(data).setInitialDelay(diff, TimeUnit.MILLISECONDS)
 
         WorkManager.getInstance(getApplication()).enqueueUniquePeriodicWork(
-            "workTag" + (tonightNotification.value?.id ?: Random().nextInt()),
+            NOTIFICATION_WORK_TAG + (tonightNotification.value?.id ?: Random().nextInt()),
             ExistingPeriodicWorkPolicy.REPLACE, requestBuilder.build()
         )
     }
@@ -203,7 +200,11 @@ class NotificationsSettingsViewModel(
         val requestBuilder = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
             .setInputData(data)
             .setInitialDelay(diff, TimeUnit.MILLISECONDS)
-        WorkManager.getInstance(getApplication()).enqueue(requestBuilder.build())
+        WorkManager.getInstance(getApplication())
+            .enqueueUniqueWork(
+                NOTIFICATION_WORK_TAG + (tonightNotification.value?.id ?: Random().nextInt()),
+                ExistingWorkPolicy.REPLACE, requestBuilder.build()
+            )
     }
 
     fun showDialogCategory() {
