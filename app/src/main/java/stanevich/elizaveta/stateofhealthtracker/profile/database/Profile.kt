@@ -20,6 +20,6 @@ data class Profile(
     var birthday: String = "",
 
     @ColumnInfo(name = "phone")
-    var phone: String = ""
+    var phone: Long = 0
 
 )

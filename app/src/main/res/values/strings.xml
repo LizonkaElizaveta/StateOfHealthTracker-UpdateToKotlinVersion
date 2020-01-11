@@ -29,7 +29,7 @@
     <!-- Strings for dialog text-->
 
     <string name="dialog_text_confirmation_save_result">Спасибо!\nВаш результат записан\nв дневник</string>
-    <string name="dialog_text_confirmation_save_data">Спасибо!\nВаши данные обновились</string>
+    <string name="dialog_text_confirmation_save_data">Спасибо!\nВаши данные сохранены</string>
     <string name="dialog_text_tapping_result" formatted="true">Спасибо!\nВы нажали:\nЛевой рукой: %1$d\nПравой рукой: %2$d\nДанные сохранены</string>
     <string name="dialog_text_tapping_change">Теперь нажимайте правой рукой</string>
     <string name="dialog_text_common_result" formatted="true">Спасибо!\nДанные сохранены</string>
@@ -129,4 +129,5 @@
     <string name="text_voice_emotion_header">Расскажи свое состояние!</string>
     <string name="text_voice_emotion_description">Нажмите на кнопку и начните рассказывать.</string>
     <string name="start_test">Начать тест</string>
+    <string name="user_id_message">Чтобы использовать данное приложение необходимо ввести номер телефона</string>
 </resources>

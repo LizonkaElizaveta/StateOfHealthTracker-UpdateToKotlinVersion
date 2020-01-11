@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="profileViewModel"
+                type="stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:id="@+id/iv_check_circle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dialog_conf_margin_48"
+                android:src="@drawable/profile_image_avatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/tv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dialog_conf_margin_18"
+                android:layout_marginBottom="@dimen/dialog_conf_margin_24"
+                android:gravity="center"
+                android:text="@string/user_id_message"
+                android:textColor="@color/MainTextColor"
+                android:textSize="@dimen/dialog_conf_tv_size_18"
+                app:layout_constraintBottom_toBottomOf="@id/til_user_phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_check_circle" />
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_user_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/profile_margin_8"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_message">
+
+            <EditText
+                    android:id="@+id/et_user_phone"
+                    style="@style/EditTextStyle"
+                    android:digits="0123456789"
+                    android:hint="@string/profile_text_hint_phone"
+                    android:inputType="number"
+                    android:onTextChanged="@{(text, start, before, count) -> profileViewModel.onUserPhoneTextChanged(text)}"
+                    android:text="@={profileViewModel.phone}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

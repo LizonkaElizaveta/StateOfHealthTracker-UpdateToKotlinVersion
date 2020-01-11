@@ -34,20 +34,16 @@ class ProfileViewModel(
             usersData.value = getUserFromDatabase()
             name.value = usersData.value?.name
             surname.value = usersData.value?.surname
-            phone.value = usersData.value?.phone
+            phone.value = usersData.value?.phone.toString()
             birthday.value = usersData.value?.birthday
-
-
-            Log.d("mLog", "Insert ${usersData.value}")
         }
     }
 
-    private suspend fun getUserFromDatabase(): Profile? {
+    suspend fun getUserFromDatabase(): Profile? {
         return withContext(Dispatchers.IO) {
-            var user = database.findByUser()
+            val user = database.findByUser()
             user ?: Profile()
         }
-
     }
 
     fun onUserNameTextChanged(name: CharSequence) {
@@ -59,7 +55,7 @@ class ProfileViewModel(
     }
 
     fun onUserPhoneTextChanged(phone: CharSequence) {
-        usersData.value!!.phone = phone.toString()
+        usersData.value!!.phone = if (phone.isEmpty()) 0 else phone.toString().toLong()
     }
 
     fun onUserBirthdayTextChanged(birthday: CharSequence) {

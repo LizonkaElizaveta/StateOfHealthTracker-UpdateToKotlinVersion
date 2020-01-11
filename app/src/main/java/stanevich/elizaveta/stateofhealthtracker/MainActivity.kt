@@ -14,6 +14,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.work.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import stanevich.elizaveta.stateofhealthtracker.data.mining.location.LocationPermissionsActivity
 import stanevich.elizaveta.stateofhealthtracker.data.mining.rotation.RotationViewModel
 import stanevich.elizaveta.stateofhealthtracker.data.mining.rotation.RotationViewModelFactory
@@ -22,11 +25,11 @@ import stanevich.elizaveta.stateofhealthtracker.data.mining.service.SendDataWork
 import stanevich.elizaveta.stateofhealthtracker.databinding.ActivityMainBinding
 import stanevich.elizaveta.stateofhealthtracker.databinding.NavHeaderMainBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.DataMiningDialog
+import stanevich.elizaveta.stateofhealthtracker.dialogs.UserIdDialog
 import stanevich.elizaveta.stateofhealthtracker.home.database.StatesDatabase
 import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModel
 import stanevich.elizaveta.stateofhealthtracker.profile.viewModel.ProfileViewModelFactory
-import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.RecordPermissionsActivity
 import java.util.concurrent.TimeUnit
 
 
@@ -63,6 +66,17 @@ class MainActivity : AppCompatActivity() {
         headerBind.profileViewModel = profileViewModel
 
         setupDataMining(application)
+
+        checkUserId(profileViewModel)
+    }
+
+    private fun checkUserId(profileViewModel: ProfileViewModel) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val userData = profileViewModel.getUserFromDatabase()
+            if (userData?.phone == 0L) {
+                UserIdDialog(profileViewModel).show(supportFragmentManager, "UserIdCheck")
+            }
+        }
     }
 
     private fun setupNavigation(binding: ActivityMainBinding) {
