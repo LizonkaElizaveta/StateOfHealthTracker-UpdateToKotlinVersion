@@ -119,7 +119,8 @@
                     android:id="@+id/et_user_phone"
                     style="@style/EditTextStyle"
                     android:hint="@string/profile_text_hint_phone"
-                    android:inputType="phone"
+                    android:digits="0123456789"
+                    android:inputType="number"
                     android:onTextChanged="@{(text, start, before, count) -> profileViewModel.onUserPhoneTextChanged(text)}"
                     android:text="@={profileViewModel.phone}" />
 
