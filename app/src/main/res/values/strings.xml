@@ -134,4 +134,7 @@
     <string name="user_id_message">Чтобы использовать данное приложение необходимо ввести номер телефона</string>
     <string name="Reminder">Напоминание:</string>
     <string name="EveryDay">Каждый день</string>
+    <string name="app_name_text1">StateOf</string>
+    <string name="app_name_text2">Health</string>
+    <string name="app_name_text3">Tracker</string>
 </resources>

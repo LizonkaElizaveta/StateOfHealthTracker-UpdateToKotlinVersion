@@ -24,11 +24,9 @@ class TutorialActivity : AppIntro() {
             editor.putBoolean(prevStarted, java.lang.Boolean.TRUE)
             editor.apply()
         } else {
-
+            startActivity(Intent(this, ProfileActivity::class.java))
             finish()
-
         }
-        startActivity(Intent(this, ProfileActivity::class.java))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

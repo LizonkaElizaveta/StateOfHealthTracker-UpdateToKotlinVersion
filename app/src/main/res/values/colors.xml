@@ -18,4 +18,6 @@
 
     <color name="colorBackgroundDelete">#EB5757</color>
 
+    <color name="colorRed">#FF0000</color>
+
 </resources>
