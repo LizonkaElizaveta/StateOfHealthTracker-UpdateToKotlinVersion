@@ -42,7 +42,7 @@ class UserIdDialog(
                     ).show()
                 }
             }
-            .setCancelable(false)
+            .setCancelable(true)
             .create()
 
 

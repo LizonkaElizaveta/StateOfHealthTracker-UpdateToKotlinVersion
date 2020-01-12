@@ -16,7 +16,7 @@ class RotationDetector(
 ) {
 
     companion object {
-        const val REPEAT_IN_MILLISECONDS = 1000L
+        const val REPEAT_IN_MILLISECONDS = 200L
     }
 
     private var sensorEventListener: SensorEventListener? = null

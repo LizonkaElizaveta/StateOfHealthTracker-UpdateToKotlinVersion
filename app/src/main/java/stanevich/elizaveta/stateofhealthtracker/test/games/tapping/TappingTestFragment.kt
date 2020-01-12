@@ -89,7 +89,6 @@ class TappingTestFragment : Fragment() {
                     dialog.show(it, "TappingResultDialog")
                 }
             }
-
         return ViewModelProviders.of(this, viewModelFactory).get(TappingTestViewModel::class.java)
     }
 }

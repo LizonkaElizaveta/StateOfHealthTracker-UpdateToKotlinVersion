@@ -89,7 +89,7 @@ class PrintTestFragment : Fragment() {
         return ViewModelProviders.of(this, viewModelFactory).get(PrintTestViewModel::class.java)
     }
 
-    fun hideKeyboard(view: View) {
+    private fun hideKeyboard(view: View) {
         val inputMethodManager =
             activity!!.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager?
         inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
