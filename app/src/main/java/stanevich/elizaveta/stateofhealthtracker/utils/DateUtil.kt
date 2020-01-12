@@ -19,7 +19,7 @@ fun getTime(time: Long): String {
 
 fun getDateTimeValue(date: String, time: String): Date {
     val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
-    return formatter.parse("$date $time")
+    return formatter.parse("$date $time") ?: Date()
 }
 
 fun getDetailDate(date: Long): String {

@@ -8,30 +8,31 @@ import stanevich.elizaveta.stateofhealthtracker.network.dto.*
 class DataStoreAPI : BaseDataSource() {
     suspend fun isAlive() = getResult { dataStoreService.isAlive() }
 
-    suspend fun sendUserData(sendWrapper: List<SendWrapper>) =
+    private suspend fun sendUserData(sendWrapper: List<SendWrapper>) =
         getResult { dataStoreService.sendUserData(sendWrapper) }
 
-    suspend fun sendMotionData(sendWrapper: List<SendWrapper>) =
+    private suspend fun sendMotionData(sendWrapper: List<SendWrapper>) =
         getResult { dataStoreService.sendMotionData(sendWrapper) }
 
-    suspend fun sendPrintTestData(sendWrapper: List<SendWrapper>) =
+    private suspend fun sendPrintTestData(sendWrapper: List<SendWrapper>) =
         getResult { dataStoreService.sendPrintTestData(sendWrapper) }
 
-    suspend fun sendSensorAngleData(sendWrapper: List<SendWrapper>) =
+    private suspend fun sendSensorAngleData(sendWrapper: List<SendWrapper>) =
         getResult { dataStoreService.sendSensorAngleData(sendWrapper) }
 
-    suspend fun sendTappingTestData(sendWrapper: List<SendWrapper>) =
+    private suspend fun sendTappingTestData(sendWrapper: List<SendWrapper>) =
         getResult { dataStoreService.sendTappingTestData(sendWrapper) }
 
-    suspend fun sendVoiceTestData(sendWrapper: List<SendWrapper>) =
+    private suspend fun sendVoiceTestData(sendWrapper: List<SendWrapper>) =
         getResult { dataStoreService.sendVoiceTestData(sendWrapper) }
 
-    suspend fun sendMissClick(sendWrapper: List<SendWrapper>) = {}
+    private suspend fun sendMissClickData(sendWrapper: List<SendWrapper>) =
+        getResult { dataStoreService.sendMissClickData(sendWrapper) }
 
     suspend fun sendByDto(sendWrapper: List<SendWrapper>): Result<DataResponse>? =
         when (sendWrapper[0].data) {
             is MissClickDto -> {
-                null
+                sendMissClickData(sendWrapper)
             }
             is TappingTestDto -> {
                 sendTappingTestData(sendWrapper)

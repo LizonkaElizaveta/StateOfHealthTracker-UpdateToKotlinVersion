@@ -39,5 +39,7 @@ interface DataStoreService {
     @POST("/voice_test")
     suspend fun sendVoiceTestData(@Body sendWrapper: List<SendWrapper>): Response<DataResponse>
 
+    @POST("/miss_click")
+    suspend fun sendMissClickData(@Body sendWrapper: List<SendWrapper>): Response<DataResponse>
 }
 
