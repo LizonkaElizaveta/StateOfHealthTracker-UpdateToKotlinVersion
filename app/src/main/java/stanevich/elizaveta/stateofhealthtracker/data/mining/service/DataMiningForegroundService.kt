@@ -175,6 +175,7 @@ class DataMiningForegroundService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
+        saveServiceEnabled(applicationContext, false)
         locationProvider.stopTrackingLocation()
     }
 
