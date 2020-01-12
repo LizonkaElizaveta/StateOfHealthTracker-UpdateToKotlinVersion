@@ -104,21 +104,22 @@ class NotificationsSettingsViewModel(
     }
 
     private fun notificationHandler() {
+        val notification = tonightNotification.value ?: Notifications()
         val diffFullDate =
-            abs(Calendar.getInstance().timeInMillis - tonightNotification.value!!.timestamp)
+            abs(Calendar.getInstance().timeInMillis - notification.timestamp)
         val c = Calendar.getInstance()
-        c.timeInMillis = tonightNotification.value!!.timestamp
+        c.timeInMillis = notification.timestamp
         val hour = c.get(Calendar.HOUR_OF_DAY)
         val minute = c.get(Calendar.MINUTE)
-        val repeatDays = tonightNotification.value!!.repeat
+        val repeatDays = notification.repeat
         val everyDaysRepeating = repeatDays.all { it }
         val noRepeatingDays = repeatDays.all { !it }
         val data = Data.Builder().putString(
             NotificationWorker.DATA_NOTIFICATION_CATEGORY,
-            tonightNotification.value?.category ?: ""
+            notification.category
         ).putInt(
             NotificationWorker.DATA_NOTIFICATION_ID,
-            tonightNotification.value?.id?.toInt() ?: Random().nextInt()
+            notification.id?.toInt() ?: Random().nextInt()
         ).build()
         when {
             noRepeatingDays -> {
