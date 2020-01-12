@@ -16,6 +16,7 @@ class RetrofitFactory {
             .add(
                 PolymorphicJsonAdapterFactory.of(DataWrapper::class.java, "SendWrapper")
                     .withSubtype(MotionDto::class.java, "MotionDto")
+                    .withSubtype(MissClickDto::class.java, "MissClickDto")
                     .withSubtype(UserDataDto::class.java, "UserDataDto")
                     .withSubtype(PrintTestDto::class.java, "PrintTestDto")
                     .withSubtype(SensorAngleDto::class.java, "SensorAngleDto")
