@@ -16,17 +16,16 @@ import java.io.File
 import java.io.FileInputStream
 
 data class SendWrapper(
-    val userId: Int = getUserId(),
+    val userId: Long = getUserId(),
     val timestamp: Long = 0,
     val testType: String? = null,
     val data: DataWrapper = DataWrapper()
 )
 
-fun getUserId(): Int = CoroutineScope(Dispatchers.IO).run {
+fun getUserId(): Long = CoroutineScope(Dispatchers.IO).run {
     return if (context != null) {
-        ProfileDatabase.getInstance(context!!).profileDatabaseDao.getLastUser()?.phone?.toInt()
-            ?: 0
-    } else 0
+        ProfileDatabase.getInstance(context!!).profileDatabaseDao.getLastUser()?.phone ?: 0L
+    } else 0L
 }
 
 fun convertToSendWrapper(dto: Any): SendWrapper {
