@@ -5,7 +5,6 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.EditText
 import androidx.databinding.DataBindingUtil
@@ -15,7 +14,6 @@ import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.DialogDateAndTimeBinding
 import stanevich.elizaveta.stateofhealthtracker.home.database.States
 import stanevich.elizaveta.stateofhealthtracker.utils.getDate
-import stanevich.elizaveta.stateofhealthtracker.utils.getDateTimeValue
 import stanevich.elizaveta.stateofhealthtracker.utils.getTime
 import java.util.*
 
@@ -65,8 +63,6 @@ class DateAndTimeDialog(private val stateOfHealth: MutableLiveData<States?>) : D
             .setTitle(R.string.dialogHeadline_choseDateAndTime)
             .setPositiveButton(R.string.btn_ok) { _, _ ->
                 val states = stateOfHealth.value!!
-                states.date = getDateTimeValue(etDate.text.toString(), etTime.text.toString()).time
-                Log.d("mLog", states.toString())
                 stateOfHealth.postValue(states)
                 dialog!!.dismiss()
             }

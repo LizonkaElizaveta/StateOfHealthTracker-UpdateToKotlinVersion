@@ -65,6 +65,7 @@ class StatesViewModel(
             updatedStateOfHealth.observeForever {
                 Log.d("mLog", "Updated ${updatedStateOfHealth.value}")
                 uiScope.launch {
+                    updatedStateOfHealth.value!!.date = Calendar.getInstance().timeInMillis
                     updateStates(updatedStateOfHealth.value!!)
                 }
             }
@@ -99,6 +100,7 @@ class StatesViewModel(
         uiScope.launch {
             updatedStateOfHealth.value = getStates()
             updatedStateOfHealth.value!!.dyskinesia = Calendar.getInstance().timeInMillis
+            updatedStateOfHealth.value!!.date = Calendar.getInstance().timeInMillis
             _showMedDialogEvent.value = true
         }
     }
@@ -107,6 +109,7 @@ class StatesViewModel(
         uiScope.launch {
             updatedStateOfHealth.value = getStates()
             updatedStateOfHealth.value!!.pill = Calendar.getInstance().timeInMillis
+            updatedStateOfHealth.value!!.date = Calendar.getInstance().timeInMillis
             _showMedDialogEvent.value = true
         }
     }
