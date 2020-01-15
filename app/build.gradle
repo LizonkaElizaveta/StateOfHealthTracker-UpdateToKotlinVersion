@@ -27,7 +27,8 @@ android {
         }
         debug {
             buildConfigField 'String', 'API_DEVELOPER_TOKEN', "\"YWRtaW46cGFzc3dvcmQ=\""
-            buildConfigField 'String', 'API_ENDPOINT', "\"http://192.168.25.28:9090\""
+            buildConfigField 'String', 'API_ENDPOINT', "\"http://13.56.30.231:19090/\""
+//            buildConfigField 'String', 'API_ENDPOINT', "\"http://192.168.25.28:9090/\""
         }
     }
 

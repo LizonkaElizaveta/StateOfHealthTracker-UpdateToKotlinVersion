@@ -29,6 +29,7 @@ class DataMiningForegroundService : Service() {
     companion object {
         const val LOCATION_PERMISSIONS_KEY = "LOCATION_PERMISSIONS_KEY"
         private const val SERVICE_ENABLED = "SERVICE_ENABLED"
+        private const val WHEN_SERVICE_ENABLED = "WHEN_SERVICE_ENABLED"
 
         const val WORK_NAME_DEFAULT = "Data Mining Foreground Service Worker"
         const val WORK_DELAY_MINUTES = 30L
@@ -41,14 +42,25 @@ class DataMiningForegroundService : Service() {
                 .getSharedPreferences(SERVICE_ENABLED, Context.MODE_PRIVATE)
                 .edit()
                 .putBoolean(SERVICE_ENABLED, enabled)
+                .putLong(WHEN_SERVICE_ENABLED, Calendar.getInstance().timeInMillis)
                 .apply()
         }
 
         fun isServiceEnabled(context: Context): Boolean {
-            return context
+            val sharedPreferences = context
                 .applicationContext
                 .getSharedPreferences(SERVICE_ENABLED, Context.MODE_PRIVATE)
+            val isRunning = sharedPreferences
                 .getBoolean(SERVICE_ENABLED, false)
+
+            val whenEnabled =
+                sharedPreferences.getLong(WHEN_SERVICE_ENABLED, Calendar.getInstance().timeInMillis)
+            val enabledCalendar = Calendar.getInstance()
+            enabledCalendar.timeInMillis = whenEnabled
+            val nowCalendar = Calendar.getInstance()
+            nowCalendar.add(Calendar.HOUR_OF_DAY, 2)
+
+            return isRunning && nowCalendar.after(enabledCalendar)
         }
     }
 
@@ -114,7 +126,7 @@ class DataMiningForegroundService : Service() {
                         deletePendingIntent
                     )
                     .build()
-            startForeground(1224, notification)
+            startForeground(122451, notification)
         }
     }
 
