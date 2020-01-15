@@ -51,7 +51,11 @@ class TappingTestViewModel(
             }
         }
 
-        var seconds = INITIAL_SECONDS - 1
+        var seconds = INITIAL_SECONDS
+        uiScope.run {
+            time.postValue(secondsToString(seconds))
+        }
+
         return timer(period = 1000) {
 
             uiScope.run {
@@ -69,7 +73,7 @@ class TappingTestViewModel(
                         taps.postValue(0)
                         TappingTestChangeHandDialog {
 
-                            seconds = INITIAL_SECONDS - 1
+                            seconds = INITIAL_SECONDS
                             uiScope.run {
                                 time.postValue(secondsToString(seconds))
                             }
