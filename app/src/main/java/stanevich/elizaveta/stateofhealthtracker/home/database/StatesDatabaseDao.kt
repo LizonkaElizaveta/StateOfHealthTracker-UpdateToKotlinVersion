@@ -21,12 +21,18 @@ interface StatesDatabaseDao : NetworkDao<States> {
 
     @Transaction
     fun upsert(state: States) {
-        insert(state)
-        update(state)
+        if (findById(state.id) == null) {
+            insert(state)
+        } else {
+            update(state)
+        }
     }
 
     @Query("SELECT * from states_table WHERE date =:date")
     fun findByDate(date: Date): States?
+
+    @Query("SELECT * from states_table WHERE id =:id")
+    fun findById(id: Long): States?
 
     @Query("SELECT * from states_table")
     override fun findAll(): List<States>
