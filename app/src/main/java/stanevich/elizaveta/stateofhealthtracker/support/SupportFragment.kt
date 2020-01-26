@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentSupportBinding
+import stanevich.elizaveta.stateofhealthtracker.dialogs.PolicyDialog
 import stanevich.elizaveta.stateofhealthtracker.support.OsUtil.getDevice
 import stanevich.elizaveta.stateofhealthtracker.support.OsUtil.getDeviceManufacturer
 import stanevich.elizaveta.stateofhealthtracker.support.OsUtil.getDeviceName
@@ -36,7 +37,15 @@ class SupportFragment : Fragment() {
 
         binding.tvSupport.setOnClickListener {
             sendEmail()
+        }
 
+        binding.tvPolicy.setOnClickListener {
+            fragmentManager?.let { fragmentManager ->
+                PolicyDialog().show(
+                    fragmentManager,
+                    "PolicyDialog"
+                )
+            }
         }
 
         return binding.root
