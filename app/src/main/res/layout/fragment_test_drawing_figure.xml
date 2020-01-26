@@ -23,7 +23,7 @@
         <ImageView
                 android:id="@+id/img_figure"
                 app:layout_constraintVertical_bias="0.4"
-                android:src="@drawable/test_drawing_figure_circle"
+                android:src="@drawable/test_drawing_figure_star"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:background="@android:color/transparent"

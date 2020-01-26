@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestDrawingFigureBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.TestResultDialog
+import java.util.*
+import kotlin.random.Random
 
 class DrawingTestFragment : Fragment() {
 
@@ -27,9 +29,19 @@ class DrawingTestFragment : Fragment() {
                 false
             )
 
+        val application = requireNotNull(this.activity).application
+        val figureList = listOf(R.drawable.test_drawing_figure_circle, R.drawable.test_drawing_figure_heart,
+            R.drawable.test_drawing_figure_pentagon, R.drawable.test_drawing_figure_square,
+            R.drawable.test_drawing_figure_star, R.drawable.test_drawing_figure_triangle)
+
+        val figureShow =
+            figureList[Random(Calendar.getInstance().timeInMillis).nextInt(figureList.size)]
+
+        binding.imgFigure.setImageDrawable(application.getDrawable(figureShow))
+
         setupToolbar()
 
-        val application = requireNotNull(this.activity).application
+
 
         binding.lifecycleOwner = this
 
