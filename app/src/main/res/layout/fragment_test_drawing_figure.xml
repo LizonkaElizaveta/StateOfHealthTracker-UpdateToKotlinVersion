@@ -5,8 +5,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_drawing_figure">
+            android:background="@drawable/background_drawing_figure"
+            android:layout_height="match_parent">
+
+        <stanevich.elizaveta.stateofhealthtracker.test.games.drawing.fingerpaintview.FingerPaintImageView
+                android:id="@+id/finger"
+                android:background="#0000"
+                android:src="@drawable/background_drawing_figure"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:inEditMode="true" />
 
         <ImageView
                 android:id="@+id/img_figure"
@@ -19,8 +31,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
-
         <Button
                 android:id="@+id/btn_save"
                 style="@style/MyButtonStyle"
