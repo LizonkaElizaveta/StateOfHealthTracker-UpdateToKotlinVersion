@@ -22,7 +22,7 @@
         <TextView
                 android:id="@+id/tutorial_title_profile"
                 style="@style/ProfileTitleTextView"
-                android:text="Обведите фигуру!"
+                android:text="@string/text_drawing_figure_header"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
         <TextView
                 android:id="@+id/tutorial_description_profile"
                 style="@style/ProfileDescriptionTextView"
-                android:text="Обведите заданную на экране \nфигуру по ее контуру"
+                android:text="@string/text_drawing_test_description"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
