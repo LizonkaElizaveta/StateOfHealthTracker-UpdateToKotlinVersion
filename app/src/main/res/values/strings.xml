@@ -129,7 +129,7 @@
     <string name="text_tapping_test_description">Бейте пальцем по мишени \n в течении 10 секунд \n сперва левой рукой, затем правой</string>
     <string name="text_tapping_test_header">Бейте по мишени!</string>
     <string name="text_voice_emotion_header">Расскажи свое состояние!</string>
-    <string name="text_voice_emotion_description">Расскажите о своем самочувствии в течении 30 секунд</string>
+    <string name="text_voice_emotion_description">Расскажите о своем самочувствии в течении 30 секунд.\n Постарайтесь говорить громко и внятно!</string>
     <string name="start_test">Начать тест</string>
     <string name="user_id_message">Чтобы использовать данное приложение необходимо ввести номер телефона</string>
     <string name="Reminder">Напоминание:</string>
