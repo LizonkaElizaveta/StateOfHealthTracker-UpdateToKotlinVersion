@@ -22,6 +22,7 @@ class RetrofitFactory {
                     .withSubtype(SensorAngleDto::class.java, "SensorAngleDto")
                     .withSubtype(TappingTestDto::class.java, "TappingTestDto")
                     .withSubtype(VoiceTestDto::class.java, "VoiceTestDto")
+                    .withSubtype(ReadTestDto::class.java, "ReadTestDto")
             ).add(KotlinJsonAdapterFactory())
             .build()
 

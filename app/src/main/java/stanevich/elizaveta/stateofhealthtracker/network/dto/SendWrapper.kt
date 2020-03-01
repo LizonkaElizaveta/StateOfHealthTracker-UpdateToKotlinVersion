@@ -12,6 +12,7 @@ import stanevich.elizaveta.stateofhealthtracker.profile.database.ProfileDatabase
 import stanevich.elizaveta.stateofhealthtracker.test.games.print.model.PrintTest
 import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.model.TappingTest
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.EmotionalTest
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.model.ReadTest
 import java.io.File
 import java.io.FileInputStream
 
@@ -62,6 +63,14 @@ fun convertToSendWrapper(dto: Any): SendWrapper {
             )
             timestamp = dto.date
             testType = "voice_emotional"
+        }
+        is ReadTest -> {
+            data = ReadTestDto(
+                audioFile = convertFileToBase64(dto.path),
+                originalText = dto.originalText
+            )
+            timestamp = dto.date
+            testType = "read"
         }
         is Rotation -> {
             data = SensorAngleDto(

@@ -26,6 +26,9 @@ class DataStoreAPI : BaseDataSource() {
     private suspend fun sendVoiceTestData(sendWrapper: List<SendWrapper>) =
         getResult { dataStoreService.sendVoiceTestData(sendWrapper) }
 
+    private suspend fun sendReadTestData(sendWrapper: List<SendWrapper>) =
+        getResult { dataStoreService.sendReadTestData(sendWrapper) }
+
     private suspend fun sendMissClickData(sendWrapper: List<SendWrapper>) =
         getResult { dataStoreService.sendMissClickData(sendWrapper) }
 
@@ -51,6 +54,9 @@ class DataStoreAPI : BaseDataSource() {
             }
             is VoiceTestDto -> {
                 sendVoiceTestData(sendWrapper)
+            }
+            is ReadTestDto -> {
+                sendReadTestData(sendWrapper)
             }
             else -> {
                 null
