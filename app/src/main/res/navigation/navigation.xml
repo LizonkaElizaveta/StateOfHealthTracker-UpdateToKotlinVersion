@@ -136,7 +136,7 @@
     <fragment
             android:id="@+id/readIntroFragment"
             android:name="stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.ReadIntroFragment"
-            android:label="ReadIntroFragment" >
+            android:label="@string/menu_introduction">
         <action
                 android:id="@+id/action_readIntroFragment_to_readTestFragment"
                 app:destination="@id/readTestFragment" />
