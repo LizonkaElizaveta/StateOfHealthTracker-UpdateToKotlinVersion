@@ -16,6 +16,9 @@ data class ReadTest (
     @ColumnInfo(name = "pathToFile")
     var path: String = "",
 
+    @ColumnInfo(name = "state")
+    var state: Double = 0.0,
+
     @ColumnInfo(name = "date")
     var date: Long = Calendar.getInstance().timeInMillis
 )

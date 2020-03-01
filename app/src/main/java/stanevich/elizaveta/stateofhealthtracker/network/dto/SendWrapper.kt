@@ -67,7 +67,8 @@ fun convertToSendWrapper(dto: Any): SendWrapper {
         is ReadTest -> {
             data = ReadTestDto(
                 audioFile = convertFileToBase64(dto.path),
-                originalText = dto.originalText
+                originalText = dto.originalText,
+                state = dto.state
             )
             timestamp = dto.date
             testType = "read"
