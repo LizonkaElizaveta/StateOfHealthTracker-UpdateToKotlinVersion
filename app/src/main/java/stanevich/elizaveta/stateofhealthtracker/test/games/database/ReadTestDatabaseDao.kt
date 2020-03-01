@@ -1,6 +1,9 @@
 package stanevich.elizaveta.stateofhealthtracker.test.games.database
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import stanevich.elizaveta.stateofhealthtracker.network.api.dataStore.NetworkDao
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.model.ReadTest
 
