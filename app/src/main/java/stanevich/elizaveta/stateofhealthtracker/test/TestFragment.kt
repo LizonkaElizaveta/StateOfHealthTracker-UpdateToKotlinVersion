@@ -48,6 +48,8 @@ class TestFragment : Fragment() {
                     .navigate(R.id.action_nav_test_to_emotionalIntroFragment)
                 "draw" -> Navigation.findNavController(binding.testList)
                     .navigate(R.id.action_nav_test_to_drawingIntroFragment)
+                "read" -> Navigation.findNavController(binding.testList)
+                    .navigate(R.id.action_nav_test_to_voiceTextIntroFragment)
                 else -> Toast.makeText(application, "В разработке", Toast.LENGTH_SHORT).show()
             }
 
