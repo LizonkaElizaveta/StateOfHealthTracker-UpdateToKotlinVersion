@@ -6,8 +6,8 @@
 
     <data>
         <variable
-                name="voiceTextTest"
-                type="stanevich.elizaveta.stateofhealthtracker.test.games.voice.text.viewmodel.VoiceTextTestViewModel" />
+                name="readTest"
+                type="stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.viewmodel.ReadTestViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,8 +42,8 @@
                 android:theme="@style/ProgressBarPurple"
                 android:rotation="-90"
                 android:indeterminate="false"
-                android:max="@{voiceTextTest.maxValueProgressBar}"
-                android:progress="@{voiceTextTest.valueProgressBar}"/>
+                android:max="@{readTest.maxValueProgressBar}"
+                android:progress="@{readTest.valueProgressBar}"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btn_voice"

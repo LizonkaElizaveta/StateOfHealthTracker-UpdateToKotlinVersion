@@ -47,8 +47,8 @@
                 android:id="@+id/action_nav_test_to_emotionalIntroFragment"
                 app:destination="@id/emotionalIntroFragment" />
         <action
-                android:id="@+id/action_nav_test_to_voiceTextIntroFragment"
-                app:destination="@id/voiceTextIntroFragment" />
+                android:id="@+id/action_nav_test_to_readIntroFragment"
+                app:destination="@id/readIntroFragment" />
     </fragment>
     <fragment
             android:id="@+id/notificationSettingsFragment"
@@ -134,19 +134,19 @@
                 app:destination="@id/emotionalTestFragment" />
     </fragment>
     <fragment
-            android:id="@+id/voiceTextIntroFragment"
-            android:name="stanevich.elizaveta.stateofhealthtracker.test.games.voice.text.VoiceTextIntroFragment"
-            android:label="VoiceTextIntroFragment" >
+            android:id="@+id/readIntroFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.ReadIntroFragment"
+            android:label="ReadIntroFragment" >
         <action
-                android:id="@+id/action_voiceTextIntroFragment_to_voiceTextTestFragment"
-                app:destination="@id/voiceTextTestFragment" />
+                android:id="@+id/action_readIntroFragment_to_readTestFragment"
+                app:destination="@id/readTestFragment" />
     </fragment>
     <fragment
-            android:id="@+id/voiceTextTestFragment"
-            android:name="stanevich.elizaveta.stateofhealthtracker.test.games.voice.text.VoiceTextTestFragment"
-            android:label="VoiceTextTestFragment" >
+            android:id="@+id/readTestFragment"
+            android:name="stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.ReadTestFragment"
+            android:label="ReadTestFragment" >
         <action
-                android:id="@+id/action_voiceTextTestFragment_to_nav_test"
+                android:id="@+id/action_readTestFragment_to_nav_test"
                 app:destination="@id/nav_test" />
     </fragment>
 </navigation>

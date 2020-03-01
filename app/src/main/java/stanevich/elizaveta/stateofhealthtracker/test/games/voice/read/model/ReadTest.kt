@@ -1,12 +1,12 @@
-package stanevich.elizaveta.stateofhealthtracker.test.games.voice.text.model
+package stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
-@Entity(tableName = "voice_text_test_table")
-data class VoiceTextTest (
+@Entity(tableName = "read_test_table")
+data class ReadTest (
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
 

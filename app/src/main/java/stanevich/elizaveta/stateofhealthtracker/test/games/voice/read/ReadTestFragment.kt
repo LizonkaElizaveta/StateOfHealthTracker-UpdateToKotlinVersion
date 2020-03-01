@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.test.games.voice.text
+package stanevich.elizaveta.stateofhealthtracker.test.games.voice.read
 
 import android.content.Intent
 import android.graphics.Color
@@ -13,26 +13,20 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.coroutines.*
-import okhttp3.Dispatcher
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestPrintBinding
-import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestVoiceTextBinding
+import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestReadBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.ConfirmationSaveDataDialog
-import stanevich.elizaveta.stateofhealthtracker.dialogs.TestResultDialog
 import stanevich.elizaveta.stateofhealthtracker.test.games.database.TestingDatabase
-import stanevich.elizaveta.stateofhealthtracker.test.games.print.viewmodel.PrintTestViewModel
-import stanevich.elizaveta.stateofhealthtracker.test.games.print.viewmodel.PrintTestViewModelFactory
-import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.viewmodel.EmotionalTestViewModel
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.RecordPermissionRequire
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.RecordPermissionsActivity
-import stanevich.elizaveta.stateofhealthtracker.test.games.voice.text.model.VoiceTextTest
-import stanevich.elizaveta.stateofhealthtracker.test.games.voice.text.viewmodel.VoiceTextTestViewModel
-import stanevich.elizaveta.stateofhealthtracker.test.games.voice.text.viewmodel.VoiceTextTestViewModelFactory
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.model.ReadTest
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.viewmodel.ReadTestViewModel
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.viewmodel.ReadTestViewModelFactory
 import java.util.*
 import kotlin.random.Random
 
 
-class VoiceTextTestFragment : Fragment() {
+class ReadTestFragment : Fragment() {
     private var viewModelJob = Job()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -41,7 +35,7 @@ class VoiceTextTestFragment : Fragment() {
 
     private lateinit var permissionRequire: RecordPermissionRequire
 
-    private lateinit var voiceTextTestViewModel: VoiceTextTestViewModel
+    private lateinit var readTestViewModel: ReadTestViewModel
 
     private lateinit var originalText: String
 
@@ -52,19 +46,19 @@ class VoiceTextTestFragment : Fragment() {
     ): View? {
         setupToolbar()
 
-        val binding: FragmentTestVoiceTextBinding =
+        val binding: FragmentTestReadBinding =
             DataBindingUtil.inflate(
                 inflater,
-                R.layout.fragment_test_voice_text,
+                R.layout.fragment_test_read,
                 container,
                 false
             )
 
-        voiceTextTestViewModel = getVoiceTextTestViewModel()
+        readTestViewModel = getReadTestViewModel()
 
         binding.lifecycleOwner = this
 
-        binding.voiceTextTest = voiceTextTestViewModel
+        binding.readTest = readTestViewModel
 
         navigation = NavHostFragment.findNavController(this)
 
@@ -92,7 +86,7 @@ class VoiceTextTestFragment : Fragment() {
 
     private fun onClickBtnVoice() {
         if (permissionRequire.checkAllPermissions()) {
-            voiceTextTestViewModel.voiceBtnClick()
+            readTestViewModel.voiceBtnClick()
         } else {
             startActivity(Intent(activity, RecordPermissionsActivity::class.java))
         }
@@ -104,18 +98,18 @@ class VoiceTextTestFragment : Fragment() {
         toolbar?.title = ""
     }
 
-    private fun getVoiceTextTestViewModel():VoiceTextTestViewModel{
+    private fun getReadTestViewModel():ReadTestViewModel{
         val application = requireNotNull(this.activity).application
 
-        val voiceTextTestDatabase =
-            TestingDatabase.getInstance(application).voiceTextTestDatabaseDao
+        val readTestDatabase =
+            TestingDatabase.getInstance(application).readTestDatabaseDao
 
-        val viewModelFactory = VoiceTextTestViewModelFactory(application) {path ->
+        val viewModelFactory = ReadTestViewModelFactory(application) { path ->
 
             uiScope.launch {
                 withContext(Dispatchers.IO) {
-                    voiceTextTestDatabase.insert(
-                        VoiceTextTest(
+                    readTestDatabase.insert(
+                        ReadTest(
                             originalText = originalText,
                             path = path
                         )
@@ -125,12 +119,12 @@ class VoiceTextTestFragment : Fragment() {
 
             fragmentManager?.let {
                 uiScope.launch {
-                    navigation.navigate(R.id.action_voiceTextTestFragment_to_nav_test)
+                    navigation.navigate(R.id.action_readTestFragment_to_nav_test)
                 }
                 ConfirmationSaveDataDialog().show(it, "ThanksDialog")
             }
         }
 
-        return ViewModelProviders.of(this, viewModelFactory).get(VoiceTextTestViewModel::class.java)
+        return ViewModelProviders.of(this, viewModelFactory).get(ReadTestViewModel::class.java)
     }
 }

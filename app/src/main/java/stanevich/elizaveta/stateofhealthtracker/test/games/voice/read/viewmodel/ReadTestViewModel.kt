@@ -1,4 +1,4 @@
-package stanevich.elizaveta.stateofhealthtracker.test.games.voice.text.viewmodel
+package stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -10,14 +10,14 @@ import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.Audio
 import java.util.*
 import kotlin.concurrent.timer
 
-class VoiceTextTestViewModel(
+class ReadTestViewModel(
     application: Application,
     val onFinish: (path: String) -> Unit
 ) : AndroidViewModel(application) {
 
     companion object {
         const val INITIAL_SECONDS = 0
-        const val MAX_SECONDS = 45
+        const val MAX_SECONDS = 30
     }
 
     private var viewModelJob = Job()

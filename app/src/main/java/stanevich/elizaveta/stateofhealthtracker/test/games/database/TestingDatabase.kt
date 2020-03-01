@@ -8,20 +8,21 @@ import androidx.room.TypeConverters
 import stanevich.elizaveta.stateofhealthtracker.test.games.print.model.PrintTest
 import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.model.TappingTest
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.EmotionalTest
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.model.ReadTest
 import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 import stanevich.elizaveta.stateofhealthtracker.utils.DoubleArrayConverters
 
 
-@Database(entities = [TappingTest::class, PrintTest::class, EmotionalTest::class], version = 4, exportSchema = false)
+@Database(entities = [TappingTest::class, PrintTest::class, EmotionalTest::class, ReadTest::class], version = 5, exportSchema = false)
 @TypeConverters(DateConverters::class, DoubleArrayConverters::class)
 abstract class TestingDatabase : RoomDatabase() {
 
     abstract val tappingTestDatabaseDao: TappingTestDatabaseDao
     abstract val printTestDatabaseDao: PrintTestDatabaseDao
     abstract val emotionalTestDatabaseDao: EmotionalTestDatabaseDao
-    abstract val voiceTextTestDatabaseDao: VoiceTextTestDatabaseDao
+    abstract val readTestDatabaseDao: ReadTestDatabaseDao
 
-    fun getAllNetworkDao() = listOf(tappingTestDatabaseDao, printTestDatabaseDao, emotionalTestDatabaseDao, voiceTextTestDatabaseDao)
+    fun getAllNetworkDao() = listOf(tappingTestDatabaseDao, printTestDatabaseDao, emotionalTestDatabaseDao, readTestDatabaseDao)
 
     companion object {
 
