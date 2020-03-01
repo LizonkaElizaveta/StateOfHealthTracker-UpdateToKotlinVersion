@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import stanevich.elizaveta.stateofhealthtracker.R
-import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestPrintIntroBinding
+import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestReadIntroBinding
 
 class ReadIntroFragment : Fragment() {
     override fun onCreateView(
@@ -17,7 +17,7 @@ class ReadIntroFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: FragmentTestPrintIntroBinding =
+        val binding: FragmentTestReadIntroBinding =
             DataBindingUtil.inflate(
                 inflater,
                 R.layout.fragment_test_read_intro,
