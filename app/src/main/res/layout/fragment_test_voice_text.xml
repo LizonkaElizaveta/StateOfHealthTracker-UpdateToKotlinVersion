@@ -4,7 +4,11 @@
 
         xmlns:tools="http://schemas.android.com/tools">
 
-
+    <data>
+        <variable
+                name="voiceTextTest"
+                type="stanevich.elizaveta.stateofhealthtracker.test.games.voice.text.viewmodel.VoiceTextTestViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -38,9 +42,8 @@
                 android:theme="@style/ProgressBarPurple"
                 android:rotation="-90"
                 android:indeterminate="false"
-                android:max="100"
-                android:progress="50"/>
-
+                android:max="@{voiceTextTest.maxValueProgressBar}"
+                android:progress="@{voiceTextTest.valueProgressBar}"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btn_voice"

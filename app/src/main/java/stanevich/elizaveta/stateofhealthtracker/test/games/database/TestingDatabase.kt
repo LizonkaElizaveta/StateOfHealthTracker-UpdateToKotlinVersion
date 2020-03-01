@@ -19,8 +19,9 @@ abstract class TestingDatabase : RoomDatabase() {
     abstract val tappingTestDatabaseDao: TappingTestDatabaseDao
     abstract val printTestDatabaseDao: PrintTestDatabaseDao
     abstract val emotionalTestDatabaseDao: EmotionalTestDatabaseDao
+    abstract val voiceTextTestDatabaseDao: VoiceTextTestDatabaseDao
 
-    fun getAllNetworkDao() = listOf(tappingTestDatabaseDao, printTestDatabaseDao, emotionalTestDatabaseDao)
+    fun getAllNetworkDao() = listOf(tappingTestDatabaseDao, printTestDatabaseDao, emotionalTestDatabaseDao, voiceTextTestDatabaseDao)
 
     companion object {
 
