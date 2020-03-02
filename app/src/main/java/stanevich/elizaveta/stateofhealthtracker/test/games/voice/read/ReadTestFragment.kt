@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -16,12 +17,13 @@ import kotlinx.coroutines.*
 import stanevich.elizaveta.stateofhealthtracker.R
 import stanevich.elizaveta.stateofhealthtracker.databinding.FragmentTestReadBinding
 import stanevich.elizaveta.stateofhealthtracker.dialogs.ConfirmationSaveDataDialog
+import stanevich.elizaveta.stateofhealthtracker.dialogs.StateDialog
 import stanevich.elizaveta.stateofhealthtracker.test.games.database.TestingDatabase
-import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.RecordPermissionRequire
-import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.RecordPermissionsActivity
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.model.ReadTest
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.viewmodel.ReadTestViewModel
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.viewmodel.ReadTestViewModelFactory
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.RecordPermissionRequire
+import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.RecordPermissionsActivity
 import java.util.*
 import kotlin.random.Random
 
@@ -38,6 +40,7 @@ class ReadTestFragment : Fragment() {
     private lateinit var readTestViewModel: ReadTestViewModel
 
     private lateinit var originalText: String
+    private var emotion = MutableLiveData<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,6 +56,11 @@ class ReadTestFragment : Fragment() {
                 container,
                 false
             )
+
+        fragmentManager?.let {
+            emotion.value = ""
+            StateDialog(emotion).show(it, "StateDialog")
+        }
 
         readTestViewModel = getReadTestViewModel()
 
@@ -111,7 +119,8 @@ class ReadTestFragment : Fragment() {
                     readTestDatabase.insert(
                         ReadTest(
                             originalText = originalText,
-                            path = path
+                            path = path,
+                            emotion = emotion.value!!
                         )
                     )
                 }

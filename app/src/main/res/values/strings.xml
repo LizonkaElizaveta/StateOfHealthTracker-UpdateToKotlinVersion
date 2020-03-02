@@ -168,5 +168,12 @@
     <string name="text_drawing_test_description">Обведите заданную на экране\nфигуру. Старайтесь не касаться границ фигуры</string>
     <string name="text_drawing_figure_header">Обведите фигуру!</string>
 
-
+    <string name="dialog_emotion_title">Выберите свое состояние</string>
+    <string name="emotion_state_1">Радостное</string>
+    <string name="emotion_state_2">Грустное</string>
+    <string name="emotion_state_3">Гневное</string>
+    <string name="emotion_state_4">Напряженное</string>
+    <string name="emotion_state_5">Сонное</string>
+    <string name="emotion_state_6">Спокойное</string>
+    <string name="emotion_state_7">Беспокойное</string>
 </resources>

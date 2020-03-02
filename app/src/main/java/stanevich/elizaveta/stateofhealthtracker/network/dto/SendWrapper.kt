@@ -68,7 +68,7 @@ fun convertToSendWrapper(dto: Any): SendWrapper {
             data = ReadTestDto(
                 audioFile = convertFileToBase64(dto.path),
                 originalText = dto.originalText,
-                state = dto.state
+                state = dto.emotionToDouble()
             )
             timestamp = dto.date
             testType = "read"

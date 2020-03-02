@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <RadioGroup
+                android:id="@+id/radioCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="40dp"
+                android:orientation="vertical"
+                android:overScrollMode="never">
+
+            <RadioButton
+                    android:id="@+id/emotion_state_1"
+                    style="@style/MyRadioButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@android:color/transparent"
+                    android:checked="true"
+                    android:layoutDirection="rtl"
+                    android:overScrollMode="never"
+                    android:text="@string/emotion_state_1"
+                    android:textSize="18sp" />
+
+            <RadioButton
+                    android:id="@+id/emotion_state_2"
+                    style="@style/MyRadioButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/margin_material_8"
+                    android:background="@android:color/transparent"
+                    android:layoutDirection="rtl"
+                    android:overScrollMode="never"
+                    android:text="@string/emotion_state_2"
+                    android:textSize="18sp" />
+
+            <RadioButton
+                    android:id="@+id/emotion_state_3"
+                    style="@style/MyRadioButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/margin_material_8"
+                    android:background="@android:color/transparent"
+                    android:layoutDirection="rtl"
+                    android:overScrollMode="never"
+                    android:text="@string/emotion_state_3"
+                    android:textSize="18sp" />
+
+            <RadioButton
+                    android:id="@+id/emotion_state_4"
+                    style="@style/MyRadioButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/margin_material_8"
+                    android:background="@android:color/transparent"
+                    android:layoutDirection="rtl"
+                    android:overScrollMode="never"
+                    android:text="@string/emotion_state_4"
+                    android:textSize="18sp" />
+
+            <RadioButton
+                    android:id="@+id/emotion_state_5"
+                    style="@style/MyRadioButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/margin_material_8"
+                    android:background="@android:color/transparent"
+                    android:layoutDirection="rtl"
+                    android:overScrollMode="never"
+                    android:text="@string/emotion_state_5"
+                    android:textSize="18sp" />
+
+            <RadioButton
+                    android:id="@+id/emotion_state_6"
+                    style="@style/MyRadioButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/margin_material_8"
+                    android:background="@android:color/transparent"
+                    android:layoutDirection="rtl"
+                    android:overScrollMode="never"
+                    android:text="@string/emotion_state_6"
+                    android:textSize="18sp" />
+
+            <RadioButton
+                    android:id="@+id/emotion_state_7"
+                    style="@style/MyRadioButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/margin_material_8"
+                    android:background="@android:color/transparent"
+                    android:layoutDirection="rtl"
+                    android:overScrollMode="never"
+                    android:text="@string/emotion_state_7"
+                    android:textSize="18sp" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+</layout>
