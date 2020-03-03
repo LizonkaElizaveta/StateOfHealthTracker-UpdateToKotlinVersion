@@ -3,11 +3,14 @@ package stanevich.elizaveta.stateofhealthtracker.dialogs
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RadioButton
+import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.MutableLiveData
 import stanevich.elizaveta.stateofhealthtracker.R
@@ -44,9 +47,9 @@ class StateDialog(
             val radioButton =
                 when (i) {
                     0 -> {
-                        getRadioBtn(i, states()[i], true)
+                        getMyRadioBtn(i, states()[i], true)
                     }
-                    else -> getRadioBtn(i, states()[i])
+                    else -> getMyRadioBtn(i, states()[i])
                 }
             binding.radioCategory.addView(radioButton)
         }
@@ -68,16 +71,27 @@ class StateDialog(
         return builder.create()
     }
 
-    private fun getRadioBtn(id: Int, text: String, default: Boolean = false): RadioButton {
+    private fun getMyRadioBtn(id: Int, text: String, default: Boolean = false): RadioButton {
         val radioButton = RadioButton(this.context)
-        radioButton.layoutParams = LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        radioButton.id = id
-        radioButton.setButtonDrawable(R.drawable.radio_btn_state)
-        radioButton.text = text
-        radioButton.isChecked = default
+        radioButton.apply {
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            this.id = id
+            setButtonDrawable(R.drawable.selector_dialog)
+            this.text = text
+            isChecked = default
+            overScrollMode = DrawerLayout.OVER_SCROLL_NEVER
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
+            height = TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                40f,
+                context.resources.displayMetrics
+            ).toInt()
+            setBackgroundResource(R.color.transparent)
+        }
+        ViewCompat.setLayoutDirection(radioButton, ViewCompat.LAYOUT_DIRECTION_RTL)
         return radioButton
     }
 }

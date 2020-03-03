@@ -30,7 +30,6 @@ class ReadTestViewModel(
 
     private lateinit var audioRecord: AudioRecording
 
-
     private fun initTimer():Timer {
         var seconds = INITIAL_SECONDS + 1
         return timer(period = 1000) {
