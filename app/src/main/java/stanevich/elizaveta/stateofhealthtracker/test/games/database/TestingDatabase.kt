@@ -13,7 +13,11 @@ import stanevich.elizaveta.stateofhealthtracker.utils.DateConverters
 import stanevich.elizaveta.stateofhealthtracker.utils.DoubleArrayConverters
 
 
-@Database(entities = [TappingTest::class, PrintTest::class, EmotionalTest::class, ReadTest::class], version = 5, exportSchema = false)
+@Database(
+    entities = [TappingTest::class, PrintTest::class, EmotionalTest::class, ReadTest::class],
+    version = 6,
+    exportSchema = false
+)
 @TypeConverters(DateConverters::class, DoubleArrayConverters::class)
 abstract class TestingDatabase : RoomDatabase() {
 
