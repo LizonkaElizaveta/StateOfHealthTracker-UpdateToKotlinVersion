@@ -76,6 +76,7 @@
     <string name="text_test_draw_figure">Обведите фигуру</string>
     <string name="text_test_burst_ball">Лопните воздушный шар</string>
     <string name="text_test_printing">Перепечатайте текст</string>
+    <string name="text_test_reading">Прочитайте текст</string>
     <string name="text_test_mole">Игра в крота</string>
     <string name="text_test_target">Тест на постукивание</string>
     <string name="text_test_stars">Соедините звёзды в созвездие</string>
@@ -110,12 +111,15 @@
     <string name="profile_text_confidential_contact_data">Ваши контактные данные являются конфиденциальной информацией и доступны для просмотра только вашему лечащему врачу.</string>
     <string name="text_test_print">Белеет парус одинокий \nВ тумане моря голубом!.. \nЧто ищет он в стране далекой? \nЧто кинул он в краю родном?.. \n\nИграют волны — ветер свищет, \nИ мачта гнется и скрыпит… \nУвы! он счастия не ищет \nИ не от счастия бежит!</string>
 
-    <string name="list_poems_one">От торопливости нет спасу,\nПожалуй, в рамках всей страны:\nКак много тех, кто хочет сразу\nНадеть рубашку и штаны!</string>
-    <string name="list_poems_two">Признаюсь честно, глазом не моргнув,\nЧто попадаю иногда впросак:\nПонять идеи Бога я ещё могу,\nА вот запросы женщины - никак!</string>
-    <string name="list_poems_three">Любит зебра по лужайке\nВ полосатой бегать майке.\nЗебра даже за конфетку\nНе наденет майку в клетку.</string>
-    <string name="list_poems_four">Бывает даже в глупости резон,\nА мудрость ошибается в итоге,\nИ тот, кто видит даль сквозь горизонт,\nНе может посмотреть себе под ноги!</string>
-    <string name="list_poems_five">В те дни, когда уж нет надежд,\nА есть одно воспоминанье,\nВеселье чуждо наших вежд,\nИ легче на груди страданье.</string>
-    <string name="list_poems_six">Не стоит себя мыслями грузить,\nВо всем до понимания доходить,\nУменье жизнью насладиться\nВсегда любому пригодится.</string>
+    <string-array name="poems">
+        <item>От торопливости нет спасу,\nПожалуй, в рамках всей страны:\nКак много тех, кто хочет сразу\nНадеть рубашку и штаны!</item>
+        <item>Признаюсь честно, глазом не моргнув,\nЧто попадаю иногда впросак:\nПонять идеи Бога я ещё могу,\nА вот запросы женщины - никак!</item>
+        <item>Любит зебра по лужайке\nВ полосатой бегать майке.\nЗебра даже за конфетку\nНе наденет майку в клетку.</item>
+        <item>Бывает даже в глупости резон,\nА мудрость ошибается в итоге,\nИ тот, кто видит даль сквозь горизонт,\nНе может посмотреть себе под ноги!</item>
+        <item>В те дни, когда уж нет надежд,\nА есть одно воспоминанье,\nВеселье чуждо наших вежд,\nИ легче на груди страданье.</item>
+        <item>Не стоит себя мыслями грузить,\nВо всем до понимания доходить,\nУменье жизнью насладиться\nВсегда любому пригодится.</item>
+    </string-array>
+
     <string name="data_mining_activated">Сбор данных активирован</string>
     <string name="data_mining_is_collected">В данный момент мы собираем статистику о скорости передвижении</string>
     <string name="data_mining_stop_collect">Остановить сбор статистики</string>
@@ -129,7 +133,9 @@
     <string name="text_tapping_test_description">Бейте пальцем по мишени \n в течении 10 секунд \n сперва левой рукой, затем правой</string>
     <string name="text_tapping_test_header">Бейте по мишени!</string>
     <string name="text_voice_emotion_header">Расскажи свое состояние!</string>
-    <string name="text_voice_emotion_description">Расскажите о своем самочувствии в течении 30 секунд</string>
+    <string name="text_voice_emotion_description">Расскажите о своем самочувствии в течении 30 секунд.\n Постарайтесь говорить громко и внятно!</string>
+    <string name="text_voice_text_header">Прочитайте текст!</string>
+    <string name="text_voice_text_description">Прочитайте текст с экрана.\n Постарайтесь говорить громко и внятно!</string>
     <string name="start_test">Начать тест</string>
     <string name="user_id_message">Чтобы использовать данное приложение необходимо ввести номер телефона</string>
     <string name="Reminder">Напоминание:</string>
@@ -165,5 +171,14 @@
     <string name="text_drawing_test_description">Обведите заданную на экране\nфигуру. Старайтесь не касаться границ фигуры</string>
     <string name="text_drawing_figure_header">Обведите фигуру!</string>
 
-
+    <string name="title_emotion_state">Эмоциональное состояние</string>
+    <string-array name="emotion_state">
+        <item>Радостное</item>
+        <item>Грустное</item>
+        <item>Гневное</item>
+        <item>Напряженное</item>
+        <item>Сонное</item>
+        <item>Спокойное</item>
+        <item>Беспокойное</item>
+    </string-array>
 </resources>
