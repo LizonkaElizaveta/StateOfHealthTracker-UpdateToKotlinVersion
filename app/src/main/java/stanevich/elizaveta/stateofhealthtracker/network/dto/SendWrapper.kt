@@ -58,8 +58,7 @@ fun convertToSendWrapper(dto: Any): SendWrapper {
         }
         is EmotionalTest -> {
             data = VoiceTestDto(
-                audioFile = convertFileToBase64(dto.path),
-                amp = dto.amplitudes
+                audioFile = convertFileToBase64(dto.path)
             )
             timestamp = dto.date
             testType = "voice_emotional"

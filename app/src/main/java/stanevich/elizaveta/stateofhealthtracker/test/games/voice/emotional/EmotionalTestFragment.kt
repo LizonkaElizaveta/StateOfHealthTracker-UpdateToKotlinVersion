@@ -89,13 +89,12 @@ class EmotionalTestFragment : Fragment() {
         val emotionalTestDatabase =
             TestingDatabase.getInstance(application).emotionalTestDatabaseDao
 
-        val viewModelFactory = EmotionalTestViewModelFactory(application) { amp, path ->
+        val viewModelFactory = EmotionalTestViewModelFactory(application) { path ->
 
             uiScope.launch {
                 withContext(Dispatchers.IO) {
                     emotionalTestDatabase.insert(
                         EmotionalTest(
-                            amplitudes = amp,
                             path = path
                         )
                     )
