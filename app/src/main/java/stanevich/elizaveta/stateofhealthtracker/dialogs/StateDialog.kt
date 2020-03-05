@@ -33,35 +33,18 @@ class StateDialog(
 
         val builder = AlertDialog.Builder(context)
 
-        fun states(): List<String> = listOf(
-            getString(R.string.emotion_state_1_joyful),
-            getString(R.string.emotion_state_2_sad),
-            getString(R.string.emotion_state_3_angry),
-            getString(R.string.emotion_state_4_tense),
-            getString(R.string.emotion_state_5_sleepy),
-            getString(R.string.emotion_state_6_calm),
-            getString(R.string.emotion_state_7_restless)
-        )
-
-        states().forEachIndexed { i, _ ->
-            val radioButton =
-                when (i) {
-                    0 -> {
-                        getMyRadioBtn(i, states()[i], true)
-                    }
-                    else -> getMyRadioBtn(i, states()[i])
-                }
+        resources.getStringArray(R.array.emotion_state).forEachIndexed { i, state ->
+            val radioButton = getMyRadioBtn(i, state, i == 0)
             binding.radioCategory.addView(radioButton)
         }
 
         builder.setView(binding.root)
-            .setTitle(R.string.dialog_emotion_title)
+            .setTitle(R.string.title_emotion_state)
             .setPositiveButton(R.string.btn_ok) { _, _ ->
                 binding.apply {
                     val selectID = radioCategory.checkedRadioButtonId
-                    println(selectID)
-                    val r = radioCategory.getChildAt(selectID) as? RadioButton
-                    emotion = r?.text.toString()
+                    val r = radioCategory.getChildAt(selectID) as RadioButton
+                    emotion = r.text.toString()
                 }
                 state.postValue(emotion)
                 this.dismiss()
@@ -71,7 +54,7 @@ class StateDialog(
         return builder.create()
     }
 
-    private fun getMyRadioBtn(id: Int, text: String, default: Boolean = false): RadioButton {
+    private fun getMyRadioBtn(id: Int, text: String, isChecked: Boolean): RadioButton {
         val radioButton = RadioButton(this.context)
         radioButton.apply {
             layoutParams = LinearLayout.LayoutParams(
@@ -81,7 +64,7 @@ class StateDialog(
             this.id = id
             setButtonDrawable(R.drawable.selector_dialog)
             this.text = text
-            isChecked = default
+            this.isChecked = isChecked
             overScrollMode = DrawerLayout.OVER_SCROLL_NEVER
             setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
             height = TypedValue.applyDimension(

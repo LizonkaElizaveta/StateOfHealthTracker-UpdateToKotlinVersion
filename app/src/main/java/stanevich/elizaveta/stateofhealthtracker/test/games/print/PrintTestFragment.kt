@@ -31,14 +31,7 @@ class PrintTestFragment : Fragment() {
         val binding: FragmentTestPrintBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_test_print, container, false)
 
-        val textList: List<String> = listOf(
-            getString(R.string.list_poems_one),
-            getString(R.string.list_poems_two),
-            getString(R.string.list_poems_three),
-            getString(R.string.list_poems_four),
-            getString(R.string.list_poems_five),
-            getString(R.string.list_poems_six)
-        )
+        val textList = resources.getStringArray(R.array.poems)
 
         val originalText =
             textList[Random(Calendar.getInstance().timeInMillis).nextInt(textList.size)]

@@ -111,12 +111,15 @@
     <string name="profile_text_confidential_contact_data">Ваши контактные данные являются конфиденциальной информацией и доступны для просмотра только вашему лечащему врачу.</string>
     <string name="text_test_print">Белеет парус одинокий \nВ тумане моря голубом!.. \nЧто ищет он в стране далекой? \nЧто кинул он в краю родном?.. \n\nИграют волны — ветер свищет, \nИ мачта гнется и скрыпит… \nУвы! он счастия не ищет \nИ не от счастия бежит!</string>
 
-    <string name="list_poems_one">От торопливости нет спасу,\nПожалуй, в рамках всей страны:\nКак много тех, кто хочет сразу\nНадеть рубашку и штаны!</string>
-    <string name="list_poems_two">Признаюсь честно, глазом не моргнув,\nЧто попадаю иногда впросак:\nПонять идеи Бога я ещё могу,\nА вот запросы женщины - никак!</string>
-    <string name="list_poems_three">Любит зебра по лужайке\nВ полосатой бегать майке.\nЗебра даже за конфетку\nНе наденет майку в клетку.</string>
-    <string name="list_poems_four">Бывает даже в глупости резон,\nА мудрость ошибается в итоге,\nИ тот, кто видит даль сквозь горизонт,\nНе может посмотреть себе под ноги!</string>
-    <string name="list_poems_five">В те дни, когда уж нет надежд,\nА есть одно воспоминанье,\nВеселье чуждо наших вежд,\nИ легче на груди страданье.</string>
-    <string name="list_poems_six">Не стоит себя мыслями грузить,\nВо всем до понимания доходить,\nУменье жизнью насладиться\nВсегда любому пригодится.</string>
+    <string-array name="poems">
+        <item>От торопливости нет спасу,\nПожалуй, в рамках всей страны:\nКак много тех, кто хочет сразу\nНадеть рубашку и штаны!</item>
+        <item>Признаюсь честно, глазом не моргнув,\nЧто попадаю иногда впросак:\nПонять идеи Бога я ещё могу,\nА вот запросы женщины - никак!</item>
+        <item>Любит зебра по лужайке\nВ полосатой бегать майке.\nЗебра даже за конфетку\nНе наденет майку в клетку.</item>
+        <item>Бывает даже в глупости резон,\nА мудрость ошибается в итоге,\nИ тот, кто видит даль сквозь горизонт,\nНе может посмотреть себе под ноги!</item>
+        <item>В те дни, когда уж нет надежд,\nА есть одно воспоминанье,\nВеселье чуждо наших вежд,\nИ легче на груди страданье.</item>
+        <item>Не стоит себя мыслями грузить,\nВо всем до понимания доходить,\nУменье жизнью насладиться\nВсегда любому пригодится.</item>
+    </string-array>
+
     <string name="data_mining_activated">Сбор данных активирован</string>
     <string name="data_mining_is_collected">В данный момент мы собираем статистику о скорости передвижении</string>
     <string name="data_mining_stop_collect">Остановить сбор статистики</string>
@@ -168,12 +171,14 @@
     <string name="text_drawing_test_description">Обведите заданную на экране\nфигуру. Старайтесь не касаться границ фигуры</string>
     <string name="text_drawing_figure_header">Обведите фигуру!</string>
 
-    <string name="dialog_emotion_title">Выберите свое состояние</string>
-    <string name="emotion_state_1_joyful">Радостное</string>
-    <string name="emotion_state_2_sad">Грустное</string>
-    <string name="emotion_state_3_angry">Гневное</string>
-    <string name="emotion_state_4_tense">Напряженное</string>
-    <string name="emotion_state_5_sleepy">Сонное</string>
-    <string name="emotion_state_6_calm">Спокойное</string>
-    <string name="emotion_state_7_restless">Беспокойное</string>
+    <string name="title_emotion_state">Эмоциональное состояние</string>
+    <string-array name="emotion_state">
+        <item>Радостное</item>
+        <item>Грустное</item>
+        <item>Гневное</item>
+        <item>Напряженное</item>
+        <item>Сонное</item>
+        <item>Спокойное</item>
+        <item>Беспокойное</item>
+    </string-array>
 </resources>

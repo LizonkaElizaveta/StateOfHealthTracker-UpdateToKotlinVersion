@@ -72,14 +72,7 @@ class ReadTestFragment : Fragment() {
 
         permissionRequire = RecordPermissionRequire(this.activity!!, fragmentManager!!)
 
-        val textList: List<String> = listOf(
-            getString(R.string.list_poems_one),
-            getString(R.string.list_poems_two),
-            getString(R.string.list_poems_three),
-            getString(R.string.list_poems_four),
-            getString(R.string.list_poems_five),
-            getString(R.string.list_poems_six)
-        )
+        val textList = resources.getStringArray(R.array.poems)
 
         originalText =
             textList[Random(Calendar.getInstance().timeInMillis).nextInt(textList.size)]
