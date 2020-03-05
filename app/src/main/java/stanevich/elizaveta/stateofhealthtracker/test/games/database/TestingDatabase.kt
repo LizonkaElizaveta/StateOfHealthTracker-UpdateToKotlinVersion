@@ -15,7 +15,7 @@ import stanevich.elizaveta.stateofhealthtracker.utils.DoubleArrayConverters
 
 @Database(
     entities = [TappingTest::class, PrintTest::class, EmotionalTest::class, ReadTest::class],
-    version = 6,
+    version = 7,
     exportSchema = false
 )
 @TypeConverters(DateConverters::class, DoubleArrayConverters::class)
@@ -26,7 +26,12 @@ abstract class TestingDatabase : RoomDatabase() {
     abstract val emotionalTestDatabaseDao: EmotionalTestDatabaseDao
     abstract val readTestDatabaseDao: ReadTestDatabaseDao
 
-    fun getAllNetworkDao() = listOf(tappingTestDatabaseDao, printTestDatabaseDao, emotionalTestDatabaseDao, readTestDatabaseDao)
+    fun getAllNetworkDao() = listOf(
+        tappingTestDatabaseDao,
+        printTestDatabaseDao,
+        emotionalTestDatabaseDao,
+        readTestDatabaseDao
+    )
 
     companion object {
 

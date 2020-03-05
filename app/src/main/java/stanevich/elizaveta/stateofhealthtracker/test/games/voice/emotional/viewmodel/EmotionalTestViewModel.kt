@@ -13,7 +13,7 @@ import kotlin.concurrent.timer
 
 class EmotionalTestViewModel(
     application: Application,
-    val onFinish: (amp: Array<Double>, path: String) -> Unit
+    val onFinish: (path: String) -> Unit
 ) : AndroidViewModel(application) {
 
     companion object {
@@ -64,8 +64,7 @@ class EmotionalTestViewModel(
         audioRecord.stopRecording()
 
         val path = audioRecord.getFullNameAudioFile()
-        val amp = audioRecord.listAmp.toTypedArray()
 
-        onFinish(amp, path)
+        onFinish(path)
     }
 }

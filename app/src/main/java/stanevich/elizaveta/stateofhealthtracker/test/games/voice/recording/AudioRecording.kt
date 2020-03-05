@@ -12,8 +12,6 @@ import stanevich.elizaveta.stateofhealthtracker.test.games.voice.recording.model
 import java.io.File
 import java.io.FileOutputStream
 import java.nio.ByteBuffer
-import kotlin.experimental.and
-import kotlin.math.abs
 
 
 class AudioRecording {
@@ -43,8 +41,6 @@ class AudioRecording {
         bufferSize
     )
     private var isRecording = false
-
-    val listAmp: MutableList<Double> = arrayListOf()
 
     fun getFullNameAudioFile(): String {
         return "${directory.fullNameDir}${File.separator}$currentNameFile.wav"
@@ -106,19 +102,9 @@ class AudioRecording {
                 if (result < 0) {
                     throw RuntimeException("Reading failed")
                 }
-                addNewAmp(byteBuffer)
                 outputStream.write(byteBuffer.array(), 0, bufferSize)
                 byteBuffer.clear()
             }
         }
-    }
-
-    private fun addNewAmp(byteBuffer: ByteBuffer) {
-        var amplitude =
-            ((byteBuffer[0] and 0xFF.toByte()).toInt() shl 8 or byteBuffer[1].toInt()) / 1.0
-        amplitude = abs(amplitude)
-
-        if (amplitude > 0 && amplitude < 25000)
-            listAmp.add(amplitude)
     }
 }
