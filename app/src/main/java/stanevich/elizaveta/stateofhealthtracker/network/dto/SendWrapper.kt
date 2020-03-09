@@ -102,11 +102,5 @@ fun convertFileToBase64(path: String): String {
 
     if (!file.exists()) return ""
 
-    val bytesArray = ByteArray(file.length().toInt())
-
-    FileInputStream(file).use {
-        it.read(bytesArray)
-    }
-
-    return Base64.encodeToString(bytesArray, 0)
+    return Base64.encodeToString(file.readBytes(), Base64.NO_WRAP)
 }
