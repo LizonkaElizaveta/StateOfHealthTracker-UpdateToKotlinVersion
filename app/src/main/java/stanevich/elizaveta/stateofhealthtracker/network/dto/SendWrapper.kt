@@ -14,7 +14,6 @@ import stanevich.elizaveta.stateofhealthtracker.test.games.tapping.model.Tapping
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.emotional.model.EmotionalTest
 import stanevich.elizaveta.stateofhealthtracker.test.games.voice.read.model.ReadTest
 import java.io.File
-import java.io.FileInputStream
 
 data class SendWrapper(
     val userId: Long = getUserId(),
@@ -101,11 +100,5 @@ fun convertFileToBase64(path: String): String {
 
     if (!file.exists()) return ""
 
-    val bytesArray = ByteArray(file.length().toInt())
-
-    FileInputStream(file).use {
-        it.read(bytesArray)
-    }
-
-    return Base64.encodeToString(bytesArray, 0)
+    return Base64.encodeToString(file.readBytes(), Base64.NO_WRAP)
 }
