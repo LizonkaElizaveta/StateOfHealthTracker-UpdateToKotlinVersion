@@ -47,6 +47,8 @@ class AudioRecording {
     }
 
     fun startRecording(): Boolean {
+        directory.createRecDirectory()
+
         enableNoiseSuppressor()
 
         recorder.startRecording()
@@ -54,7 +56,7 @@ class AudioRecording {
         isRecording = true
 
         CoroutineScope(Dispatchers.IO + Job()).launch {
-            convertToFile()
+            convertByteToTempFile()
         }
 
         return isRecording
@@ -89,14 +91,12 @@ class AudioRecording {
         }
     }
 
-    private fun convertToFile() {
-        directory.createRecDirectory()
-
-        val file = File(directory.fullNameDir, "$currentNameFile.pcm")
+    private fun convertByteToTempFile() {
+        val tempFile = File(directory.fullNameDir, "$currentNameFile.pcm")
 
         val byteBuffer = ByteBuffer.allocateDirect(bufferSize)
 
-        FileOutputStream(file).use { outputStream ->
+        FileOutputStream(tempFile).use { outputStream ->
             while (isRecording) {
                 val result = recorder.read(byteBuffer, bufferSize)
                 if (result < 0) {

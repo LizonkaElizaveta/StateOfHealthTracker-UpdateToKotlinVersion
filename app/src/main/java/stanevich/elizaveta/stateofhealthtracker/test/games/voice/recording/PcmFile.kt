@@ -5,7 +5,7 @@ import java.io.File
 object PcmFile {
 
     fun convertToWav(
-        fileName: String?,
+        fileName: String,
         pathDirectory: String,
         sampleRate: Int
     ): Boolean {
