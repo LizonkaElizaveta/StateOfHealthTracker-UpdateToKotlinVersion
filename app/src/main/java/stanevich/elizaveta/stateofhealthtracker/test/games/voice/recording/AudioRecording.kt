@@ -18,10 +18,10 @@ class AudioRecording {
 
     companion object {
         const val AUDIO_SOURCE = MediaRecorder.AudioSource.MIC
-        const val SAMPLE_RATE = 44100
+        const val SAMPLE_RATE = 16000
         const val CHANNELS = AudioFormat.CHANNEL_IN_MONO
         const val AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT
-        const val BUFFER_SIZE_FACTOR = 2
+        const val BUFFER_SIZE_FACTOR = 4
     }
 
     private val bufferSize = AudioRecord.getMinBufferSize(
