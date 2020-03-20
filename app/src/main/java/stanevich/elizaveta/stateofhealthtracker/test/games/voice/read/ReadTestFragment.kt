@@ -72,7 +72,7 @@ class ReadTestFragment : Fragment() {
 
         permissionRequire = RecordPermissionRequire(this.activity!!, fragmentManager!!)
 
-        val textList = resources.getStringArray(R.array.poems)
+        val textList = resources.getStringArray(R.array.texts)
 
         originalText =
             textList[Random(Calendar.getInstance().timeInMillis).nextInt(textList.size)]
@@ -99,7 +99,7 @@ class ReadTestFragment : Fragment() {
         toolbar?.title = ""
     }
 
-    private fun getReadTestViewModel():ReadTestViewModel{
+    private fun getReadTestViewModel(): ReadTestViewModel {
         val application = requireNotNull(this.activity).application
 
         val readTestDatabase =
