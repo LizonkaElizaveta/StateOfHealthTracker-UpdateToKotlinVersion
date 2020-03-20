@@ -57,10 +57,7 @@ class ReadTestFragment : Fragment() {
                 false
             )
 
-        fragmentManager?.let {
-            emotion.value = ""
-            StateDialog(emotion).show(it, "StateDialog")
-        }
+        emotion.value = ""
 
         readTestViewModel = getReadTestViewModel()
 
@@ -87,7 +84,14 @@ class ReadTestFragment : Fragment() {
 
     private fun onClickBtnVoice() {
         if (permissionRequire.checkAllPermissions()) {
-            readTestViewModel.voiceBtnClick()
+            if (emotion.value == "") {
+                fragmentManager?.let {
+                    emotion.value = ""
+                    StateDialog(emotion).show(it, "StateDialog")
+                }
+            } else {
+                readTestViewModel.voiceBtnClick()
+            }
         } else {
             startActivity(Intent(activity, RecordPermissionsActivity::class.java))
         }
